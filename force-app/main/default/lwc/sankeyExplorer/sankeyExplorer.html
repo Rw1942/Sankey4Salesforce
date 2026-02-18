@@ -1,0 +1,46 @@
+<template>
+    <lightning-card title="Process Flow — Sankey Explorer">
+        <div class="slds-p-horizontal_medium slds-p-bottom_small controls">
+            <div class="slds-grid slds-gutters slds-wrap">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <lightning-combobox
+                        name="recordSelect"
+                        label="Select Record"
+                        placeholder="— All records (aggregated) —"
+                        value={selectedRecordId}
+                        options={recordOptions}
+                        onchange={handleRecordChange}>
+                    </lightning-combobox>
+                </div>
+                <template if:true={selectedRecordId}>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-3 trace-controls">
+                        <label class="slds-form-element__label">Trace</label>
+                        <div class="slds-button-group slds-m-top_xx-small">
+                            <button class="slds-button slds-button_neutral" onclick={handleTraceReset}>&#8676; Reset</button>
+                            <button class="slds-button slds-button_neutral" onclick={handleTracePrev}>&#8249; Prev</button>
+                            <button class="slds-button slds-button_brand" onclick={handleTraceNext}>Next &#8250;</button>
+                        </div>
+                        <span class="slds-m-left_small trace-step-label">{traceStepLabel}</span>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <div class="chart-container" >
+            <svg class="sankey" lwc:dom="manual"></svg>
+        </div>
+
+        <template if:true={isLoading}>
+            <div class="slds-align_absolute-center slds-p-around_large">
+                <lightning-spinner alternative-text="Loading chart…" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:true={errorMessage}>
+            <div class="slds-notify slds-notify_alert slds-alert_error slds-m-around_medium" role="alert">
+                <span class="slds-assistive-text">error</span>
+                {errorMessage}
+            </div>
+        </template>
+    </lightning-card>
+</template>

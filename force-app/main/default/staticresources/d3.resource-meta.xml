@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Private</cacheControl>
+    <contentType>application/zip</contentType>
+    <description>D3 v7 bundle (d3.min.js at root of zip). Download from https://d3js.org and zip manually.</description>
+</StaticResource>

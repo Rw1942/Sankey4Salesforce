@@ -1,0 +1,68 @@
+.chart-container {
+    width: 100%;
+    min-height: 420px;
+    overflow: hidden;
+}
+
+svg.sankey {
+    display: block;
+    width: 100%;
+}
+
+/* Links */
+.sankey-link {
+    fill: none;
+    stroke: #aec6e8;
+    stroke-opacity: 0.5;
+    transition: stroke-opacity 0.2s ease, stroke 0.2s ease;
+}
+
+.sankey-link:hover {
+    stroke-opacity: 0.85;
+    cursor: pointer;
+}
+
+.link--active {
+    stroke: #0070d2;
+    stroke-opacity: 0.75;
+}
+
+.link--dim {
+    stroke: #ddd;
+    stroke-opacity: 0.25;
+}
+
+/* Nodes */
+.node-rect {
+    fill: #1b5faa;
+    rx: 3;
+    ry: 3;
+}
+
+.node-label {
+    font-size: 12px;
+    fill: #333;
+    pointer-events: none;
+}
+
+/* Controls */
+.controls {
+    border-bottom: 1px solid #dddbda;
+}
+
+.trace-controls {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.trace-step-label {
+    font-size: 12px;
+    color: #706e6b;
+}
+
+/* Placeholder when d3-sankey is missing */
+.placeholder-text {
+    font-size: 14px;
+    fill: #706e6b;
+}

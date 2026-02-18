@@ -1,0 +1,172 @@
+---
+description: Platform constraints and patterns for building D3 visualizations (Sankey charts) inside Salesforce Lightning Web Components
+alwaysApply: true
+---
+
+# D3 in Salesforce LWC — Platform Rules
+
+## Core Platform Constraints
+
+- **No CDN loading.** All third-party JS must be uploaded as a Static Resource (CSP blocks external scripts).
+- **Sandboxed runtime.** Lightning Web Security provides no real `window` global and no cross-component DOM access. Code must operate only inside the component root.
+- **LWC owns the DOM.** D3 may only render into elements marked `lwc:dom="manual"`. Never manipulate DOM that LWC manages.
+
+## Project Structure
+
+```
+force-app/main/default/
+├── lwc/
+│   └── sankeyExplorer/
+│       ├── sankeyExplorer.html
+│       ├── sankeyExplorer.js
+│       ├── sankeyExplorer.css
+│       └── sankeyExplorer.js-meta.xml
+└── staticresources/
+    └── d3.zip          # contains d3.min.js at root
+```
+
+Static resource limits: 5 MB per file, 250 MB org total. Use minified, modular builds — do not import the entire D3 ecosystem.
+
+## Loading D3
+
+```javascript
+import { loadScript } from 'lightning/platformResourceLoader';
+import D3 from '@salesforce/resourceUrl/d3';
+
+renderedCallback() {
+  if (this.initialized) return;
+  this.initialized = true;
+  loadScript(this, D3 + '/d3.min.js')
+    .then(() => this.initializeSankey());
+}
+```
+
+Always guard with `this.initialized` to load once.
+
+## Template Pattern
+
+```html
+<template>
+  <lightning-card title="Process Flow">
+    <div class="controls">
+      <!-- lightning-combobox for record dropdown, trace controls -->
+    </div>
+    <div class="chart-container">
+      <svg class="sankey" lwc:dom="manual"></svg>
+    </div>
+  </lightning-card>
+</template>
+```
+
+- Use `lightning-card` for SLDS consistency.
+- The `<svg>` must have `lwc:dom="manual"` so D3 can manage it.
+
+## DOM Access
+
+```javascript
+// NEVER
+document.querySelector('svg');
+
+// ALWAYS
+this.template.querySelector('svg');
+```
+
+Locker/LWS blocks global DOM traversal. All selectors go through `this.template`.
+
+## D3 Initialization
+
+```javascript
+initializeSankey() {
+  const svg = d3.select(this.template.querySelector('svg'));
+  svg.attr('width', this.width).attr('height', this.height);
+  this.drawSankey(svg);
+}
+```
+
+All rendering must stay inside the manual SVG element.
+
+## Data Sourcing
+
+| Approach | When to use |
+|----------|-------------|
+| Apex -> JSON | Real org data, production path |
+| Static JSON | Fastest for POC |
+
+## Data Transformation
+
+D3 transform logic works the same as web, but:
+
+- **Never mutate reactive LWC properties inside heavy loops.** Compute in local variables, assign once at the end. This avoids rerender storms.
+
+```javascript
+// BAD — triggers rerender on every iteration
+this.nodes.forEach(n => { this.processedData.push(transform(n)); });
+
+// GOOD — assign once
+const result = this.nodes.map(n => transform(n));
+this.processedData = result;
+```
+
+## Interaction & State
+
+State lives in the component class: `selectedRecordId`, `traceStep`, `traceValue`, `mode`.
+
+- Use `<lightning-combobox>` for dropdowns.
+- On change: recompute styles (link classes, stroke, opacity). **Do NOT rebuild the entire SVG** unless the dataset changed.
+
+## D3 Event Handling
+
+```javascript
+.on('mouseover', (event, d) => {
+  this.handleLinkHover(d);
+})
+```
+
+D3 events delegate to LWC methods to keep the platform reactivity model intact.
+
+## Styling Rules
+
+- **No Bootstrap or external CSS.** It causes performance issues, visual inconsistency, and namespace bleed.
+- Use SLDS utilities for layout.
+- Use component `.css` for chart-specific styles only.
+
+## Performance
+
+1. Load the library once (guard with `this.initialized`).
+2. Prefer incremental updates (classes, stroke, opacity) over full SVG rebuilds.
+3. Use minified builds — Salesforce explicitly recommends this.
+4. For record trace overlays: render the base aggregated Sankey, then overlay the selected record path. Do not render thousands of individual strands — Salesforce has slower DOM than raw web, shared runtime, and console embedding scenarios.
+
+## Container Sizing
+
+LWC runs in App pages, Record pages, and Console tabs. Use `ResizeObserver` on the chart container to recompute layout dynamically.
+
+## Locker / LWS Compatibility
+
+D3 works because it uses no `eval`, no global DOM hijacking, and supports scoped rendering. Libraries that fail typically attach to `window`, traverse the full `document`, or use dynamic code execution.
+
+## Deployment Metadata
+
+```xml
+<targets>
+  <target>lightning__AppPage</target>
+  <target>lightning__RecordPage</target>
+</targets>
+```
+
+## Recommended POC Build Sequence
+
+1. Hardcoded dataset -> render static Sankey
+2. Add record dropdown -> overlay selected path
+3. Add flow trace (step + value animation)
+4. Wire to Apex data source
+
+## Key Differences from Standard Web D3
+
+| Standard Web | Salesforce LWC |
+|---|---|
+| CDN `<script>` tags | Static resource + `loadScript` |
+| `document.querySelector` | `this.template.querySelector` |
+| Free CSS / Bootstrap | SLDS-first, component CSS only |
+| `window` globals | Sandboxed (no real `window`) |
+| Any library | Locker/LWS compliant only |

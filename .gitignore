@@ -1,0 +1,17 @@
+# Salesforce DX
+.sfdx/
+.sf/
+
+# Node
+node_modules/
+npm-debug.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/settings.json
+
+# Static resource zip (re-built locally, not versioned as binary)
+force-app/main/default/staticresources/d3.zip
