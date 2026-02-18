@@ -14,8 +14,8 @@ const TMP_DIR  = path.join(ROOT, '_d3bundle');
 const TMP_FILE = path.join(TMP_DIR, 'd3.min.js');
 const ZIP_OUT  = path.join(OUT_DIR, 'd3.zip');
 
-const d3Path     = require.resolve('d3/dist/d3.min.js');
-const sankeyPath = require.resolve('d3-sankey/dist/d3-sankey.min.js');
+const d3Path     = path.join(ROOT, 'node_modules', 'd3', 'dist', 'd3.min.js');
+const sankeyPath = path.join(ROOT, 'node_modules', 'd3-sankey', 'dist', 'd3-sankey.min.js');
 
 fs.mkdirSync(TMP_DIR, { recursive: true });
 

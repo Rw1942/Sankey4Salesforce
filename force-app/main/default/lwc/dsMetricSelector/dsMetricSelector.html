@@ -1,0 +1,30 @@
+<!-- Story 2.3: Metric selection — Count or Amount with dynamic numeric field picker -->
+<template>
+    <div class="slds-form-element">
+        <label class="slds-form-element__label slds-text-title_bold">Metric</label>
+
+        <!-- Story 2.3: Default = Count -->
+        <lightning-radio-group
+            name="metricType"
+            label="Metric Type"
+            variant="label-hidden"
+            options={metricTypeOptions}
+            value={internalMetricType}
+            type="button"
+            onchange={handleMetricTypeChange}>
+        </lightning-radio-group>
+
+        <!-- Story 2.3: If Amount selected, show numeric field picker -->
+        <template if:true={isAmount}>
+            <lightning-combobox
+                name="metricField"
+                label="Amount Field"
+                placeholder="Select numeric field..."
+                value={internalMetricField}
+                options={numericFieldOptions}
+                onchange={handleMetricFieldChange}
+                class="slds-m-top_x-small">
+            </lightning-combobox>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,97 @@
+<!-- Story 5.1/5.2: Record trace mode + Story 6.1/6.2: Flow trace mode -->
+<template>
+    <div class="slds-p-horizontal_medium slds-p-bottom_small controls-bar">
+        <div class="slds-grid slds-gutters_x-small slds-wrap">
+            <!-- Mode selector -->
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6">
+                <lightning-combobox
+                    name="mode"
+                    label="Mode"
+                    value={mode}
+                    options={modeOptions}
+                    onchange={handleModeChange}>
+                </lightning-combobox>
+            </div>
+
+            <!-- Story 5.1: Record trace — searchable combobox -->
+            <template if:true={isRecordTrace}>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-6">
+                    <lightning-combobox
+                        name="record"
+                        label="Record"
+                        placeholder="Search and choose a record..."
+                        value={selectedRecordId}
+                        options={recordOptions}
+                        onchange={handleRecordChange}>
+                    </lightning-combobox>
+                </div>
+
+                <!-- Story 5.2: Open record in Salesforce -->
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6 slds-grid slds-grid_vertical-align-end">
+                    <template if:true={selectedRecordId}>
+                        <lightning-button
+                            label="Open Record"
+                            icon-name="utility:new_window"
+                            variant="neutral"
+                            onclick={handleOpenRecord}>
+                        </lightning-button>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Story 6.1/6.2: Flow trace — step + value selectors -->
+            <template if:true={isFlowTrace}>
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6">
+                    <lightning-combobox
+                        name="flowStep"
+                        label="Step"
+                        placeholder="Pick step..."
+                        value={flowStepIdx}
+                        options={flowStepOptions}
+                        onchange={handleFlowStepChange}>
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_2-of-6">
+                    <lightning-combobox
+                        name="flowValue"
+                        label="Value"
+                        placeholder="Pick value..."
+                        value={flowTraceValue}
+                        options={flowValueOptions}
+                        onchange={handleFlowValueChange}>
+                    </lightning-combobox>
+                </div>
+            </template>
+        </div>
+
+        <!-- Story 5.1: Step-through animation controls for record trace -->
+        <template if:true={showTraceControls}>
+            <div class="trace-row slds-m-top_x-small">
+                <lightning-button-group>
+                    <lightning-button label="Reset" onclick={handleTraceReset}></lightning-button>
+                    <lightning-button label="Prev" onclick={handleTracePrev}></lightning-button>
+                    <lightning-button label="Next" variant="brand" onclick={handleTraceNext}></lightning-button>
+                </lightning-button-group>
+                <span class="trace-label slds-m-left_small">{traceStepLabel}</span>
+            </div>
+        </template>
+
+        <!-- Story 6.2: KPI summary for flow trace -->
+        <template if:true={showFlowKpis}>
+            <div class="slds-grid slds-gutters_x-small slds-m-top_small kpi-bar">
+                <div class="slds-col kpi-card">
+                    <span class="kpi-value">{kpis.totalRecords}</span>
+                    <span class="kpi-label">Records</span>
+                </div>
+                <div class="slds-col kpi-card">
+                    <span class="kpi-value">${formattedTotalAmount}</span>
+                    <span class="kpi-label">Total Amount</span>
+                </div>
+                <div class="slds-col kpi-card">
+                    <span class="kpi-value">{kpis.conversionPct}%</span>
+                    <span class="kpi-label">Conversion</span>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

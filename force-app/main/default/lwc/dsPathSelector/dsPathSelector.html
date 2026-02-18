@@ -1,0 +1,50 @@
+<!-- Story 3.1: Path field selector with ordered multi-select, null handling, record ID -->
+<template>
+    <div class="slds-box slds-theme_shade slds-m-top_small">
+        <h3 class="slds-text-heading_small slds-m-bottom_small">Sankey Path Configuration</h3>
+
+        <!-- Story 3.1: Dual listbox for ordered field selection -->
+        <lightning-dual-listbox
+            name="pathFields"
+            label="Path Fields (order matters)"
+            source-label="Available Fields"
+            selected-label="Selected Steps"
+            options={pathFieldOptions}
+            value={internalSelected}
+            onchange={handlePathChange}
+            min={2}
+            required>
+        </lightning-dual-listbox>
+
+        <!-- Story 3.1: Minimum 2 steps enforcement -->
+        <template if:true={showMinWarning}>
+            <p class="slds-text-color_error slds-text-body_small slds-m-top_xx-small">
+                Select at least 2 path fields to define a flow.
+            </p>
+        </template>
+
+        <div class="slds-grid slds-gutters slds-m-top_small">
+            <!-- Story 3.2: Null handling strategy -->
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-combobox
+                    name="nullHandling"
+                    label="Null Handling"
+                    value={internalNullHandling}
+                    options={nullHandlingOptions}
+                    onchange={handleNullChange}>
+                </lightning-combobox>
+            </div>
+
+            <!-- Story 3.3: Record identifier selection -->
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-combobox
+                    name="recordIdField"
+                    label="Record ID Field"
+                    value={internalRecordIdField}
+                    options={idFieldOptions}
+                    onchange={handleIdFieldChange}>
+                </lightning-combobox>
+            </div>
+        </div>
+    </div>
+</template>

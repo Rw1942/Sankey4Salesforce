@@ -1,0 +1,161 @@
+<!-- Story 1.1: Parent orchestrator for the Sankey Builder -->
+<template>
+    <lightning-card title="Sankey Builder" icon-name="utility:strategy">
+        <div slot="actions">
+            <!-- Story 9.1/9.2: Saved configs controls -->
+            <c-ds-saved-configs
+                if:true={hasData}
+                config={configForSave}
+                onsaveconfig={handleSaveConfig}
+                onconfigloaded={handleConfigLoaded}>
+            </c-ds-saved-configs>
+            <lightning-button
+                if:true={hasData}
+                label="Reset"
+                icon-name="utility:refresh"
+                onclick={handleResetAll}
+                variant="neutral"
+                class="slds-m-left_x-small">
+            </lightning-button>
+        </div>
+
+        <!-- Story 1.2: Empty state shown before configuration -->
+        <template if:true={showEmptyState}>
+            <c-ds-empty-state onstart={handleStart}></c-ds-empty-state>
+        </template>
+
+        <!-- Story 8.1: Configuration panel shown after Start, before data load -->
+        <template if:true={showConfigPanel}>
+            <div class="slds-p-around_medium">
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <!-- Story 2.1: Object picker -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_small">
+                        <c-ds-object-picker
+                            selected-object={state.config.objectApiName}
+                            onobjectselect={handleObjectSelect}>
+                        </c-ds-object-picker>
+                    </div>
+
+                    <!-- Story 2.3: Metric selector -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_small">
+                        <c-ds-metric-selector
+                            if:true={state.config.objectApiName}
+                            object-api-name={state.config.objectApiName}
+                            metric-type={state.config.metricType}
+                            metric-field={state.config.metricField}
+                            onmetricchange={handleMetricChange}>
+                        </c-ds-metric-selector>
+                    </div>
+                </div>
+
+                <!-- Story 3.1: Path field selector -->
+                <template if:true={state.config.objectApiName}>
+                    <c-ds-path-selector
+                        object-api-name={state.config.objectApiName}
+                        selected-fields={state.config.pathFields}
+                        null-handling={state.config.nullHandling}
+                        record-id-field={state.config.recordIdField}
+                        onpathconfigured={handlePathConfigured}>
+                    </c-ds-path-selector>
+                </template>
+
+                <!-- Story 2.2: Filter builder -->
+                <template if:true={state.config.objectApiName}>
+                    <c-ds-filter-builder
+                        object-api-name={state.config.objectApiName}
+                        filters={state.config.filters}
+                        onloaddata={handleLoadData}>
+                    </c-ds-filter-builder>
+                </template>
+            </div>
+        </template>
+
+        <!-- Story 4.1: Loading spinner -->
+        <template if:true={state.ui.loading}>
+            <div class="slds-align_absolute-center slds-p-around_large">
+                <lightning-spinner alternative-text="Loading Sankey data" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Story 8.1: Truncation warning -->
+        <template if:true={showTruncationWarning}>
+            <div class="slds-notify slds-notify_alert slds-alert_warning slds-m-horizontal_medium slds-m-top_small" role="alert">
+                <span class="slds-assistive-text">warning</span>
+                Dataset was limited to {datasetLimit} records. Apply filters to narrow your results.
+            </div>
+        </template>
+
+        <!-- Story 4.2 + EPIC 5/6/7: Chart + Trace + Insights area -->
+        <template if:true={hasData}>
+            <div class="slds-grid slds-wrap">
+                <div class={chartColumnClass}>
+                    <!-- EPIC 5/6: Trace panel -->
+                    <c-ds-trace-panel
+                        mode={state.ui.mode}
+                        records={state.data.records}
+                        steps={state.data.stepColumns}
+                        selected-record-id={state.ui.selectedRecord}
+                        trace-step={state.ui.traceStep}
+                        flow-step-idx={state.ui.flowStepIdx}
+                        flow-trace-value={state.ui.flowTraceValue}
+                        kpis={flowTraceKpis}
+                        onmodechange={handleModeChange}
+                        onrecordselect={handleRecordSelect}
+                        onflowstepchange={handleFlowStepChange}
+                        onflowvaluechange={handleFlowValueChange}
+                        ontracenext={handleTraceNext}
+                        ontraceprev={handleTracePrev}
+                        ontracereset={handleTraceReset}
+                        onopenrecord={handleOpenRecord}>
+                    </c-ds-trace-panel>
+
+                    <!-- Story 4.2: Sankey chart -->
+                    <c-ds-sankey-chart
+                        nodes={state.data.nodes}
+                        links={state.data.links}
+                        records={state.data.records}
+                        steps={state.data.stepColumns}
+                        metric={state.ui.metricDisplay}
+                        mode={state.ui.mode}
+                        selected-record-id={state.ui.selectedRecord}
+                        flow-step-idx={state.ui.flowStepIdx}
+                        flow-trace-value={state.ui.flowTraceValue}
+                        trace-step={state.ui.traceStep}
+                        onnodeclick={handleNodeClick}
+                        onopenrecord={handleOpenRecord}>
+                    </c-ds-sankey-chart>
+                </div>
+
+                <!-- Story 7.1/7.2: Insights panel (collapsible sidebar) -->
+                <div class={insightsColumnClass}>
+                    <c-ds-insights-panel
+                        if:true={showInsights}
+                        kpis={state.data.kpis}
+                        top-paths={state.data.topPaths}
+                        ontogglepanel={handleToggleInsights}>
+                    </c-ds-insights-panel>
+                </div>
+            </div>
+
+            <!-- Toggle insights button when panel is collapsed -->
+            <template if:false={showInsights}>
+                <div class="slds-text-align_right slds-p-right_medium slds-p-bottom_small">
+                    <lightning-button
+                        label="Show Insights"
+                        icon-name="utility:graph"
+                        variant="neutral"
+                        onclick={handleToggleInsights}>
+                    </lightning-button>
+                </div>
+            </template>
+        </template>
+
+        <!-- Story 4.1: Error state -->
+        <template if:true={errorMessage}>
+            <div class="slds-notify slds-notify_alert slds-alert_error slds-m-around_medium" role="alert">
+                <span class="slds-assistive-text">error</span>
+                {errorMessage}
+            </div>
+        </template>
+    </lightning-card>
+</template>

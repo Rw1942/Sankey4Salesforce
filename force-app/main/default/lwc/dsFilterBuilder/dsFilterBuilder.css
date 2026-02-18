@@ -1,0 +1,4 @@
+/* Story 2.2: Filter builder layout */
+.filter-row {
+    align-items: flex-end;
+}

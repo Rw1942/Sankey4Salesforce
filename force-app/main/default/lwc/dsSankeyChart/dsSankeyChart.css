@@ -1,4 +1,4 @@
-/* ── Container ── */
+/* Story 4.2: Chart container and D3 element styles */
 .chart-container {
     position: relative;
     width: 100%;
@@ -11,7 +11,6 @@ svg.sankey {
     width: 100%;
 }
 
-/* ── Links ── */
 .sankey-link {
     fill: none;
     transition: stroke-opacity 0.2s ease;
@@ -24,7 +23,6 @@ svg.sankey {
     filter: drop-shadow(0 0 4px rgba(255, 105, 0, 0.55));
 }
 
-/* ── Nodes ── */
 .node-rect {
     transition: opacity 0.2s ease;
     cursor: pointer;
@@ -41,22 +39,7 @@ svg.sankey {
     fill: #706e6b;
 }
 
-/* ── Controls ── */
-.controls-bar {
-    border-bottom: 1px solid #dddbda;
-}
-
-.trace-row {
-    display: flex;
-    align-items: center;
-}
-
-.trace-label {
-    font-size: 12px;
-    color: #706e6b;
-}
-
-/* ── Tooltip ── */
+/* Tooltip */
 .sankey-tooltip {
     position: absolute;
     pointer-events: none;
@@ -66,7 +49,7 @@ svg.sankey {
     border-radius: 6px;
     font-size: 12px;
     line-height: 1.45;
-    max-width: 280px;
+    max-width: 320px;
     white-space: nowrap;
     opacity: 0;
     transition: opacity 0.12s ease;
@@ -94,7 +77,6 @@ svg.sankey {
     white-space: normal;
 }
 
-/* ── Placeholder ── */
 .placeholder-text {
     font-size: 14px;
     fill: #706e6b;

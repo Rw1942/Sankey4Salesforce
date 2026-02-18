@@ -1,0 +1,70 @@
+<!-- Story 7.1: Contextual metrics / Story 7.2: Top paths -->
+<template>
+    <div class="slds-box insights-panel">
+        <div class="slds-grid slds-grid_align-spread slds-m-bottom_small">
+            <h3 class="slds-text-heading_small">Insights</h3>
+            <lightning-button-icon
+                icon-name="utility:close"
+                alternative-text="Close panel"
+                variant="bare"
+                onclick={handleToggle}>
+            </lightning-button-icon>
+        </div>
+
+        <!-- Story 7.1: Summary stats — drop-off, conversion, average amount -->
+        <template if:true={hasKpis}>
+            <div class="slds-grid slds-wrap slds-gutters_xx-small slds-m-bottom_medium">
+                <div class="slds-col slds-size_1-of-2 slds-p-bottom_x-small">
+                    <div class="kpi-tile">
+                        <span class="kpi-num">{kpis.totalRecords}</span>
+                        <span class="kpi-lbl">Total Records</span>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-bottom_x-small">
+                    <div class="kpi-tile">
+                        <span class="kpi-num">${formattedTotalAmount}</span>
+                        <span class="kpi-lbl">Total Amount</span>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-bottom_x-small">
+                    <div class="kpi-tile">
+                        <span class="kpi-num">{kpis.conversionRate}%</span>
+                        <span class="kpi-lbl">Conversion Rate</span>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-bottom_x-small">
+                    <div class="kpi-tile">
+                        <span class="kpi-num">{kpis.dropOffRate}%</span>
+                        <span class="kpi-lbl">Drop-off Rate</span>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-p-bottom_x-small">
+                    <div class="kpi-tile">
+                        <span class="kpi-num">${formattedAvgAmount}</span>
+                        <span class="kpi-lbl">Average Amount</span>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Story 7.2: Top paths — most common paths sorted by metric -->
+        <template if:true={hasTopPaths}>
+            <h4 class="slds-text-title_caps slds-m-bottom_x-small">Top Paths</h4>
+            <div class="top-paths-list">
+                <template for:each={topPaths} for:item="tp">
+                    <div key={tp.rank} class="top-path-row">
+                        <span class="path-rank">#{tp.rank}</span>
+                        <span class="path-text">{tp.path}</span>
+                        <span class="path-count">{tp.count} records</span>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <template if:false={hasKpis}>
+            <p class="slds-text-body_small slds-text-color_weak">
+                Load data to see insights.
+            </p>
+        </template>
+    </div>
+</template>

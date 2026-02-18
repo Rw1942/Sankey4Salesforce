@@ -1,0 +1,39 @@
+<!-- Story 2.1: Permission-aware, searchable object picker -->
+<template>
+    <div class="slds-form-element">
+        <label class="slds-form-element__label slds-text-title_bold">
+            Salesforce Object
+        </label>
+
+        <!-- Story 2.1: Searchable input for filtering objects -->
+        <div class="slds-combobox_container">
+            <lightning-input
+                type="search"
+                label="Search Objects"
+                variant="label-hidden"
+                placeholder="Search objects..."
+                value={searchTerm}
+                onchange={handleSearchChange}>
+            </lightning-input>
+
+            <!-- Story 2.1: Filtered object list as combobox -->
+            <lightning-combobox
+                name="objectPicker"
+                label="Select Object"
+                variant="label-hidden"
+                placeholder="Choose an object..."
+                value={selectedObject}
+                options={filteredOptions}
+                onchange={handleObjectChange}
+                class="slds-m-top_xx-small">
+            </lightning-combobox>
+        </div>
+
+        <!-- Story 2.1: Show label + API name for selected object -->
+        <template if:true={selectedObject}>
+            <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">
+                Selected: {selectedObjectLabel}
+            </p>
+        </template>
+    </div>
+</template>

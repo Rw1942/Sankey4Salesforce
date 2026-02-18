@@ -1,0 +1,65 @@
+/* Story 7.1/7.2: Insights panel styling */
+.insights-panel {
+    background: #fafaf9;
+    border: 1px solid #dddbda;
+    border-radius: 8px;
+    margin: 8px;
+}
+
+.kpi-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 8px;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #e5e5e5;
+}
+
+.kpi-num {
+    font-size: 20px;
+    font-weight: 700;
+    color: #16325c;
+}
+
+.kpi-lbl {
+    font-size: 10px;
+    color: #706e6b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+/* Story 7.2: Top paths list */
+.top-paths-list {
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.top-path-row {
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 12px;
+}
+
+.path-rank {
+    font-weight: 700;
+    color: #706e6b;
+    width: 28px;
+    flex-shrink: 0;
+}
+
+.path-text {
+    flex: 1;
+    color: #16325c;
+    word-break: break-word;
+}
+
+.path-count {
+    flex-shrink: 0;
+    color: #706e6b;
+    margin-left: 8px;
+    font-size: 11px;
+}

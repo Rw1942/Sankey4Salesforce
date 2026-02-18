@@ -1,0 +1,42 @@
+/* Story 5.1/6.2: Trace panel styling */
+.controls-bar {
+    border-bottom: 1px solid #dddbda;
+}
+
+.trace-row {
+    display: flex;
+    align-items: center;
+}
+
+.trace-label {
+    font-size: 12px;
+    color: #706e6b;
+}
+
+/* Story 6.2: KPI summary bar */
+.kpi-bar {
+    padding: 8px 0;
+}
+
+.kpi-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 12px;
+    background: #f4f6f9;
+    border-radius: 6px;
+    margin-right: 8px;
+}
+
+.kpi-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #16325c;
+}
+
+.kpi-label {
+    font-size: 11px;
+    color: #706e6b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

@@ -1,0 +1,105 @@
+<!-- Story 2.2: Filter builder with field/operator/value rows, date range quick filters -->
+<template>
+    <div class="slds-box slds-theme_shade slds-m-top_small">
+        <h3 class="slds-text-heading_small slds-m-bottom_small">Filters</h3>
+
+        <!-- Story 2.2: Date range quick filters -->
+        <div class="slds-m-bottom_small">
+            <lightning-combobox
+                name="dateRange"
+                label="Date Quick Filter"
+                placeholder="Optional date range..."
+                value={selectedDateRange}
+                options={dateRangeOptions}
+                onchange={handleDateRangeChange}>
+            </lightning-combobox>
+        </div>
+
+        <!-- Story 2.2: Filter rows — Field + Operator + Value -->
+        <template for:each={filterRows} for:item="row">
+            <div key={row.id} class="slds-grid slds-gutters_x-small slds-m-bottom_x-small filter-row">
+                <div class="slds-col slds-size_4-of-12">
+                    <lightning-combobox
+                        name="field"
+                        label="Field"
+                        variant="label-hidden"
+                        placeholder="Field..."
+                        value={row.field}
+                        options={fieldOptions}
+                        data-row-id={row.id}
+                        onchange={handleFieldChange}>
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_3-of-12">
+                    <lightning-combobox
+                        name="operator"
+                        label="Operator"
+                        variant="label-hidden"
+                        placeholder="Op..."
+                        value={row.operator}
+                        options={operatorOptions}
+                        data-row-id={row.id}
+                        onchange={handleOperatorChange}>
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_4-of-12">
+                    <lightning-input
+                        label="Value"
+                        variant="label-hidden"
+                        placeholder="Value..."
+                        value={row.value}
+                        data-row-id={row.id}
+                        onchange={handleValueChange}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-12 slds-text-align_center">
+                    <lightning-button-icon
+                        icon-name="utility:delete"
+                        alternative-text="Remove filter"
+                        variant="bare"
+                        data-row-id={row.id}
+                        onclick={handleRemoveRow}
+                        class="slds-m-top_xx-small">
+                    </lightning-button-icon>
+                </div>
+            </div>
+        </template>
+
+        <div class="slds-grid slds-grid_align-spread slds-m-top_small">
+            <lightning-button
+                label="Add Filter"
+                icon-name="utility:add"
+                variant="neutral"
+                onclick={handleAddRow}>
+            </lightning-button>
+
+            <div>
+                <!-- Story 2.2: Preview record count -->
+                <lightning-button
+                    label={previewLabel}
+                    icon-name="utility:preview"
+                    variant="neutral"
+                    onclick={handlePreviewCount}
+                    disabled={isPreviewDisabled}
+                    class="slds-m-right_x-small">
+                </lightning-button>
+
+                <!-- Story 2.2 + 8.1: Load Data CTA — triggers query -->
+                <lightning-button
+                    label="Load Data"
+                    icon-name="utility:download"
+                    variant="brand"
+                    onclick={handleLoadData}
+                    disabled={isLoadDisabled}>
+                </lightning-button>
+            </div>
+        </div>
+
+        <!-- Story 2.2: Preview record count display -->
+        <template if:true={recordCount}>
+            <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
+                Matching records: {recordCount}
+            </p>
+        </template>
+    </div>
+</template>

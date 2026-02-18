@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Story 9.1: Saved path fields configuration as JSON -->
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Path_Fields_JSON__c</fullName>
+    <description>JSON-serialized ordered path field list</description>
+    <externalId>false</externalId>
+    <label>Path Fields JSON</label>
+    <length>32768</length>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

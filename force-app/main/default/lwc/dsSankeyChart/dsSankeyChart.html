@@ -1,0 +1,13 @@
+<!-- Story 4.2: Aggregated Sankey chart with D3 rendering -->
+<template>
+    <div class="chart-container">
+        <svg class="sankey" lwc:dom="manual"></svg>
+        <div class={tooltipClass} style={tooltipStyle}>
+            <div class="tooltip-title">{tooltipTitle}</div>
+            <div class="tooltip-detail">{tooltipDetail}</div>
+            <template if:true={tooltipExtra}>
+                <div class="tooltip-extra">{tooltipExtra}</div>
+            </template>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,68 @@
+<!-- Story 9.1: Save configuration / Story 9.2: Load saved configuration -->
+<template>
+    <div class="slds-grid slds-grid_align-end slds-gutters_xx-small">
+        <!-- Story 9.1: Save current config -->
+        <lightning-button
+            label="Save Config"
+            icon-name="utility:save"
+            variant="neutral"
+            onclick={handleSaveClick}>
+        </lightning-button>
+
+        <!-- Story 9.2: Load saved config dropdown -->
+        <lightning-button-menu
+            alternative-text="Load saved configs"
+            icon-name="utility:open_folder"
+            variant="border-filled"
+            onselect={handleLoadSelect}
+            class="slds-m-left_xx-small">
+            <template if:true={hasSavedConfigs}>
+                <template for:each={savedConfigs} for:item="cfg">
+                    <lightning-menu-item
+                        key={cfg.id}
+                        value={cfg.id}
+                        label={cfg.label}>
+                    </lightning-menu-item>
+                </template>
+            </template>
+            <template if:false={hasSavedConfigs}>
+                <lightning-menu-item
+                    value="none"
+                    label="No saved configs"
+                    disabled>
+                </lightning-menu-item>
+            </template>
+        </lightning-button-menu>
+    </div>
+
+    <!-- Story 9.1: Save dialog (inline prompt) -->
+    <template if:true={showSaveDialog}>
+        <section class="slds-modal slds-fade-in-open slds-modal_small" role="dialog">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">Save Sankey Configuration</h2>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-input
+                        label="Configuration Name"
+                        value={saveName}
+                        placeholder="e.g. Q1 Opportunity Pipeline"
+                        onchange={handleNameChange}
+                        required>
+                    </lightning-input>
+                </div>
+                <div class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={handleCancelSave}></lightning-button>
+                    <lightning-button
+                        label="Save"
+                        variant="brand"
+                        onclick={handleConfirmSave}
+                        disabled={isSaveDisabled}
+                        class="slds-m-left_x-small">
+                    </lightning-button>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

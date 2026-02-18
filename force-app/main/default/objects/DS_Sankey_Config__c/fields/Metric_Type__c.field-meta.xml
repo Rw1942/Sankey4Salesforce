@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Story 9.1: Saved metric type (COUNT or AMOUNT) -->
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Metric_Type__c</fullName>
+    <description>Metric type for link width: COUNT or AMOUNT</description>
+    <externalId>false</externalId>
+    <label>Metric Type</label>
+    <required>true</required>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>COUNT</fullName>
+                <default>true</default>
+                <label>COUNT</label>
+            </value>
+            <value>
+                <fullName>AMOUNT</fullName>
+                <default>false</default>
+                <label>AMOUNT</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
