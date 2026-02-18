@@ -80,10 +80,11 @@ export default class SankeyExplorer extends LightningElement {
     _ro        = null;
     _rafId     = null;  // requestAnimationFrame handle for resize debounce
 
-    // Tracks the currently click-selected node id or link key.
-    // Decoupled from the mode dropdown so click-to-highlight works in
-    // any mode and toggles off on a second click (EPIC 6 — Flow Trace).
+    // Click and hover state — both feed into the single _applyHighlight()
+    // code path so there are never competing D3 transitions.
+    // _clickedId persists until toggled off; _hoveredId is transient.
     _clickedId = null;
+    _hoveredId = null;
 
     /* ═══ Lifecycle ════════════════════════════════════════════════════ */
 
@@ -342,8 +343,8 @@ export default class SankeyExplorer extends LightningElement {
             .attr('stroke', l => this._colorOf.get(l.source.id) || '#aec6e8')
             .attr('stroke-width', l => Math.max(1, l.width))
             .attr('stroke-opacity', BASE_OPACITY)
-            .on('mouseover', (ev, d) => this._onLinkOver(ev, d))
-            .on('mouseout',  ()      => this._onOut())
+            .on('mouseenter', (ev, d) => this._onLinkOver(ev, d))
+            .on('mouseleave', ()      => this._onOut())
             .on('click',     (ev, d) => this._onLinkClick(d));
 
         this._gOverlay = root.append('g').attr('class', 'g-overlay');
@@ -357,8 +358,8 @@ export default class SankeyExplorer extends LightningElement {
             .join('g')
             .attr('transform', n => 'translate(' + n.x0 + ',' + n.y0 + ')')
             .style('cursor', 'pointer')
-            .on('mouseover', (ev, d) => this._onNodeOver(ev, d))
-            .on('mouseout',  ()      => this._onOut())
+            .on('mouseenter', (ev, d) => this._onNodeOver(ev, d))
+            .on('mouseleave', ()      => this._onOut())
             .on('click',     (ev, d) => this._onNodeClick(d));
 
         ng.append('rect')
@@ -379,24 +380,42 @@ export default class SankeyExplorer extends LightningElement {
 
     /* ═══ Highlighting ═════════════════════════════════════════════════ */
 
-    _applyHighlight() {
+    /**
+     * Single source of truth for all opacity/highlight changes.
+     * Hover, click, mode changes, and mouseout all funnel here so
+     * there are never competing D3 transitions on the same elements.
+     *
+     * @param {number} [ms] — transition duration; defaults to ANIM_MS.
+     *   Pass 0 for instant feedback (e.g. on click).
+     */
+    _applyHighlight(ms) {
         if (!this._gLinks || !this._laid) return;
+        const dur = ms !== undefined ? ms : ANIM_MS;
 
         const activeSet = this._activeRecordSet();
 
-        this._gLinks.selectAll('path')
-            .transition().duration(ANIM_MS)
-            .attr('stroke-opacity', d => {
-                if (!activeSet) return BASE_OPACITY;
-                return this._intersects(d.recordIndices, activeSet) ? HI_OPACITY : DIM_OPACITY;
-            });
+        const linkOpacity = d => {
+            if (!activeSet) return BASE_OPACITY;
+            return this._intersects(d.recordIndices, activeSet) ? HI_OPACITY : DIM_OPACITY;
+        };
+        const nodeOpacity = d => {
+            if (!activeSet) return 1;
+            return this._intersects(d.recordIndices, activeSet) ? 1 : 0.2;
+        };
 
-        this._gNodes.selectAll('g').select('.node-rect')
-            .transition().duration(ANIM_MS)
-            .attr('opacity', d => {
-                if (!activeSet) return 1;
-                return this._intersects(d.recordIndices, activeSet) ? 1 : 0.2;
-            });
+        const links = this._gLinks.selectAll('path');
+        const rects = this._gNodes.selectAll('g').select('.node-rect');
+
+        // dur === 0 → synchronous DOM write via interrupt().attr() so clicks
+        // feel instant.  interrupt() cancels any in-flight transition first.
+        // dur > 0  → animated transition for smooth hover/unhover effects.
+        if (dur === 0) {
+            links.interrupt().attr('stroke-opacity', linkOpacity);
+            rects.interrupt().attr('opacity', nodeOpacity);
+        } else {
+            links.transition().duration(dur).attr('stroke-opacity', linkOpacity);
+            rects.transition().duration(dur).attr('opacity', nodeOpacity);
+        }
 
         this._gOverlay.selectAll('*').remove();
         if (this.mode === 'RECORD_TRACE' && this.selectedRecordId) {
@@ -408,14 +427,18 @@ export default class SankeyExplorer extends LightningElement {
      * Returns the Set of record indices that should be highlighted,
      * or null when everything should render at base opacity.
      *
-     * Priority order:
-     *  1. Click selection (_clickedId)  — ad-hoc highlight in any mode
-     *  2. Mode-based selection          — RECORD_TRACE / FLOW_TRACE dropdowns
-     *  3. null                          — no active highlight (AGGREGATE default)
+     * Priority order (first match wins):
+     *  1. Click selection (_clickedId) — sticky, survives mouseout
+     *  2. Hover preview   (_hoveredId) — transient, clears on mouseout
+     *  3. Mode-based selection         — RECORD_TRACE / FLOW_TRACE dropdowns
+     *  4. null                         — no highlight (AGGREGATE default)
      */
     _activeRecordSet() {
         if (this._clickedId) {
-            return this._clickedRecordSet();
+            return this._resolveRecordSet(this._clickedId);
+        }
+        if (this._hoveredId) {
+            return this._resolveRecordSet(this._hoveredId);
         }
         if (this.mode === 'RECORD_TRACE' && this.selectedRecordId) {
             const ri = this._records.findIndex(r => r.id === this.selectedRecordId);
@@ -430,17 +453,15 @@ export default class SankeyExplorer extends LightningElement {
     }
 
     /**
-     * Resolves _clickedId to a record-index Set.
-     * _clickedId may be a node id (e.g. "0::Online") or a link key
-     * (e.g. "0::Online→1::Qualified").  The returned set contains every
-     * record that passes through the element, which naturally lights up
-     * the full upstream + downstream path (EPIC 6 acceptance criteria).
+     * Resolves any element identifier (node id or link key) to the
+     * Set of record indices that pass through it.  Used for both
+     * click and hover highlighting — same full-path logic for both.
      */
-    _clickedRecordSet() {
-        const node = this._graph.nodeMap.get(this._clickedId);
+    _resolveRecordSet(elementId) {
+        const node = this._graph.nodeMap.get(elementId);
         if (node) return new Set(node.recordIndices);
 
-        const link = this._graph.linkAgg.get(this._clickedId);
+        const link = this._graph.linkAgg.get(elementId);
         if (link) return new Set(link.recordIndices);
 
         return null;
@@ -476,30 +497,18 @@ export default class SankeyExplorer extends LightningElement {
         /* eslint-enable no-undef */
     }
 
-    /* ═══ Hover / click ════════════════════════════════════════════════ */
+    /* ═══ Hover / click ════════════════════════════════════════════════
+     *
+     * All visual changes funnel through _applyHighlight(ms) so there
+     * is exactly ONE transition running at any time.  Handlers only
+     * set state (_hoveredId, _clickedId) and call that function.
+     *
+     * ─────────────────────────────────────────────────────────────── */
 
-    /**
-     * Hover preview — shows connected links/nodes and a tooltip.
-     * Skipped when a click selection is active so the persistent
-     * highlight is not overridden by transient hover effects.
-     */
     _onNodeOver(event, d) {
         if (!this._clickedId) {
-            this._gLinks.selectAll('path')
-                .transition().duration(120)
-                .attr('stroke-opacity', l =>
-                    (l.source.id === d.id || l.target.id === d.id)
-                        ? HI_OPACITY : DIM_OPACITY
-                );
-            this._gNodes.selectAll('g').select('.node-rect')
-                .transition().duration(120)
-                .attr('opacity', n =>
-                    (n.id === d.id ||
-                     this._laid.links.some(l =>
-                         (l.source.id === d.id && l.target.id === n.id) ||
-                         (l.target.id === d.id && l.source.id === n.id)))
-                        ? 1 : 0.25
-                );
+            this._hoveredId = d.id;
+            this._applyHighlight(120);
         }
 
         this._showTip(event, d.label + '  (' + this._steps[d.stepIndex] + ')',
@@ -508,10 +517,8 @@ export default class SankeyExplorer extends LightningElement {
 
     _onLinkOver(event, d) {
         if (!this._clickedId) {
-            // eslint-disable-next-line no-undef
-            d3.select(event.currentTarget)
-                .transition().duration(120)
-                .attr('stroke-opacity', 0.75);
+            this._hoveredId = d.key;
+            this._applyHighlight(120);
         }
 
         const src = d.source.label || d.source.id;
@@ -522,29 +529,23 @@ export default class SankeyExplorer extends LightningElement {
     }
 
     _onOut() {
+        this._hoveredId = null;
         this.tooltipVisible = false;
-        this._applyHighlight();
+        this._applyHighlight(120);
     }
 
-    /**
-     * Toggle click-based highlight on a node (EPIC 6 — Flow Trace).
-     * Clicking the same node again deselects it; clicking a different
-     * element switches the selection.  Does NOT mutate the mode dropdown
-     * so the user's chosen view mode stays intact.
-     */
+    /** Toggle click highlight — instant (duration 0) for responsive feel. */
     _onNodeClick(d) {
+        this._hoveredId = null;
         this._clickedId = (this._clickedId === d.id) ? null : d.id;
-        this._applyHighlight();
+        this._applyHighlight(0);
     }
 
-    /**
-     * Toggle click-based highlight on a link.
-     * Same toggle semantics as node click — uses the link's unique key
-     * so the full upstream/downstream path through that transition lights up.
-     */
+    /** Toggle click highlight on a link (same toggle semantics as nodes). */
     _onLinkClick(d) {
+        this._hoveredId = null;
         this._clickedId = (this._clickedId === d.key) ? null : d.key;
-        this._applyHighlight();
+        this._applyHighlight(0);
     }
 
     _showTip(event, title, detail, extra) {
