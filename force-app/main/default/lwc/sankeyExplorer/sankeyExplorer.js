@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
 import D3_RESOURCE from '@salesforce/resourceUrl/d3';
 
@@ -47,22 +47,22 @@ const ANIM_MS      = 250;
 
 export default class SankeyExplorer extends LightningElement {
 
-    /* ── Reactive state ────────────────────────────────────────────────── */
-    @track mode            = 'AGGREGATE';
-    @track metric          = 'count';
-    @track selectedRecordId = '';
-    @track flowStepIdx     = '';
-    @track flowTraceValue  = '';
-    @track traceStep       = 0;
-    @track isLoading       = true;
-    @track errorMessage    = '';
+    /* ── Reactive state (LWC auto-tracks primitives; @track not needed) ─ */
+    mode            = 'AGGREGATE';
+    metric          = 'count';
+    selectedRecordId = '';
+    flowStepIdx     = '';
+    flowTraceValue  = '';
+    traceStep       = 0;
+    isLoading       = true;
+    errorMessage    = '';
 
-    @track tooltipVisible = false;
-    @track tooltipTitle   = '';
-    @track tooltipDetail  = '';
-    @track tooltipExtra   = '';
-    @track tooltipX       = 0;
-    @track tooltipY       = 0;
+    tooltipVisible = false;
+    tooltipTitle   = '';
+    tooltipDetail  = '';
+    tooltipExtra   = '';
+    tooltipX       = 0;
+    tooltipY       = 0;
 
     /* ── Private ───────────────────────────────────────────────────────── */
     _init      = false;
@@ -78,6 +78,12 @@ export default class SankeyExplorer extends LightningElement {
     _w         = 960;
     _h         = 540;
     _ro        = null;
+    _rafId     = null;  // requestAnimationFrame handle for resize debounce
+
+    // Tracks the currently click-selected node id or link key.
+    // Decoupled from the mode dropdown so click-to-highlight works in
+    // any mode and toggles off on a second click (EPIC 6 — Flow Trace).
+    _clickedId = null;
 
     /* ═══ Lifecycle ════════════════════════════════════════════════════ */
 
@@ -99,7 +105,8 @@ export default class SankeyExplorer extends LightningElement {
     }
 
     disconnectedCallback() {
-        if (this._ro) this._ro.disconnect();
+        if (this._ro)    this._ro.disconnect();
+        if (this._rafId) cancelAnimationFrame(this._rafId);
     }
 
     /* ═══ Template getters ═════════════════════════════════════════════ */
@@ -234,16 +241,21 @@ export default class SankeyExplorer extends LightningElement {
         const ctr = this.template.querySelector('.chart-container');
         if (!ctr) return;
 
-        this._ro = new ResizeObserver(entries => {
-            for (const e of entries) {
-                if (e.contentRect.width > 0) {
-                    this._w = e.contentRect.width;
-                    this._h = Math.max(440, Math.round(this._w * 0.55));
-                    this._draw();
-                }
-            }
+        // Debounce resize via rAF to avoid dozens of full SVG rebuilds
+        // during a drag-resize.  Only the last frame actually redraws.
+        this._ro = new ResizeObserver(() => {
+            if (this._rafId) cancelAnimationFrame(this._rafId);
+            this._rafId = requestAnimationFrame(() => this._onResize());
         });
         this._ro.observe(ctr);
+    }
+
+    _onResize() {
+        const ctr = this.template.querySelector('.chart-container');
+        if (!ctr || ctr.clientWidth <= 0) return;
+        this._w = ctr.clientWidth;
+        this._h = Math.max(440, Math.round(this._w * 0.55));
+        this._draw();
     }
 
     /* ═══ Drawing ══════════════════════════════════════════════════════ */
@@ -268,6 +280,18 @@ export default class SankeyExplorer extends LightningElement {
                 .text('d3-sankey not found — rebuild d3.zip with d3-sankey bundled.');
             return;
         }
+
+        // Invisible rect behind all elements — clicking empty space deselects
+        root.append('rect')
+            .attr('width', iw).attr('height', ih)
+            .attr('fill', 'none')
+            .attr('pointer-events', 'all')
+            .on('click', () => {
+                if (this._clickedId) {
+                    this._clickedId = null;
+                    this._applyHighlight();
+                }
+            });
 
         const nodesCopy = this._graph.nodes.map(n => Object.assign({}, n));
         const linksCopy = this._linksForLayout();
@@ -319,7 +343,8 @@ export default class SankeyExplorer extends LightningElement {
             .attr('stroke-width', l => Math.max(1, l.width))
             .attr('stroke-opacity', BASE_OPACITY)
             .on('mouseover', (ev, d) => this._onLinkOver(ev, d))
-            .on('mouseout',  ()      => this._onOut());
+            .on('mouseout',  ()      => this._onOut())
+            .on('click',     (ev, d) => this._onLinkClick(d));
 
         this._gOverlay = root.append('g').attr('class', 'g-overlay');
         /* eslint-enable no-undef */
@@ -379,7 +404,19 @@ export default class SankeyExplorer extends LightningElement {
         }
     }
 
+    /**
+     * Returns the Set of record indices that should be highlighted,
+     * or null when everything should render at base opacity.
+     *
+     * Priority order:
+     *  1. Click selection (_clickedId)  — ad-hoc highlight in any mode
+     *  2. Mode-based selection          — RECORD_TRACE / FLOW_TRACE dropdowns
+     *  3. null                          — no active highlight (AGGREGATE default)
+     */
     _activeRecordSet() {
+        if (this._clickedId) {
+            return this._clickedRecordSet();
+        }
         if (this.mode === 'RECORD_TRACE' && this.selectedRecordId) {
             const ri = this._records.findIndex(r => r.id === this.selectedRecordId);
             return ri >= 0 ? new Set([ri]) : null;
@@ -389,6 +426,23 @@ export default class SankeyExplorer extends LightningElement {
             const node = this._graph.nodeMap.get(nid);
             return node ? new Set(node.recordIndices) : null;
         }
+        return null;
+    }
+
+    /**
+     * Resolves _clickedId to a record-index Set.
+     * _clickedId may be a node id (e.g. "0::Online") or a link key
+     * (e.g. "0::Online→1::Qualified").  The returned set contains every
+     * record that passes through the element, which naturally lights up
+     * the full upstream + downstream path (EPIC 6 acceptance criteria).
+     */
+    _clickedRecordSet() {
+        const node = this._graph.nodeMap.get(this._clickedId);
+        if (node) return new Set(node.recordIndices);
+
+        const link = this._graph.linkAgg.get(this._clickedId);
+        if (link) return new Set(link.recordIndices);
+
         return null;
     }
 
@@ -407,7 +461,8 @@ export default class SankeyExplorer extends LightningElement {
             keys.push(i + '::' + sv + '\u2192' + (i + 1) + '::' + tv);
         }
 
-        const hits = this._laid.links.filter(l => keys.indexOf(l.key) !== -1);
+        const keySet = new Set(keys);
+        const hits   = this._laid.links.filter(l => keySet.has(l.key));
 
         this._gOverlay.selectAll('path')
             .data(hits)
@@ -423,8 +478,13 @@ export default class SankeyExplorer extends LightningElement {
 
     /* ═══ Hover / click ════════════════════════════════════════════════ */
 
+    /**
+     * Hover preview — shows connected links/nodes and a tooltip.
+     * Skipped when a click selection is active so the persistent
+     * highlight is not overridden by transient hover effects.
+     */
     _onNodeOver(event, d) {
-        if (this.mode === 'AGGREGATE') {
+        if (!this._clickedId) {
             this._gLinks.selectAll('path')
                 .transition().duration(120)
                 .attr('stroke-opacity', l =>
@@ -447,7 +507,7 @@ export default class SankeyExplorer extends LightningElement {
     }
 
     _onLinkOver(event, d) {
-        if (this.mode === 'AGGREGATE') {
+        if (!this._clickedId) {
             // eslint-disable-next-line no-undef
             d3.select(event.currentTarget)
                 .transition().duration(120)
@@ -466,20 +526,40 @@ export default class SankeyExplorer extends LightningElement {
         this._applyHighlight();
     }
 
+    /**
+     * Toggle click-based highlight on a node (EPIC 6 — Flow Trace).
+     * Clicking the same node again deselects it; clicking a different
+     * element switches the selection.  Does NOT mutate the mode dropdown
+     * so the user's chosen view mode stays intact.
+     */
     _onNodeClick(d) {
-        this.mode           = 'FLOW_TRACE';
-        this.flowStepIdx    = String(d.stepIndex);
-        this.flowTraceValue = d.label;
+        this._clickedId = (this._clickedId === d.id) ? null : d.id;
+        this._applyHighlight();
+    }
+
+    /**
+     * Toggle click-based highlight on a link.
+     * Same toggle semantics as node click — uses the link's unique key
+     * so the full upstream/downstream path through that transition lights up.
+     */
+    _onLinkClick(d) {
+        this._clickedId = (this._clickedId === d.key) ? null : d.key;
         this._applyHighlight();
     }
 
     _showTip(event, title, detail, extra) {
         const box = this.template.querySelector('.chart-container').getBoundingClientRect();
-        this.tooltipTitle   = title;
-        this.tooltipDetail  = detail;
-        this.tooltipExtra   = extra;
-        this.tooltipX       = event.clientX - box.left + 14;
-        this.tooltipY       = event.clientY - box.top  - 30;
+        this.tooltipTitle  = title;
+        this.tooltipDetail = detail;
+        this.tooltipExtra  = extra;
+
+        // Clamp so the tooltip stays inside the visible chart area
+        const rawX = event.clientX - box.left + 14;
+        const rawY = event.clientY - box.top  - 30;
+        const tipW = 280; // matches max-width in CSS
+        const tipH = 70;
+        this.tooltipX = Math.min(rawX, box.width  - tipW - 8);
+        this.tooltipY = Math.max(8, Math.min(rawY, box.height - tipH - 8));
         this.tooltipVisible = true;
     }
 
@@ -487,6 +567,7 @@ export default class SankeyExplorer extends LightningElement {
 
     handleModeChange(event) {
         this.mode = event.detail.value;
+        this._clickedId = null;
         if (this.mode !== 'RECORD_TRACE') { this.selectedRecordId = ''; this.traceStep = 0; }
         if (this.mode !== 'FLOW_TRACE')   { this.flowStepIdx = ''; this.flowTraceValue = ''; }
         this._applyHighlight();
@@ -494,11 +575,13 @@ export default class SankeyExplorer extends LightningElement {
 
     handleMetricChange(event) {
         this.metric = event.detail.value;
+        this._clickedId = null;
         this._draw();
     }
 
     handleRecordChange(event) {
         this.selectedRecordId = event.detail.value;
+        this._clickedId = null;
         this.traceStep = this._maxTrace();
         this._applyHighlight();
     }
@@ -506,11 +589,13 @@ export default class SankeyExplorer extends LightningElement {
     handleFlowStepChange(event) {
         this.flowStepIdx    = event.detail.value;
         this.flowTraceValue = '';
+        this._clickedId = null;
         this._applyHighlight();
     }
 
     handleFlowValueChange(event) {
         this.flowTraceValue = event.detail.value;
+        this._clickedId = null;
         this._applyHighlight();
     }
 
@@ -540,6 +625,7 @@ export default class SankeyExplorer extends LightningElement {
         this.flowStepIdx       = '';
         this.flowTraceValue    = '';
         this.traceStep         = 0;
+        this._clickedId        = null;
         this._draw();
     }
 
@@ -565,9 +651,11 @@ export default class SankeyExplorer extends LightningElement {
     }
 
     _countLabel(idxSet) {
-        const c = idxSet ? idxSet.size : 0;
-        const a = this._sumAmount(idxSet);
-        return c + ' records  \u00b7  $' + this._fmt(a);
+        const c     = idxSet ? idxSet.size : 0;
+        const total = this._records.length;
+        const pct   = total > 0 ? ((c / total) * 100).toFixed(1) : '0.0';
+        const a     = this._sumAmount(idxSet);
+        return c + ' records  \u00b7  ' + pct + '%  \u00b7  $' + this._fmt(a);
     }
 
     _sampleNames(idxSet, max) {
