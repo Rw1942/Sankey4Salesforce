@@ -1,0 +1,26 @@
+{
+  "name": "salesforce",
+  "version": "1.0.0",
+  "description": "A Salesforce Lightning Web Component (LWC) that renders interactive Sankey diagrams using D3.js to visualise process flows and record traces within the Salesforce platform.",
+  "main": "index.js",
+  "scripts": {
+    "build:d3": "node scripts/build-d3.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rw1942/Sankey4Salesforce.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Rw1942/Sankey4Salesforce/issues"
+  },
+  "homepage": "https://github.com/Rw1942/Sankey4Salesforce#readme",
+  "devDependencies": {
+    "d3": "^7.9.0",
+    "d3-sankey": "^0.12.3"
+  }
+}
