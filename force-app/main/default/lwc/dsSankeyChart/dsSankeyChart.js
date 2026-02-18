@@ -7,7 +7,7 @@
  * Story 8.2 (Performance): Incremental updates for mode/trace changes — no SVG rebuild.
  * Section 7.2: Opens record via NavigationMixin (event delegation to parent).
  */
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
 import D3_RESOURCE from '@salesforce/resourceUrl/d3';
 
@@ -35,12 +35,12 @@ export default class DsSankeyChart extends LightningElement {
     @api traceStep = 0;
 
     /* ── Reactive tooltip state ────────────────────────────────────── */
-    @track tooltipVisible = false;
-    @track tooltipTitle   = '';
-    @track tooltipDetail  = '';
-    @track tooltipExtra   = '';
-    @track tooltipX       = 0;
-    @track tooltipY       = 0;
+    tooltipVisible = false;
+    tooltipTitle   = '';
+    tooltipDetail  = '';
+    tooltipExtra   = '';
+    tooltipX       = 0;
+    tooltipY       = 0;
 
     /* ── Private ───────────────────────────────────────────────────── */
     _d3Loaded = false;

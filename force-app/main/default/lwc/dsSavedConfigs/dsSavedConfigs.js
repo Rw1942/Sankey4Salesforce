@@ -5,7 +5,7 @@
  * Uses SankeyConfigRepository Apex for CRUD on DS_Sankey_Config__c.
  * Fires 'saveconfig' and 'configloaded' events to parent.
  */
-import { LightningElement, api, track, wire } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import saveConfig from '@salesforce/apex/SankeyConfigRepository.saveConfig';
 import getMyConfigs from '@salesforce/apex/SankeyConfigRepository.getMyConfigs';
 import deleteConfig from '@salesforce/apex/SankeyConfigRepository.deleteConfig';
@@ -15,10 +15,10 @@ export default class DsSavedConfigs extends LightningElement {
 
     @api config = {};
 
-    @track savedConfigs = [];
-    @track showSaveDialog = false;
-    @track saveName = '';
-    @track isSaving = false;
+    savedConfigs = [];
+    showSaveDialog = false;
+    saveName = '';
+    isSaving = false;
 
     _wiredResult;
 

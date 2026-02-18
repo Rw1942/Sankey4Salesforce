@@ -63,20 +63,16 @@ public with sharing class SankeyController {
 
             Map<String, Schema.SObjectType> allObjects = Schema.getGlobalDescribe();
             for (String key : allObjects.keySet()) {
-                Schema.DescribeSObjectResult desc = allObjects.get(key).getDescribe();
+                Schema.DescribeSObjectResult objDesc = allObjects.get(key).getDescribe();
 
-                // Story 2.1: Filter to queryable, accessible objects
-                if (desc.isQueryable() && desc.isAccessible() &&
-                    (desc.isCreateable() || desc.isUpdateable())) {
+                if (objDesc.isQueryable() && objDesc.isAccessible() &&
+                    (objDesc.isCreateable() || objDesc.isUpdateable())) {
                     results.add(new Map<String, String>{
-                        'apiName' => desc.getName(),
-                        'label' => desc.getLabel()
+                        'apiName' => objDesc.getName(),
+                        'label' => objDesc.getLabel()
                     });
                 }
             }
-
-            // Sort by label for UX
-            results.sort();
 
             return JSON.serialize(results);
         } catch (Exception e) {

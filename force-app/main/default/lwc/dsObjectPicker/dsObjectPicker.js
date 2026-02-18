@@ -3,16 +3,16 @@
  * Permission-aware object picker using Apex to retrieve queryable objects.
  * Shows label + API name in a searchable combobox.
  */
-import { LightningElement, api, track, wire } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import getQueryableObjects from '@salesforce/apex/SankeyController.getQueryableObjects';
 
 export default class DsObjectPicker extends LightningElement {
 
     @api selectedObject = '';
 
-    @track searchTerm = '';
-    @track allOptions = [];
-    @track error;
+    searchTerm = '';
+    allOptions = [];
+    error;
 
     _objectLabelMap = {};
 
@@ -21,10 +21,12 @@ export default class DsObjectPicker extends LightningElement {
     wiredObjects({ error, data }) {
         if (data) {
             const parsed = JSON.parse(data);
-            this.allOptions = parsed.map(obj => ({
-                label: obj.label + ' (' + obj.apiName + ')',
-                value: obj.apiName
-            }));
+            this.allOptions = parsed
+                .map(obj => ({
+                    label: obj.label + ' (' + obj.apiName + ')',
+                    value: obj.apiName
+                }))
+                .sort((a, b) => a.label.localeCompare(b.label));
             this._objectLabelMap = {};
             parsed.forEach(obj => {
                 this._objectLabelMap[obj.apiName] = obj.label + ' (' + obj.apiName + ')';

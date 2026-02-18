@@ -4,22 +4,22 @@
  * preview record count, and a Load Data CTA.
  * Story 8.1: Query runs only after user clicks "Load Data".
  */
-import { LightningElement, api, track, wire } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import getRecordCount from '@salesforce/apex/SankeyController.getRecordCount';
-
-let _rowCounter = 0;
 
 export default class DsFilterBuilder extends LightningElement {
 
     @api objectApiName = '';
     @api filters = [];
 
-    @track filterRows = [];
-    @track fieldOptions = [];
-    @track selectedDateRange = '';
-    @track recordCount = null;
-    @track isCountLoading = false;
+    _rowCounter = 0;
+
+    filterRows = [];
+    fieldOptions = [];
+    selectedDateRange = '';
+    recordCount = null;
+    isCountLoading = false;
 
     // Story 2.2: Operator options for filter rows
     get operatorOptions() {
@@ -77,10 +77,10 @@ export default class DsFilterBuilder extends LightningElement {
     }
 
     handleAddRow() {
-        _rowCounter++;
+        this._rowCounter++;
         this.filterRows = [
             ...this.filterRows,
-            { id: 'row-' + _rowCounter, field: '', operator: '=', value: '' }
+            { id: 'row-' + this._rowCounter, field: '', operator: '=', value: '' }
         ];
     }
 

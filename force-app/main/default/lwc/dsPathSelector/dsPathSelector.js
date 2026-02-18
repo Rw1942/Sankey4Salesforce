@@ -6,7 +6,7 @@
  * Only Picklist, Lookup, and Text fields are allowed per acceptance criteria.
  * Uses lightning-dual-listbox for ordered selection with minimum 2 steps.
  */
-import { LightningElement, api, track, wire } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
 // Story 3.1: Only allow these field types for path columns
@@ -15,17 +15,34 @@ const ALLOWED_TYPES = new Set(['Picklist', 'Reference', 'String', 'TextArea', 'P
 export default class DsPathSelector extends LightningElement {
 
     @api objectApiName = '';
-    @api selectedFields = [];
-    @api nullHandling = 'GROUP_UNKNOWN';
-    @api recordIdField = 'Id';
 
-    @track pathFieldOptions = [];
-    @track idFieldOptions = [];
-    @track internalSelected = [];
-    @track internalNullHandling = 'GROUP_UNKNOWN';
-    @track internalRecordIdField = 'Id';
+    _selectedFields = [];
+    @api get selectedFields() { return this._selectedFields; }
+    set selectedFields(val) {
+        this._selectedFields = val;
+        this.internalSelected = [...(val || [])];
+    }
 
-    // Story 3.2: Null handling options
+    _nullHandling = 'GROUP_UNKNOWN';
+    @api get nullHandling() { return this._nullHandling; }
+    set nullHandling(val) {
+        this._nullHandling = val;
+        this.internalNullHandling = val || 'GROUP_UNKNOWN';
+    }
+
+    _recordIdField = 'Id';
+    @api get recordIdField() { return this._recordIdField; }
+    set recordIdField(val) {
+        this._recordIdField = val;
+        this.internalRecordIdField = val || 'Id';
+    }
+
+    pathFieldOptions = [];
+    idFieldOptions = [];
+    internalSelected = [];
+    internalNullHandling = 'GROUP_UNKNOWN';
+    internalRecordIdField = 'Id';
+
     get nullHandlingOptions() {
         return [
             { label: 'Stop path',              value: 'STOP' },
@@ -36,12 +53,6 @@ export default class DsPathSelector extends LightningElement {
 
     get showMinWarning() {
         return this.internalSelected.length > 0 && this.internalSelected.length < 2;
-    }
-
-    connectedCallback() {
-        this.internalSelected = [...(this.selectedFields || [])];
-        this.internalNullHandling = this.nullHandling || 'GROUP_UNKNOWN';
-        this.internalRecordIdField = this.recordIdField || 'Id';
     }
 
     // Story 3.1: Wire getObjectInfo for field metadata, filter to allowed types

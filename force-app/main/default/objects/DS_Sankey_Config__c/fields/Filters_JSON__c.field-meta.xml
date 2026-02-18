@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Story 9.1: Saved filter configuration as JSON -->
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Filters_JSON__c</fullName>
     <description>JSON-serialized filter configuration</description>

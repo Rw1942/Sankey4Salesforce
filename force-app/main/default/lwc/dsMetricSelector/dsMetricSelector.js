@@ -3,7 +3,7 @@
  * When Amount is selected, a dynamic numeric field picker is shown
  * filtered from getObjectInfo fields (Currency, Double, Integer types).
  */
-import { LightningElement, api, track, wire } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
 // Story 2.3: Allowed numeric data types for Amount metric
@@ -12,12 +12,24 @@ const NUMERIC_TYPES = new Set(['Currency', 'Double', 'Int', 'Long', 'Percent']);
 export default class DsMetricSelector extends LightningElement {
 
     @api objectApiName = '';
-    @api metricType = 'COUNT';
-    @api metricField = '';
 
-    @track internalMetricType = 'COUNT';
-    @track internalMetricField = '';
-    @track numericFieldOptions = [];
+    _metricType = 'COUNT';
+    @api get metricType() { return this._metricType; }
+    set metricType(val) {
+        this._metricType = val;
+        this.internalMetricType = val || 'COUNT';
+    }
+
+    _metricField = '';
+    @api get metricField() { return this._metricField; }
+    set metricField(val) {
+        this._metricField = val;
+        this.internalMetricField = val || '';
+    }
+
+    internalMetricType = 'COUNT';
+    internalMetricField = '';
+    numericFieldOptions = [];
 
     get metricTypeOptions() {
         return [
@@ -28,11 +40,6 @@ export default class DsMetricSelector extends LightningElement {
 
     get isAmount() {
         return this.internalMetricType === 'AMOUNT';
-    }
-
-    connectedCallback() {
-        this.internalMetricType = this.metricType || 'COUNT';
-        this.internalMetricField = this.metricField || '';
     }
 
     // Story 2.3: Dynamic numeric field picker via getObjectInfo

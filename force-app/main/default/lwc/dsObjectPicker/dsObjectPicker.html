@@ -35,5 +35,11 @@
                 Selected: {selectedObjectLabel}
             </p>
         </template>
+
+        <template if:true={error}>
+            <p class="slds-text-color_error slds-text-body_small slds-m-top_xx-small">
+                Unable to load objects. Check permissions or try again.
+            </p>
+        </template>
     </div>
 </template>

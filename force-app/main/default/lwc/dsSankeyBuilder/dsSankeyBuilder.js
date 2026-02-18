@@ -3,7 +3,7 @@
  * Section 11: Centralized state management — single source of truth.
  * All child components receive slices via @api and communicate up via custom events.
  */
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import getSankeyData from '@salesforce/apex/SankeyController.getSankeyData';
 
@@ -13,7 +13,7 @@ const DATASET_LIMIT = 10000;
 export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
 
     // Section 11: Single state store
-    @track state = {
+    state = {
         config: {
             objectApiName: '',
             filters: [],
@@ -43,11 +43,11 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
         }
     };
 
-    @track errorMessage = '';
-    @track showInsights = true;
-    @track dataLoaded = false;
-    @track configStarted = false;
-    @track isTruncated = false;
+    errorMessage = '';
+    showInsights = true;
+    dataLoaded = false;
+    configStarted = false;
+    isTruncated = false;
 
     // Story 8.2: Client-side cache — hash of last config to avoid redundant Apex calls
     _lastConfigHash = '';

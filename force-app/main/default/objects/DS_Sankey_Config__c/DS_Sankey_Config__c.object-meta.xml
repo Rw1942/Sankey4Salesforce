@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Story 9.1: Custom object for saved Sankey configurations -->
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Stores saved Sankey Builder configurations for reuse (Story 9.1)</description>

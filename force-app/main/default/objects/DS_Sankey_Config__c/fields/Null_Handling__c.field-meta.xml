@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Story 9.1 / Story 3.2: Saved null handling strategy -->
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Null_Handling__c</fullName>
     <description>Strategy for handling null values in path fields</description>
