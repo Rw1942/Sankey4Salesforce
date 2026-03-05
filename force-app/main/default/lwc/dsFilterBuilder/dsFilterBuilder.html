@@ -72,24 +72,13 @@
                 onclick={handleAddRow}>
             </lightning-button>
 
-            <div>
-                <lightning-button
-                    label={previewLabel}
-                    icon-name="utility:preview"
-                    variant="neutral"
-                    onclick={handlePreviewCount}
-                    disabled={isPreviewDisabled}
-                    class="slds-m-right_x-small">
-                </lightning-button>
-
-                <lightning-button
-                    label="Load Data"
-                    icon-name="utility:download"
-                    variant="brand"
-                    onclick={handleLoadData}
-                    disabled={isLoadDisabled}>
-                </lightning-button>
-            </div>
+            <lightning-button
+                label={previewLabel}
+                icon-name="utility:preview"
+                variant="neutral"
+                onclick={handlePreviewCount}
+                disabled={isPreviewDisabled}>
+            </lightning-button>
         </div>
 
         <template lwc:if={recordCount}>

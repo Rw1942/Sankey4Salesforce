@@ -2,43 +2,69 @@
     <div class="empty-state slds-p-around_large slds-align_absolute-center">
         <div class="slds-text-align_center full-width">
             <lightning-icon icon-name="utility:strategy" size="large" class="slds-m-bottom_medium"></lightning-icon>
-            <h2 class="slds-text-heading_medium slds-m-bottom_small">Build a Sankey Flow Diagram</h2>
-            <p class="slds-text-body_regular slds-text-color_weak slds-m-bottom_large">
-                Visualize how records flow through stages in your Salesforce data.
+            <h2 class="slds-text-heading_medium slds-m-bottom_x-small">Build a Sankey Flow Diagram</h2>
+            <p class="slds-text-body_regular slds-text-color_weak slds-m-bottom_medium">
+                See how your data moves from one stage to the next &mdash;
+                which paths are most common, where things drop off, and how volume splits across branches.
             </p>
+
+            <!-- How it works -->
+            <div class="how-it-works slds-m-bottom_medium">
+                <div class="slds-grid slds-gutters slds-grid_align-center slds-wrap">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                        <div class="step-card slds-text-align_center slds-p-around_small">
+                            <span class="step-number">1</span>
+                            <p class="slds-text-body_regular slds-m-top_xx-small">Choose a Salesforce object</p>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                        <div class="step-card slds-text-align_center slds-p-around_small">
+                            <span class="step-number">2</span>
+                            <p class="slds-text-body_regular slds-m-top_xx-small">Pick the fields that represent each stage</p>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                        <div class="step-card slds-text-align_center slds-p-around_small">
+                            <span class="step-number">3</span>
+                            <p class="slds-text-body_regular slds-m-top_xx-small">Click Generate and explore the results</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="slds-grid slds-gutters slds-wrap slds-grid_align-center">
 
-                <!-- Left column: examples + New Configuration -->
+                <!-- Left column: examples + Get Started -->
                 <div class={examplesColumnClass}>
+                    <p class="slds-text-title_caps slds-m-bottom_x-small slds-text-color_weak">Example use cases</p>
                     <div class="slds-grid slds-gutters slds-wrap slds-grid_align-center slds-m-bottom_medium">
                         <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_small">
-                            <div class="slds-box slds-box_small slds-text-align_center">
+                            <div class="slds-box slds-box_small slds-text-align_center example-card">
                                 <lightning-icon icon-name="standard:opportunity" size="medium" class="slds-m-bottom_x-small"></lightning-icon>
                                 <p class="slds-text-title_bold">Opportunity Stage Flow</p>
-                                <p class="slds-text-body_small slds-text-color_weak">Visualize how deals move through your pipeline</p>
+                                <p class="slds-text-body_small slds-text-color_weak">See how deals move through your pipeline</p>
                             </div>
                         </div>
                         <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_small">
-                            <div class="slds-box slds-box_small slds-text-align_center">
+                            <div class="slds-box slds-box_small slds-text-align_center example-card">
                                 <lightning-icon icon-name="standard:case" size="medium" class="slds-m-bottom_x-small"></lightning-icon>
                                 <p class="slds-text-title_bold">Case Lifecycle</p>
-                                <p class="slds-text-body_small slds-text-color_weak">Track support cases from creation to resolution</p>
+                                <p class="slds-text-body_small slds-text-color_weak">Track support cases from open to closed</p>
                             </div>
                         </div>
                         <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_small">
-                            <div class="slds-box slds-box_small slds-text-align_center">
+                            <div class="slds-box slds-box_small slds-text-align_center example-card">
                                 <lightning-icon icon-name="standard:record" size="medium" class="slds-m-bottom_x-small"></lightning-icon>
                                 <p class="slds-text-title_bold">Loan Pipeline</p>
-                                <p class="slds-text-body_small slds-text-color_weak">Analyze loan applications through approval stages</p>
+                                <p class="slds-text-body_small slds-text-color_weak">Follow applications through approval stages</p>
                             </div>
                         </div>
                     </div>
 
                     <lightning-button
-                        label="New Configuration"
+                        label="Get Started"
                         variant="brand"
-                        icon-name="utility:add"
+                        icon-name="utility:forward"
                         onclick={handleStart}>
                     </lightning-button>
                 </div>

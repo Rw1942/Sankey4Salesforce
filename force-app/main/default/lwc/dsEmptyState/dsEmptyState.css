@@ -7,6 +7,32 @@
     width: 100%;
 }
 
+/* ═══ How it works steps ═══ */
+
+.step-card {
+    border-radius: 0.5rem;
+    background: var(--slds-g-color-neutral-base-95, var(--lwc-colorBackground, #f8fafc));
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--slds-g-color-brand-base-50, var(--lwc-brandPrimary, #6366f1));
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+/* ═══ Example use-case cards ═══ */
+
+.example-card {
+    opacity: 0.85;
+}
+
 .saved-configs-section {
     border-radius: 0.5rem;
     background: var(--slds-g-color-neutral-base-95, var(--lwc-colorBackground, #f8fafc));

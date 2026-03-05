@@ -1,7 +1,8 @@
 /**
  * Filter builder for defining dataset criteria.
  * Builds filter rows (Field, Operator, Value), date range quick filters,
- * preview record count, and a Load Data CTA.
+ * and preview record count. Fires filterchange on every edit so the parent
+ * always has the latest filters.
  */
 import { LightningElement, api, wire } from 'lwc';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
@@ -53,10 +54,6 @@ export default class DsFilterBuilder extends LightningElement {
         return this.isCountLoading || !this.objectApiName;
     }
 
-    get isLoadDisabled() {
-        return !this.objectApiName;
-    }
-
     @wire(getObjectInfo, { objectApiName: '$objectApiName' })
     wiredObjectInfo({ error, data }) {
         if (data) {
@@ -83,6 +80,7 @@ export default class DsFilterBuilder extends LightningElement {
     handleRemoveRow(event) {
         const rowId = event.currentTarget.dataset.rowId;
         this.filterRows = this.filterRows.filter(r => r.id !== rowId);
+        this._fireFilterChange();
     }
 
     handleFieldChange(event) {
@@ -90,6 +88,7 @@ export default class DsFilterBuilder extends LightningElement {
         this.filterRows = this.filterRows.map(r =>
             r.id === rowId ? { ...r, field: event.detail.value } : r
         );
+        this._fireFilterChange();
     }
 
     handleOperatorChange(event) {
@@ -97,6 +96,7 @@ export default class DsFilterBuilder extends LightningElement {
         this.filterRows = this.filterRows.map(r =>
             r.id === rowId ? { ...r, operator: event.detail.value } : r
         );
+        this._fireFilterChange();
     }
 
     handleValueChange(event) {
@@ -104,10 +104,12 @@ export default class DsFilterBuilder extends LightningElement {
         this.filterRows = this.filterRows.map(r =>
             r.id === rowId ? { ...r, value: event.target.value } : r
         );
+        this._fireFilterChange();
     }
 
     handleDateRangeChange(event) {
         this.selectedDateRange = event.detail.value;
+        this._fireFilterChange();
     }
 
     _buildFilters() {
@@ -143,10 +145,9 @@ export default class DsFilterBuilder extends LightningElement {
         }
     }
 
-    handleLoadData() {
-        const filters = this._buildFilters();
-        this.dispatchEvent(new CustomEvent('loaddata', {
-            detail: { filters }
+    _fireFilterChange() {
+        this.dispatchEvent(new CustomEvent('filterchange', {
+            detail: { filters: this._buildFilters() }
         }));
     }
 }

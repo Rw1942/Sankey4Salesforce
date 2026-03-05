@@ -108,7 +108,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
     }
 
     get currentStep() {
-        if (this.dataLoaded) return 'load';
+        if (this.dataLoaded) return 'generate';
         if (this.state.config.pathFields.length >= 2) return 'filters';
         if (this.state.config.objectApiName && this.state.config.metricType) return 'path';
         if (this.state.config.objectApiName) return 'metric';
@@ -131,6 +131,12 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
 
     get configForSave() {
         return JSON.parse(JSON.stringify(this.state.config));
+    }
+
+    get isGenerateDisabled() {
+        return !this.state.config.objectApiName ||
+               this.state.config.pathFields.length < 2 ||
+               this.state.ui.loading;
     }
 
     get flowTraceKpis() {
@@ -202,12 +208,15 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
         };
     }
 
-    handleLoadData(event) {
+    handleFilterChange(event) {
         const filters = event.detail.filters;
         this.state = {
             ...this.state,
             config: { ...this.state.config, filters }
         };
+    }
+
+    handleGenerateDiagram() {
         this._fetchSankeyData();
     }
 
@@ -217,7 +226,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
 
     async _fetchSankeyData() {
         if (!this.state.config.objectApiName || this.state.config.pathFields.length < 2) {
-            this.errorMessage = 'Please select an object and at least 2 path fields before loading data.';
+            this.errorMessage = 'Please choose a data source and at least 2 flow steps before generating.';
             return;
         }
 
@@ -242,15 +251,15 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
 
             const recordCount = response.records ? response.records.length : 0;
             this.dispatchEvent(new ShowToastEvent({
-                title: 'Data Loaded',
-                message: recordCount + ' records loaded successfully.',
+                title: 'Diagram Ready',
+                message: 'Sankey diagram built from ' + recordCount + ' records.',
                 variant: 'success'
             }));
         } catch (error) {
-            this.errorMessage = error.body ? error.body.message : (error.message || 'An error occurred loading data.');
+            this.errorMessage = error.body ? error.body.message : (error.message || 'Something went wrong generating the diagram.');
             this.state = { ...this.state, ui: { ...this.state.ui, loading: false } };
             this.dispatchEvent(new ShowToastEvent({
-                title: 'Error Loading Data',
+                title: 'Error Generating Diagram',
                 message: this.errorMessage,
                 variant: 'error'
             }));

@@ -100,7 +100,7 @@
                     Your Sankey diagram will appear here
                 </h2>
                 <p class="slds-text-body_regular slds-text-color_weak">
-                    Configure the steps below and click Load Data to visualize your flows.
+                    Configure the steps below, then click Generate Diagram to visualize your flows.
                 </p>
             </div>
         </template>
@@ -138,11 +138,11 @@
                         <!-- Progress indicator -->
                         <div class="slds-p-top_small slds-p-bottom_x-small">
                             <lightning-progress-indicator current-step={currentStep} type="path" variant="base">
-                                <lightning-progress-step label="Select Object" value="object"></lightning-progress-step>
-                                <lightning-progress-step label="Configure Metric" value="metric"></lightning-progress-step>
-                                <lightning-progress-step label="Define Path" value="path"></lightning-progress-step>
-                                <lightning-progress-step label="Add Filters" value="filters"></lightning-progress-step>
-                                <lightning-progress-step label="Load Data" value="load"></lightning-progress-step>
+                                <lightning-progress-step label="Choose Data" value="object"></lightning-progress-step>
+                                <lightning-progress-step label="Pick Metric" value="metric"></lightning-progress-step>
+                                <lightning-progress-step label="Set Flow Steps" value="path"></lightning-progress-step>
+                                <lightning-progress-step label="Filter (optional)" value="filters"></lightning-progress-step>
+                                <lightning-progress-step label="Generate" value="generate"></lightning-progress-step>
                             </lightning-progress-indicator>
                         </div>
 
@@ -193,15 +193,29 @@
                             <!-- Filter Builder -->
                             <template lwc:if={state.config.objectApiName}>
                                 <p class="help-text slds-m-bottom_xx-small slds-m-top_small">
-                                    Optionally filter which records to include.
-                                    When ready, click Load Data to generate the diagram.
+                                    Optionally narrow which records to include.
                                 </p>
                                 <c-ds-filter-builder
                                     object-api-name={state.config.objectApiName}
                                     filters={state.config.filters}
-                                    onloaddata={handleLoadData}>
+                                    onfilterchange={handleFilterChange}>
                                 </c-ds-filter-builder>
                             </template>
+                        </div>
+
+                        <!-- Generate Diagram CTA -->
+                        <div class="generate-bar slds-m-top_medium slds-text-align_center">
+                            <lightning-button
+                                label="Generate Diagram"
+                                icon-name="utility:play"
+                                variant="brand"
+                                onclick={handleGenerateDiagram}
+                                disabled={isGenerateDisabled}
+                                class="generate-btn">
+                            </lightning-button>
+                            <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">
+                                Builds a Sankey flow diagram from your settings above.
+                            </p>
                         </div>
                     </div>
                 </template>
