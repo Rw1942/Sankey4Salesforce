@@ -1,43 +1,77 @@
 <template>
     <div class="empty-state slds-p-around_large slds-align_absolute-center">
-        <div class="slds-text-align_center">
+        <div class="slds-text-align_center full-width">
             <lightning-icon icon-name="utility:strategy" size="large" class="slds-m-bottom_medium"></lightning-icon>
-            <h2 class="slds-text-heading_medium slds-m-bottom_small">Select a data source to begin</h2>
-            <p class="slds-text-body_regular slds-text-color_weak slds-m-bottom_medium">
-                Build interactive Sankey flow diagrams from your Salesforce data.
+            <h2 class="slds-text-heading_medium slds-m-bottom_small">Build a Sankey Flow Diagram</h2>
+            <p class="slds-text-body_regular slds-text-color_weak slds-m-bottom_large">
+                Visualize how records flow through stages in your Salesforce data.
             </p>
 
-            <div class="slds-grid slds-gutters slds-wrap slds-grid_align-center slds-m-bottom_large">
-                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_small">
-                    <div class="slds-box slds-box_small slds-text-align_center">
-                        <lightning-icon icon-name="standard:opportunity" size="medium" class="slds-m-bottom_x-small"></lightning-icon>
-                        <p class="slds-text-title_bold">Opportunity Stage Flow</p>
-                        <p class="slds-text-body_small slds-text-color_weak">Visualize how deals move through your pipeline</p>
-                    </div>
-                </div>
-                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_small">
-                    <div class="slds-box slds-box_small slds-text-align_center">
-                        <lightning-icon icon-name="standard:case" size="medium" class="slds-m-bottom_x-small"></lightning-icon>
-                        <p class="slds-text-title_bold">Case Lifecycle</p>
-                        <p class="slds-text-body_small slds-text-color_weak">Track support cases from creation to resolution</p>
-                    </div>
-                </div>
-                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_small">
-                    <div class="slds-box slds-box_small slds-text-align_center">
-                        <lightning-icon icon-name="standard:record" size="medium" class="slds-m-bottom_x-small"></lightning-icon>
-                        <p class="slds-text-title_bold">Loan Pipeline</p>
-                        <p class="slds-text-body_small slds-text-color_weak">Analyze loan applications through approval stages</p>
-                    </div>
-                </div>
-            </div>
+            <div class="slds-grid slds-gutters slds-wrap slds-grid_align-center">
 
-            <lightning-button
-                label="Start"
-                variant="brand"
-                icon-name="utility:right"
-                icon-position="right"
-                onclick={handleStart}>
-            </lightning-button>
+                <!-- Left column: examples + New Configuration -->
+                <div class={examplesColumnClass}>
+                    <div class="slds-grid slds-gutters slds-wrap slds-grid_align-center slds-m-bottom_medium">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_small">
+                            <div class="slds-box slds-box_small slds-text-align_center">
+                                <lightning-icon icon-name="standard:opportunity" size="medium" class="slds-m-bottom_x-small"></lightning-icon>
+                                <p class="slds-text-title_bold">Opportunity Stage Flow</p>
+                                <p class="slds-text-body_small slds-text-color_weak">Visualize how deals move through your pipeline</p>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_small">
+                            <div class="slds-box slds-box_small slds-text-align_center">
+                                <lightning-icon icon-name="standard:case" size="medium" class="slds-m-bottom_x-small"></lightning-icon>
+                                <p class="slds-text-title_bold">Case Lifecycle</p>
+                                <p class="slds-text-body_small slds-text-color_weak">Track support cases from creation to resolution</p>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_small">
+                            <div class="slds-box slds-box_small slds-text-align_center">
+                                <lightning-icon icon-name="standard:record" size="medium" class="slds-m-bottom_x-small"></lightning-icon>
+                                <p class="slds-text-title_bold">Loan Pipeline</p>
+                                <p class="slds-text-body_small slds-text-color_weak">Analyze loan applications through approval stages</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <lightning-button
+                        label="New Configuration"
+                        variant="brand"
+                        icon-name="utility:add"
+                        onclick={handleStart}>
+                    </lightning-button>
+                </div>
+
+                <!-- Right column: saved configs (only when configs exist) -->
+                <template lwc:if={hasSavedConfigs}>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_5-of-12">
+                        <div class="saved-configs-section slds-box slds-p-around_medium slds-text-align_left">
+                            <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small">
+                                <lightning-icon icon-name="utility:open_folder" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                                <h3 class="slds-text-title_caps">Saved Configurations</h3>
+                            </div>
+                            <ul class="slds-has-dividers_bottom-space">
+                                <template for:each={savedConfigs} for:item="cfg">
+                                    <li key={cfg.id}
+                                        class="config-tile slds-item slds-p-around_small"
+                                        data-id={cfg.id}
+                                        onclick={handleConfigSelect}>
+                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                            <lightning-icon icon-name="utility:open" size="xx-small" class="slds-m-right_small tile-icon"></lightning-icon>
+                                            <div>
+                                                <p class="slds-text-title_bold">{cfg.label}</p>
+                                                <p class="slds-text-body_small slds-text-color_weak">{cfg.subtitle}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                </template>
+
+            </div>
         </div>
     </div>
 </template>

@@ -20,7 +20,7 @@
 
         <!-- Empty state shown before configuration -->
         <template lwc:if={showEmptyState}>
-            <c-ds-empty-state onstart={handleStart}></c-ds-empty-state>
+            <c-ds-empty-state onstart={handleStart} onconfigloaded={handleConfigLoaded}></c-ds-empty-state>
         </template>
 
         <!-- Configuration panel -->

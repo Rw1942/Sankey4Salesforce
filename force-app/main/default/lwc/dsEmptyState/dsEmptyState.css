@@ -2,3 +2,32 @@
     min-height: 480px;
     flex-direction: column;
 }
+
+.full-width {
+    width: 100%;
+}
+
+.saved-configs-section {
+    border-radius: 0.5rem;
+    background: var(--slds-g-color-neutral-base-95, var(--lwc-colorBackground, #f4f6f9));
+    max-height: 360px;
+    overflow-y: auto;
+}
+
+.config-tile {
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: background-color 150ms ease;
+}
+
+.config-tile:hover {
+    background-color: var(--slds-g-color-neutral-base-90, var(--lwc-colorBackgroundRowHover, #e8eaf0));
+}
+
+.config-tile:active {
+    background-color: var(--slds-g-color-neutral-base-80, var(--lwc-colorBackgroundRowActive, #d8dbe5));
+}
+
+.tile-icon {
+    flex-shrink: 0;
+}
