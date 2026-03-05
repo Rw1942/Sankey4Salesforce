@@ -47,6 +47,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
     showInsights = true;
     dataLoaded = false;
     configStarted = false;
+    configExpanded = true;
     isTruncated = false;
     _lastConfigHash = '';
     _cachedResponse = null;
@@ -79,7 +80,19 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
     }
 
     get showConfigPanel() {
-        return this.configStarted && !this.state.ui.loading;
+        return this.configStarted;
+    }
+
+    get showChartPlaceholder() {
+        return this.configStarted && !this.dataLoaded && !this.state.ui.loading;
+    }
+
+    get configToggleIcon() {
+        return this.configExpanded ? 'utility:chevrondown' : 'utility:chevronright';
+    }
+
+    get configCollapsedHint() {
+        return !this.configExpanded;
     }
 
     get hasData() {
@@ -146,6 +159,11 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
 
     handleStart() {
         this.configStarted = true;
+        this.configExpanded = true;
+    }
+
+    handleToggleConfig() {
+        this.configExpanded = !this.configExpanded;
     }
 
     handleObjectSelect(event) {
@@ -242,6 +260,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
     _applyResponse(response) {
         this.isTruncated = response.records && response.records.length >= DATASET_LIMIT;
         this.dataLoaded = true;
+        this.configExpanded = false;
         this.state = {
             ...this.state,
             data: {
@@ -263,6 +282,12 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
                 flowTraceValue: ''
             }
         };
+
+        // eslint-disable-next-line @lwc/lwc/no-async-operation
+        setTimeout(() => {
+            const el = this.template.querySelector('[data-id="chart-area"]');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
     }
 
     /* ═══ Trace Handlers ═════════════════════════════════════════════ */
@@ -416,6 +441,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
         };
         this.dataLoaded = false;
         this.configStarted = true;
+        this.configExpanded = true;
         this.errorMessage = '';
         this.isTruncated = false;
         this._lastConfigHash = '';

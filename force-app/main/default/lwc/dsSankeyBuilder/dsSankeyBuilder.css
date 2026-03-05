@@ -1,3 +1,62 @@
 :host {
     display: block;
 }
+
+/* ═══ Chart placeholder (shown before data loads) ═══ */
+
+.chart-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    background: var(--slds-g-color-neutral-base-95, var(--lwc-colorBackground, #f8fafc));
+    border: 1px dashed var(--slds-g-color-border-base-1, var(--lwc-colorBorder, #e2e8f0));
+    border-radius: var(--slds-g-radius-border-3, 0.5rem);
+    text-align: center;
+}
+
+.placeholder-icon {
+    --slds-c-icon-color-foreground-default: var(--slds-g-color-neutral-base-70, var(--lwc-colorTextWeak, #94a3b8));
+}
+
+/* ═══ Collapsible configuration section ═══ */
+
+.config-section {
+    border: 1px solid var(--slds-g-color-border-base-1, var(--lwc-colorBorder, #e2e8f0));
+    border-radius: var(--slds-g-radius-border-3, 0.5rem);
+    overflow: hidden;
+}
+
+.config-header {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: var(--slds-g-color-neutral-base-95, var(--lwc-colorBackground, #f8fafc));
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 150ms ease;
+}
+
+.config-header:hover {
+    background: var(--slds-g-color-neutral-base-90, var(--lwc-colorBackgroundRowHover, #f1f5f9));
+}
+
+.config-header-title {
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.config-body {
+    padding: 0 1rem 1rem;
+}
+
+/* ═══ Contextual help text ═══ */
+
+.help-text {
+    font-size: 0.8125rem;
+    color: var(--slds-g-color-neutral-base-50, var(--lwc-colorTextWeak, #64748b));
+    padding-left: 0.5rem;
+    border-left: 3px solid var(--slds-g-color-brand-base-50, var(--lwc-brandPrimary, #6366f1));
+    line-height: 1.5;
+}

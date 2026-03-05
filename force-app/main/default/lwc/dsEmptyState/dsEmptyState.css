@@ -9,7 +9,7 @@
 
 .saved-configs-section {
     border-radius: 0.5rem;
-    background: var(--slds-g-color-neutral-base-95, var(--lwc-colorBackground, #f4f6f9));
+    background: var(--slds-g-color-neutral-base-95, var(--lwc-colorBackground, #f8fafc));
     max-height: 360px;
     overflow-y: auto;
 }
@@ -21,11 +21,11 @@
 }
 
 .config-tile:hover {
-    background-color: var(--slds-g-color-neutral-base-90, var(--lwc-colorBackgroundRowHover, #e8eaf0));
+    background-color: var(--slds-g-color-neutral-base-90, var(--lwc-colorBackgroundRowHover, #eef2ff));
 }
 
 .config-tile:active {
-    background-color: var(--slds-g-color-neutral-base-80, var(--lwc-colorBackgroundRowActive, #d8dbe5));
+    background-color: var(--slds-g-color-neutral-base-80, var(--lwc-colorBackgroundRowActive, #e0e7ff));
 }
 
 .tile-icon {

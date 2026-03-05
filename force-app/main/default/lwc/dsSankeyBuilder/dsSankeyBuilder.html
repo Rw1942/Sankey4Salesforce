@@ -23,75 +23,17 @@
             <c-ds-empty-state onstart={handleStart} onconfigloaded={handleConfigLoaded}></c-ds-empty-state>
         </template>
 
-        <!-- Configuration panel -->
-        <template lwc:if={showConfigPanel}>
-            <div class="slds-p-horizontal_medium slds-p-top_small slds-p-bottom_x-small">
-                <lightning-progress-indicator current-step={currentStep} type="path" variant="base">
-                    <lightning-progress-step label="Select Object" value="object"></lightning-progress-step>
-                    <lightning-progress-step label="Configure Metric" value="metric"></lightning-progress-step>
-                    <lightning-progress-step label="Define Path" value="path"></lightning-progress-step>
-                    <lightning-progress-step label="Add Filters" value="filters"></lightning-progress-step>
-                    <lightning-progress-step label="Load Data" value="load"></lightning-progress-step>
-                </lightning-progress-indicator>
-            </div>
-            <div class="slds-p-around_medium">
-                <div class="slds-grid slds-gutters slds-wrap">
-                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_small">
-                        <c-ds-object-picker
-                            selected-object={state.config.objectApiName}
-                            onobjectselect={handleObjectSelect}>
-                        </c-ds-object-picker>
-                    </div>
-
-                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_small">
-                        <c-ds-metric-selector
-                            lwc:if={state.config.objectApiName}
-                            object-api-name={state.config.objectApiName}
-                            metric-type={state.config.metricType}
-                            metric-field={state.config.metricField}
-                            onmetricchange={handleMetricChange}>
-                        </c-ds-metric-selector>
-                    </div>
-                </div>
-
-                <template lwc:if={state.config.objectApiName}>
-                    <c-ds-path-selector
-                        object-api-name={state.config.objectApiName}
-                        selected-fields={state.config.pathFields}
-                        null-handling={state.config.nullHandling}
-                        record-id-field={state.config.recordIdField}
-                        onpathconfigured={handlePathConfigured}>
-                    </c-ds-path-selector>
-                </template>
-
-                <template lwc:if={state.config.objectApiName}>
-                    <c-ds-filter-builder
-                        object-api-name={state.config.objectApiName}
-                        filters={state.config.filters}
-                        onloaddata={handleLoadData}>
-                    </c-ds-filter-builder>
-                </template>
-            </div>
-        </template>
-
-        <!-- Loading spinner -->
+        <!-- ═══ TOP ZONE: Chart area (loading / chart / placeholder) ═══ -->
         <template lwc:if={state.ui.loading}>
-            <div class="slds-align_absolute-center slds-p-around_large">
+            <div class="chart-placeholder slds-p-around_large slds-m-horizontal_medium slds-m-top_small">
                 <lightning-spinner alternative-text="Loading Sankey data" size="medium"></lightning-spinner>
+                <p class="slds-text-body_regular slds-text-color_weak slds-m-top_medium">
+                    Building your Sankey diagram&hellip;
+                </p>
             </div>
         </template>
-
-        <!-- Truncation warning -->
-        <template lwc:if={showTruncationWarning}>
-            <div class="slds-notify slds-notify_alert slds-alert_warning slds-m-horizontal_medium slds-m-top_small" role="alert">
-                <span class="slds-assistive-text">warning</span>
-                Dataset was limited to {datasetLimit} records. Apply filters to narrow your results.
-            </div>
-        </template>
-
-        <!-- Chart + Trace + Insights area -->
-        <template lwc:if={hasData}>
-            <div class="slds-grid slds-wrap">
+        <template lwc:elseif={hasData}>
+            <div class="slds-grid slds-wrap" data-id="chart-area">
                 <div class={chartColumnClass}>
                     <c-ds-trace-panel
                         mode={state.ui.mode}
@@ -130,7 +72,6 @@
                     </c-ds-sankey-chart>
                 </div>
 
-                <!-- Insights panel (collapsible sidebar) -->
                 <div class={insightsColumnClass}>
                     <c-ds-insights-panel
                         lwc:if={showInsights}
@@ -141,7 +82,6 @@
                 </div>
             </div>
 
-            <!-- Toggle insights button when panel is collapsed -->
             <template lwc:if={hideInsights}>
                 <div class="slds-text-align_right slds-p-right_medium slds-p-bottom_small">
                     <lightning-button
@@ -152,6 +92,120 @@
                     </lightning-button>
                 </div>
             </template>
+        </template>
+        <template lwc:elseif={showChartPlaceholder}>
+            <div class="chart-placeholder slds-p-around_large slds-m-horizontal_medium slds-m-top_small">
+                <lightning-icon icon-name="utility:strategy" size="large" class="placeholder-icon"></lightning-icon>
+                <h2 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_x-small">
+                    Your Sankey diagram will appear here
+                </h2>
+                <p class="slds-text-body_regular slds-text-color_weak">
+                    Configure the steps below and click Load Data to visualize your flows.
+                </p>
+            </div>
+        </template>
+
+        <!-- Truncation warning -->
+        <template lwc:if={showTruncationWarning}>
+            <div class="slds-notify slds-notify_alert slds-alert_warning slds-m-horizontal_medium slds-m-top_small" role="alert">
+                <span class="slds-assistive-text">warning</span>
+                Dataset was limited to {datasetLimit} records. Apply filters to narrow your results.
+            </div>
+        </template>
+
+        <!-- ═══ BOTTOM ZONE: Collapsible Configuration ═══ -->
+
+        <template lwc:if={showConfigPanel}>
+            <div class="config-section slds-m-horizontal_medium slds-m-top_small slds-m-bottom_medium">
+                <!-- Collapsible header -->
+                <div class="config-header" onclick={handleToggleConfig}>
+                    <lightning-icon
+                        icon-name={configToggleIcon}
+                        size="xx-small"
+                        class="slds-m-right_x-small">
+                    </lightning-icon>
+                    <h3 class="slds-text-title_caps config-header-title">Configuration</h3>
+                    <template lwc:if={configCollapsedHint}>
+                        <span class="slds-text-body_small slds-text-color_weak slds-m-left_small">
+                            Click to expand and adjust settings
+                        </span>
+                    </template>
+                </div>
+
+                <!-- Configuration body (collapsible) -->
+                <template lwc:if={configExpanded}>
+                    <div class="config-body">
+                        <!-- Progress indicator -->
+                        <div class="slds-p-top_small slds-p-bottom_x-small">
+                            <lightning-progress-indicator current-step={currentStep} type="path" variant="base">
+                                <lightning-progress-step label="Select Object" value="object"></lightning-progress-step>
+                                <lightning-progress-step label="Configure Metric" value="metric"></lightning-progress-step>
+                                <lightning-progress-step label="Define Path" value="path"></lightning-progress-step>
+                                <lightning-progress-step label="Add Filters" value="filters"></lightning-progress-step>
+                                <lightning-progress-step label="Load Data" value="load"></lightning-progress-step>
+                            </lightning-progress-indicator>
+                        </div>
+
+                        <div class="slds-p-top_small">
+                            <div class="slds-grid slds-gutters slds-wrap">
+                                <!-- Object Picker -->
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_small">
+                                    <p class="help-text slds-m-bottom_xx-small">
+                                        Choose which Salesforce object contains the records you want to visualize.
+                                    </p>
+                                    <c-ds-object-picker
+                                        selected-object={state.config.objectApiName}
+                                        onobjectselect={handleObjectSelect}>
+                                    </c-ds-object-picker>
+                                </div>
+
+                                <!-- Metric Selector -->
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_small">
+                                    <template lwc:if={state.config.objectApiName}>
+                                        <p class="help-text slds-m-bottom_xx-small">
+                                            Decide how to measure flows &mdash; count records or sum a numeric field like Amount.
+                                        </p>
+                                        <c-ds-metric-selector
+                                            object-api-name={state.config.objectApiName}
+                                            metric-type={state.config.metricType}
+                                            metric-field={state.config.metricField}
+                                            onmetricchange={handleMetricChange}>
+                                        </c-ds-metric-selector>
+                                    </template>
+                                </div>
+                            </div>
+
+                            <!-- Path Selector -->
+                            <template lwc:if={state.config.objectApiName}>
+                                <p class="help-text slds-m-bottom_xx-small slds-m-top_small">
+                                    Select 2 or more fields that represent stages in your flow.
+                                    The order you choose becomes left-to-right columns in the diagram.
+                                </p>
+                                <c-ds-path-selector
+                                    object-api-name={state.config.objectApiName}
+                                    selected-fields={state.config.pathFields}
+                                    null-handling={state.config.nullHandling}
+                                    record-id-field={state.config.recordIdField}
+                                    onpathconfigured={handlePathConfigured}>
+                                </c-ds-path-selector>
+                            </template>
+
+                            <!-- Filter Builder -->
+                            <template lwc:if={state.config.objectApiName}>
+                                <p class="help-text slds-m-bottom_xx-small slds-m-top_small">
+                                    Optionally filter which records to include.
+                                    When ready, click Load Data to generate the diagram.
+                                </p>
+                                <c-ds-filter-builder
+                                    object-api-name={state.config.objectApiName}
+                                    filters={state.config.filters}
+                                    onloaddata={handleLoadData}>
+                                </c-ds-filter-builder>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
         </template>
 
         <!-- Error state -->
