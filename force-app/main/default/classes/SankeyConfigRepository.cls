@@ -1,17 +1,14 @@
 /**
- * Story 9.1 — Save Sankey definition.
- * Story 9.2 — Load saved Sankey.
- * Section 10.1/10.2: CRUD for DS_Sankey_Config__c custom object.
- *
- * Provides save, load, and delete operations for Sankey configurations.
- * All queries enforce WITH SECURITY_ENFORCED (Section 12).
+ * CRUD operations for DS_Sankey_Config__c custom object.
+ * Provides save, load, and delete for Sankey configurations.
+ * All queries enforce WITH SECURITY_ENFORCED.
  */
 public with sharing class SankeyConfigRepository {
 
     /**
-     * Story 9.1: Save or update a Sankey configuration.
-     * Accepts a JSON payload with config name + all settings.
-     * Returns the saved record Id.
+     * Save or update a Sankey configuration.
+     * @param configJson JSON payload with config name + all settings
+     * @return the saved record Id
      */
     @AuraEnabled
     public static String saveConfig(String configJson) {
@@ -20,7 +17,6 @@ public with sharing class SankeyConfigRepository {
 
             DS_Sankey_Config__c config = new DS_Sankey_Config__c();
 
-            // If an Id is provided, update existing record
             if (payload.containsKey('id') && payload.get('id') != null) {
                 config.Id = (Id) payload.get('id');
             }
@@ -32,7 +28,6 @@ public with sharing class SankeyConfigRepository {
             config.Record_Id_Field__c = (String) payload.get('recordIdField');
             config.Null_Handling__c = (String) payload.get('nullHandling');
 
-            // Store complex objects as JSON strings
             if (payload.containsKey('filters')) {
                 config.Filters_JSON__c = JSON.serialize(payload.get('filters'));
             }
@@ -48,8 +43,8 @@ public with sharing class SankeyConfigRepository {
     }
 
     /**
-     * Story 9.2: Retrieve all saved configurations owned by the current user.
-     * Returns JSON array of saved configs.
+     * Retrieve all saved configurations owned by the current user.
+     * @return JSON array of saved configs
      */
     @AuraEnabled(cacheable=true)
     public static String getMyConfigs() {
@@ -78,7 +73,6 @@ public with sharing class SankeyConfigRepository {
                     'createdDate' => c.CreatedDate
                 };
 
-                // Deserialize JSON fields back into objects
                 if (String.isNotBlank(c.Filters_JSON__c)) {
                     item.put('filters', JSON.deserializeUntyped(c.Filters_JSON__c));
                 } else {
@@ -101,7 +95,8 @@ public with sharing class SankeyConfigRepository {
     }
 
     /**
-     * Story 9.2: Delete a saved configuration.
+     * Delete a saved configuration.
+     * @param configId the Id of the config to delete
      */
     @AuraEnabled
     public static void deleteConfig(String configId) {

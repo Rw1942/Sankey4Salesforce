@@ -30,7 +30,7 @@
                     </lightning-combobox>
                 </div>
 
-                <template if:true={isRecordTrace}>
+                <template lwc:if={isRecordTrace}>
                     <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-6">
                         <lightning-combobox
                             name="record"
@@ -43,7 +43,7 @@
                     </div>
                 </template>
 
-                <template if:true={isFlowTrace}>
+                <template lwc:elseif={isFlowTrace}>
                     <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6">
                         <lightning-combobox
                             name="flowStep"
@@ -67,7 +67,7 @@
                 </template>
             </div>
 
-            <template if:true={showTraceControls}>
+            <template lwc:if={showTraceControls}>
                 <div class="trace-row slds-m-top_x-small">
                     <lightning-button-group>
                         <lightning-button label="Reset" onclick={handleTraceReset}></lightning-button>
@@ -84,19 +84,19 @@
             <div class={tooltipClass} style={tooltipStyle}>
                 <div class="tooltip-title">{tooltipTitle}</div>
                 <div class="tooltip-detail">{tooltipDetail}</div>
-                <template if:true={tooltipExtra}>
+                <template lwc:if={tooltipExtra}>
                     <div class="tooltip-extra">{tooltipExtra}</div>
                 </template>
             </div>
         </div>
 
-        <template if:true={isLoading}>
+        <template lwc:if={isLoading}>
             <div class="slds-align_absolute-center slds-p-around_large">
                 <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
             </div>
         </template>
 
-        <template if:true={errorMessage}>
+        <template lwc:if={errorMessage}>
             <div class="slds-notify slds-notify_alert slds-alert_error slds-m-around_medium" role="alert">
                 <span class="slds-assistive-text">error</span>
                 {errorMessage}

@@ -1,7 +1,5 @@
 /**
- * Story 7.1 — Show contextual metrics (drop-off rate, conversion rate, average amount).
- * Story 7.2 — Top paths (most common paths sorted by metric, limited to 10).
- *
+ * Insights panel showing contextual metrics and top paths.
  * Receives pre-computed KPI data from parent (computed in Apex SankeyService).
  * Panel is collapsible via toggle event.
  */
@@ -12,12 +10,14 @@ export default class DsInsightsPanel extends LightningElement {
     @api kpis = null;
     @api topPaths = [];
 
-    // Story 7.1: Check if KPIs are available
     get hasKpis() {
         return this.kpis && this.kpis.totalRecords !== undefined;
     }
 
-    // Story 7.2: Check if top paths are available
+    get noKpis() {
+        return !this.hasKpis;
+    }
+
     get hasTopPaths() {
         return this.topPaths && this.topPaths.length > 0;
     }

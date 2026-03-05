@@ -1,7 +1,7 @@
 /**
- * Section 6.2 — Path aggregation algorithm + KPI computation.
- * Story 3.2 — Null handling modes (STOP, GROUP_UNKNOWN, CARRY_FORWARD).
- * Story 7.1/7.2 — Guided insights: drop-off, conversion, top paths, avg amount.
+ * Path aggregation algorithm + KPI computation.
+ * Handles null handling modes (STOP, GROUP_UNKNOWN, CARRY_FORWARD).
+ * Computes guided insights: drop-off, conversion, top paths, avg amount.
  *
  * For each record, builds transitions (step_i -> step_{i+1}) += metric,
  * stored as Map<PathKey, Decimal>. Returns D3-ready nodes + links + KPIs.
@@ -11,8 +11,10 @@ public with sharing class SankeyService {
     private static final String UNKNOWN_LABEL = 'Unknown';
 
     /**
-     * Section 6.2 + 6.3: Build the full Sankey response from raw SObject records.
-     * Returns a JSON-serializable map with nodes, links, records, stepColumns, kpis, topPaths.
+     * Build the full Sankey response from raw SObject records.
+     * @param rawRecords queried SObject records
+     * @param config deserialized config map
+     * @return JSON-serializable map with nodes, links, records, stepColumns, kpis, topPaths
      */
     public static Map<String, Object> buildSankeyResponse(
         List<SObject> rawRecords,
@@ -29,14 +31,11 @@ public with sharing class SankeyService {
         String recordIdField = (String) config.get('recordIdField');
         String nullHandling = (String) config.get('nullHandling');
 
-        // Section 6.2: Build tabular records and aggregate transitions
         List<Map<String, Object>> records = new List<Map<String, Object>>();
         Map<String, Map<String, Object>> nodeMap = new Map<String, Map<String, Object>>();
         Map<String, Map<String, Object>> linkAgg = new Map<String, Map<String, Object>>();
 
-        // Track per-step record counts for drop-off computation (Story 7.1)
         Map<Integer, Integer> stepRecordCounts = new Map<Integer, Integer>();
-        // Track full paths for top-paths computation (Story 7.2)
         Map<String, Integer> fullPathCounts = new Map<String, Integer>();
         Map<String, Decimal> fullPathAmounts = new Map<String, Decimal>();
 
@@ -59,7 +58,6 @@ public with sharing class SankeyService {
             row.put('amount', amount);
             totalAmount += amount;
 
-            // Story 3.2: Apply null handling and build path values
             List<String> pathValues = new List<String>();
             String lastValue = null;
             Boolean stopped = false;
@@ -70,7 +68,6 @@ public with sharing class SankeyService {
                 String val;
 
                 if (rawVal == null || String.isBlank(String.valueOf(rawVal))) {
-                    // Story 3.2: Null handling strategy
                     if (nullHandling == 'STOP') {
                         stopped = true;
                         break;
@@ -87,11 +84,9 @@ public with sharing class SankeyService {
                 pathValues.add(val);
                 row.put(col, val);
 
-                // Story 7.1: Count records per step
                 Integer sc = stepRecordCounts.containsKey(si) ? stepRecordCounts.get(si) : 0;
                 stepRecordCounts.put(si, sc + 1);
 
-                // Build node
                 String nid = si + '::' + val;
                 if (!nodeMap.containsKey(nid)) {
                     nodeMap.put(nid, new Map<String, Object>{
@@ -103,7 +98,6 @@ public with sharing class SankeyService {
                 }
             }
 
-            // Section 6.2: Build transitions for non-stopped paths
             if (!stopped) {
                 for (Integer i = 0; i < pathValues.size() - 1; i++) {
                     String sv = pathValues[i];
@@ -132,7 +126,6 @@ public with sharing class SankeyService {
 
             records.add(row);
 
-            // Story 7.2: Track full path strings
             if (!stopped) {
                 String fullPath = String.join(pathValues, ' \u2192 ');
                 Integer pc = fullPathCounts.containsKey(fullPath) ? fullPathCounts.get(fullPath) : 0;
@@ -142,17 +135,13 @@ public with sharing class SankeyService {
             }
         }
 
-        // Section 6.3: Build D3-ready format
         List<Map<String, Object>> nodes = new List<Map<String, Object>>(nodeMap.values());
         List<Map<String, Object>> links = new List<Map<String, Object>>(linkAgg.values());
 
-        // Story 7.1: Compute KPIs
         Map<String, Object> kpis = computeKpis(totalRecords, totalAmount, stepRecordCounts, pathFields.size());
-
-        // Story 7.2: Top paths
         List<Map<String, Object>> topPaths = computeTopPaths(fullPathCounts, fullPathAmounts, metricType);
 
-        Map<String, Object> result = new Map<String, Object>{
+        return new Map<String, Object>{
             'nodes' => nodes,
             'links' => links,
             'records' => records,
@@ -160,13 +149,10 @@ public with sharing class SankeyService {
             'kpis' => kpis,
             'topPaths' => topPaths
         };
-
-        return result;
     }
 
     /**
-     * Story 7.1: Compute guided insight KPIs.
-     * Drop-off rate, conversion rate, average amount.
+     * Compute guided insight KPIs: drop-off rate, conversion rate, average amount.
      */
     private static Map<String, Object> computeKpis(
         Integer totalRecords,
@@ -198,46 +184,54 @@ public with sharing class SankeyService {
     }
 
     /**
-     * Story 7.2: Top paths — most common paths sorted by metric, limited to 10.
+     * Top paths -- most common paths sorted by metric descending, limited to 10.
      */
     private static List<Map<String, Object>> computeTopPaths(
         Map<String, Integer> pathCounts,
         Map<String, Decimal> pathAmounts,
         String metricType
     ) {
-        List<Map<String, Object>> paths = new List<Map<String, Object>>();
-
+        List<PathEntry> entries = new List<PathEntry>();
         for (String path : pathCounts.keySet()) {
-            paths.add(new Map<String, Object>{
-                'path' => path,
-                'count' => pathCounts.get(path),
-                'amount' => pathAmounts.containsKey(path) ? pathAmounts.get(path) : 0
+            Integer cnt = pathCounts.get(path);
+            Decimal amt = pathAmounts.containsKey(path) ? pathAmounts.get(path) : 0;
+            Decimal sortVal = metricType == 'AMOUNT' ? amt : cnt;
+            entries.add(new PathEntry(path, cnt, amt, sortVal));
+        }
+
+        entries.sort();
+
+        List<Map<String, Object>> top = new List<Map<String, Object>>();
+        for (Integer i = 0; i < Math.min(10, entries.size()); i++) {
+            PathEntry e = entries[i];
+            top.add(new Map<String, Object>{
+                'path' => e.path,
+                'count' => e.cnt,
+                'amount' => e.amt,
+                'rank' => i + 1
             });
         }
-
-        // Sort by metric descending — simple bubble sort (safe for small datasets)
-        for (Integer i = 0; i < paths.size(); i++) {
-            for (Integer j = i + 1; j < paths.size(); j++) {
-                Decimal vi = metricType == 'AMOUNT'
-                    ? (Decimal) paths[i].get('amount')
-                    : (Decimal) paths[i].get('count');
-                Decimal vj = metricType == 'AMOUNT'
-                    ? (Decimal) paths[j].get('amount')
-                    : (Decimal) paths[j].get('count');
-                if (vj > vi) {
-                    Map<String, Object> tmp = paths[i];
-                    paths[i] = paths[j];
-                    paths[j] = tmp;
-                }
-            }
-        }
-
-        // LIMIT 10
-        List<Map<String, Object>> top = new List<Map<String, Object>>();
-        for (Integer i = 0; i < Math.min(10, paths.size()); i++) {
-            paths[i].put('rank', i + 1);
-            top.add(paths[i]);
-        }
         return top;
+    }
+
+    private class PathEntry implements Comparable {
+        public String path;
+        public Integer cnt;
+        public Decimal amt;
+        public Decimal sortVal;
+
+        public PathEntry(String path, Integer cnt, Decimal amt, Decimal sortVal) {
+            this.path = path;
+            this.cnt = cnt;
+            this.amt = amt;
+            this.sortVal = sortVal;
+        }
+
+        public Integer compareTo(Object other) {
+            PathEntry that = (PathEntry) other;
+            if (that.sortVal > this.sortVal) return 1;
+            if (that.sortVal < this.sortVal) return -1;
+            return 0;
+        }
     }
 }

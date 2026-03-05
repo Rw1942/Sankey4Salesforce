@@ -1,9 +1,8 @@
-<!-- Story 2.2: Filter builder with field/operator/value rows, date range quick filters -->
 <template>
     <div class="slds-box slds-theme_shade slds-m-top_small">
         <h3 class="slds-text-heading_small slds-m-bottom_small">Filters</h3>
 
-        <!-- Story 2.2: Date range quick filters -->
+        <!-- Date range quick filters -->
         <div class="slds-m-bottom_small">
             <lightning-combobox
                 name="dateRange"
@@ -15,7 +14,7 @@
             </lightning-combobox>
         </div>
 
-        <!-- Story 2.2: Filter rows — Field + Operator + Value -->
+        <!-- Filter rows — Field + Operator + Value -->
         <template for:each={filterRows} for:item="row">
             <div key={row.id} class="slds-grid slds-gutters_x-small slds-m-bottom_x-small filter-row">
                 <div class="slds-col slds-size_4-of-12">
@@ -74,7 +73,6 @@
             </lightning-button>
 
             <div>
-                <!-- Story 2.2: Preview record count -->
                 <lightning-button
                     label={previewLabel}
                     icon-name="utility:preview"
@@ -84,7 +82,6 @@
                     class="slds-m-right_x-small">
                 </lightning-button>
 
-                <!-- Story 2.2 + 8.1: Load Data CTA — triggers query -->
                 <lightning-button
                     label="Load Data"
                     icon-name="utility:download"
@@ -95,8 +92,7 @@
             </div>
         </div>
 
-        <!-- Story 2.2: Preview record count display -->
-        <template if:true={recordCount}>
+        <template lwc:if={recordCount}>
             <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
                 Matching records: {recordCount}
             </p>

@@ -1,8 +1,6 @@
-<!-- Story 5.1/5.2: Record trace mode + Story 6.1/6.2: Flow trace mode -->
 <template>
     <div class="slds-p-horizontal_medium slds-p-bottom_small controls-bar">
         <div class="slds-grid slds-gutters_x-small slds-wrap">
-            <!-- Mode selector -->
             <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6">
                 <lightning-combobox
                     name="mode"
@@ -13,8 +11,8 @@
                 </lightning-combobox>
             </div>
 
-            <!-- Story 5.1: Record trace — searchable combobox -->
-            <template if:true={isRecordTrace}>
+            <!-- Record trace — searchable combobox -->
+            <template lwc:if={isRecordTrace}>
                 <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-6">
                     <lightning-combobox
                         name="record"
@@ -26,9 +24,8 @@
                     </lightning-combobox>
                 </div>
 
-                <!-- Story 5.2: Open record in Salesforce -->
                 <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6 slds-grid slds-grid_vertical-align-end">
-                    <template if:true={selectedRecordId}>
+                    <template lwc:if={selectedRecordId}>
                         <lightning-button
                             label="Open Record"
                             icon-name="utility:new_window"
@@ -39,8 +36,8 @@
                 </div>
             </template>
 
-            <!-- Story 6.1/6.2: Flow trace — step + value selectors -->
-            <template if:true={isFlowTrace}>
+            <!-- Flow trace — step + value selectors -->
+            <template lwc:elseif={isFlowTrace}>
                 <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6">
                     <lightning-combobox
                         name="flowStep"
@@ -64,8 +61,8 @@
             </template>
         </div>
 
-        <!-- Story 5.1: Step-through animation controls for record trace -->
-        <template if:true={showTraceControls}>
+        <!-- Step-through animation controls for record trace -->
+        <template lwc:if={showTraceControls}>
             <div class="trace-row slds-m-top_x-small">
                 <lightning-button-group>
                     <lightning-button label="Reset" onclick={handleTraceReset}></lightning-button>
@@ -76,8 +73,8 @@
             </div>
         </template>
 
-        <!-- Story 6.2: KPI summary for flow trace -->
-        <template if:true={showFlowKpis}>
+        <!-- KPI summary for flow trace -->
+        <template lwc:if={showFlowKpis}>
             <div class="slds-grid slds-gutters_x-small slds-m-top_small kpi-bar">
                 <div class="slds-col kpi-card">
                     <span class="kpi-value">{kpis.totalRecords}</span>

@@ -1,12 +1,11 @@
 /**
- * Story 2.3 — Select metric (Count or Amount).
+ * Metric selector — Count or Amount.
  * When Amount is selected, a dynamic numeric field picker is shown
  * filtered from getObjectInfo fields (Currency, Double, Integer types).
  */
 import { LightningElement, api, wire } from 'lwc';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
-// Story 2.3: Allowed numeric data types for Amount metric
 const NUMERIC_TYPES = new Set(['Currency', 'Double', 'Int', 'Long', 'Percent']);
 
 export default class DsMetricSelector extends LightningElement {
@@ -42,7 +41,6 @@ export default class DsMetricSelector extends LightningElement {
         return this.internalMetricType === 'AMOUNT';
     }
 
-    // Story 2.3: Dynamic numeric field picker via getObjectInfo
     @wire(getObjectInfo, { objectApiName: '$objectApiName' })
     wiredObjectInfo({ error, data }) {
         if (data) {
@@ -72,7 +70,6 @@ export default class DsMetricSelector extends LightningElement {
         this._fireChange();
     }
 
-    // Story 2.3: Fire metricchange event to parent
     _fireChange() {
         this.dispatchEvent(new CustomEvent('metricchange', {
             detail: {

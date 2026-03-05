@@ -1,8 +1,7 @@
 /**
- * Story 2.2 — Define the dataset with filters.
+ * Filter builder for defining dataset criteria.
  * Builds filter rows (Field, Operator, Value), date range quick filters,
  * preview record count, and a Load Data CTA.
- * Story 8.1: Query runs only after user clicks "Load Data".
  */
 import { LightningElement, api, wire } from 'lwc';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
@@ -21,7 +20,6 @@ export default class DsFilterBuilder extends LightningElement {
     recordCount = null;
     isCountLoading = false;
 
-    // Story 2.2: Operator options for filter rows
     get operatorOptions() {
         return [
             { label: '=',    value: '=' },
@@ -35,7 +33,6 @@ export default class DsFilterBuilder extends LightningElement {
         ];
     }
 
-    // Story 2.2: Date range quick filter options
     get dateRangeOptions() {
         return [
             { label: 'None',         value: '' },
@@ -60,7 +57,6 @@ export default class DsFilterBuilder extends LightningElement {
         return !this.objectApiName;
     }
 
-    // Story 2.2: Wire getObjectInfo to populate field options for filters
     @wire(getObjectInfo, { objectApiName: '$objectApiName' })
     wiredObjectInfo({ error, data }) {
         if (data) {
@@ -130,7 +126,6 @@ export default class DsFilterBuilder extends LightningElement {
         return filters;
     }
 
-    // Story 2.2: Preview record count — separate Apex call
     async handlePreviewCount() {
         this.isCountLoading = true;
         this.recordCount = null;
@@ -148,7 +143,6 @@ export default class DsFilterBuilder extends LightningElement {
         }
     }
 
-    // Story 2.2 + 8.1: Fire loaddata event — query runs only when user clicks
     handleLoadData() {
         const filters = this._buildFilters();
         this.dispatchEvent(new CustomEvent('loaddata', {

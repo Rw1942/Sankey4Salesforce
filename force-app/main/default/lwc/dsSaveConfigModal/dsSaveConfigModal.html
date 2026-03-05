@@ -1,0 +1,22 @@
+<template>
+    <lightning-modal-header label="Save Sankey Configuration"></lightning-modal-header>
+    <lightning-modal-body>
+        <lightning-input
+            label="Configuration Name"
+            value={configName}
+            placeholder="e.g. Q1 Opportunity Pipeline"
+            onchange={handleNameChange}
+            required>
+        </lightning-input>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+        <lightning-button
+            label="Save"
+            variant="brand"
+            onclick={handleSave}
+            disabled={isSaveDisabled}
+            class="slds-m-left_x-small">
+        </lightning-button>
+    </lightning-modal-footer>
+</template>

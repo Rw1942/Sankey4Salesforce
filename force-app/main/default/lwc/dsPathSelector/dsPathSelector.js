@@ -1,15 +1,11 @@
 /**
- * Story 3.1 — Select the path fields (ordered stage fields).
- * Story 3.2 — Handle missing values (null handling strategy).
- * Story 3.3 — Record identifier selection (default: Id).
- *
- * Only Picklist, Lookup, and Text fields are allowed per acceptance criteria.
+ * Path field selector with ordered multi-select, null handling, and record ID field.
+ * Only Picklist, Lookup, and Text fields are allowed.
  * Uses lightning-dual-listbox for ordered selection with minimum 2 steps.
  */
 import { LightningElement, api, wire } from 'lwc';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
-// Story 3.1: Only allow these field types for path columns
 const ALLOWED_TYPES = new Set(['Picklist', 'Reference', 'String', 'TextArea', 'Phone', 'Email', 'Url']);
 
 export default class DsPathSelector extends LightningElement {
@@ -55,7 +51,6 @@ export default class DsPathSelector extends LightningElement {
         return this.internalSelected.length > 0 && this.internalSelected.length < 2;
     }
 
-    // Story 3.1: Wire getObjectInfo for field metadata, filter to allowed types
     @wire(getObjectInfo, { objectApiName: '$objectApiName' })
     wiredObjectInfo({ error, data }) {
         if (data) {
@@ -68,7 +63,6 @@ export default class DsPathSelector extends LightningElement {
                 }))
                 .sort((a, b) => a.label.localeCompare(b.label));
 
-            // Story 3.3: ID field options — all unique-capable fields
             this.idFieldOptions = Object.keys(fields)
                 .filter(key => fields[key].dataType === 'Reference' ||
                                fields[key].dataType === 'String' ||
@@ -79,7 +73,6 @@ export default class DsPathSelector extends LightningElement {
                 }))
                 .sort((a, b) => a.label.localeCompare(b.label));
 
-            // Story 3.3: Ensure Id is always an option
             if (!this.idFieldOptions.find(o => o.value === 'Id')) {
                 this.idFieldOptions.unshift({ label: 'Record Id (Id)', value: 'Id' });
             }
@@ -89,25 +82,21 @@ export default class DsPathSelector extends LightningElement {
         }
     }
 
-    // Story 3.1: Dual listbox change — ordered selection
     handlePathChange(event) {
         this.internalSelected = event.detail.value;
         this._fireConfigured();
     }
 
-    // Story 3.2: Null handling change
     handleNullChange(event) {
         this.internalNullHandling = event.detail.value;
         this._fireConfigured();
     }
 
-    // Story 3.3: Record ID field change
     handleIdFieldChange(event) {
         this.internalRecordIdField = event.detail.value;
         this._fireConfigured();
     }
 
-    // Story 3.1: Fire pathconfigured event with full path config
     _fireConfigured() {
         this.dispatchEvent(new CustomEvent('pathconfigured', {
             detail: {

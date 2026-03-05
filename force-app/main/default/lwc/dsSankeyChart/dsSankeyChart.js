@@ -1,11 +1,7 @@
 /**
- * Story 4.2 — View aggregated Sankey diagram.
- * Refactored from sankeyExplorer into a child component that receives data via @api.
- * D3 renders into the lwc:dom="manual" SVG element.
- *
- * Story 4.2: Tooltips include value, record count, and % of total.
- * Story 8.2 (Performance): Incremental updates for mode/trace changes — no SVG rebuild.
- * Section 7.2: Opens record via NavigationMixin (event delegation to parent).
+ * Aggregated Sankey diagram rendered via D3.
+ * Receives data from parent via @api. D3 renders into the lwc:dom="manual" SVG.
+ * Uses @api setters for efficient change detection instead of renderedCallback hashing.
  */
 import { LightningElement, api } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
@@ -22,17 +18,71 @@ const ANIM_MS      = 250;
 
 export default class DsSankeyChart extends LightningElement {
 
-    /* ── Public API (data from parent) ─────────────────────────────── */
-    @api nodes = [];
-    @api links = [];
-    @api records = [];
-    @api steps = [];
-    @api metric = 'count';
-    @api mode = 'AGGREGATE';
-    @api selectedRecordId = '';
-    @api flowStepIdx = '';
-    @api flowTraceValue = '';
-    @api traceStep = 0;
+    /* ── @api with setters for change detection ───────────────────── */
+
+    _nodes = [];
+    @api get nodes() { return this._nodes; }
+    set nodes(val) {
+        this._nodes = val || [];
+        this._dataChanged = true;
+    }
+
+    _links = [];
+    @api get links() { return this._links; }
+    set links(val) { this._links = val || []; }
+
+    _records = [];
+    @api get records() { return this._records; }
+    set records(val) { this._records = val || []; }
+
+    _steps = [];
+    @api get steps() { return this._steps; }
+    set steps(val) { this._steps = val || []; }
+
+    _metric = 'count';
+    @api get metric() { return this._metric; }
+    set metric(val) {
+        const prev = this._metric;
+        this._metric = val || 'count';
+        if (prev !== this._metric) {
+            this._dataChanged = true;
+        }
+    }
+
+    _mode = 'AGGREGATE';
+    @api get mode() { return this._mode; }
+    set mode(val) {
+        this._mode = val || 'AGGREGATE';
+        this._highlightDirty = true;
+    }
+
+    _selectedRecordId = '';
+    @api get selectedRecordId() { return this._selectedRecordId; }
+    set selectedRecordId(val) {
+        this._selectedRecordId = val || '';
+        this._highlightDirty = true;
+    }
+
+    _flowStepIdx = '';
+    @api get flowStepIdx() { return this._flowStepIdx; }
+    set flowStepIdx(val) {
+        this._flowStepIdx = val || '';
+        this._highlightDirty = true;
+    }
+
+    _flowTraceValue = '';
+    @api get flowTraceValue() { return this._flowTraceValue; }
+    set flowTraceValue(val) {
+        this._flowTraceValue = val || '';
+        this._highlightDirty = true;
+    }
+
+    _traceStep = 0;
+    @api get traceStep() { return this._traceStep; }
+    set traceStep(val) {
+        this._traceStep = val || 0;
+        this._highlightDirty = true;
+    }
 
     /* ── Reactive tooltip state ────────────────────────────────────── */
     tooltipVisible = false;
@@ -43,7 +93,9 @@ export default class DsSankeyChart extends LightningElement {
     tooltipY       = 0;
 
     /* ── Private ───────────────────────────────────────────────────── */
-    _d3Loaded = false;
+    _d3Loaded      = false;
+    _dataChanged   = false;
+    _highlightDirty = false;
     _graph    = null;
     _laid     = null;
     _svg      = null;
@@ -54,7 +106,6 @@ export default class DsSankeyChart extends LightningElement {
     _w        = 960;
     _h        = 540;
     _ro       = null;
-    _lastDataHash = '';
 
     /* ═══ Lifecycle ════════════════════════════════════════════════════ */
 
@@ -62,56 +113,49 @@ export default class DsSankeyChart extends LightningElement {
         if (!this._d3Loaded) {
             this._d3Loaded = true;
             loadScript(this, D3_RESOURCE + '/d3.min.js')
-                .then(() => this._onDataChange())
+                .then(() => this._processChanges())
                 .catch(e => {
-                    // eslint-disable-next-line no-console
-                    console.error('D3 load error:', e);
+                    console.error('D3 load error:', e); // eslint-disable-line no-console
                 });
-        } else {
-            this._onDataChange();
+            return;
         }
+        this._processChanges();
     }
 
     disconnectedCallback() {
         if (this._ro) this._ro.disconnect();
     }
 
-    /* ═══ Watch for @api data changes ══════════════════════════════ */
+    /* ═══ Efficient change processing ══════════════════════════════ */
 
-    _onDataChange() {
-        if (!this.nodes || this.nodes.length === 0) return;
+    _processChanges() {
+        if (this._nodes.length === 0) return;
 
-        const dataHash = JSON.stringify(this.nodes) + this.metric;
-        const needsRebuild = dataHash !== this._lastDataHash;
-
-        if (needsRebuild) {
-            this._lastDataHash = dataHash;
+        if (this._dataChanged) {
+            this._dataChanged = false;
+            this._highlightDirty = false;
             this._buildGraph();
             this._initResize();
-        } else {
-            // Story 8.2: Incremental update — only restyle, don't rebuild SVG
+        } else if (this._highlightDirty) {
+            this._highlightDirty = false;
             this._applyHighlight();
         }
     }
 
-    /* ═══ Graph construction (from Apex-returned nodes/links) ═════ */
+    /* ═══ Graph construction ═══════════════════════════════════════ */
 
     _buildGraph() {
         const nodeMap = new Map();
         const linkAgg = new Map();
 
-        for (const n of this.nodes) {
-            nodeMap.set(n.id, {
-                ...n,
-                recordIndices: new Set()
-            });
+        for (const n of this._nodes) {
+            nodeMap.set(n.id, { ...n, recordIndices: new Set() });
         }
 
-        // Build record index sets on nodes
-        for (let ri = 0; ri < this.records.length; ri++) {
-            const rec = this.records[ri];
-            for (let si = 0; si < this.steps.length; si++) {
-                const val = rec[this.steps[si]] || '\u2205';
+        for (let ri = 0; ri < this._records.length; ri++) {
+            const rec = this._records[ri];
+            for (let si = 0; si < this._steps.length; si++) {
+                const val = rec[this._steps[si]] || '\u2205';
                 const nid = si + '::' + val;
                 if (nodeMap.has(nid)) {
                     nodeMap.get(nid).recordIndices.add(ri);
@@ -119,12 +163,17 @@ export default class DsSankeyChart extends LightningElement {
             }
         }
 
-        for (const l of this.links) {
+        const recordIdMap = new Map();
+        for (let i = 0; i < this._records.length; i++) {
+            recordIdMap.set(this._records[i].id, i);
+        }
+
+        for (const l of this._links) {
             const riSet = new Set();
             if (l.recordIds) {
-                for (let i = 0; i < l.recordIds.length; i++) {
-                    const idx = this.records.findIndex(r => r.id === l.recordIds[i]);
-                    if (idx >= 0) riSet.add(idx);
+                for (const rid of l.recordIds) {
+                    const idx = recordIdMap.get(rid);
+                    if (idx !== undefined) riSet.add(idx);
                 }
             }
             linkAgg.set(l.key, {
@@ -135,16 +184,10 @@ export default class DsSankeyChart extends LightningElement {
             });
         }
 
-        this._graph = {
-            nodes: [...nodeMap.values()],
-            nodeMap,
-            linkAgg
-        };
+        this._graph = { nodes: [...nodeMap.values()], nodeMap, linkAgg };
 
-        // Assign colors
         const labels = [...new Set(this._graph.nodes.map(n => n.label))];
-        // eslint-disable-next-line no-undef
-        const palette = typeof d3 !== 'undefined' ? d3.schemeTableau10 : [];
+        const palette = typeof d3 !== 'undefined' ? d3.schemeTableau10 : []; // eslint-disable-line no-undef
         this._colorOf = new Map();
         this._graph.nodes.forEach(n => {
             this._colorOf.set(n.id, palette[labels.indexOf(n.label) % palette.length] || '#1b5faa');
@@ -152,7 +195,7 @@ export default class DsSankeyChart extends LightningElement {
     }
 
     _linksForLayout() {
-        const useAmt = this.metric === 'amount';
+        const useAmt = this._metric === 'amount';
         return Array.from(this._graph.linkAgg.values()).map(l => ({
             source: l.source,
             target: l.target,
@@ -191,7 +234,9 @@ export default class DsSankeyChart extends LightningElement {
 
         const svg = d3.select(this.template.querySelector('svg.sankey'));
         svg.selectAll('*').remove();
-        svg.attr('width', this._w).attr('height', this._h);
+        svg.attr('width', this._w).attr('height', this._h)
+           .attr('role', 'img')
+           .attr('aria-label', 'Sankey flow diagram');
 
         const iw = this._w - MARGIN.left - MARGIN.right;
         const ih = this._h - MARGIN.top  - MARGIN.bottom;
@@ -240,7 +285,7 @@ export default class DsSankeyChart extends LightningElement {
                 .attr('x', x).attr('y', -12)
                 .attr('text-anchor', 'middle')
                 .attr('class', 'step-header')
-                .text(this.steps[si] || '');
+                .text(this._steps[si] || '');
         });
     }
 
@@ -287,9 +332,13 @@ export default class DsSankeyChart extends LightningElement {
             .attr('text-anchor', n => (n.x0 < iw / 2 ? 'start' : 'end'))
             .attr('class', 'node-label')
             .text(n => n.label);
+
+        ng.each(function(d) {
+            d3.select(this).attr('aria-label', d.label); // eslint-disable-line no-undef
+        });
     }
 
-    /* ═══ Highlighting (Story 8.2: incremental, no SVG rebuild) ══ */
+    /* ═══ Highlighting ═════════════════════════════════════════════ */
 
     _applyHighlight() {
         if (!this._gLinks || !this._laid) return;
@@ -311,41 +360,41 @@ export default class DsSankeyChart extends LightningElement {
             });
 
         this._gOverlay.selectAll('*').remove();
-        if (this.mode === 'RECORD_TRACE' && this.selectedRecordId) {
+        if (this._mode === 'RECORD_TRACE' && this._selectedRecordId) {
             this._drawOverlay();
         }
     }
 
     _activeRecordSet() {
-        if (this.mode === 'RECORD_TRACE' && this.selectedRecordId) {
-            const ri = this.records.findIndex(r => r.id === this.selectedRecordId);
+        if (this._mode === 'RECORD_TRACE' && this._selectedRecordId) {
+            const ri = this._records.findIndex(r => r.id === this._selectedRecordId);
             return ri >= 0 ? new Set([ri]) : null;
         }
-        if (this.mode === 'FLOW_TRACE' && this.flowTraceValue && this.flowStepIdx !== '') {
-            const nid = this.flowStepIdx + '::' + this.flowTraceValue;
+        if (this._mode === 'FLOW_TRACE' && this._flowTraceValue && this._flowStepIdx !== '') {
+            const nid = this._flowStepIdx + '::' + this._flowTraceValue;
             const node = this._graph.nodeMap.get(nid);
             return node ? new Set(node.recordIndices) : null;
         }
         return null;
     }
 
-    // Story 5.1: Overlay for record trace with step-through animation
     _drawOverlay() {
         /* eslint-disable no-undef */
-        const ri = this.records.findIndex(r => r.id === this.selectedRecordId);
+        const ri = this._records.findIndex(r => r.id === this._selectedRecordId);
         if (ri < 0 || !this._laid) return;
 
-        const rec = this.records[ri];
+        const rec = this._records[ri];
         const keys = [];
-        const limit = this.traceStep;
+        const limit = this._traceStep;
 
-        for (let i = 0; i < this.steps.length - 1 && i <= limit; i++) {
-            const sv = rec[this.steps[i]]     || '\u2205';
-            const tv = rec[this.steps[i + 1]] || '\u2205';
+        for (let i = 0; i < this._steps.length - 1 && i <= limit; i++) {
+            const sv = rec[this._steps[i]]     || '\u2205';
+            const tv = rec[this._steps[i + 1]] || '\u2205';
             keys.push(i + '::' + sv + '\u2192' + (i + 1) + '::' + tv);
         }
 
-        const hits = this._laid.links.filter(l => keys.indexOf(l.key) !== -1);
+        const keySet = new Set(keys);
+        const hits = this._laid.links.filter(l => keySet.has(l.key));
 
         this._gOverlay.selectAll('path')
             .data(hits)
@@ -362,7 +411,7 @@ export default class DsSankeyChart extends LightningElement {
     /* ═══ Hover / click handlers ═══════════════════════════════════ */
 
     _onNodeOver(event, d) {
-        if (this.mode === 'AGGREGATE') {
+        if (this._mode === 'AGGREGATE') {
             this._gLinks.selectAll('path')
                 .transition().duration(120)
                 .attr('stroke-opacity', l =>
@@ -379,18 +428,16 @@ export default class DsSankeyChart extends LightningElement {
                 );
         }
 
-        // Story 4.2: Tooltip with value, record count, % of total
         this._showTip(event,
-            d.label + '  (' + (this.steps[d.stepIndex] || '') + ')',
+            d.label + '  (' + (this._steps[d.stepIndex] || '') + ')',
             this._countLabel(d.recordIndices),
             ''
         );
     }
 
     _onLinkOver(event, d) {
-        if (this.mode === 'AGGREGATE') {
-            // eslint-disable-next-line no-undef
-            d3.select(event.currentTarget)
+        if (this._mode === 'AGGREGATE') {
+            d3.select(event.currentTarget) // eslint-disable-line no-undef
                 .transition().duration(120)
                 .attr('stroke-opacity', 0.75);
         }
@@ -409,7 +456,6 @@ export default class DsSankeyChart extends LightningElement {
         this._applyHighlight();
     }
 
-    // Story 6.2: Node click fires event for flow trace
     _onNodeClick(d) {
         this.dispatchEvent(new CustomEvent('nodeclick', {
             detail: { stepIndex: d.stepIndex, label: d.label }
@@ -449,23 +495,22 @@ export default class DsSankeyChart extends LightningElement {
     _sumAmount(idxSet) {
         let s = 0;
         if (idxSet) {
-            for (const i of idxSet) s += (this.records[i] ? (this.records[i].amount || 0) : 0);
+            for (const i of idxSet) s += (this._records[i] ? (this._records[i].amount || 0) : 0);
         }
         return s;
     }
 
-    // Story 4.2: Tooltip includes value, record count, and % of total
     _countLabel(idxSet) {
         const c = idxSet ? idxSet.size : 0;
         const a = this._sumAmount(idxSet);
-        const totalRecs = this.records.length;
+        const totalRecs = this._records.length;
         const pct = totalRecs > 0 ? ((c / totalRecs) * 100).toFixed(1) : '0.0';
         return c + ' records  \u00b7  $' + this._fmt(a) + '  \u00b7  ' + pct + '% of total';
     }
 
     _sampleNames(idxSet, max) {
         if (!idxSet || idxSet.size === 0) return '';
-        const arr  = [...idxSet].slice(0, max).map(i => this.records[i] ? this.records[i].name : '');
+        const arr  = [...idxSet].slice(0, max).map(i => this._records[i] ? this._records[i].name : '');
         const rest = idxSet.size - arr.length;
         return arr.join(', ') + (rest > 0 ? ' +' + rest + ' more' : '');
     }

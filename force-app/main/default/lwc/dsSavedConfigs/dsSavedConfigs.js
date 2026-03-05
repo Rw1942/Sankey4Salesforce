@@ -1,28 +1,16 @@
-/**
- * Story 9.1 — Save Sankey definition (object, filters, steps, metric).
- * Story 9.2 — Load saved Sankey (reopen without rebuilding).
- *
- * Uses SankeyConfigRepository Apex for CRUD on DS_Sankey_Config__c.
- * Fires 'saveconfig' and 'configloaded' events to parent.
- */
 import { LightningElement, api, wire } from 'lwc';
 import saveConfig from '@salesforce/apex/SankeyConfigRepository.saveConfig';
 import getMyConfigs from '@salesforce/apex/SankeyConfigRepository.getMyConfigs';
-import deleteConfig from '@salesforce/apex/SankeyConfigRepository.deleteConfig';
 import { refreshApex } from '@salesforce/apex';
+import DsSaveConfigModal from 'c/dsSaveConfigModal';
 
 export default class DsSavedConfigs extends LightningElement {
 
     @api config = {};
 
     savedConfigs = [];
-    showSaveDialog = false;
-    saveName = '';
-    isSaving = false;
-
     _wiredResult;
 
-    // Story 9.2: Load user's saved configs on init
     @wire(getMyConfigs)
     wiredConfigs(result) {
         this._wiredResult = result;
@@ -41,31 +29,17 @@ export default class DsSavedConfigs extends LightningElement {
         return this.savedConfigs && this.savedConfigs.length > 0;
     }
 
-    get isSaveDisabled() {
-        return !this.saveName || this.isSaving;
-    }
+    async handleSaveClick() {
+        const configName = await DsSaveConfigModal.open({
+            size: 'small',
+            label: 'Save Sankey Configuration'
+        });
 
-    /* ═══ Save Flow ═══════════════════════════════════════════════ */
+        if (!configName) return;
 
-    handleSaveClick() {
-        this.showSaveDialog = true;
-        this.saveName = '';
-    }
-
-    handleNameChange(event) {
-        this.saveName = event.target.value;
-    }
-
-    handleCancelSave() {
-        this.showSaveDialog = false;
-    }
-
-    // Story 9.1: Serialize current config and save via Apex
-    async handleConfirmSave() {
-        this.isSaving = true;
         try {
             const payload = {
-                name: this.saveName,
+                name: configName,
                 objectApiName: this.config.objectApiName,
                 filters: this.config.filters,
                 pathFields: this.config.pathFields,
@@ -75,23 +49,15 @@ export default class DsSavedConfigs extends LightningElement {
                 nullHandling: this.config.nullHandling
             };
             await saveConfig({ configJson: JSON.stringify(payload) });
-            this.showSaveDialog = false;
-
-            // Refresh the saved configs list
             await refreshApex(this._wiredResult);
-
             this.dispatchEvent(new CustomEvent('saveconfig'));
         } catch (err) {
-            // eslint-disable-next-line no-console
-            console.error('Save error:', err);
-        } finally {
-            this.isSaving = false;
+            this.dispatchEvent(new CustomEvent('saveerror', {
+                detail: { message: err.body ? err.body.message : err.message }
+            }));
         }
     }
 
-    /* ═══ Load Flow ══════════════════════════════════════════════ */
-
-    // Story 9.2: Load selected saved config — no rebuild needed
     handleLoadSelect(event) {
         const selectedId = event.detail.value;
         if (selectedId === 'none') return;

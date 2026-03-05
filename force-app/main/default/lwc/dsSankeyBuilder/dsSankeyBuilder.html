@@ -1,16 +1,15 @@
-<!-- Story 1.1: Parent orchestrator for the Sankey Builder -->
 <template>
     <lightning-card title="Sankey Builder" icon-name="utility:strategy">
         <div slot="actions">
-            <!-- Story 9.1/9.2: Saved configs controls -->
             <c-ds-saved-configs
-                if:true={hasData}
+                lwc:if={hasData}
                 config={configForSave}
                 onsaveconfig={handleSaveConfig}
+                onsaveerror={handleSaveError}
                 onconfigloaded={handleConfigLoaded}>
             </c-ds-saved-configs>
             <lightning-button
-                if:true={hasData}
+                lwc:if={hasData}
                 label="Reset"
                 icon-name="utility:refresh"
                 onclick={handleResetAll}
@@ -19,16 +18,24 @@
             </lightning-button>
         </div>
 
-        <!-- Story 1.2: Empty state shown before configuration -->
-        <template if:true={showEmptyState}>
+        <!-- Empty state shown before configuration -->
+        <template lwc:if={showEmptyState}>
             <c-ds-empty-state onstart={handleStart}></c-ds-empty-state>
         </template>
 
-        <!-- Story 8.1: Configuration panel shown after Start, before data load -->
-        <template if:true={showConfigPanel}>
+        <!-- Configuration panel -->
+        <template lwc:if={showConfigPanel}>
+            <div class="slds-p-horizontal_medium slds-p-top_small slds-p-bottom_x-small">
+                <lightning-progress-indicator current-step={currentStep} type="path" variant="base">
+                    <lightning-progress-step label="Select Object" value="object"></lightning-progress-step>
+                    <lightning-progress-step label="Configure Metric" value="metric"></lightning-progress-step>
+                    <lightning-progress-step label="Define Path" value="path"></lightning-progress-step>
+                    <lightning-progress-step label="Add Filters" value="filters"></lightning-progress-step>
+                    <lightning-progress-step label="Load Data" value="load"></lightning-progress-step>
+                </lightning-progress-indicator>
+            </div>
             <div class="slds-p-around_medium">
                 <div class="slds-grid slds-gutters slds-wrap">
-                    <!-- Story 2.1: Object picker -->
                     <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_small">
                         <c-ds-object-picker
                             selected-object={state.config.objectApiName}
@@ -36,10 +43,9 @@
                         </c-ds-object-picker>
                     </div>
 
-                    <!-- Story 2.3: Metric selector -->
                     <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_small">
                         <c-ds-metric-selector
-                            if:true={state.config.objectApiName}
+                            lwc:if={state.config.objectApiName}
                             object-api-name={state.config.objectApiName}
                             metric-type={state.config.metricType}
                             metric-field={state.config.metricField}
@@ -48,8 +54,7 @@
                     </div>
                 </div>
 
-                <!-- Story 3.1: Path field selector -->
-                <template if:true={state.config.objectApiName}>
+                <template lwc:if={state.config.objectApiName}>
                     <c-ds-path-selector
                         object-api-name={state.config.objectApiName}
                         selected-fields={state.config.pathFields}
@@ -59,8 +64,7 @@
                     </c-ds-path-selector>
                 </template>
 
-                <!-- Story 2.2: Filter builder -->
-                <template if:true={state.config.objectApiName}>
+                <template lwc:if={state.config.objectApiName}>
                     <c-ds-filter-builder
                         object-api-name={state.config.objectApiName}
                         filters={state.config.filters}
@@ -70,26 +74,25 @@
             </div>
         </template>
 
-        <!-- Story 4.1: Loading spinner -->
-        <template if:true={state.ui.loading}>
+        <!-- Loading spinner -->
+        <template lwc:if={state.ui.loading}>
             <div class="slds-align_absolute-center slds-p-around_large">
                 <lightning-spinner alternative-text="Loading Sankey data" size="medium"></lightning-spinner>
             </div>
         </template>
 
-        <!-- Story 8.1: Truncation warning -->
-        <template if:true={showTruncationWarning}>
+        <!-- Truncation warning -->
+        <template lwc:if={showTruncationWarning}>
             <div class="slds-notify slds-notify_alert slds-alert_warning slds-m-horizontal_medium slds-m-top_small" role="alert">
                 <span class="slds-assistive-text">warning</span>
                 Dataset was limited to {datasetLimit} records. Apply filters to narrow your results.
             </div>
         </template>
 
-        <!-- Story 4.2 + EPIC 5/6/7: Chart + Trace + Insights area -->
-        <template if:true={hasData}>
+        <!-- Chart + Trace + Insights area -->
+        <template lwc:if={hasData}>
             <div class="slds-grid slds-wrap">
                 <div class={chartColumnClass}>
-                    <!-- EPIC 5/6: Trace panel -->
                     <c-ds-trace-panel
                         mode={state.ui.mode}
                         records={state.data.records}
@@ -109,7 +112,6 @@
                         onopenrecord={handleOpenRecord}>
                     </c-ds-trace-panel>
 
-                    <!-- Story 4.2: Sankey chart -->
                     <c-ds-sankey-chart
                         nodes={state.data.nodes}
                         links={state.data.links}
@@ -126,10 +128,10 @@
                     </c-ds-sankey-chart>
                 </div>
 
-                <!-- Story 7.1/7.2: Insights panel (collapsible sidebar) -->
+                <!-- Insights panel (collapsible sidebar) -->
                 <div class={insightsColumnClass}>
                     <c-ds-insights-panel
-                        if:true={showInsights}
+                        lwc:if={showInsights}
                         kpis={state.data.kpis}
                         top-paths={state.data.topPaths}
                         ontogglepanel={handleToggleInsights}>
@@ -138,7 +140,7 @@
             </div>
 
             <!-- Toggle insights button when panel is collapsed -->
-            <template if:false={showInsights}>
+            <template lwc:if={hideInsights}>
                 <div class="slds-text-align_right slds-p-right_medium slds-p-bottom_small">
                     <lightning-button
                         label="Show Insights"
@@ -150,8 +152,8 @@
             </template>
         </template>
 
-        <!-- Story 4.1: Error state -->
-        <template if:true={errorMessage}>
+        <!-- Error state -->
+        <template lwc:if={errorMessage}>
             <div class="slds-notify slds-notify_alert slds-alert_error slds-m-around_medium" role="alert">
                 <span class="slds-assistive-text">error</span>
                 {errorMessage}

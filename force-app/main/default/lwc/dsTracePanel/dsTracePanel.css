@@ -1,6 +1,5 @@
-/* Story 5.1/6.2: Trace panel styling */
 .controls-bar {
-    border-bottom: 1px solid #dddbda;
+    border-bottom: 1px solid var(--slds-g-color-border-base-1, var(--lwc-colorBorder, #e5e5e5));
 }
 
 .trace-row {
@@ -10,10 +9,9 @@
 
 .trace-label {
     font-size: 12px;
-    color: #706e6b;
+    color: var(--slds-g-color-neutral-base-50, var(--lwc-colorTextWeak, #706e6b));
 }
 
-/* Story 6.2: KPI summary bar */
 .kpi-bar {
     padding: 8px 0;
 }
@@ -23,20 +21,20 @@
     flex-direction: column;
     align-items: center;
     padding: 8px 12px;
-    background: #f4f6f9;
-    border-radius: 6px;
+    background: var(--slds-g-color-neutral-base-95, var(--lwc-colorBackground, #f4f6f9));
+    border-radius: var(--slds-g-radius-border-2, 0.375rem);
     margin-right: 8px;
 }
 
 .kpi-value {
     font-size: 18px;
     font-weight: 700;
-    color: #16325c;
+    color: var(--slds-g-color-brand-base-20, var(--lwc-brandPrimary, #16325c));
 }
 
 .kpi-label {
     font-size: 11px;
-    color: #706e6b;
+    color: var(--slds-g-color-neutral-base-50, var(--lwc-colorTextWeak, #706e6b));
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }

@@ -1,34 +1,29 @@
 /**
- * Story 4.1 — Main Apex controller with @AuraEnabled entry points.
- * Story 2.1 — Permission-aware object listing.
- * Story 2.2 — Preview record count.
- * Section 12 — Security: WITH SECURITY_ENFORCED + FLS checks.
- * Section 13 — Governor strategy: LIMIT records, maps not nested loops.
+ * Main Apex controller with @AuraEnabled entry points for the Sankey Builder.
+ * Handles data generation, record counting, and object listing.
+ * Security: WITH SECURITY_ENFORCED + FLS checks via SankeyQueryBuilder.
  */
 public with sharing class SankeyController {
 
     /**
-     * Story 4.1: Generates Sankey data from a config JSON payload.
+     * Generates Sankey data from a config JSON payload.
      * Builds dynamic SOQL, queries records, aggregates paths, computes KPIs.
-     * Returns full SankeyResponse JSON.
+     * @param configJson JSON string containing SankeyConfig DTO
+     * @return JSON string containing full SankeyResponse
      */
     @AuraEnabled
     public static String getSankeyData(String configJson) {
         try {
             Map<String, Object> config = (Map<String, Object>) JSON.deserializeUntyped(configJson);
 
-            // Section 6.1: Build and execute dynamic SOQL
             String soql = SankeyQueryBuilder.buildQuery(config);
             List<SObject> rawRecords = Database.query(soql);
 
-            // Story 4.1: Error state if no data
             if (rawRecords.isEmpty()) {
                 throw new AuraHandledException('No records found matching the specified criteria.');
             }
 
-            // Section 6.2: Aggregate paths and compute response
             Map<String, Object> response = SankeyService.buildSankeyResponse(rawRecords, config);
-
             return JSON.serialize(response);
         } catch (AuraHandledException ahe) {
             throw ahe;
@@ -38,8 +33,9 @@ public with sharing class SankeyController {
     }
 
     /**
-     * Story 2.2: Preview record count before loading full dataset.
-     * Story 8.2: Cacheable for identical filter configs.
+     * Preview record count before loading full dataset. Cacheable for identical filter configs.
+     * @param configJson JSON string with objectApiName and filters
+     * @return count of matching records
      */
     @AuraEnabled(cacheable=true)
     public static Integer getRecordCount(String configJson) {
@@ -53,8 +49,9 @@ public with sharing class SankeyController {
     }
 
     /**
-     * Story 2.1: Returns queryable Salesforce objects the current user can access.
+     * Returns queryable Salesforce objects the current user can access.
      * Permission-aware: only returns objects the user has read access to.
+     * @return JSON array of {apiName, label} objects
      */
     @AuraEnabled(cacheable=true)
     public static String getQueryableObjects() {

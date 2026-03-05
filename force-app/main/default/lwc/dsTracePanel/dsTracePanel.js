@@ -1,10 +1,5 @@
 /**
- * Story 5.1 — Record trace mode with searchable combobox.
- * Story 5.2 — Open record from Sankey via NavigationMixin (delegated to parent).
- * Story 6.1 — Select a step to trace.
- * Story 6.2 — Select a value within the step; KPI summary (total records, amount, conversion %).
- *
- * Combined trace panel handling both Record Trace and Flow Trace modes.
+ * Combined trace panel for Record Trace and Flow Trace modes.
  * Communicates to parent via custom events; parent delegates to chart for highlighting.
  */
 import { LightningElement, api } from 'lwc';
@@ -28,7 +23,6 @@ export default class DsTracePanel extends LightningElement {
         ];
     }
 
-    // Story 5.1: Record options for searchable combobox
     get recordOptions() {
         if (!this.records) return [];
         return this.records.map(r => ({
@@ -37,13 +31,11 @@ export default class DsTracePanel extends LightningElement {
         }));
     }
 
-    // Story 6.1: Flow step options from path columns
     get flowStepOptions() {
         if (!this.steps) return [];
         return this.steps.map((s, i) => ({ label: s, value: String(i) }));
     }
 
-    // Story 6.2: Values within the selected step
     get flowValueOptions() {
         const idx = parseInt(this.flowStepIdx, 10);
         if (isNaN(idx) || idx < 0 || !this.steps || idx >= this.steps.length) return [];
@@ -64,7 +56,6 @@ export default class DsTracePanel extends LightningElement {
         return 'Step ' + this.traceStep + ' / ' + Math.max(0, max);
     }
 
-    // Story 6.2: Show KPIs when flow trace has a selection
     get showFlowKpis() {
         return this.isFlowTrace && this.kpis && this.flowTraceValue;
     }
@@ -77,22 +68,18 @@ export default class DsTracePanel extends LightningElement {
         return String(n);
     }
 
-    /* ═══ Event Handlers ═══════════════════════════════════════════ */
-
     handleModeChange(event) {
         this.dispatchEvent(new CustomEvent('modechange', {
             detail: { value: event.detail.value }
         }));
     }
 
-    // Story 5.1: Record selected
     handleRecordChange(event) {
         this.dispatchEvent(new CustomEvent('recordselect', {
             detail: { value: event.detail.value }
         }));
     }
 
-    // Story 5.2: Open record in Salesforce (delegated to parent for NavigationMixin)
     handleOpenRecord() {
         if (this.selectedRecordId) {
             this.dispatchEvent(new CustomEvent('openrecord', {
@@ -101,14 +88,12 @@ export default class DsTracePanel extends LightningElement {
         }
     }
 
-    // Story 6.1: Flow step change
     handleFlowStepChange(event) {
         this.dispatchEvent(new CustomEvent('flowstepchange', {
             detail: { value: event.detail.value }
         }));
     }
 
-    // Story 6.2: Flow value change
     handleFlowValueChange(event) {
         this.dispatchEvent(new CustomEvent('flowvaluechange', {
             detail: { value: event.detail.value }

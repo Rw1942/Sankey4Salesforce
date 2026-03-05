@@ -1,11 +1,9 @@
-<!-- Story 2.1: Permission-aware, searchable object picker -->
 <template>
     <div class="slds-form-element">
         <label class="slds-form-element__label slds-text-title_bold">
             Salesforce Object
         </label>
 
-        <!-- Story 2.1: Searchable input for filtering objects -->
         <div class="slds-combobox_container">
             <lightning-input
                 type="search"
@@ -16,7 +14,6 @@
                 onchange={handleSearchChange}>
             </lightning-input>
 
-            <!-- Story 2.1: Filtered object list as combobox -->
             <lightning-combobox
                 name="objectPicker"
                 label="Select Object"
@@ -29,14 +26,13 @@
             </lightning-combobox>
         </div>
 
-        <!-- Story 2.1: Show label + API name for selected object -->
-        <template if:true={selectedObject}>
+        <template lwc:if={selectedObject}>
             <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">
                 Selected: {selectedObjectLabel}
             </p>
         </template>
 
-        <template if:true={error}>
+        <template lwc:if={error}>
             <p class="slds-text-color_error slds-text-body_small slds-m-top_xx-small">
                 Unable to load objects. Check permissions or try again.
             </p>

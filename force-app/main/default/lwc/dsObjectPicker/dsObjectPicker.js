@@ -1,7 +1,6 @@
 /**
- * Story 2.1 — Choose Salesforce object.
- * Permission-aware object picker using Apex to retrieve queryable objects.
- * Shows label + API name in a searchable combobox.
+ * Permission-aware, searchable Salesforce object picker.
+ * Uses Apex to retrieve queryable objects and shows label + API name.
  */
 import { LightningElement, api, wire } from 'lwc';
 import getQueryableObjects from '@salesforce/apex/SankeyController.getQueryableObjects';
@@ -16,7 +15,6 @@ export default class DsObjectPicker extends LightningElement {
 
     _objectLabelMap = {};
 
-    // Story 2.1: Wire to Apex to get permission-aware queryable objects
     @wire(getQueryableObjects)
     wiredObjects({ error, data }) {
         if (data) {
@@ -37,7 +35,6 @@ export default class DsObjectPicker extends LightningElement {
         }
     }
 
-    // Story 2.1: Searchable — filter options by search term
     get filteredOptions() {
         if (!this.searchTerm) return this.allOptions;
         const term = this.searchTerm.toLowerCase();
@@ -54,7 +51,6 @@ export default class DsObjectPicker extends LightningElement {
         this.searchTerm = event.target.value;
     }
 
-    // Story 2.1: Fire objectselect event with objectApiName
     handleObjectChange(event) {
         const objectApiName = event.detail.value;
         this.selectedObject = objectApiName;
