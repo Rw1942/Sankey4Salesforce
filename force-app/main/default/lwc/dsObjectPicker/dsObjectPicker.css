@@ -1,3 +1,12 @@
 :host {
     display: block;
 }
+
+.slds-dropdown {
+    max-height: 16rem;
+    overflow-y: auto;
+}
+
+.option-row {
+    cursor: pointer;
+}

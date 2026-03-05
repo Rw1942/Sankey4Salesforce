@@ -4,25 +4,43 @@ A Salesforce Lightning Web Component (LWC) that renders interactive Sankey diagr
 
 ## What It Does
 
-- Displays an aggregated Sankey diagram of process-flow data
-- Lets users select a record from a dropdown to highlight its individual path through the flow
-- Supports animated step-by-step trace of a selected record's journey and value
+- Point-and-click configuration: pick any queryable Salesforce object and its fields to build a Sankey diagram with no code
+- Smart field suggestions: auto-selects the best picklist fields based on type priority (picklists first, then short text, then numbers)
+- Aggregated Sankey view with count or amount metrics
+- Record Trace mode to highlight an individual record's path through the flow
+- Flow Trace mode to explore all records passing through a specific node
+- KPI insights panel with top paths and conversion metrics
+- Save and load named configurations for quick reuse
+- Custom SLDS-compliant autocomplete for object selection with type-ahead filtering
 
 ## Project Structure
 
 ```
 force-app/main/default/
 ├── lwc/
-│   └── sankeyExplorer/          ← Main LWC component
-│       ├── sankeyExplorer.html
-│       ├── sankeyExplorer.js
-│       ├── sankeyExplorer.css
-│       └── sankeyExplorer.js-meta.xml
+│   ├── dsSankeyBuilder/      # Parent orchestrator (exposed)
+│   ├── dsEmptyState/         # First-time onboarding
+│   ├── dsObjectPicker/       # Permission-aware object autocomplete
+│   ├── dsMetricSelector/     # Count vs Amount metric picker
+│   ├── dsPathSelector/       # Ordered path field selector with auto-selection
+│   ├── dsFilterBuilder/      # SOQL filter builder UI
+│   ├── dsSankeyChart/        # D3 Sankey rendering (lwc:dom="manual")
+│   ├── dsTracePanel/         # Record Trace + Flow Trace controls
+│   ├── dsInsightsPanel/      # KPIs and top paths sidebar
+│   ├── dsSavedConfigs/       # Save/load config via Apex
+│   ├── dsSaveConfigModal/    # LightningModal for save dialog
+│   └── sankeyExplorer/       # Standalone demo (isExposed=false)
 ├── classes/
-│   └── SankeyDataController.cls ← Apex class returning flow data as JSON
+│   ├── SankeyController.cls          # @AuraEnabled entry points
+│   ├── SankeyService.cls             # Path aggregation + KPI computation
+│   ├── SankeyQueryBuilder.cls        # Dynamic SOQL builder
+│   ├── SankeyConfigRepository.cls    # CRUD for DS_Sankey_Config__c
+│   ├── SankeyControllerTest.cls
+│   └── SankeyServiceTest.cls
+├── objects/
+│   └── DS_Sankey_Config__c/          # Saved configuration storage
 └── staticresources/
-    ├── d3.resource-meta.xml     ← Metadata for D3 static resource
-    └── d3.zip                   ← D3 bundle (add locally, gitignored as binary)
+    └── d3.zip                        # D3 v7 + d3-sankey (minified)
 ```
 
 ## Prerequisites
@@ -68,7 +86,7 @@ sf project deploy start --source-dir force-app --target-org my-dev-org
 
 ### 5. Add to a page
 
-In Setup → App Builder, drag the **sankeyExplorer** component onto any App Page or Record Page.
+In Setup → App Builder, drag the **Sankey Builder** (`dsSankeyBuilder`) component onto any App Page, Record Page, or Home Page.
 
 ## Development Notes
 
@@ -76,6 +94,9 @@ In Setup → App Builder, drag the **sankeyExplorer** component onto any App Pag
 - All DOM access uses `this.template.querySelector()` — never `document.querySelector()`
 - The `<svg>` element carries `lwc:dom="manual"` so D3 can manage its children
 - No Bootstrap or external CSS; SLDS utilities only
+- Field option lists are sorted by type priority: picklist fields first, then short text, then numbers, then everything else
+- `dsPathSelector` auto-selects up to 8 picklist fields on fresh object selection; skipped when loading saved configs
+- Parent orchestrator (`dsSankeyBuilder`) owns all state; children communicate via `@api` down and `CustomEvent` up
 
 ## Windows-Specific Notes
 

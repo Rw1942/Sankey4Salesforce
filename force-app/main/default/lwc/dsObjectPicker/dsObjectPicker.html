@@ -5,25 +5,69 @@
         </label>
 
         <div class="slds-combobox_container">
-            <lightning-input
-                type="search"
-                label="Search Objects"
-                variant="label-hidden"
-                placeholder="Search objects..."
-                value={searchTerm}
-                onchange={handleSearchChange}>
-            </lightning-input>
+            <div
+                class={comboboxClass}
+                aria-expanded={ariaExpanded}
+                aria-haspopup="listbox"
+                role="combobox">
+                <div class="slds-combobox__form-element" role="none">
+                    <input
+                        class="slds-input slds-combobox__input"
+                        type="text"
+                        role="textbox"
+                        autocomplete="off"
+                        placeholder="Search Salesforce objects..."
+                        value={displayValue}
+                        aria-autocomplete="list"
+                        aria-controls="object-listbox"
+                        oninput={handleInput}
+                        onfocus={handleFocus}
+                        onblur={handleBlur} />
+                </div>
 
-            <lightning-combobox
-                name="objectPicker"
-                label="Select Object"
-                variant="label-hidden"
-                placeholder="Choose an object..."
-                value={selectedObject}
-                options={filteredOptions}
-                onchange={handleObjectChange}
-                class="slds-m-top_xx-small">
-            </lightning-combobox>
+                <template lwc:if={showDropdown}>
+                    <div
+                        id="object-listbox"
+                        class="slds-dropdown slds-dropdown_fluid"
+                        role="listbox">
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                            <template for:each={filteredOptions} for:item="option">
+                                <li
+                                    key={option.value}
+                                    class="slds-listbox__item"
+                                    role="presentation">
+                                    <div
+                                        class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small option-row"
+                                        role="option"
+                                        data-value={option.value}
+                                        data-label={option.label}
+                                        onmousedown={handleOptionSelect}>
+                                        <span class="slds-media__body">
+                                            <span class="slds-truncate" title={option.label}>
+                                                {option.label}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </template>
+
+                            <template lwc:if={showNoResults}>
+                                <li class="slds-listbox__item" role="presentation">
+                                    <div
+                                        class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small slds-text-color_weak"
+                                        role="option">
+                                        <span class="slds-media__body">
+                                            <span class="slds-truncate" title="No objects found">
+                                                No objects found
+                                            </span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+            </div>
         </div>
 
         <template lwc:if={selectedObject}>

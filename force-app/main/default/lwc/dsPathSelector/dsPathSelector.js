@@ -8,6 +8,12 @@ import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
 const ALLOWED_TYPES = new Set(['Picklist', 'Reference', 'String', 'TextArea', 'Phone', 'Email', 'Url']);
 
+const TYPE_PRIORITY = {
+    Picklist: 0,
+    String: 1, Phone: 1, Email: 1, Url: 1,
+    Currency: 2, Double: 2, Int: 2, Long: 2, Percent: 2
+};
+
 export default class DsPathSelector extends LightningElement {
 
     @api objectApiName = '';
@@ -55,13 +61,18 @@ export default class DsPathSelector extends LightningElement {
     wiredObjectInfo({ error, data }) {
         if (data) {
             const fields = data.fields;
-            this.pathFieldOptions = Object.keys(fields)
+            const sortedKeys = Object.keys(fields)
                 .filter(key => ALLOWED_TYPES.has(fields[key].dataType))
-                .map(key => ({
-                    label: fields[key].label + ' (' + key + ')',
-                    value: key
-                }))
-                .sort((a, b) => a.label.localeCompare(b.label));
+                .sort((a, b) => {
+                    const pa = TYPE_PRIORITY[fields[a].dataType] ?? 3;
+                    const pb = TYPE_PRIORITY[fields[b].dataType] ?? 3;
+                    return pa !== pb ? pa - pb : fields[a].label.localeCompare(fields[b].label);
+                });
+
+            this.pathFieldOptions = sortedKeys.map(key => ({
+                label: fields[key].label + ' (' + key + ')',
+                value: key
+            }));
 
             this.idFieldOptions = Object.keys(fields)
                 .filter(key => fields[key].dataType === 'Reference' ||
@@ -75,6 +86,16 @@ export default class DsPathSelector extends LightningElement {
 
             if (!this.idFieldOptions.find(o => o.value === 'Id')) {
                 this.idFieldOptions.unshift({ label: 'Record Id (Id)', value: 'Id' });
+            }
+
+            if (this.internalSelected.length === 0) {
+                const picklists = sortedKeys
+                    .filter(key => fields[key].dataType === 'Picklist')
+                    .slice(0, 8);
+                if (picklists.length > 0) {
+                    this.internalSelected = picklists;
+                    this._fireConfigured();
+                }
             }
         } else if (error) {
             this.pathFieldOptions = [];
