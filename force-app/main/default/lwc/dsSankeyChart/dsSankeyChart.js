@@ -199,10 +199,13 @@ export default class DsSankeyChart extends LightningElement {
         this._graph = { nodes: [...nodeMap.values()], nodeMap, linkAgg };
 
         const labels = [...new Set(this._graph.nodes.map(n => n.label))];
-        const palette = typeof d3 !== 'undefined' ? d3.schemeTableau10 : []; // eslint-disable-line no-undef
+        const palette = [
+            '#1b96ff', '#fe9339', '#2e844a', '#9b8fff', '#e05a5a',
+            '#5867e8', '#f4bc25', '#e0528d', '#54698d', '#a96517'
+        ];
         this._colorOf = new Map();
         this._graph.nodes.forEach(n => {
-            this._colorOf.set(n.id, palette[labels.indexOf(n.label) % palette.length] || '#1b5faa');
+            this._colorOf.set(n.id, palette[labels.indexOf(n.label) % palette.length] || '#1b96ff');
         });
     }
 
@@ -326,7 +329,7 @@ export default class DsSankeyChart extends LightningElement {
             .join('path')
             .attr('d', d3.sankeyLinkHorizontal())
             .attr('class', 'sankey-link')
-            .attr('stroke', l => this._colorOf.get(l.source.id) || '#aec6e8')
+            .attr('stroke', l => this._colorOf.get(l.source.id) || '#90d0fe')
             .attr('stroke-width', l => Math.max(1, l.width))
             .attr('stroke-opacity', BASE_OPACITY)
             .on('mouseover', (ev, d) => this._onLinkOver(ev, d))
@@ -350,7 +353,7 @@ export default class DsSankeyChart extends LightningElement {
         ng.append('rect')
             .attr('width', n => n.x1 - n.x0)
             .attr('height', n => Math.max(1, n.y1 - n.y0))
-            .attr('fill', n => this._colorOf.get(n.id) || '#1b5faa')
+            .attr('fill', n => this._colorOf.get(n.id) || '#1b96ff')
             .attr('rx', 3).attr('ry', 3)
             .attr('class', 'node-rect');
 
