@@ -7,7 +7,7 @@ import { LightningElement, api } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
 import D3_RESOURCE from '@salesforce/resourceUrl/d3';
 
-const MARGIN       = { top: 32, right: 160, bottom: 20, left: 20 };
+const MARGIN       = { top: 32, right: 160, bottom: 20, left: 60 };
 const NODE_W       = 18;
 const NODE_PAD     = 16;
 const BASE_OPACITY = 0.35;
@@ -38,6 +38,13 @@ export default class DsSankeyChart extends LightningElement {
     _steps = [];
     @api get steps() { return this._steps; }
     set steps(val) { this._steps = val || []; }
+
+    _stepLabels = [];
+    @api get stepLabels() { return this._stepLabels; }
+    set stepLabels(val) {
+        this._stepLabels = val || [];
+        this._headersDirty = true;
+    }
 
     _metric = 'count';
     @api get metric() { return this._metric; }
@@ -96,6 +103,7 @@ export default class DsSankeyChart extends LightningElement {
     _d3Loaded      = false;
     _dataChanged   = false;
     _highlightDirty = false;
+    _headersDirty  = false;
     _graph    = null;
     _laid     = null;
     _svg      = null;
@@ -134,11 +142,15 @@ export default class DsSankeyChart extends LightningElement {
         if (this._dataChanged) {
             this._dataChanged = false;
             this._highlightDirty = false;
+            this._headersDirty = false;
             this._buildGraph();
             this._initResize();
         } else if (this._highlightDirty) {
             this._highlightDirty = false;
             this._applyHighlight();
+        } else if (this._headersDirty) {
+            this._headersDirty = false;
+            this._updateHeaderText();
         }
     }
 
@@ -265,27 +277,44 @@ export default class DsSankeyChart extends LightningElement {
 
         this._drawHeaders(root, result.nodes);
         this._drawLinks(root, result.links);
-        this._drawNodes(root, result.nodes, iw);
+        this._drawNodes(root, result.nodes);
 
         this._svg = svg;
         this._applyHighlight();
         /* eslint-enable no-undef */
     }
 
+    _stepLabel(si) {
+        return (this._stepLabels && this._stepLabels[si]) || this._steps[si] || '';
+    }
+
     _drawHeaders(root, nodes) {
-        const xByStep = new Map();
+        const stepInfo = new Map();
         nodes.forEach(n => {
-            if (!xByStep.has(n.stepIndex)) {
-                xByStep.set(n.stepIndex, (n.x0 + n.x1) / 2);
+            if (!stepInfo.has(n.stepIndex)) {
+                stepInfo.set(n.stepIndex, { x0: n.x0, x1: n.x1 });
             }
         });
+        const maxStep = Math.max(...stepInfo.keys());
         const g = root.append('g').attr('class', 'step-headers');
-        xByStep.forEach((x, si) => {
+        stepInfo.forEach(({ x0, x1 }, si) => {
+            let anchor = 'middle';
+            let x = (x0 + x1) / 2;
+            if (si === 0)        { anchor = 'start'; x = x0; }
+            else if (si === maxStep) { anchor = 'end';   x = x1; }
             g.append('text')
                 .attr('x', x).attr('y', -12)
-                .attr('text-anchor', 'middle')
+                .attr('text-anchor', anchor)
                 .attr('class', 'step-header')
-                .text(this._steps[si] || '');
+                .text(this._stepLabel(si));
+        });
+    }
+
+    _updateHeaderText() {
+        if (!this._svg) return;
+        const self = this;
+        this._svg.selectAll('.step-header').each(function(d, i) {
+            d3.select(this).text(self._stepLabel(i)); // eslint-disable-line no-undef
         });
     }
 
@@ -307,7 +336,7 @@ export default class DsSankeyChart extends LightningElement {
         /* eslint-enable no-undef */
     }
 
-    _drawNodes(root, nodes, iw) {
+    _drawNodes(root, nodes) {
         this._gNodes = root.append('g').attr('class', 'g-nodes');
         const ng = this._gNodes.selectAll('g')
             .data(nodes, n => n.id)
@@ -326,10 +355,10 @@ export default class DsSankeyChart extends LightningElement {
             .attr('class', 'node-rect');
 
         ng.append('text')
-            .attr('x', n => (n.x0 < iw / 2 ? (n.x1 - n.x0) + 6 : -6))
+            .attr('x', n => (n.x1 - n.x0) + 6)
             .attr('y', n => (n.y1 - n.y0) / 2)
             .attr('dy', '0.35em')
-            .attr('text-anchor', n => (n.x0 < iw / 2 ? 'start' : 'end'))
+            .attr('text-anchor', 'start')
             .attr('class', 'node-label')
             .text(n => n.label);
 
@@ -429,7 +458,7 @@ export default class DsSankeyChart extends LightningElement {
         }
 
         this._showTip(event,
-            d.label + '  (' + (this._steps[d.stepIndex] || '') + ')',
+            d.label + '  (' + this._stepLabel(d.stepIndex) + ')',
             this._countLabel(d.recordIndices),
             ''
         );

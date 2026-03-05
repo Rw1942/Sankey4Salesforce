@@ -9,6 +9,7 @@ export default class DsTracePanel extends LightningElement {
     @api mode = 'AGGREGATE';
     @api records = [];
     @api steps = [];
+    @api stepLabels = [];
     @api selectedRecordId = '';
     @api traceStep = 0;
     @api flowStepIdx = '';
@@ -33,7 +34,10 @@ export default class DsTracePanel extends LightningElement {
 
     get flowStepOptions() {
         if (!this.steps) return [];
-        return this.steps.map((s, i) => ({ label: s, value: String(i) }));
+        return this.steps.map((s, i) => ({
+            label: (this.stepLabels && this.stepLabels[i]) || s,
+            value: String(i)
+        }));
     }
 
     get flowValueOptions() {

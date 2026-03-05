@@ -3,9 +3,10 @@
  * Centralized state management — single source of truth.
  * All child components receive slices via @api and communicate up via custom events.
  */
-import { LightningElement } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import getSankeyData from '@salesforce/apex/SankeyController.getSankeyData';
 
 const DATASET_LIMIT = 10000;
@@ -49,6 +50,27 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
     isTruncated = false;
     _lastConfigHash = '';
     _cachedResponse = null;
+    _fieldLabelMap = {};
+
+    get _wiredObjectApiName() {
+        return this.state.config.objectApiName || undefined;
+    }
+
+    @wire(getObjectInfo, { objectApiName: '$_wiredObjectApiName' })
+    _wiredFieldInfo({ data }) {
+        if (data) {
+            const map = {};
+            const fields = data.fields;
+            Object.keys(fields).forEach(key => { map[key] = fields[key].label; });
+            this._fieldLabelMap = map;
+        }
+    }
+
+    get stepLabels() {
+        return this.state.data.stepColumns.map(
+            api => this._fieldLabelMap[api] || api
+        );
+    }
 
     /* ═══ Computed Properties ═════════════════════════════════════════ */
 

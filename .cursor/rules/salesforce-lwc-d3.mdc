@@ -1,67 +1,87 @@
 ---
-description: Platform constraints and patterns for building D3 visualizations (Sankey charts) inside Salesforce Lightning Web Components
+description: Platform constraints, architecture, and coding standards for the Sankey4Salesforce LWC + D3 project
 alwaysApply: true
+globs: "force-app/**/*.{js,html,css,cls,xml}"
 ---
 
-# D3 in Salesforce LWC — Platform Rules
+# Sankey4Salesforce — Project Rules
 
-## Core Platform Constraints
+You are an expert Salesforce platform developer and architect. You write clean, standard, SLDS-compliant Lightning Web Components with layered Apex backends. You follow Salesforce's latest documented best practices.
+
+## Salesforce Platform Constraints
 
 - **No CDN loading.** All third-party JS must be uploaded as a Static Resource (CSP blocks external scripts).
 - **Sandboxed runtime.** Lightning Web Security provides no real `window` global and no cross-component DOM access. Code must operate only inside the component root.
 - **LWC owns the DOM.** D3 may only render into elements marked `lwc:dom="manual"`. Never manipulate DOM that LWC manages.
+- **No Bootstrap or external CSS.** Use SLDS utilities for layout and component `.css` for chart-specific styles only.
 
-## Project Structure
+## Project Architecture
 
 ```
 force-app/main/default/
 ├── lwc/
-│   └── sankeyExplorer/
-│       ├── sankeyExplorer.html
-│       ├── sankeyExplorer.js
-│       ├── sankeyExplorer.css
-│       └── sankeyExplorer.js-meta.xml
+│   ├── dsSankeyBuilder/      # Parent orchestrator (exposed)
+│   ├── dsEmptyState/         # First-time onboarding
+│   ├── dsObjectPicker/       # Permission-aware object selector
+│   ├── dsMetricSelector/     # Count vs Amount metric picker
+│   ├── dsPathSelector/       # Ordered path field selector
+│   ├── dsFilterBuilder/      # SOQL filter builder UI
+│   ├── dsSankeyChart/        # D3 Sankey rendering (lwc:dom="manual")
+│   ├── dsTracePanel/         # Record Trace + Flow Trace controls
+│   ├── dsInsightsPanel/      # KPIs and top paths sidebar
+│   ├── dsSavedConfigs/       # Save/load config via Apex
+│   ├── dsSaveConfigModal/    # LightningModal for save dialog
+│   └── sankeyExplorer/       # Standalone demo (isExposed=false)
+├── classes/
+│   ├── SankeyController.cls          # @AuraEnabled entry points
+│   ├── SankeyService.cls             # Path aggregation + KPI computation
+│   ├── SankeyQueryBuilder.cls        # Dynamic SOQL builder
+│   ├── SankeyConfigRepository.cls    # CRUD for DS_Sankey_Config__c
+│   ├── SankeyControllerTest.cls
+│   └── SankeyServiceTest.cls
+├── objects/
+│   └── DS_Sankey_Config__c/          # Saved configuration storage
 └── staticresources/
-    └── d3.zip          # contains d3.min.js at root
+    └── d3.zip                        # D3 v7 + d3-sankey (minified)
 ```
 
-Static resource limits: 5 MB per file, 250 MB org total. Use minified, modular builds — do not import the entire D3 ecosystem.
+## Component Communication Pattern
 
-## Loading D3
+Parent orchestrator (`dsSankeyBuilder`) owns all state. Children receive data via `@api` and communicate up via `CustomEvent`. Never store shared state in child components.
 
-```javascript
-import { loadScript } from 'lightning/platformResourceLoader';
-import D3 from '@salesforce/resourceUrl/d3';
-
-renderedCallback() {
-  if (this.initialized) return;
-  this.initialized = true;
-  loadScript(this, D3 + '/d3.min.js')
-    .then(() => this.initializeSankey());
-}
+```
+dsSankeyBuilder (state owner)
+ ├── @api down → dsObjectPicker, dsMetricSelector, dsPathSelector, ...
+ ├── @api down → dsSankeyChart (nodes, links, records, mode, trace state)
+ └── CustomEvent up ← all children (objectselect, loaddata, nodeclick, ...)
 ```
 
-Always guard with `this.initialized` to load once.
+## LWC Template Standards
 
-## Template Pattern
+### Use modern conditional directives — NEVER use deprecated `if:true` / `if:false`
 
 ```html
-<template>
-  <lightning-card title="Process Flow">
-    <div class="controls">
-      <!-- lightning-combobox for record dropdown, trace controls -->
-    </div>
-    <div class="chart-container">
-      <svg class="sankey" lwc:dom="manual"></svg>
-    </div>
-  </lightning-card>
-</template>
+<!-- CORRECT -->
+<template lwc:if={hasData}>...</template>
+<template lwc:elseif={isLoading}>...</template>
+<template lwc:else>...</template>
+
+<!-- NEVER — these are deprecated -->
+<template if:true={hasData}>...</template>
+<template if:false={hasData}>...</template>
 ```
 
-- Use `lightning-card` for SLDS consistency.
-- The `<svg>` must have `lwc:dom="manual"` so D3 can manage it.
+When `lwc:else` cannot be a direct sibling of `lwc:if`, create a negated getter (e.g., `get noData() { return !this.hasData; }`) and use `lwc:if={noData}`.
 
-## DOM Access
+### Use `lwc:dom="manual"` only on elements D3 controls
+
+```html
+<svg class="sankey" lwc:dom="manual"></svg>
+```
+
+## LWC JavaScript Standards
+
+### DOM access — always scoped
 
 ```javascript
 // NEVER
@@ -71,35 +91,46 @@ document.querySelector('svg');
 this.template.querySelector('svg');
 ```
 
-Locker/LWS blocks global DOM traversal. All selectors go through `this.template`.
-
-## D3 Initialization
+### D3 loading — guard with a flag, load once
 
 ```javascript
-initializeSankey() {
-  const svg = d3.select(this.template.querySelector('svg'));
-  svg.attr('width', this.width).attr('height', this.height);
-  this.drawSankey(svg);
+import { loadScript } from 'lightning/platformResourceLoader';
+import D3_RESOURCE from '@salesforce/resourceUrl/d3';
+
+renderedCallback() {
+    if (this._d3Loaded) return;
+    this._d3Loaded = true;
+    loadScript(this, D3_RESOURCE + '/d3.min.js')
+        .then(() => this._initChart());
 }
 ```
 
-All rendering must stay inside the manual SVG element.
+### Prefer @api setters over renderedCallback for change detection
 
-## Data Sourcing
-
-| Approach | When to use |
-|----------|-------------|
-| Apex -> JSON | Real org data, production path |
-| Static JSON | Fastest for POC |
-
-## Data Transformation
-
-D3 transform logic works the same as web, but:
-
-- **Never mutate reactive LWC properties inside heavy loops.** Compute in local variables, assign once at the end. This avoids rerender storms.
+Do not JSON.stringify data in `renderedCallback` for diffing. Use `@api` setters with dirty flags:
 
 ```javascript
-// BAD — triggers rerender on every iteration
+_nodes = [];
+_dataChanged = false;
+
+@api get nodes() { return this._nodes; }
+set nodes(val) {
+    this._nodes = val || [];
+    this._dataChanged = true;
+}
+
+renderedCallback() {
+    if (this._dataChanged) {
+        this._dataChanged = false;
+        this._rebuildGraph();
+    }
+}
+```
+
+### Never mutate reactive properties in loops
+
+```javascript
+// BAD — triggers rerender per iteration
 this.nodes.forEach(n => { this.processedData.push(transform(n)); });
 
 // GOOD — assign once
@@ -107,66 +138,161 @@ const result = this.nodes.map(n => transform(n));
 this.processedData = result;
 ```
 
-## Interaction & State
-
-State lives in the component class: `selectedRecordId`, `traceStep`, `traceValue`, `mode`.
-
-- Use `<lightning-combobox>` for dropdowns.
-- On change: recompute styles (link classes, stroke, opacity). **Do NOT rebuild the entire SVG** unless the dataset changed.
-
-## D3 Event Handling
+### Use ShowToastEvent for user feedback
 
 ```javascript
-.on('mouseover', (event, d) => {
-  this.handleLinkHover(d);
-})
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+
+this.dispatchEvent(new ShowToastEvent({
+    title: 'Success',
+    message: 'Data loaded.',
+    variant: 'success'
+}));
 ```
 
-D3 events delegate to LWC methods to keep the platform reactivity model intact.
+### Use LightningModal for dialogs — never raw SLDS modal markup
 
-## Styling Rules
+Create a separate component extending `LightningModal`:
 
-- **No Bootstrap or external CSS.** It causes performance issues, visual inconsistency, and namespace bleed.
-- Use SLDS utilities for layout.
-- Use component `.css` for chart-specific styles only.
+```javascript
+import LightningModal from 'lightning/modal';
 
-## Performance
+export default class MyModal extends LightningModal {
+    handleSave() { this.close(result); }
+}
+```
 
-1. Load the library once (guard with `this.initialized`).
-2. Prefer incremental updates (classes, stroke, opacity) over full SVG rebuilds.
-3. Use minified builds — Salesforce explicitly recommends this.
-4. For record trace overlays: render the base aggregated Sankey, then overlay the selected record path. Do not render thousands of individual strands — Salesforce has slower DOM than raw web, shared runtime, and console embedding scenarios.
+Open it imperatively from the parent:
 
-## Container Sizing
+```javascript
+const result = await MyModal.open({ size: 'small', label: 'Title' });
+```
+
+### Use NavigationMixin for record navigation
+
+```javascript
+import { NavigationMixin } from 'lightning/navigation';
+
+this[NavigationMixin.Navigate]({
+    type: 'standard__recordPage',
+    attributes: { recordId, actionName: 'view' }
+});
+```
+
+## CSS / Styling Standards
+
+### Use SLDS design token CSS custom properties — never hardcode Salesforce colors
+
+```css
+/* CORRECT — adapts to dark mode, themes, and branding */
+color: var(--slds-g-color-neutral-base-50, var(--lwc-colorTextWeak, #706e6b));
+background: var(--slds-g-color-neutral-base-95, var(--lwc-colorBackground, #f4f6f9));
+border: 1px solid var(--slds-g-color-border-base-1, var(--lwc-colorBorder, #e5e5e5));
+
+/* NEVER — breaks in dark mode and custom themes */
+color: #706e6b;
+background: #f4f6f9;
+```
+
+Always provide a fallback chain: `var(--slds-g-*, var(--lwc-*, <hex-fallback>))`.
+
+### Use SLDS utilities for layout, component CSS for chart styles only
+
+```html
+<div class="slds-grid slds-gutters slds-wrap">
+    <div class="slds-col slds-size_1-of-2">...</div>
+</div>
+```
+
+### Use `slds-box` for visual containers — avoid nesting `lightning-card` inside `lightning-card`
+
+## Apex Standards
+
+### Security — always enforce
+
+- All classes: `public with sharing class ...`
+- All queries: `WITH SECURITY_ENFORCED`
+- All user input: `String.escapeSingleQuotes()`
+
+### Governor limit protection
+
+- Enforce `LIMIT` on all queries (default: 10,000)
+- Use Maps instead of nested loops for aggregation
+- Never issue SOQL inside a loop
+
+### DRY — extract shared logic
+
+When two methods share identical logic (e.g., WHERE clause building), extract to a `private static` helper.
+
+### Sorting — use Comparable, not manual loops
+
+```apex
+private class PathEntry implements Comparable {
+    public Decimal sortVal;
+    public Integer compareTo(Object other) {
+        PathEntry that = (PathEntry) other;
+        if (that.sortVal > this.sortVal) return 1;
+        if (that.sortVal < this.sortVal) return -1;
+        return 0;
+    }
+}
+
+entries.sort(); // native platform sort
+```
+
+## D3 Rendering Rules
+
+### Incremental updates over full SVG rebuilds
+
+On mode/trace/highlight changes, restyle existing elements (opacity, stroke, class). Only rebuild the SVG when the underlying dataset changes.
+
+### Container sizing with ResizeObserver
 
 LWC runs in App pages, Record pages, and Console tabs. Use `ResizeObserver` on the chart container to recompute layout dynamically.
 
-## Locker / LWS Compatibility
+### Accessibility on SVG output
 
-D3 works because it uses no `eval`, no global DOM hijacking, and supports scoped rendering. Libraries that fail typically attach to `window`, traverse the full `document`, or use dynamic code execution.
-
-## Deployment Metadata
-
-```xml
-<targets>
-  <target>lightning__AppPage</target>
-  <target>lightning__RecordPage</target>
-</targets>
+```javascript
+svg.attr('role', 'img').attr('aria-label', 'Sankey flow diagram');
+ng.each(function(d) {
+    d3.select(this).attr('aria-label', d.label);
+});
 ```
 
-## Recommended POC Build Sequence
+## Deployment
 
-1. Hardcoded dataset -> render static Sankey
-2. Add record dropdown -> overlay selected path
-3. Add flow trace (step + value animation)
-4. Wire to Apex data source
+### Meta XML — expose only top-level components
 
-## Key Differences from Standard Web D3
+```xml
+<!-- dsSankeyBuilder (exposed) -->
+<isExposed>true</isExposed>
+<targets>
+    <target>lightning__AppPage</target>
+    <target>lightning__RecordPage</target>
+    <target>lightning__HomePage</target>
+</targets>
 
-| Standard Web | Salesforce LWC |
-|---|---|
-| CDN `<script>` tags | Static resource + `loadScript` |
-| `document.querySelector` | `this.template.querySelector` |
-| Free CSS / Bootstrap | SLDS-first, component CSS only |
-| `window` globals | Sandboxed (no real `window`) |
-| Any library | Locker/LWS compliant only |
+<!-- All child components -->
+<isExposed>false</isExposed>
+```
+
+### Deploy command
+
+```bash
+sf config set target-org <alias>
+sf project deploy start --source-dir force-app --wait 10
+```
+
+### D3 static resource rebuild
+
+```bash
+npm run build:d3   # runs scripts/build-d3.js
+```
+
+## Code Quality
+
+- Keep JSDoc on class and public method level only — avoid per-line narration comments
+- Do not add comments that just restate what the code does
+- Test files may reference story/acceptance criteria for traceability
+- Prefer `const` over `let`; never use `var`
+- Use template literals or string concatenation consistently (this project uses concatenation)
