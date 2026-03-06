@@ -229,12 +229,19 @@ export default class DsSankeyChart extends LightningElement {
         if (!ctr) return;
 
         if (this._ro) this._ro.disconnect();
+        this._rafId = null;
         this._ro = new ResizeObserver(entries => {
             for (const e of entries) {
                 if (e.contentRect.width > 0) {
                     this._w = e.contentRect.width;
                     this._h = Math.max(440, Math.round(this._w * 0.55));
-                    this._draw();
+                    if (!this._rafId) {
+                        // eslint-disable-next-line @lwc/lwc/no-async-operation
+                        this._rafId = requestAnimationFrame(() => {
+                            this._rafId = null;
+                            this._draw();
+                        });
+                    }
                 }
             }
         });

@@ -2,14 +2,17 @@ import LightningModal from 'lightning/modal';
 import { api } from 'lwc';
 
 export default class DsSaveConfigModal extends LightningModal {
-    @api configName = '';
+    _name = '';
+
+    @api get configName() { return this._name; }
+    set configName(val) { this._name = val || ''; }
 
     get isSaveDisabled() {
-        return !this.configName;
+        return !this._name || !this._name.trim();
     }
 
     handleNameChange(event) {
-        this.configName = event.target.value;
+        this._name = event.target.value;
     }
 
     handleCancel() {
@@ -17,8 +20,9 @@ export default class DsSaveConfigModal extends LightningModal {
     }
 
     handleSave() {
-        if (this.configName) {
-            this.close(this.configName);
+        const trimmed = this._name.trim();
+        if (trimmed) {
+            this.close(trimmed);
         }
     }
 }

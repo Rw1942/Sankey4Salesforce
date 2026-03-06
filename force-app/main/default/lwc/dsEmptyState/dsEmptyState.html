@@ -61,9 +61,12 @@
                         </div>
                     </div>
 
-                    <button class="slds-button slds-button_brand create-btn" onclick={handleStart}>
-                        Create New Flow Diagram
-                    </button>
+                    <lightning-button
+                        label="Create New Flow Diagram"
+                        variant="brand"
+                        onclick={handleStart}
+                        class="create-btn">
+                    </lightning-button>
                 </div>
 
                 <!-- Right column: saved configs (only when configs exist) -->

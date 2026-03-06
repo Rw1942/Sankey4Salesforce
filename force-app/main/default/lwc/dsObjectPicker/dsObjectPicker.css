@@ -9,4 +9,15 @@
 
 .option-row {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.count-badge {
+    flex-shrink: 0;
+    margin-left: auto;
+    padding: 0 0.25rem;
+    font-size: 0.75rem;
+    color: var(--slds-g-color-neutral-base-50, var(--lwc-colorTextWeak, #706e6b));
+    white-space: nowrap;
 }

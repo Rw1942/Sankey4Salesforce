@@ -1,9 +1,23 @@
 /**
- * Permission-aware Salesforce object autocomplete.
- * Uses Apex to retrieve queryable objects and lets users type to filter.
+ * Permission-aware Salesforce object autocomplete with approximate record counts.
+ * Uses Apex to retrieve queryable objects and the /limits/recordCount REST API
+ * for per-object counts. Sorted by count descending by default.
  */
 import { LightningElement, api, wire } from 'lwc';
 import getQueryableObjects from '@salesforce/apex/SankeyController.getQueryableObjects';
+import getObjectRecordCounts from '@salesforce/apex/SankeyController.getObjectRecordCounts';
+
+function formatCount(n) {
+    if (n == null) return '';
+    if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+    return String(n);
+}
+
+function formatCountExact(n) {
+    if (n == null) return '';
+    return n.toLocaleString() + ' records';
+}
 
 export default class DsObjectPicker extends LightningElement {
 
@@ -17,6 +31,8 @@ export default class DsObjectPicker extends LightningElement {
     blurTimeout;
 
     _objectLabelMap = {};
+    _rawObjects = [];
+    _recordCounts = {};
 
     @api
     get selectedObject() {
@@ -30,23 +46,58 @@ export default class DsObjectPicker extends LightningElement {
     @wire(getQueryableObjects)
     wiredObjects({ error, data }) {
         if (data) {
-            const parsed = JSON.parse(data);
-            this.allOptions = parsed
-                .map(obj => ({
-                    label: obj.label + ' (' + obj.apiName + ')',
-                    value: obj.apiName
-                }))
-                .sort((a, b) => a.label.localeCompare(b.label));
-            this._objectLabelMap = {};
-            parsed.forEach(obj => {
-                this._objectLabelMap[obj.apiName] = obj.label + ' (' + obj.apiName + ')';
-            });
+            this._rawObjects = JSON.parse(data);
             this.error = undefined;
+            this._buildOptions();
         } else if (error) {
             this.error = error;
+            this._rawObjects = [];
             this.allOptions = [];
             this._objectLabelMap = {};
         }
+    }
+
+    connectedCallback() {
+        getObjectRecordCounts()
+            .then(result => {
+                this._recordCounts = JSON.parse(result);
+                this._buildOptions();
+            })
+            .catch(() => {
+                this._recordCounts = {};
+            });
+    }
+
+    _buildOptions() {
+        if (!this._rawObjects.length) return;
+
+        const counts = this._recordCounts;
+        const hasCounts = Object.keys(counts).length > 0;
+        this._objectLabelMap = {};
+
+        const mapped = this._rawObjects.map(obj => {
+            const label = obj.label + ' (' + obj.apiName + ')';
+            const count = counts[obj.apiName] ?? null;
+            this._objectLabelMap[obj.apiName] = label;
+            return {
+                label,
+                value: obj.apiName,
+                count,
+                countLabel: formatCount(count),
+                countTitle: formatCountExact(count)
+            };
+        });
+
+        const MIN_RECORDS = 10;
+        this.allOptions = (hasCounts
+                ? mapped.filter(opt => opt.count >= MIN_RECORDS)
+                : mapped)
+            .sort((a, b) => {
+                const ca = a.count ?? -1;
+                const cb = b.count ?? -1;
+                if (cb !== ca) return cb - ca;
+                return a.label.localeCompare(b.label);
+            });
     }
 
     get filteredOptions() {
@@ -114,6 +165,13 @@ export default class DsObjectPicker extends LightningElement {
             this.searchTerm = '';
             this.blurTimeout = null;
         }, 200);
+    }
+
+    disconnectedCallback() {
+        if (this.blurTimeout) {
+            clearTimeout(this.blurTimeout);
+            this.blurTimeout = null;
+        }
     }
 
     handleOptionSelect(event) {

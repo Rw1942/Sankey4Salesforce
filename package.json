@@ -1,5 +1,5 @@
 {
-  "name": "salesforce",
+  "name": "sankey4salesforce",
   "version": "1.0.0",
   "description": "A Salesforce Lightning Web Component (LWC) that renders interactive Sankey diagrams using D3.js to visualise process flows and record traces within the Salesforce platform.",
   "main": "index.js",

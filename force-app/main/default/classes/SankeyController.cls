@@ -144,4 +144,39 @@ public with sharing class SankeyController {
             throw new AuraHandledException('Error loading objects: ' + e.getMessage());
         }
     }
+
+    /**
+     * Approximate record counts for all objects via the REST /limits/recordCount endpoint.
+     * Non-cacheable because it performs an HTTP callout.
+     * Returns '{}' on any failure so the object picker degrades gracefully.
+     * Prerequisite: Remote Site Setting for the org's own domain URL.
+     * @return JSON map of {objectApiName: count}
+     */
+    @AuraEnabled
+    public static String getObjectRecordCounts() {
+        try {
+            HttpRequest req = new HttpRequest();
+            req.setEndpoint(URL.getOrgDomainUrl().toExternalForm()
+                + '/services/data/v62.0/limits/recordCount');
+            req.setMethod('GET');
+            req.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionId());
+
+            HttpResponse res = new Http().send(req);
+            if (res.getStatusCode() != 200) {
+                return '{}';
+            }
+
+            Map<String, Object> body = (Map<String, Object>) JSON.deserializeUntyped(res.getBody());
+            List<Object> sObjects = (List<Object>) body.get('sObjects');
+
+            Map<String, Integer> countMap = new Map<String, Integer>();
+            for (Object obj : sObjects) {
+                Map<String, Object> o = (Map<String, Object>) obj;
+                countMap.put((String) o.get('name'), Integer.valueOf(String.valueOf(o.get('count'))));
+            }
+            return JSON.serialize(countMap);
+        } catch (Exception e) {
+            return '{}';
+        }
+    }
 }

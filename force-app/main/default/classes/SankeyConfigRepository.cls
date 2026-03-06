@@ -15,9 +15,30 @@ public with sharing class SankeyConfigRepository {
         try {
             Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(configJson);
 
+            Boolean isUpdate = payload.containsKey('id') && payload.get('id') != null;
+
+            if (isUpdate) {
+                if (!Schema.SObjectType.DS_Sankey_Config__c.isUpdateable()) {
+                    throw new AuraHandledException('Insufficient permissions to update configurations.');
+                }
+                List<DS_Sankey_Config__c> existing = [
+                    SELECT Id FROM DS_Sankey_Config__c
+                    WHERE Id = :((Id) payload.get('id')) AND OwnerId = :UserInfo.getUserId()
+                    WITH SECURITY_ENFORCED
+                    LIMIT 1
+                ];
+                if (existing.isEmpty()) {
+                    throw new AuraHandledException('Configuration not found or not owned by you.');
+                }
+            } else {
+                if (!Schema.SObjectType.DS_Sankey_Config__c.isCreateable()) {
+                    throw new AuraHandledException('Insufficient permissions to create configurations.');
+                }
+            }
+
             DS_Sankey_Config__c config = new DS_Sankey_Config__c();
 
-            if (payload.containsKey('id') && payload.get('id') != null) {
+            if (isUpdate) {
                 config.Id = (Id) payload.get('id');
             }
 
@@ -37,6 +58,8 @@ public with sharing class SankeyConfigRepository {
 
             upsert config;
             return config.Id;
+        } catch (AuraHandledException ahe) {
+            throw ahe;
         } catch (Exception e) {
             throw new AuraHandledException('Error saving config: ' + e.getMessage());
         }
@@ -101,6 +124,9 @@ public with sharing class SankeyConfigRepository {
     @AuraEnabled
     public static void deleteConfig(String configId) {
         try {
+            if (!Schema.SObjectType.DS_Sankey_Config__c.isDeletable()) {
+                throw new AuraHandledException('Insufficient permissions to delete configurations.');
+            }
             DS_Sankey_Config__c config = [
                 SELECT Id FROM DS_Sankey_Config__c
                 WHERE Id = :configId AND OwnerId = :UserInfo.getUserId()
@@ -108,6 +134,8 @@ public with sharing class SankeyConfigRepository {
                 LIMIT 1
             ];
             delete config;
+        } catch (AuraHandledException ahe) {
+            throw ahe;
         } catch (Exception e) {
             throw new AuraHandledException('Error deleting config: ' + e.getMessage());
         }

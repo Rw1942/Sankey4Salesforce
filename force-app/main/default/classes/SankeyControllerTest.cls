@@ -337,4 +337,51 @@ private class SankeyControllerTest {
         System.assert(soql.contains('LIMIT ' + SankeyQueryBuilder.DEFAULT_LIMIT),
             'Query should include the default limit of ' + SankeyQueryBuilder.DEFAULT_LIMIT);
     }
+
+    // ── getObjectRecordCounts tests ──────────────────────────────────────
+
+    private class RecordCountMock implements HttpCalloutMock {
+        private final Integer statusCode;
+        private final String body;
+
+        RecordCountMock(Integer statusCode, String body) {
+            this.statusCode = statusCode;
+            this.body = body;
+        }
+
+        public HttpResponse respond(HttpRequest req) {
+            HttpResponse res = new HttpResponse();
+            res.setStatusCode(this.statusCode);
+            res.setBody(this.body);
+            return res;
+        }
+    }
+
+    @isTest
+    static void testGetObjectRecordCounts_Success() {
+        String mockBody = '{"sObjects":[' +
+            '{"name":"Account","count":500},' +
+            '{"name":"Contact","count":1200}' +
+            ']}';
+        Test.setMock(HttpCalloutMock.class, new RecordCountMock(200, mockBody));
+
+        Test.startTest();
+        String resultJson = SankeyController.getObjectRecordCounts();
+        Test.stopTest();
+
+        Map<String, Object> counts = (Map<String, Object>) JSON.deserializeUntyped(resultJson);
+        System.assertEquals(500, counts.get('Account'), 'Account count should be 500');
+        System.assertEquals(1200, counts.get('Contact'), 'Contact count should be 1200');
+    }
+
+    @isTest
+    static void testGetObjectRecordCounts_Failure() {
+        Test.setMock(HttpCalloutMock.class, new RecordCountMock(500, 'Internal Server Error'));
+
+        Test.startTest();
+        String resultJson = SankeyController.getObjectRecordCounts();
+        Test.stopTest();
+
+        System.assertEquals('{}', resultJson, 'Should return empty map on HTTP failure');
+    }
 }

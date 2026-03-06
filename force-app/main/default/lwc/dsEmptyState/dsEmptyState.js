@@ -12,12 +12,16 @@ export default class DsEmptyState extends LightningElement {
     @wire(getMyConfigs)
     wiredConfigs(result) {
         if (result.data) {
-            const parsed = JSON.parse(result.data);
-            this.savedConfigs = parsed.map(c => ({
-                ...c,
-                label: c.name,
-                subtitle: c.objectApiName
-            }));
+            try {
+                const parsed = JSON.parse(result.data);
+                this.savedConfigs = parsed.map(c => ({
+                    ...c,
+                    label: c.name,
+                    subtitle: c.objectApiName
+                }));
+            } catch (e) {
+                this.savedConfigs = [];
+            }
         } else if (result.error) {
             this.savedConfigs = [];
         }

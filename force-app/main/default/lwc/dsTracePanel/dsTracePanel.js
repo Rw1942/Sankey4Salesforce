@@ -43,6 +43,7 @@ export default class DsTracePanel extends LightningElement {
     get flowValueOptions() {
         const idx = parseInt(this.flowStepIdx, 10);
         if (isNaN(idx) || idx < 0 || !this.steps || idx >= this.steps.length) return [];
+        if (!this.records) return [];
         const col = this.steps[idx];
         const vals = [...new Set(this.records.map(r => r[col] || '\u2205'))].sort();
         return vals.map(v => ({ label: v, value: v }));

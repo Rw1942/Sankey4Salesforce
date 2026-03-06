@@ -17,7 +17,13 @@ const TYPE_PRIORITY = {
 export default class DsFilterBuilder extends LightningElement {
 
     @api objectApiName = '';
-    @api filters = [];
+
+    _filters = [];
+    @api get filters() { return this._filters; }
+    set filters(val) {
+        this._filters = val || [];
+        this._hydrateFromFilters(this._filters);
+    }
 
     _rowCounter = 0;
 
@@ -153,6 +159,31 @@ export default class DsFilterBuilder extends LightningElement {
         } finally {
             this.isCountLoading = false;
         }
+    }
+
+    _hydrateFromFilters(filters) {
+        if (!filters || filters.length === 0) {
+            this.filterRows = [];
+            this.selectedDateRange = '';
+            return;
+        }
+        const rows = [];
+        let dateRange = '';
+        for (const f of filters) {
+            if (f.isDateLiteral) {
+                dateRange = f.value || '';
+            } else if (f.field && f.operator) {
+                this._rowCounter++;
+                rows.push({
+                    id: 'row-' + this._rowCounter,
+                    field: f.field,
+                    operator: f.operator,
+                    value: f.value || ''
+                });
+            }
+        }
+        this.filterRows = rows;
+        this.selectedDateRange = dateRange;
     }
 
     _fireFilterChange() {

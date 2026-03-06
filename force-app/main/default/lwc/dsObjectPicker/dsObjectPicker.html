@@ -47,6 +47,11 @@
                                                 {option.label}
                                             </span>
                                         </span>
+                                        <template lwc:if={option.countLabel}>
+                                            <span class="count-badge" title={option.countTitle}>
+                                                {option.countLabel}
+                                            </span>
+                                        </template>
                                     </div>
                                 </li>
                             </template>

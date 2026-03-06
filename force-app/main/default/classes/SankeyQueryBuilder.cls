@@ -8,6 +8,10 @@ public with sharing class SankeyQueryBuilder {
     public static final Integer DEFAULT_LIMIT = 10000;
     public static final Integer SAMPLE_LIMIT = 100;
 
+    private static final Set<String> ALLOWED_OPS = new Set<String>{
+        '=', '!=', '<', '>', '<=', '>=', 'LIKE', 'IN'
+    };
+
     /**
      * Builds dynamic SOQL from a config map.
      * SELECT {pathFields, metricField, recordIdField, Name}
@@ -117,6 +121,9 @@ public with sharing class SankeyQueryBuilder {
             Boolean isDateLiteral = f.containsKey('isDateLiteral') && (Boolean) f.get('isDateLiteral');
 
             if (String.isBlank(field) || String.isBlank(op) || String.isBlank(val)) {
+                continue;
+            }
+            if (!ALLOWED_OPS.contains(op)) {
                 continue;
             }
 
