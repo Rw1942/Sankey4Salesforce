@@ -35,6 +35,15 @@
         <field>DS_Sankey_Config__c.Record_Id_Field__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <applicationVisibilities>
+        <application>Sankey_Builder</application>
+        <default>true</default>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <tabVisibilities>
+        <tab>Sankey_Builder</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
