@@ -1,0 +1,1310 @@
+Passenger_Name__c,Title__c,Survived__c,Travel_Class__c,Sex__c,Age__c,Age_Group__c,Port_of_Embarkation__c,Fare__c,Fare_Category__c,Deck__c,Cabin__c,Ticket_Number__c,Siblings_Spouses__c,Parents_Children__c,Family_Group__c,Had_Lifeboat__c,Lifeboat__c,Home_Destination__c
+"Allen, Miss. Elisabeth Walton",Miss,Yes,First,Female,29,Young Adult,Southampton,211.3375,Luxury,B,B5,24160,0,0,Solo,Yes,2,"St Louis, MO"
+"Allison, Master. Hudson Trevor",Master,Yes,First,Male,0.92,Child,Southampton,151.5500,Luxury,C,C22 C26,113781,1,2,Small Family,Yes,11,"Montreal, PQ / Chesterville, ON"
+"Allison, Miss. Helen Loraine",Miss,No,First,Female,2,Child,Southampton,151.5500,Luxury,C,C22 C26,113781,1,2,Small Family,No,,"Montreal, PQ / Chesterville, ON"
+"Allison, Mr. Hudson Joshua Creighton",Mr,No,First,Male,30,Young Adult,Southampton,151.5500,Luxury,C,C22 C26,113781,1,2,Small Family,No,,"Montreal, PQ / Chesterville, ON"
+"Allison, Mrs. Hudson J C (Bessie Waldo Daniels)",Mrs,No,First,Female,25,Young Adult,Southampton,151.5500,Luxury,C,C22 C26,113781,1,2,Small Family,No,,"Montreal, PQ / Chesterville, ON"
+"Anderson, Mr. Harry",Mr,Yes,First,Male,48,Middle Aged,Southampton,26.5500,Standard,E,E12,19952,0,0,Solo,Yes,3,"New York, NY"
+"Andrews, Miss. Kornelia Theodosia",Miss,Yes,First,Female,63,Senior,Southampton,77.9583,Premium,D,D7,13502,1,0,Small Family,Yes,10,"Hudson, NY"
+"Andrews, Mr. Thomas Jr",Mr,No,First,Male,39,Middle Aged,Southampton,0.0000,Budget,A,A36,112050,0,0,Solo,No,,"Belfast, NI"
+"Appleton, Mrs. Edward Dale (Charlotte Lamson)",Mrs,Yes,First,Female,53,Middle Aged,Southampton,51.4792,Premium,C,C101,11769,2,0,Small Family,Yes,D,"Bayside, Queens, NY"
+"Artagaveytia, Mr. Ramon",Mr,No,First,Male,71,Senior,Cherbourg,49.5042,Premium,Unknown,,PC 17609,0,0,Solo,No,,"Montevideo, Uruguay"
+"Astor, Col. John Jacob",Officer,No,First,Male,47,Middle Aged,Cherbourg,227.5250,Luxury,C,C62 C64,PC 17757,1,0,Small Family,No,,"New York, NY"
+"Astor, Mrs. John Jacob (Madeleine Talmadge Force)",Mrs,Yes,First,Female,18,Teen,Cherbourg,227.5250,Luxury,C,C62 C64,PC 17757,1,0,Small Family,Yes,4,"New York, NY"
+"Aubart, Mme. Leontine Pauline",Mrs,Yes,First,Female,24,Young Adult,Cherbourg,69.3000,Premium,B,B35,PC 17477,0,0,Solo,Yes,9,"Paris, France"
+"Barber, Miss. Ellen ""Nellie""",Miss,Yes,First,Female,26,Young Adult,Southampton,78.8500,Premium,Unknown,,19877,0,0,Solo,Yes,6,
+"Barkworth, Mr. Algernon Henry Wilson",Mr,Yes,First,Male,80,Senior,Southampton,30.0000,Premium,A,A23,27042,0,0,Solo,Yes,B,"Hessle, Yorks"
+"Baumann, Mr. John D",Mr,No,First,Male,,Unknown,Southampton,25.9250,Standard,Unknown,,PC 17318,0,0,Solo,No,,"New York, NY"
+"Baxter, Mr. Quigg Edmond",Mr,No,First,Male,24,Young Adult,Cherbourg,247.5208,Luxury,B,B58 B60,PC 17558,0,1,Small Family,No,,"Montreal, PQ"
+"Baxter, Mrs. James (Helene DeLaudeniere Chaput)",Mrs,Yes,First,Female,50,Middle Aged,Cherbourg,247.5208,Luxury,B,B58 B60,PC 17558,0,1,Small Family,Yes,6,"Montreal, PQ"
+"Bazzani, Miss. Albina",Miss,Yes,First,Female,32,Young Adult,Cherbourg,76.2917,Premium,D,D15,11813,0,0,Solo,Yes,8,
+"Beattie, Mr. Thomson",Mr,No,First,Male,36,Middle Aged,Cherbourg,75.2417,Premium,C,C6,13050,0,0,Solo,Yes,A,"Winnipeg, MN"
+"Beckwith, Mr. Richard Leonard",Mr,Yes,First,Male,37,Middle Aged,Southampton,52.5542,Premium,D,D35,11751,1,1,Small Family,Yes,5,"New York, NY"
+"Beckwith, Mrs. Richard Leonard (Sallie Monypeny)",Mrs,Yes,First,Female,47,Middle Aged,Southampton,52.5542,Premium,D,D35,11751,1,1,Small Family,Yes,5,"New York, NY"
+"Behr, Mr. Karl Howell",Mr,Yes,First,Male,26,Young Adult,Cherbourg,30.0000,Premium,C,C148,111369,0,0,Solo,Yes,5,"New York, NY"
+"Bidois, Miss. Rosalie",Miss,Yes,First,Female,42,Middle Aged,Cherbourg,227.5250,Luxury,Unknown,,PC 17757,0,0,Solo,Yes,4,
+"Bird, Miss. Ellen",Miss,Yes,First,Female,29,Young Adult,Southampton,221.7792,Luxury,C,C97,PC 17483,0,0,Solo,Yes,8,
+"Birnbaum, Mr. Jakob",Mr,No,First,Male,25,Young Adult,Cherbourg,26.0000,Standard,Unknown,,13905,0,0,Solo,No,,"San Francisco, CA"
+"Bishop, Mr. Dickinson H",Mr,Yes,First,Male,25,Young Adult,Cherbourg,91.0792,Premium,B,B49,11967,1,0,Small Family,Yes,7,"Dowagiac, MI"
+"Bishop, Mrs. Dickinson H (Helen Walton)",Mrs,Yes,First,Female,19,Teen,Cherbourg,91.0792,Premium,B,B49,11967,1,0,Small Family,Yes,7,"Dowagiac, MI"
+"Bissette, Miss. Amelia",Miss,Yes,First,Female,35,Young Adult,Southampton,135.6333,Luxury,C,C99,PC 17760,0,0,Solo,Yes,8,
+"Bjornstrom-Steffansson, Mr. Mauritz Hakan",Mr,Yes,First,Male,28,Young Adult,Southampton,26.5500,Standard,C,C52,110564,0,0,Solo,Yes,D,"Stockholm, Sweden / Washington, DC"
+"Blackwell, Mr. Stephen Weart",Mr,No,First,Male,45,Middle Aged,Southampton,35.5000,Premium,T,T,113784,0,0,Solo,No,,"Trenton, NJ"
+"Blank, Mr. Henry",Mr,Yes,First,Male,40,Middle Aged,Cherbourg,31.0000,Premium,A,A31,112277,0,0,Solo,Yes,7,"Glen Ridge, NJ"
+"Bonnell, Miss. Caroline",Miss,Yes,First,Female,30,Young Adult,Southampton,164.8667,Luxury,C,C7,36928,0,0,Solo,Yes,8,"Youngstown, OH"
+"Bonnell, Miss. Elizabeth",Miss,Yes,First,Female,58,Senior,Southampton,26.5500,Standard,C,C103,113783,0,0,Solo,Yes,8,"Birkdale, England Cleveland, Ohio"
+"Borebank, Mr. John James",Mr,No,First,Male,42,Middle Aged,Southampton,26.5500,Standard,D,D22,110489,0,0,Solo,No,,"London / Winnipeg, MB"
+"Bowen, Miss. Grace Scott",Miss,Yes,First,Female,45,Middle Aged,Cherbourg,262.3750,Luxury,Unknown,,PC 17608,0,0,Solo,Yes,4,"Cooperstown, NY"
+"Bowerman, Miss. Elsie Edith",Miss,Yes,First,Female,22,Young Adult,Southampton,55.0000,Premium,E,E33,113505,0,1,Small Family,Yes,6,"St Leonards-on-Sea, England Ohio"
+"Bradley, Mr. George (""George Arthur Brayton"")",Mr,Yes,First,Male,,Unknown,Southampton,26.5500,Standard,Unknown,,111427,0,0,Solo,Yes,9,"Los Angeles, CA"
+"Brady, Mr. John Bertram",Mr,No,First,Male,41,Middle Aged,Southampton,30.5000,Premium,A,A21,113054,0,0,Solo,No,,"Pomeroy, WA"
+"Brandeis, Mr. Emil",Mr,No,First,Male,48,Middle Aged,Cherbourg,50.4958,Premium,B,B10,PC 17591,0,0,Solo,No,,"Omaha, NE"
+"Brewe, Dr. Arthur Jackson",Dr,No,First,Male,,Unknown,Cherbourg,39.6000,Premium,Unknown,,112379,0,0,Solo,No,,"Philadelphia, PA"
+"Brown, Mrs. James Joseph (Margaret Tobin)",Mrs,Yes,First,Female,44,Middle Aged,Cherbourg,27.7208,Standard,B,B4,PC 17610,0,0,Solo,Yes,6,"Denver, CO"
+"Brown, Mrs. John Murray (Caroline Lane Lamson)",Mrs,Yes,First,Female,59,Senior,Southampton,51.4792,Premium,C,C101,11769,2,0,Small Family,Yes,D,"Belmont, MA"
+"Bucknell, Mrs. William Robert (Emma Eliza Ward)",Mrs,Yes,First,Female,60,Senior,Cherbourg,76.2917,Premium,D,D15,11813,0,0,Solo,Yes,8,"Philadelphia, PA"
+"Burns, Miss. Elizabeth Margaret",Miss,Yes,First,Female,41,Middle Aged,Cherbourg,134.5000,Luxury,E,E40,16966,0,0,Solo,Yes,3,
+"Butt, Major. Archibald Willingham",Officer,No,First,Male,45,Middle Aged,Southampton,26.5500,Standard,B,B38,113050,0,0,Solo,No,,"Washington, DC"
+"Cairns, Mr. Alexander",Mr,No,First,Male,,Unknown,Southampton,31.0000,Premium,Unknown,,113798,0,0,Solo,No,,
+"Calderhead, Mr. Edward Pennington",Mr,Yes,First,Male,42,Middle Aged,Southampton,26.2875,Standard,E,E24,PC 17476,0,0,Solo,Yes,5,"New York, NY"
+"Candee, Mrs. Edward (Helen Churchill Hungerford)",Mrs,Yes,First,Female,53,Middle Aged,Cherbourg,27.4458,Standard,Unknown,,PC 17606,0,0,Solo,Yes,6,"Washington, DC"
+"Cardeza, Mr. Thomas Drake Martinez",Mr,Yes,First,Male,36,Middle Aged,Cherbourg,512.3292,Luxury,B,B51 B53 B55,PC 17755,0,1,Small Family,Yes,3,"Austria-Hungary / Germantown, Philadelphia, PA"
+"Cardeza, Mrs. James Warburton Martinez (Charlotte Wardle Drake)",Mrs,Yes,First,Female,58,Senior,Cherbourg,512.3292,Luxury,B,B51 B53 B55,PC 17755,0,1,Small Family,Yes,3,"Germantown, Philadelphia, PA"
+"Carlsson, Mr. Frans Olof",Mr,No,First,Male,33,Young Adult,Southampton,5.0000,Budget,B,B51 B53 B55,695,0,0,Solo,No,,"New York, NY"
+"Carrau, Mr. Francisco M",Mr,No,First,Male,28,Young Adult,Southampton,47.1000,Premium,Unknown,,113059,0,0,Solo,No,,"Montevideo, Uruguay"
+"Carrau, Mr. Jose Pedro",Mr,No,First,Male,17,Teen,Southampton,47.1000,Premium,Unknown,,113059,0,0,Solo,No,,"Montevideo, Uruguay"
+"Carter, Master. William Thornton II",Master,Yes,First,Male,11,Child,Southampton,120.0000,Luxury,B,B96 B98,113760,1,2,Small Family,Yes,4,"Bryn Mawr, PA"
+"Carter, Miss. Lucile Polk",Miss,Yes,First,Female,14,Teen,Southampton,120.0000,Luxury,B,B96 B98,113760,1,2,Small Family,Yes,4,"Bryn Mawr, PA"
+"Carter, Mr. William Ernest",Mr,Yes,First,Male,36,Middle Aged,Southampton,120.0000,Luxury,B,B96 B98,113760,1,2,Small Family,Yes,C,"Bryn Mawr, PA"
+"Carter, Mrs. William Ernest (Lucile Polk)",Mrs,Yes,First,Female,36,Middle Aged,Southampton,120.0000,Luxury,B,B96 B98,113760,1,2,Small Family,Yes,4,"Bryn Mawr, PA"
+"Case, Mr. Howard Brown",Mr,No,First,Male,49,Middle Aged,Southampton,26.0000,Standard,Unknown,,19924,0,0,Solo,No,,"Ascot, Berkshire / Rochester, NY"
+"Cassebeer, Mrs. Henry Arthur Jr (Eleanor Genevieve Fosdick)",Mrs,Yes,First,Female,,Unknown,Cherbourg,27.7208,Standard,Unknown,,17770,0,0,Solo,Yes,5,"New York, NY"
+"Cavendish, Mr. Tyrell William",Mr,No,First,Male,36,Middle Aged,Southampton,78.8500,Premium,C,C46,19877,1,0,Small Family,No,,"Little Onn Hall, Staffs"
+"Cavendish, Mrs. Tyrell William (Julia Florence Siegel)",Mrs,Yes,First,Female,76,Senior,Southampton,78.8500,Premium,C,C46,19877,1,0,Small Family,Yes,6,"Little Onn Hall, Staffs"
+"Chaffee, Mr. Herbert Fuller",Mr,No,First,Male,46,Middle Aged,Southampton,61.1750,Premium,E,E31,W.E.P. 5734,1,0,Small Family,No,,"Amenia, ND"
+"Chaffee, Mrs. Herbert Fuller (Carrie Constance Toogood)",Mrs,Yes,First,Female,47,Middle Aged,Southampton,61.1750,Premium,E,E31,W.E.P. 5734,1,0,Small Family,Yes,4,"Amenia, ND"
+"Chambers, Mr. Norman Campbell",Mr,Yes,First,Male,27,Young Adult,Southampton,53.1000,Premium,E,E8,113806,1,0,Small Family,Yes,5,"New York, NY / Ithaca, NY"
+"Chambers, Mrs. Norman Campbell (Bertha Griggs)",Mrs,Yes,First,Female,33,Young Adult,Southampton,53.1000,Premium,E,E8,113806,1,0,Small Family,Yes,5,"New York, NY / Ithaca, NY"
+"Chaudanson, Miss. Victorine",Miss,Yes,First,Female,36,Middle Aged,Cherbourg,262.3750,Luxury,B,B61,PC 17608,0,0,Solo,Yes,4,
+"Cherry, Miss. Gladys",Miss,Yes,First,Female,30,Young Adult,Southampton,86.5000,Premium,B,B77,110152,0,0,Solo,Yes,8,"London, England"
+"Chevre, Mr. Paul Romaine",Mr,Yes,First,Male,45,Middle Aged,Cherbourg,29.7000,Standard,A,A9,PC 17594,0,0,Solo,Yes,7,"Paris, France"
+"Chibnall, Mrs. (Edith Martha Bowerman)",Mrs,Yes,First,Female,,Unknown,Southampton,55.0000,Premium,E,E33,113505,0,1,Small Family,Yes,6,"St Leonards-on-Sea, England Ohio"
+"Chisholm, Mr. Roderick Robert Crispin",Mr,No,First,Male,,Unknown,Southampton,0.0000,Budget,Unknown,,112051,0,0,Solo,No,,"Liverpool, England / Belfast"
+"Clark, Mr. Walter Miller",Mr,No,First,Male,27,Young Adult,Cherbourg,136.7792,Luxury,C,C89,13508,1,0,Small Family,No,,"Los Angeles, CA"
+"Clark, Mrs. Walter Miller (Virginia McDowell)",Mrs,Yes,First,Female,26,Young Adult,Cherbourg,136.7792,Luxury,C,C89,13508,1,0,Small Family,Yes,4,"Los Angeles, CA"
+"Cleaver, Miss. Alice",Miss,Yes,First,Female,22,Young Adult,Southampton,151.5500,Luxury,Unknown,,113781,0,0,Solo,Yes,11,
+"Clifford, Mr. George Quincy",Mr,No,First,Male,,Unknown,Southampton,52.0000,Premium,A,A14,110465,0,0,Solo,No,,"Stoughton, MA"
+"Colley, Mr. Edward Pomeroy",Mr,No,First,Male,47,Middle Aged,Southampton,25.5875,Standard,E,E58,5727,0,0,Solo,No,,"Victoria, BC"
+"Compton, Miss. Sara Rebecca",Miss,Yes,First,Female,39,Middle Aged,Cherbourg,83.1583,Premium,E,E49,PC 17756,1,1,Small Family,Yes,14,"Lakewood, NJ"
+"Compton, Mr. Alexander Taylor Jr",Mr,No,First,Male,37,Middle Aged,Cherbourg,83.1583,Premium,E,E52,PC 17756,1,1,Small Family,No,,"Lakewood, NJ"
+"Compton, Mrs. Alexander Taylor (Mary Eliza Ingersoll)",Mrs,Yes,First,Female,64,Senior,Cherbourg,83.1583,Premium,E,E45,PC 17756,0,2,Small Family,Yes,14,"Lakewood, NJ"
+"Cornell, Mrs. Robert Clifford (Malvina Helen Lamson)",Mrs,Yes,First,Female,55,Middle Aged,Southampton,25.7000,Standard,C,C101,11770,2,0,Small Family,Yes,2,"New York, NY"
+"Crafton, Mr. John Bertram",Mr,No,First,Male,,Unknown,Southampton,26.5500,Standard,Unknown,,113791,0,0,Solo,No,,"Roachdale, IN"
+"Crosby, Capt. Edward Gifford",Officer,No,First,Male,70,Senior,Southampton,71.0000,Premium,B,B22,WE/P 5735,1,1,Small Family,No,,"Milwaukee, WI"
+"Crosby, Miss. Harriet R",Miss,Yes,First,Female,36,Middle Aged,Southampton,71.0000,Premium,B,B22,WE/P 5735,0,2,Small Family,Yes,7,"Milwaukee, WI"
+"Crosby, Mrs. Edward Gifford (Catherine Elizabeth Halstead)",Mrs,Yes,First,Female,64,Senior,Southampton,26.5500,Standard,B,B26,112901,1,1,Small Family,Yes,7,"Milwaukee, WI"
+"Cumings, Mr. John Bradley",Mr,No,First,Male,39,Middle Aged,Cherbourg,71.2833,Premium,C,C85,PC 17599,1,0,Small Family,No,,"New York, NY"
+"Cumings, Mrs. John Bradley (Florence Briggs Thayer)",Mrs,Yes,First,Female,38,Middle Aged,Cherbourg,71.2833,Premium,C,C85,PC 17599,1,0,Small Family,Yes,4,"New York, NY"
+"Daly, Mr. Peter Denis ",Mr,Yes,First,Male,51,Middle Aged,Southampton,26.5500,Standard,E,E17,113055,0,0,Solo,Yes,5 9,"Lima, Peru"
+"Daniel, Mr. Robert Williams",Mr,Yes,First,Male,27,Young Adult,Southampton,30.5000,Premium,Unknown,,113804,0,0,Solo,Yes,3,"Philadelphia, PA"
+"Daniels, Miss. Sarah",Miss,Yes,First,Female,33,Young Adult,Southampton,151.5500,Luxury,Unknown,,113781,0,0,Solo,Yes,8,
+"Davidson, Mr. Thornton",Mr,No,First,Male,31,Young Adult,Southampton,52.0000,Premium,B,B71,F.C. 12750,1,0,Small Family,No,,"Montreal, PQ"
+"Davidson, Mrs. Thornton (Orian Hays)",Mrs,Yes,First,Female,27,Young Adult,Southampton,52.0000,Premium,B,B71,F.C. 12750,1,2,Small Family,Yes,3,"Montreal, PQ"
+"Dick, Mr. Albert Adrian",Mr,Yes,First,Male,31,Young Adult,Southampton,57.0000,Premium,B,B20,17474,1,0,Small Family,Yes,3,"Calgary, AB"
+"Dick, Mrs. Albert Adrian (Vera Gillespie)",Mrs,Yes,First,Female,17,Teen,Southampton,57.0000,Premium,B,B20,17474,1,0,Small Family,Yes,3,"Calgary, AB"
+"Dodge, Dr. Washington",Dr,Yes,First,Male,53,Middle Aged,Southampton,81.8583,Premium,A,A34,33638,1,1,Small Family,Yes,13,"San Francisco, CA"
+"Dodge, Master. Washington",Master,Yes,First,Male,4,Child,Southampton,81.8583,Premium,A,A34,33638,0,2,Small Family,Yes,5,"San Francisco, CA"
+"Dodge, Mrs. Washington (Ruth Vidaver)",Mrs,Yes,First,Female,54,Middle Aged,Southampton,81.8583,Premium,A,A34,33638,1,1,Small Family,Yes,5,"San Francisco, CA"
+"Douglas, Mr. Walter Donald",Mr,No,First,Male,50,Middle Aged,Cherbourg,106.4250,Luxury,C,C86,PC 17761,1,0,Small Family,No,,"Deephaven, MN / Cedar Rapids, IA"
+"Douglas, Mrs. Frederick Charles (Mary Helene Baxter)",Mrs,Yes,First,Female,27,Young Adult,Cherbourg,247.5208,Luxury,B,B58 B60,PC 17558,1,1,Small Family,Yes,6,"Montreal, PQ"
+"Douglas, Mrs. Walter Donald (Mahala Dutton)",Mrs,Yes,First,Female,48,Middle Aged,Cherbourg,106.4250,Luxury,C,C86,PC 17761,1,0,Small Family,Yes,2,"Deephaven, MN / Cedar Rapids, IA"
+"Duff Gordon, Lady. (Lucille Christiana Sutherland) (""Mrs Morgan"")",Titled,Yes,First,Female,48,Middle Aged,Cherbourg,39.6000,Premium,A,A16,11755,1,0,Small Family,Yes,1,London / Paris
+"Duff Gordon, Sir. Cosmo Edmund (""Mr Morgan"")",Titled,Yes,First,Male,49,Middle Aged,Cherbourg,56.9292,Premium,A,A20,PC 17485,1,0,Small Family,Yes,1,London / Paris
+"Dulles, Mr. William Crothers",Mr,No,First,Male,39,Middle Aged,Cherbourg,29.7000,Standard,A,A18,PC 17580,0,0,Solo,No,,"Philadelphia, PA"
+"Earnshaw, Mrs. Boulton (Olive Potter)",Mrs,Yes,First,Female,23,Young Adult,Cherbourg,83.1583,Premium,C,C54,11767,0,1,Small Family,Yes,7,"Mt Airy, Philadelphia, PA"
+"Endres, Miss. Caroline Louise",Miss,Yes,First,Female,38,Middle Aged,Cherbourg,227.5250,Luxury,C,C45,PC 17757,0,0,Solo,Yes,4,"New York, NY"
+"Eustis, Miss. Elizabeth Mussey",Miss,Yes,First,Female,54,Middle Aged,Cherbourg,78.2667,Premium,D,D20,36947,1,0,Small Family,Yes,4,"Brookline, MA"
+"Evans, Miss. Edith Corse",Miss,No,First,Female,36,Middle Aged,Cherbourg,31.6792,Premium,A,A29,PC 17531,0,0,Solo,No,,"New York, NY"
+"Farthing, Mr. John",Mr,No,First,Male,,Unknown,Southampton,221.7792,Luxury,C,C95,PC 17483,0,0,Solo,No,,
+"Flegenheim, Mrs. Alfred (Antoinette)",Mrs,Yes,First,Female,,Unknown,Southampton,31.6833,Premium,Unknown,,PC 17598,0,0,Solo,Yes,7,"New York, NY"
+"Fleming, Miss. Margaret",Miss,Yes,First,Female,,Unknown,Cherbourg,110.8833,Luxury,Unknown,,17421,0,0,Solo,Yes,4,
+"Flynn, Mr. John Irwin (""Irving"")",Mr,Yes,First,Male,36,Middle Aged,Southampton,26.3875,Standard,E,E25,PC 17474,0,0,Solo,Yes,5,"Brooklyn, NY"
+"Foreman, Mr. Benjamin Laventall",Mr,No,First,Male,30,Young Adult,Cherbourg,27.7500,Standard,C,C111,113051,0,0,Solo,No,,"New York, NY"
+"Fortune, Miss. Alice Elizabeth",Miss,Yes,First,Female,24,Young Adult,Southampton,263.0000,Luxury,C,C23 C25 C27,19950,3,2,Large Family,Yes,10,"Winnipeg, MB"
+"Fortune, Miss. Ethel Flora",Miss,Yes,First,Female,28,Young Adult,Southampton,263.0000,Luxury,C,C23 C25 C27,19950,3,2,Large Family,Yes,10,"Winnipeg, MB"
+"Fortune, Miss. Mabel Helen",Miss,Yes,First,Female,23,Young Adult,Southampton,263.0000,Luxury,C,C23 C25 C27,19950,3,2,Large Family,Yes,10,"Winnipeg, MB"
+"Fortune, Mr. Charles Alexander",Mr,No,First,Male,19,Teen,Southampton,263.0000,Luxury,C,C23 C25 C27,19950,3,2,Large Family,No,,"Winnipeg, MB"
+"Fortune, Mr. Mark",Mr,No,First,Male,64,Senior,Southampton,263.0000,Luxury,C,C23 C25 C27,19950,1,4,Large Family,No,,"Winnipeg, MB"
+"Fortune, Mrs. Mark (Mary McDougald)",Mrs,Yes,First,Female,60,Senior,Southampton,263.0000,Luxury,C,C23 C25 C27,19950,1,4,Large Family,Yes,10,"Winnipeg, MB"
+"Francatelli, Miss. Laura Mabel",Miss,Yes,First,Female,30,Young Adult,Cherbourg,56.9292,Premium,E,E36,PC 17485,0,0,Solo,Yes,1,
+"Franklin, Mr. Thomas Parham",Mr,No,First,Male,,Unknown,Southampton,26.5500,Standard,D,D34,113778,0,0,Solo,No,,"Westcliff-on-Sea, Essex"
+"Frauenthal, Dr. Henry William",Dr,Yes,First,Male,50,Middle Aged,Southampton,133.6500,Luxury,Unknown,,PC 17611,2,0,Small Family,Yes,5,"New York, NY"
+"Frauenthal, Mr. Isaac Gerald",Mr,Yes,First,Male,43,Middle Aged,Cherbourg,27.7208,Standard,D,D40,17765,1,0,Small Family,Yes,5,"New York, NY"
+"Frauenthal, Mrs. Henry William (Clara Heinsheimer)",Mrs,Yes,First,Female,,Unknown,Southampton,133.6500,Luxury,Unknown,,PC 17611,1,0,Small Family,Yes,5,"New York, NY"
+"Frolicher, Miss. Hedwig Margaritha",Miss,Yes,First,Female,22,Young Adult,Cherbourg,49.5000,Premium,B,B39,13568,0,2,Small Family,Yes,5,"Zurich, Switzerland"
+"Frolicher-Stehli, Mr. Maxmillian",Mr,Yes,First,Male,60,Senior,Cherbourg,79.2000,Premium,B,B41,13567,1,1,Small Family,Yes,5,"Zurich, Switzerland"
+"Frolicher-Stehli, Mrs. Maxmillian (Margaretha Emerentia Stehli)",Mrs,Yes,First,Female,48,Middle Aged,Cherbourg,79.2000,Premium,B,B41,13567,1,1,Small Family,Yes,5,"Zurich, Switzerland"
+"Fry, Mr. Richard",Mr,No,First,Male,,Unknown,Southampton,0.0000,Budget,B,B102,112058,0,0,Solo,No,,
+"Futrelle, Mr. Jacques Heath",Mr,No,First,Male,37,Middle Aged,Southampton,53.1000,Premium,C,C123,113803,1,0,Small Family,No,,"Scituate, MA"
+"Futrelle, Mrs. Jacques Heath (Lily May Peel)",Mrs,Yes,First,Female,35,Young Adult,Southampton,53.1000,Premium,C,C123,113803,1,0,Small Family,Yes,D,"Scituate, MA"
+"Gee, Mr. Arthur H",Mr,No,First,Male,47,Middle Aged,Southampton,38.5000,Premium,E,E63,111320,0,0,Solo,No,,"St Anne's-on-Sea, Lancashire"
+"Geiger, Miss. Amalie",Miss,Yes,First,Female,35,Young Adult,Cherbourg,211.5000,Luxury,C,C130,113503,0,0,Solo,Yes,4,
+"Gibson, Miss. Dorothy Winifred",Miss,Yes,First,Female,22,Young Adult,Cherbourg,59.4000,Premium,Unknown,,112378,0,1,Small Family,Yes,7,"New York, NY"
+"Gibson, Mrs. Leonard (Pauline C Boeson)",Mrs,Yes,First,Female,45,Middle Aged,Cherbourg,59.4000,Premium,Unknown,,112378,0,1,Small Family,Yes,7,"New York, NY"
+"Giglio, Mr. Victor",Mr,No,First,Male,24,Young Adult,Cherbourg,79.2000,Premium,B,B86,PC 17593,0,0,Solo,No,,
+"Goldenberg, Mr. Samuel L",Mr,Yes,First,Male,49,Middle Aged,Cherbourg,89.1042,Premium,C,C92,17453,1,0,Small Family,Yes,5,"Paris, France / New York, NY"
+"Goldenberg, Mrs. Samuel L (Edwiga Grabowska)",Mrs,Yes,First,Female,,Unknown,Cherbourg,89.1042,Premium,C,C92,17453,1,0,Small Family,Yes,5,"Paris, France / New York, NY"
+"Goldschmidt, Mr. George B",Mr,No,First,Male,71,Senior,Cherbourg,34.6542,Premium,A,A5,PC 17754,0,0,Solo,No,,"New York, NY"
+"Gracie, Col. Archibald IV",Officer,Yes,First,Male,53,Middle Aged,Cherbourg,28.5000,Standard,C,C51,113780,0,0,Solo,Yes,B,"Washington, DC"
+"Graham, Miss. Margaret Edith",Miss,Yes,First,Female,19,Teen,Southampton,30.0000,Premium,B,B42,112053,0,0,Solo,Yes,3,"Greenwich, CT"
+"Graham, Mr. George Edward",Mr,No,First,Male,38,Middle Aged,Southampton,153.4625,Luxury,C,C91,PC 17582,0,1,Small Family,No,,"Winnipeg, MB"
+"Graham, Mrs. William Thompson (Edith Junkins)",Mrs,Yes,First,Female,58,Senior,Southampton,153.4625,Luxury,C,C125,PC 17582,0,1,Small Family,Yes,3,"Greenwich, CT"
+"Greenfield, Mr. William Bertram",Mr,Yes,First,Male,23,Young Adult,Cherbourg,63.3583,Premium,D,D10 D12,PC 17759,0,1,Small Family,Yes,7,"New York, NY"
+"Greenfield, Mrs. Leo David (Blanche Strouse)",Mrs,Yes,First,Female,45,Middle Aged,Cherbourg,63.3583,Premium,D,D10 D12,PC 17759,0,1,Small Family,Yes,7,"New York, NY"
+"Guggenheim, Mr. Benjamin",Mr,No,First,Male,46,Middle Aged,Cherbourg,79.2000,Premium,B,B82 B84,PC 17593,0,0,Solo,No,,"New York, NY"
+"Harder, Mr. George Achilles",Mr,Yes,First,Male,25,Young Adult,Cherbourg,55.4417,Premium,E,E50,11765,1,0,Small Family,Yes,5,"Brooklyn, NY"
+"Harder, Mrs. George Achilles (Dorothy Annan)",Mrs,Yes,First,Female,25,Young Adult,Cherbourg,55.4417,Premium,E,E50,11765,1,0,Small Family,Yes,5,"Brooklyn, NY"
+"Harper, Mr. Henry Sleeper",Mr,Yes,First,Male,48,Middle Aged,Cherbourg,76.7292,Premium,D,D33,PC 17572,1,0,Small Family,Yes,3,"New York, NY"
+"Harper, Mrs. Henry Sleeper (Myna Haxtun)",Mrs,Yes,First,Female,49,Middle Aged,Cherbourg,76.7292,Premium,D,D33,PC 17572,1,0,Small Family,Yes,3,"New York, NY"
+"Harrington, Mr. Charles H",Mr,No,First,Male,,Unknown,Southampton,42.4000,Premium,Unknown,,113796,0,0,Solo,No,,
+"Harris, Mr. Henry Birkhardt",Mr,No,First,Male,45,Middle Aged,Southampton,83.4750,Premium,C,C83,36973,1,0,Small Family,No,,"New York, NY"
+"Harris, Mrs. Henry Birkhardt (Irene Wallach)",Mrs,Yes,First,Female,35,Young Adult,Southampton,83.4750,Premium,C,C83,36973,1,0,Small Family,Yes,D,"New York, NY"
+"Harrison, Mr. William",Mr,No,First,Male,40,Middle Aged,Southampton,0.0000,Budget,B,B94,112059,0,0,Solo,No,,
+"Hassab, Mr. Hammad",Mr,Yes,First,Male,27,Young Adult,Cherbourg,76.7292,Premium,D,D49,PC 17572,0,0,Solo,Yes,3,
+"Hawksford, Mr. Walter James",Mr,Yes,First,Male,,Unknown,Southampton,30.0000,Premium,D,D45,16988,0,0,Solo,Yes,3,"Kingston, Surrey"
+"Hays, Miss. Margaret Bechstein",Miss,Yes,First,Female,24,Young Adult,Cherbourg,83.1583,Premium,C,C54,11767,0,0,Solo,Yes,7,"New York, NY"
+"Hays, Mr. Charles Melville",Mr,No,First,Male,55,Middle Aged,Southampton,93.5000,Premium,B,B69,12749,1,1,Small Family,No,,"Montreal, PQ"
+"Hays, Mrs. Charles Melville (Clara Jennings Gregg)",Mrs,Yes,First,Female,52,Middle Aged,Southampton,93.5000,Premium,B,B69,12749,1,1,Small Family,Yes,3,"Montreal, PQ"
+"Head, Mr. Christopher",Mr,No,First,Male,42,Middle Aged,Southampton,42.5000,Premium,B,B11,113038,0,0,Solo,No,,London / Middlesex
+"Hilliard, Mr. Herbert Henry",Mr,No,First,Male,,Unknown,Southampton,51.8625,Premium,E,E46,17463,0,0,Solo,No,,"Brighton, MA"
+"Hipkins, Mr. William Edward",Mr,No,First,Male,55,Middle Aged,Southampton,50.0000,Premium,C,C39,680,0,0,Solo,No,,London / Birmingham
+"Hippach, Miss. Jean Gertrude",Miss,Yes,First,Female,16,Teen,Cherbourg,57.9792,Premium,B,B18,111361,0,1,Small Family,Yes,4,"Chicago, IL"
+"Hippach, Mrs. Louis Albert (Ida Sophia Fischer)",Mrs,Yes,First,Female,44,Middle Aged,Cherbourg,57.9792,Premium,B,B18,111361,0,1,Small Family,Yes,4,"Chicago, IL"
+"Hogeboom, Mrs. John C (Anna Andrews)",Mrs,Yes,First,Female,51,Middle Aged,Southampton,77.9583,Premium,D,D11,13502,1,0,Small Family,Yes,10,"Hudson, NY"
+"Holverson, Mr. Alexander Oskar",Mr,No,First,Male,42,Middle Aged,Southampton,52.0000,Premium,Unknown,,113789,1,0,Small Family,No,,"New York, NY"
+"Holverson, Mrs. Alexander Oskar (Mary Aline Towner)",Mrs,Yes,First,Female,35,Young Adult,Southampton,52.0000,Premium,Unknown,,113789,1,0,Small Family,Yes,8,"New York, NY"
+"Homer, Mr. Harry (""Mr E Haven"")",Mr,Yes,First,Male,35,Young Adult,Cherbourg,26.5500,Standard,Unknown,,111426,0,0,Solo,Yes,15,"Indianapolis, IN"
+"Hoyt, Mr. Frederick Maxfield",Mr,Yes,First,Male,38,Middle Aged,Southampton,90.0000,Premium,C,C93,19943,1,0,Small Family,Yes,D,"New York, NY /  Stamford CT"
+"Hoyt, Mr. William Fisher",Mr,No,First,Male,,Unknown,Cherbourg,30.6958,Premium,Unknown,,PC 17600,0,0,Solo,Yes,14,"New York, NY"
+"Hoyt, Mrs. Frederick Maxfield (Jane Anne Forby)",Mrs,Yes,First,Female,35,Young Adult,Southampton,90.0000,Premium,C,C93,19943,1,0,Small Family,Yes,D,"New York, NY /  Stamford CT"
+"Icard, Miss. Amelie",Miss,Yes,First,Female,38,Middle Aged,,80.0000,Premium,B,B28,113572,0,0,Solo,Yes,6,
+"Isham, Miss. Ann Elizabeth",Miss,No,First,Female,50,Middle Aged,Cherbourg,28.7125,Standard,C,C49,PC 17595,0,0,Solo,No,,"Paris, France New York, NY"
+"Ismay, Mr. Joseph Bruce",Mr,Yes,First,Male,49,Middle Aged,Southampton,0.0000,Budget,B,B52 B54 B56,112058,0,0,Solo,Yes,C,Liverpool
+"Jones, Mr. Charles Cresson",Mr,No,First,Male,46,Middle Aged,Southampton,26.0000,Standard,Unknown,,694,0,0,Solo,No,,"Bennington, VT"
+"Julian, Mr. Henry Forbes",Mr,No,First,Male,50,Middle Aged,Southampton,26.0000,Standard,E,E60,113044,0,0,Solo,No,,London
+"Keeping, Mr. Edwin",Mr,No,First,Male,32.5,Young Adult,Cherbourg,211.5000,Luxury,C,C132,113503,0,0,Solo,No,,
+"Kent, Mr. Edward Austin",Mr,No,First,Male,58,Senior,Cherbourg,29.7000,Standard,B,B37,11771,0,0,Solo,No,,"Buffalo, NY"
+"Kenyon, Mr. Frederick R",Mr,No,First,Male,41,Middle Aged,Southampton,51.8625,Premium,D,D21,17464,1,0,Small Family,No,,"Southington / Noank, CT"
+"Kenyon, Mrs. Frederick R (Marion)",Mrs,Yes,First,Female,,Unknown,Southampton,51.8625,Premium,D,D21,17464,1,0,Small Family,Yes,8,"Southington / Noank, CT"
+"Kimball, Mr. Edwin Nelson Jr",Mr,Yes,First,Male,42,Middle Aged,Southampton,52.5542,Premium,D,D19,11753,1,0,Small Family,Yes,5,"Boston, MA"
+"Kimball, Mrs. Edwin Nelson Jr (Gertrude Parsons)",Mrs,Yes,First,Female,45,Middle Aged,Southampton,52.5542,Premium,D,D19,11753,1,0,Small Family,Yes,5,"Boston, MA"
+"Klaber, Mr. Herman",Mr,No,First,Male,,Unknown,Southampton,26.5500,Standard,C,C124,113028,0,0,Solo,No,,"Portland, OR"
+"Kreuchen, Miss. Emilie",Miss,Yes,First,Female,39,Middle Aged,Southampton,211.3375,Luxury,Unknown,,24160,0,0,Solo,Yes,2,
+"Leader, Dr. Alice (Farnham)",Dr,Yes,First,Female,49,Middle Aged,Southampton,25.9292,Standard,D,D17,17465,0,0,Solo,Yes,8,"New York, NY"
+"LeRoy, Miss. Bertha",Miss,Yes,First,Female,30,Young Adult,Cherbourg,106.4250,Luxury,Unknown,,PC 17761,0,0,Solo,Yes,2,
+"Lesurer, Mr. Gustave J",Mr,Yes,First,Male,35,Young Adult,Cherbourg,512.3292,Luxury,B,B101,PC 17755,0,0,Solo,Yes,3,
+"Lewy, Mr. Ervin G",Mr,No,First,Male,,Unknown,Cherbourg,27.7208,Standard,Unknown,,PC 17612,0,0,Solo,No,,"Chicago, IL"
+"Lindeberg-Lind, Mr. Erik Gustaf (""Mr Edward Lingrey"")",Mr,No,First,Male,42,Middle Aged,Southampton,26.5500,Standard,Unknown,,17475,0,0,Solo,No,,"Stockholm, Sweden"
+"Lindstrom, Mrs. Carl Johan (Sigrid Posse)",Mrs,Yes,First,Female,55,Middle Aged,Cherbourg,27.7208,Standard,Unknown,,112377,0,0,Solo,Yes,6,"Stockholm, Sweden"
+"Lines, Miss. Mary Conover",Miss,Yes,First,Female,16,Teen,Southampton,39.4000,Premium,D,D28,PC 17592,0,1,Small Family,Yes,9,"Paris, France"
+"Lines, Mrs. Ernest H (Elizabeth Lindsey James)",Mrs,Yes,First,Female,51,Middle Aged,Southampton,39.4000,Premium,D,D28,PC 17592,0,1,Small Family,Yes,9,"Paris, France"
+"Long, Mr. Milton Clyde",Mr,No,First,Male,29,Young Adult,Southampton,30.0000,Premium,D,D6,113501,0,0,Solo,No,,"Springfield, MA"
+"Longley, Miss. Gretchen Fiske",Miss,Yes,First,Female,21,Young Adult,Southampton,77.9583,Premium,D,D9,13502,0,0,Solo,Yes,10,"Hudson, NY"
+"Loring, Mr. Joseph Holland",Mr,No,First,Male,30,Young Adult,Southampton,45.5000,Premium,Unknown,,113801,0,0,Solo,No,,"London / New York, NY"
+"Lurette, Miss. Elise",Miss,Yes,First,Female,58,Senior,Cherbourg,146.5208,Luxury,B,B80,PC 17569,0,0,Solo,No,,
+"Madill, Miss. Georgette Alexandra",Miss,Yes,First,Female,15,Teen,Southampton,211.3375,Luxury,B,B5,24160,0,1,Small Family,Yes,2,"St Louis, MO"
+"Maguire, Mr. John Edward",Mr,No,First,Male,30,Young Adult,Southampton,26.0000,Standard,C,C106,110469,0,0,Solo,No,,"Brockton, MA"
+"Maioni, Miss. Roberta",Miss,Yes,First,Female,16,Teen,Southampton,86.5000,Premium,B,B79,110152,0,0,Solo,Yes,8,
+"Marechal, Mr. Pierre",Mr,Yes,First,Male,,Unknown,Cherbourg,29.7000,Standard,C,C47,11774,0,0,Solo,Yes,7,"Paris, France"
+"Marvin, Mr. Daniel Warner",Mr,No,First,Male,19,Teen,Southampton,53.1000,Premium,D,D30,113773,1,0,Small Family,No,,"New York, NY"
+"Marvin, Mrs. Daniel Warner (Mary Graham Carmichael Farquarson)",Mrs,Yes,First,Female,18,Teen,Southampton,53.1000,Premium,D,D30,113773,1,0,Small Family,Yes,10,"New York, NY"
+"Mayne, Mlle. Berthe Antonine (""Mrs de Villiers"")",Miss,Yes,First,Female,24,Young Adult,Cherbourg,49.5042,Premium,C,C90,PC 17482,0,0,Solo,Yes,6,"Belgium  Montreal, PQ"
+"McCaffry, Mr. Thomas Francis",Mr,No,First,Male,46,Middle Aged,Cherbourg,75.2417,Premium,C,C6,13050,0,0,Solo,No,,"Vancouver, BC"
+"McCarthy, Mr. Timothy J",Mr,No,First,Male,54,Middle Aged,Southampton,51.8625,Premium,E,E46,17463,0,0,Solo,No,,"Dorchester, MA"
+"McGough, Mr. James Robert",Mr,Yes,First,Male,36,Middle Aged,Southampton,26.2875,Standard,E,E25,PC 17473,0,0,Solo,Yes,7,"Philadelphia, PA"
+"Meyer, Mr. Edgar Joseph",Mr,No,First,Male,28,Young Adult,Cherbourg,82.1708,Premium,Unknown,,PC 17604,1,0,Small Family,No,,"New York, NY"
+"Meyer, Mrs. Edgar Joseph (Leila Saks)",Mrs,Yes,First,Female,,Unknown,Cherbourg,82.1708,Premium,Unknown,,PC 17604,1,0,Small Family,Yes,6,"New York, NY"
+"Millet, Mr. Francis Davis",Mr,No,First,Male,65,Senior,Southampton,26.5500,Standard,E,E38,13509,0,0,Solo,No,,"East Bridgewater, MA"
+"Minahan, Dr. William Edward",Dr,No,First,Male,44,Middle Aged,Queenstown,90.0000,Premium,C,C78,19928,2,0,Small Family,No,,"Fond du Lac, WI"
+"Minahan, Miss. Daisy E",Miss,Yes,First,Female,33,Young Adult,Queenstown,90.0000,Premium,C,C78,19928,1,0,Small Family,Yes,14,"Green Bay, WI"
+"Minahan, Mrs. William Edward (Lillian E Thorpe)",Mrs,Yes,First,Female,37,Middle Aged,Queenstown,90.0000,Premium,C,C78,19928,1,0,Small Family,Yes,14,"Fond du Lac, WI"
+"Mock, Mr. Philipp Edmund",Mr,Yes,First,Male,30,Young Adult,Cherbourg,57.7500,Premium,C,C78,13236,1,0,Small Family,Yes,11,"New York, NY"
+"Molson, Mr. Harry Markland",Mr,No,First,Male,55,Middle Aged,Southampton,30.5000,Premium,C,C30,113787,0,0,Solo,No,,"Montreal, PQ"
+"Moore, Mr. Clarence Bloomfield",Mr,No,First,Male,47,Middle Aged,Southampton,42.4000,Premium,Unknown,,113796,0,0,Solo,No,,"Washington, DC"
+"Natsch, Mr. Charles H",Mr,No,First,Male,37,Middle Aged,Cherbourg,29.7000,Standard,C,C118,PC 17596,0,1,Small Family,No,,"Brooklyn, NY"
+"Newell, Miss. Madeleine",Miss,Yes,First,Female,31,Young Adult,Cherbourg,113.2750,Luxury,D,D36,35273,1,0,Small Family,Yes,6,"Lexington, MA"
+"Newell, Miss. Marjorie",Miss,Yes,First,Female,23,Young Adult,Cherbourg,113.2750,Luxury,D,D36,35273,1,0,Small Family,Yes,6,"Lexington, MA"
+"Newell, Mr. Arthur Webster",Mr,No,First,Male,58,Senior,Cherbourg,113.2750,Luxury,D,D48,35273,0,2,Small Family,No,,"Lexington, MA"
+"Newsom, Miss. Helen Monypeny",Miss,Yes,First,Female,19,Teen,Southampton,26.2833,Standard,D,D47,11752,0,2,Small Family,Yes,5,"New York, NY"
+"Nicholson, Mr. Arthur Ernest",Mr,No,First,Male,64,Senior,Southampton,26.0000,Standard,Unknown,,693,0,0,Solo,No,,"Isle of Wight, England"
+"Oliva y Ocana, Dona. Fermina",Titled,Yes,First,Female,39,Middle Aged,Cherbourg,108.9000,Luxury,C,C105,PC 17758,0,0,Solo,Yes,8,
+"Omont, Mr. Alfred Fernand",Mr,Yes,First,Male,,Unknown,Cherbourg,25.7417,Standard,Unknown,,F.C. 12998,0,0,Solo,Yes,7,"Paris, France"
+"Ostby, Miss. Helene Ragnhild",Miss,Yes,First,Female,22,Young Adult,Cherbourg,61.9792,Premium,B,B36,113509,0,1,Small Family,Yes,5,"Providence, RI"
+"Ostby, Mr. Engelhart Cornelius",Mr,No,First,Male,65,Senior,Cherbourg,61.9792,Premium,B,B30,113509,0,1,Small Family,No,,"Providence, RI"
+"Ovies y Rodriguez, Mr. Servando",Mr,No,First,Male,28.5,Young Adult,Cherbourg,27.7208,Standard,D,D43,PC 17562,0,0,Solo,No,,"?Havana, Cuba"
+"Parr, Mr. William Henry Marsh",Mr,No,First,Male,,Unknown,Southampton,0.0000,Budget,Unknown,,112052,0,0,Solo,No,,Belfast
+"Partner, Mr. Austen",Mr,No,First,Male,45.5,Middle Aged,Southampton,28.5000,Standard,C,C124,113043,0,0,Solo,No,,"Surbiton Hill, Surrey"
+"Payne, Mr. Vivian Ponsonby",Mr,No,First,Male,23,Young Adult,Southampton,93.5000,Premium,B,B24,12749,0,0,Solo,No,,"Montreal, PQ"
+"Pears, Mr. Thomas Clinton",Mr,No,First,Male,29,Young Adult,Southampton,66.6000,Premium,C,C2,113776,1,0,Small Family,No,,"Isleworth, England"
+"Pears, Mrs. Thomas (Edith Wearne)",Mrs,Yes,First,Female,22,Young Adult,Southampton,66.6000,Premium,C,C2,113776,1,0,Small Family,Yes,8,"Isleworth, England"
+"Penasco y Castellana, Mr. Victor de Satode",Mr,No,First,Male,18,Teen,Cherbourg,108.9000,Luxury,C,C65,PC 17758,1,0,Small Family,No,,"Madrid, Spain"
+"Penasco y Castellana, Mrs. Victor de Satode (Maria Josefa Perez de Soto y Vallejo)",Mrs,Yes,First,Female,17,Teen,Cherbourg,108.9000,Luxury,C,C65,PC 17758,1,0,Small Family,Yes,8,"Madrid, Spain"
+"Perreault, Miss. Anne",Miss,Yes,First,Female,30,Young Adult,Southampton,93.5000,Premium,B,B73,12749,0,0,Solo,Yes,3,
+"Peuchen, Major. Arthur Godfrey",Officer,Yes,First,Male,52,Middle Aged,Southampton,30.5000,Premium,C,C104,113786,0,0,Solo,Yes,6,"Toronto, ON"
+"Porter, Mr. Walter Chamberlain",Mr,No,First,Male,47,Middle Aged,Southampton,52.0000,Premium,C,C110,110465,0,0,Solo,No,,"Worcester, MA"
+"Potter, Mrs. Thomas Jr (Lily Alexenia Wilson)",Mrs,Yes,First,Female,56,Senior,Cherbourg,83.1583,Premium,C,C50,11767,0,1,Small Family,Yes,7,"Mt Airy, Philadelphia, PA"
+"Reuchlin, Jonkheer. John George",Titled,No,First,Male,38,Middle Aged,Southampton,0.0000,Budget,Unknown,,19972,0,0,Solo,No,,"Rotterdam, Netherlands"
+"Rheims, Mr. George Alexander Lucien",Mr,Yes,First,Male,,Unknown,Southampton,39.6000,Premium,Unknown,,PC 17607,0,0,Solo,Yes,A,"Paris /  New York, NY"
+"Ringhini, Mr. Sante",Mr,No,First,Male,22,Young Adult,Cherbourg,135.6333,Luxury,Unknown,,PC 17760,0,0,Solo,No,,
+"Robbins, Mr. Victor",Mr,No,First,Male,,Unknown,Cherbourg,227.5250,Luxury,Unknown,,PC 17757,0,0,Solo,No,,
+"Robert, Mrs. Edward Scott (Elisabeth Walton McMillan)",Mrs,Yes,First,Female,43,Middle Aged,Southampton,211.3375,Luxury,B,B3,24160,0,1,Small Family,Yes,2,"St Louis, MO"
+"Roebling, Mr. Washington Augustus II",Mr,No,First,Male,31,Young Adult,Southampton,50.4958,Premium,A,A24,PC 17590,0,0,Solo,No,,"Trenton, NJ"
+"Romaine, Mr. Charles Hallace (""Mr C Rolmane"")",Mr,Yes,First,Male,45,Middle Aged,Southampton,26.5500,Standard,Unknown,,111428,0,0,Solo,Yes,9,"New York, NY"
+"Rood, Mr. Hugh Roscoe",Mr,No,First,Male,,Unknown,Southampton,50.0000,Premium,A,A32,113767,0,0,Solo,No,,"Seattle, WA"
+"Rosenbaum, Miss. Edith Louise",Miss,Yes,First,Female,33,Young Adult,Cherbourg,27.7208,Standard,A,A11,PC 17613,0,0,Solo,Yes,11,"Paris, France"
+"Rosenshine, Mr. George (""Mr George Thorne"")",Mr,No,First,Male,46,Middle Aged,Cherbourg,79.2000,Premium,Unknown,,PC 17585,0,0,Solo,No,,"New York, NY"
+"Ross, Mr. John Hugo",Mr,No,First,Male,36,Middle Aged,Cherbourg,40.1250,Premium,A,A10,13049,0,0,Solo,No,,"Winnipeg, MB"
+"Rothes, the Countess. of (Lucy Noel Martha Dyer-Edwards)",Mr,Yes,First,Female,33,Young Adult,Southampton,86.5000,Premium,B,B77,110152,0,0,Solo,Yes,8,"London  Vancouver, BC"
+"Rothschild, Mr. Martin",Mr,No,First,Male,55,Middle Aged,Cherbourg,59.4000,Premium,Unknown,,PC 17603,1,0,Small Family,No,,"New York, NY"
+"Rothschild, Mrs. Martin (Elizabeth L. Barrett)",Mrs,Yes,First,Female,54,Middle Aged,Cherbourg,59.4000,Premium,Unknown,,PC 17603,1,0,Small Family,Yes,6,"New York, NY"
+"Rowe, Mr. Alfred G",Mr,No,First,Male,33,Young Adult,Southampton,26.5500,Standard,Unknown,,113790,0,0,Solo,No,,London
+"Ryerson, Master. John Borie",Master,Yes,First,Male,13,Teen,Cherbourg,262.3750,Luxury,B,B57 B59 B63 B66,PC 17608,2,2,Large Family,Yes,4,"Haverford, PA / Cooperstown, NY"
+"Ryerson, Miss. Emily Borie",Miss,Yes,First,Female,18,Teen,Cherbourg,262.3750,Luxury,B,B57 B59 B63 B66,PC 17608,2,2,Large Family,Yes,4,"Haverford, PA / Cooperstown, NY"
+"Ryerson, Miss. Susan Parker ""Suzette""",Miss,Yes,First,Female,21,Young Adult,Cherbourg,262.3750,Luxury,B,B57 B59 B63 B66,PC 17608,2,2,Large Family,Yes,4,"Haverford, PA / Cooperstown, NY"
+"Ryerson, Mr. Arthur Larned",Mr,No,First,Male,61,Senior,Cherbourg,262.3750,Luxury,B,B57 B59 B63 B66,PC 17608,1,3,Large Family,No,,"Haverford, PA / Cooperstown, NY"
+"Ryerson, Mrs. Arthur Larned (Emily Maria Borie)",Mrs,Yes,First,Female,48,Middle Aged,Cherbourg,262.3750,Luxury,B,B57 B59 B63 B66,PC 17608,1,3,Large Family,Yes,4,"Haverford, PA / Cooperstown, NY"
+"Saalfeld, Mr. Adolphe",Mr,Yes,First,Male,,Unknown,Southampton,30.5000,Premium,C,C106,19988,0,0,Solo,Yes,3,"Manchester, England"
+"Sagesser, Mlle. Emma",Miss,Yes,First,Female,24,Young Adult,Cherbourg,69.3000,Premium,B,B35,PC 17477,0,0,Solo,Yes,9,
+"Salomon, Mr. Abraham L",Mr,Yes,First,Male,,Unknown,Southampton,26.0000,Standard,Unknown,,111163,0,0,Solo,Yes,1,"New York, NY"
+"Schabert, Mrs. Paul (Emma Mock)",Mrs,Yes,First,Female,35,Young Adult,Cherbourg,57.7500,Premium,C,C28,13236,1,0,Small Family,Yes,11,"New York, NY"
+"Serepeca, Miss. Augusta",Miss,Yes,First,Female,30,Young Adult,Cherbourg,31.0000,Premium,Unknown,,113798,0,0,Solo,Yes,4,
+"Seward, Mr. Frederic Kimber",Mr,Yes,First,Male,34,Young Adult,Southampton,26.5500,Standard,Unknown,,113794,0,0,Solo,Yes,7,"New York, NY"
+"Shutes, Miss. Elizabeth W",Miss,Yes,First,Female,40,Middle Aged,Southampton,153.4625,Luxury,C,C125,PC 17582,0,0,Solo,Yes,3,"New York, NY / Greenwich CT"
+"Silverthorne, Mr. Spencer Victor",Mr,Yes,First,Male,35,Young Adult,Southampton,26.2875,Standard,E,E24,PC 17475,0,0,Solo,Yes,5,"St Louis, MO"
+"Silvey, Mr. William Baird",Mr,No,First,Male,50,Middle Aged,Southampton,55.9000,Premium,E,E44,13507,1,0,Small Family,No,,"Duluth, MN"
+"Silvey, Mrs. William Baird (Alice Munger)",Mrs,Yes,First,Female,39,Middle Aged,Southampton,55.9000,Premium,E,E44,13507,1,0,Small Family,Yes,11,"Duluth, MN"
+"Simonius-Blumer, Col. Oberst Alfons",Officer,Yes,First,Male,56,Senior,Cherbourg,35.5000,Premium,A,A26,13213,0,0,Solo,Yes,3,"Basel, Switzerland"
+"Sloper, Mr. William Thompson",Mr,Yes,First,Male,28,Young Adult,Southampton,35.5000,Premium,A,A6,113788,0,0,Solo,Yes,7,"New Britain, CT"
+"Smart, Mr. John Montgomery",Mr,No,First,Male,56,Senior,Southampton,26.5500,Standard,Unknown,,113792,0,0,Solo,No,,"New York, NY"
+"Smith, Mr. James Clinch",Mr,No,First,Male,56,Senior,Cherbourg,30.6958,Premium,A,A7,17764,0,0,Solo,No,,"St James, Long Island, NY"
+"Smith, Mr. Lucien Philip",Mr,No,First,Male,24,Young Adult,Southampton,60.0000,Premium,C,C31,13695,1,0,Small Family,No,,"Huntington, WV"
+"Smith, Mr. Richard William",Mr,No,First,Male,,Unknown,Southampton,26.0000,Standard,A,A19,113056,0,0,Solo,No,,"Streatham, Surrey"
+"Smith, Mrs. Lucien Philip (Mary Eloise Hughes)",Mrs,Yes,First,Female,18,Teen,Southampton,60.0000,Premium,C,C31,13695,1,0,Small Family,Yes,6,"Huntington, WV"
+"Snyder, Mr. John Pillsbury",Mr,Yes,First,Male,24,Young Adult,Southampton,82.2667,Premium,B,B45,21228,1,0,Small Family,Yes,7,"Minneapolis, MN"
+"Snyder, Mrs. John Pillsbury (Nelle Stevenson)",Mrs,Yes,First,Female,23,Young Adult,Southampton,82.2667,Premium,B,B45,21228,1,0,Small Family,Yes,7,"Minneapolis, MN"
+"Spedden, Master. Robert Douglas",Master,Yes,First,Male,6,Child,Cherbourg,134.5000,Luxury,E,E34,16966,0,2,Small Family,Yes,3,"Tuxedo Park, NY"
+"Spedden, Mr. Frederic Oakley",Mr,Yes,First,Male,45,Middle Aged,Cherbourg,134.5000,Luxury,E,E34,16966,1,1,Small Family,Yes,3,"Tuxedo Park, NY"
+"Spedden, Mrs. Frederic Oakley (Margaretta Corning Stone)",Mrs,Yes,First,Female,40,Middle Aged,Cherbourg,134.5000,Luxury,E,E34,16966,1,1,Small Family,Yes,3,"Tuxedo Park, NY"
+"Spencer, Mr. William Augustus",Mr,No,First,Male,57,Senior,Cherbourg,146.5208,Luxury,B,B78,PC 17569,1,0,Small Family,No,,"Paris, France"
+"Spencer, Mrs. William Augustus (Marie Eugenie)",Mrs,Yes,First,Female,,Unknown,Cherbourg,146.5208,Luxury,B,B78,PC 17569,1,0,Small Family,Yes,6,"Paris, France"
+"Stahelin-Maeglin, Dr. Max",Dr,Yes,First,Male,32,Young Adult,Cherbourg,30.5000,Premium,B,B50,13214,0,0,Solo,Yes,3,"Basel, Switzerland"
+"Stead, Mr. William Thomas",Mr,No,First,Male,62,Senior,Southampton,26.5500,Standard,C,C87,113514,0,0,Solo,No,,"Wimbledon Park, London / Hayling Island, Hants"
+"Stengel, Mr. Charles Emil Henry",Mr,Yes,First,Male,54,Middle Aged,Cherbourg,55.4417,Premium,C,C116,11778,1,0,Small Family,Yes,1,"Newark, NJ"
+"Stengel, Mrs. Charles Emil Henry (Annie May Morris)",Mrs,Yes,First,Female,43,Middle Aged,Cherbourg,55.4417,Premium,C,C116,11778,1,0,Small Family,Yes,5,"Newark, NJ"
+"Stephenson, Mrs. Walter Bertram (Martha Eustis)",Mrs,Yes,First,Female,52,Middle Aged,Cherbourg,78.2667,Premium,D,D20,36947,1,0,Small Family,Yes,4,"Haverford, PA"
+"Stewart, Mr. Albert A",Mr,No,First,Male,,Unknown,Cherbourg,27.7208,Standard,Unknown,,PC 17605,0,0,Solo,No,,"Gallipolis, Ohio / ? Paris / New York"
+"Stone, Mrs. George Nelson (Martha Evelyn)",Mrs,Yes,First,Female,62,Senior,,80.0000,Premium,B,B28,113572,0,0,Solo,Yes,6,"Cincinatti, OH"
+"Straus, Mr. Isidor",Mr,No,First,Male,67,Senior,Southampton,221.7792,Luxury,C,C55 C57,PC 17483,1,0,Small Family,No,,"New York, NY"
+"Straus, Mrs. Isidor (Rosalie Ida Blun)",Mrs,No,First,Female,63,Senior,Southampton,221.7792,Luxury,C,C55 C57,PC 17483,1,0,Small Family,No,,"New York, NY"
+"Sutton, Mr. Frederick",Mr,No,First,Male,61,Senior,Southampton,32.3208,Premium,D,D50,36963,0,0,Solo,No,,"Haddenfield, NJ"
+"Swift, Mrs. Frederick Joel (Margaret Welles Barron)",Mrs,Yes,First,Female,48,Middle Aged,Southampton,25.9292,Standard,D,D17,17466,0,0,Solo,Yes,8,"Brooklyn, NY"
+"Taussig, Miss. Ruth",Miss,Yes,First,Female,18,Teen,Southampton,79.6500,Premium,E,E68,110413,0,2,Small Family,Yes,8,"New York, NY"
+"Taussig, Mr. Emil",Mr,No,First,Male,52,Middle Aged,Southampton,79.6500,Premium,E,E67,110413,1,1,Small Family,No,,"New York, NY"
+"Taussig, Mrs. Emil (Tillie Mandelbaum)",Mrs,Yes,First,Female,39,Middle Aged,Southampton,79.6500,Premium,E,E67,110413,1,1,Small Family,Yes,8,"New York, NY"
+"Taylor, Mr. Elmer Zebley",Mr,Yes,First,Male,48,Middle Aged,Southampton,52.0000,Premium,C,C126,19996,1,0,Small Family,Yes,5 7,"London /  East Orange, NJ"
+"Taylor, Mrs. Elmer Zebley (Juliet Cummins Wright)",Mrs,Yes,First,Female,,Unknown,Southampton,52.0000,Premium,C,C126,19996,1,0,Small Family,Yes,5 7,"London /  East Orange, NJ"
+"Thayer, Mr. John Borland",Mr,No,First,Male,49,Middle Aged,Cherbourg,110.8833,Luxury,C,C68,17421,1,1,Small Family,No,,"Haverford, PA"
+"Thayer, Mr. John Borland Jr",Mr,Yes,First,Male,17,Teen,Cherbourg,110.8833,Luxury,C,C70,17421,0,2,Small Family,Yes,B,"Haverford, PA"
+"Thayer, Mrs. John Borland (Marian Longstreth Morris)",Mrs,Yes,First,Female,39,Middle Aged,Cherbourg,110.8833,Luxury,C,C68,17421,1,1,Small Family,Yes,4,"Haverford, PA"
+"Thorne, Mrs. Gertrude Maybelle",Mrs,Yes,First,Female,,Unknown,Cherbourg,79.2000,Premium,Unknown,,PC 17585,0,0,Solo,Yes,D,"New York, NY"
+"Tucker, Mr. Gilbert Milligan Jr",Mr,Yes,First,Male,31,Young Adult,Cherbourg,28.5375,Standard,C,C53,2543,0,0,Solo,Yes,7,"Albany, NY"
+"Uruchurtu, Don. Manuel E",Titled,No,First,Male,40,Middle Aged,Cherbourg,27.7208,Standard,Unknown,,PC 17601,0,0,Solo,No,,"Mexico City, Mexico"
+"Van der hoef, Mr. Wyckoff",Mr,No,First,Male,61,Senior,Southampton,33.5000,Premium,B,B19,111240,0,0,Solo,No,,"Brooklyn, NY"
+"Walker, Mr. William Anderson",Mr,No,First,Male,47,Middle Aged,Southampton,34.0208,Premium,D,D46,36967,0,0,Solo,No,,"East Orange, NJ"
+"Ward, Miss. Anna",Miss,Yes,First,Female,35,Young Adult,Cherbourg,512.3292,Luxury,Unknown,,PC 17755,0,0,Solo,Yes,3,
+"Warren, Mr. Frank Manley",Mr,No,First,Male,64,Senior,Cherbourg,75.2500,Premium,D,D37,110813,1,0,Small Family,No,,"Portland, OR"
+"Warren, Mrs. Frank Manley (Anna Sophia Atkinson)",Mrs,Yes,First,Female,60,Senior,Cherbourg,75.2500,Premium,D,D37,110813,1,0,Small Family,Yes,5,"Portland, OR"
+"Weir, Col. John",Officer,No,First,Male,60,Senior,Southampton,26.5500,Standard,Unknown,,113800,0,0,Solo,No,,"England Salt Lake City, Utah"
+"White, Mr. Percival Wayland",Mr,No,First,Male,54,Middle Aged,Southampton,77.2875,Premium,D,D26,35281,0,1,Small Family,No,,"Brunswick, ME"
+"White, Mr. Richard Frasar",Mr,No,First,Male,21,Young Adult,Southampton,77.2875,Premium,D,D26,35281,0,1,Small Family,No,,"Brunswick, ME"
+"White, Mrs. John Stuart (Ella Holmes)",Mrs,Yes,First,Female,55,Middle Aged,Cherbourg,135.6333,Luxury,C,C32,PC 17760,0,0,Solo,Yes,8,"New York, NY / Briarcliff Manor NY"
+"Wick, Miss. Mary Natalie",Miss,Yes,First,Female,31,Young Adult,Southampton,164.8667,Luxury,C,C7,36928,0,2,Small Family,Yes,8,"Youngstown, OH"
+"Wick, Mr. George Dennick",Mr,No,First,Male,57,Senior,Southampton,164.8667,Luxury,Unknown,,36928,1,1,Small Family,No,,"Youngstown, OH"
+"Wick, Mrs. George Dennick (Mary Hitchcock)",Mrs,Yes,First,Female,45,Middle Aged,Southampton,164.8667,Luxury,Unknown,,36928,1,1,Small Family,Yes,8,"Youngstown, OH"
+"Widener, Mr. George Dunton",Mr,No,First,Male,50,Middle Aged,Cherbourg,211.5000,Luxury,C,C80,113503,1,1,Small Family,No,,"Elkins Park, PA"
+"Widener, Mr. Harry Elkins",Mr,No,First,Male,27,Young Adult,Cherbourg,211.5000,Luxury,C,C82,113503,0,2,Small Family,No,,"Elkins Park, PA"
+"Widener, Mrs. George Dunton (Eleanor Elkins)",Mrs,Yes,First,Female,50,Middle Aged,Cherbourg,211.5000,Luxury,C,C80,113503,1,1,Small Family,Yes,4,"Elkins Park, PA"
+"Willard, Miss. Constance",Miss,Yes,First,Female,21,Young Adult,Southampton,26.5500,Standard,Unknown,,113795,0,0,Solo,Yes,8 10,"Duluth, MN"
+"Williams, Mr. Charles Duane",Mr,No,First,Male,51,Middle Aged,Cherbourg,61.3792,Premium,Unknown,,PC 17597,0,1,Small Family,No,,"Geneva, Switzerland / Radnor, PA"
+"Williams, Mr. Richard Norris II",Mr,Yes,First,Male,21,Young Adult,Cherbourg,61.3792,Premium,Unknown,,PC 17597,0,1,Small Family,Yes,A,"Geneva, Switzerland / Radnor, PA"
+"Williams-Lambert, Mr. Fletcher Fellows",Mr,No,First,Male,,Unknown,Southampton,35.0000,Premium,C,C128,113510,0,0,Solo,No,,"London, England"
+"Wilson, Miss. Helen Alice",Miss,Yes,First,Female,31,Young Adult,Cherbourg,134.5000,Luxury,E,E39 E41,16966,0,0,Solo,Yes,3,
+"Woolner, Mr. Hugh",Mr,Yes,First,Male,,Unknown,Southampton,35.5000,Premium,C,C52,19947,0,0,Solo,Yes,D,"London, England"
+"Wright, Mr. George",Mr,No,First,Male,62,Senior,Southampton,26.5500,Standard,Unknown,,113807,0,0,Solo,No,,"Halifax, NS"
+"Young, Miss. Marie Grice",Miss,Yes,First,Female,36,Middle Aged,Cherbourg,135.6333,Luxury,C,C32,PC 17760,0,0,Solo,Yes,8,"New York, NY / Washington, DC"
+"Abelson, Mr. Samuel",Mr,No,Second,Male,30,Young Adult,Cherbourg,24.0000,Standard,Unknown,,P/PP 3381,1,0,Small Family,No,,"Russia New York, NY"
+"Abelson, Mrs. Samuel (Hannah Wizosky)",Mrs,Yes,Second,Female,28,Young Adult,Cherbourg,24.0000,Standard,Unknown,,P/PP 3381,1,0,Small Family,Yes,10,"Russia New York, NY"
+"Aldworth, Mr. Charles Augustus",Mr,No,Second,Male,30,Young Adult,Southampton,13.0000,Standard,Unknown,,248744,0,0,Solo,No,,"Bryn Mawr, PA, USA"
+"Andrew, Mr. Edgardo Samuel",Mr,No,Second,Male,18,Teen,Southampton,11.5000,Standard,Unknown,,231945,0,0,Solo,No,,"Buenos Aires, Argentina / New Jersey, NJ"
+"Andrew, Mr. Frank Thomas",Mr,No,Second,Male,25,Young Adult,Southampton,10.5000,Standard,Unknown,,C.A. 34050,0,0,Solo,No,,"Cornwall, England Houghton, MI"
+"Angle, Mr. William A",Mr,No,Second,Male,34,Young Adult,Southampton,26.0000,Standard,Unknown,,226875,1,0,Small Family,No,,"Warwick, England"
+"Angle, Mrs. William A (Florence ""Mary"" Agnes Hughes)",Mrs,Yes,Second,Female,36,Middle Aged,Southampton,26.0000,Standard,Unknown,,226875,1,0,Small Family,Yes,11,"Warwick, England"
+"Ashby, Mr. John",Mr,No,Second,Male,57,Senior,Southampton,13.0000,Standard,Unknown,,244346,0,0,Solo,No,,"West Hoboken, NJ"
+"Bailey, Mr. Percy Andrew",Mr,No,Second,Male,18,Teen,Southampton,11.5000,Standard,Unknown,,29108,0,0,Solo,No,,"Penzance, Cornwall / Akron, OH"
+"Baimbrigge, Mr. Charles Robert",Mr,No,Second,Male,23,Young Adult,Southampton,10.5000,Standard,Unknown,,C.A. 31030,0,0,Solo,No,,Guernsey
+"Ball, Mrs. (Ada E Hall)",Mrs,Yes,Second,Female,36,Middle Aged,Southampton,13.0000,Standard,D,D,28551,0,0,Solo,Yes,10,"Bristol, Avon / Jacksonville, FL"
+"Banfield, Mr. Frederick James",Mr,No,Second,Male,28,Young Adult,Southampton,10.5000,Standard,Unknown,,C.A./SOTON 34068,0,0,Solo,No,,"Plymouth, Dorset / Houghton, MI"
+"Bateman, Rev. Robert James",Clergy,No,Second,Male,51,Middle Aged,Southampton,12.5250,Standard,Unknown,,S.O.P. 1166,0,0,Solo,No,,"Jacksonville, FL"
+"Beane, Mr. Edward",Mr,Yes,Second,Male,32,Young Adult,Southampton,26.0000,Standard,Unknown,,2908,1,0,Small Family,Yes,13,"Norwich / New York, NY"
+"Beane, Mrs. Edward (Ethel Clarke)",Mrs,Yes,Second,Female,19,Teen,Southampton,26.0000,Standard,Unknown,,2908,1,0,Small Family,Yes,13,"Norwich / New York, NY"
+"Beauchamp, Mr. Henry James",Mr,No,Second,Male,28,Young Adult,Southampton,26.0000,Standard,Unknown,,244358,0,0,Solo,No,,England
+"Becker, Master. Richard F",Master,Yes,Second,Male,1,Child,Southampton,39.0000,Premium,F,F4,230136,2,1,Small Family,Yes,11,"Guntur, India / Benton Harbour, MI"
+"Becker, Miss. Marion Louise",Miss,Yes,Second,Female,4,Child,Southampton,39.0000,Premium,F,F4,230136,2,1,Small Family,Yes,11,"Guntur, India / Benton Harbour, MI"
+"Becker, Miss. Ruth Elizabeth",Miss,Yes,Second,Female,12,Child,Southampton,39.0000,Premium,F,F4,230136,2,1,Small Family,Yes,13,"Guntur, India / Benton Harbour, MI"
+"Becker, Mrs. Allen Oliver (Nellie E Baumgardner)",Mrs,Yes,Second,Female,36,Middle Aged,Southampton,39.0000,Premium,F,F4,230136,0,3,Small Family,Yes,11,"Guntur, India / Benton Harbour, MI"
+"Beesley, Mr. Lawrence",Mr,Yes,Second,Male,34,Young Adult,Southampton,13.0000,Standard,D,D56,248698,0,0,Solo,Yes,13,London
+"Bentham, Miss. Lilian W",Miss,Yes,Second,Female,19,Teen,Southampton,13.0000,Standard,Unknown,,28404,0,0,Solo,Yes,12,"Rochester, NY"
+"Berriman, Mr. William John",Mr,No,Second,Male,23,Young Adult,Southampton,13.0000,Standard,Unknown,,28425,0,0,Solo,No,,"St Ives, Cornwall / Calumet, MI"
+"Botsford, Mr. William Hull",Mr,No,Second,Male,26,Young Adult,Southampton,13.0000,Standard,Unknown,,237670,0,0,Solo,No,,"Elmira, NY / Orange, NJ"
+"Bowenur, Mr. Solomon",Mr,No,Second,Male,42,Middle Aged,Southampton,13.0000,Standard,Unknown,,211535,0,0,Solo,No,,London
+"Bracken, Mr. James H",Mr,No,Second,Male,27,Young Adult,Southampton,13.0000,Standard,Unknown,,220367,0,0,Solo,No,,"Lake Arthur, Chavez County, NM"
+"Brown, Miss. Amelia ""Mildred""",Miss,Yes,Second,Female,24,Young Adult,Southampton,13.0000,Standard,F,F33,248733,0,0,Solo,Yes,11,"London / Montreal, PQ"
+"Brown, Miss. Edith Eileen",Miss,Yes,Second,Female,15,Teen,Southampton,39.0000,Premium,Unknown,,29750,0,2,Small Family,Yes,14,"Cape Town, South Africa / Seattle, WA"
+"Brown, Mr. Thomas William Solomon",Mr,No,Second,Male,60,Senior,Southampton,39.0000,Premium,Unknown,,29750,1,1,Small Family,No,,"Cape Town, South Africa / Seattle, WA"
+"Brown, Mrs. Thomas William Solomon (Elizabeth Catherine Ford)",Mrs,Yes,Second,Female,40,Middle Aged,Southampton,39.0000,Premium,Unknown,,29750,1,1,Small Family,Yes,14,"Cape Town, South Africa / Seattle, WA"
+"Bryhl, Miss. Dagmar Jenny Ingeborg ",Miss,Yes,Second,Female,20,Young Adult,Southampton,26.0000,Standard,Unknown,,236853,1,0,Small Family,Yes,12,"Skara, Sweden / Rockford, IL"
+"Bryhl, Mr. Kurt Arnold Gottfrid",Mr,No,Second,Male,25,Young Adult,Southampton,26.0000,Standard,Unknown,,236853,1,0,Small Family,No,,"Skara, Sweden / Rockford, IL"
+"Buss, Miss. Kate",Miss,Yes,Second,Female,36,Middle Aged,Southampton,13.0000,Standard,Unknown,,27849,0,0,Solo,Yes,9,"Sittingbourne, England / San Diego, CA"
+"Butler, Mr. Reginald Fenton",Mr,No,Second,Male,25,Young Adult,Southampton,13.0000,Standard,Unknown,,234686,0,0,Solo,No,,"Southsea, Hants"
+"Byles, Rev. Thomas Roussel Davids",Clergy,No,Second,Male,42,Middle Aged,Southampton,13.0000,Standard,Unknown,,244310,0,0,Solo,No,,London
+"Bystrom, Mrs. (Karolina)",Mrs,Yes,Second,Female,42,Middle Aged,Southampton,13.0000,Standard,Unknown,,236852,0,0,Solo,No,,"New York, NY"
+"Caldwell, Master. Alden Gates",Master,Yes,Second,Male,0.83,Child,Southampton,29.0000,Standard,Unknown,,248738,0,2,Small Family,Yes,13,"Bangkok, Thailand / Roseville, IL"
+"Caldwell, Mr. Albert Francis",Mr,Yes,Second,Male,26,Young Adult,Southampton,29.0000,Standard,Unknown,,248738,1,1,Small Family,Yes,13,"Bangkok, Thailand / Roseville, IL"
+"Caldwell, Mrs. Albert Francis (Sylvia Mae Harbaugh)",Mrs,Yes,Second,Female,22,Young Adult,Southampton,29.0000,Standard,Unknown,,248738,1,1,Small Family,Yes,13,"Bangkok, Thailand / Roseville, IL"
+"Cameron, Miss. Clear Annie",Miss,Yes,Second,Female,35,Young Adult,Southampton,21.0000,Standard,Unknown,,F.C.C. 13528,0,0,Solo,Yes,14,"Mamaroneck, NY"
+"Campbell, Mr. William",Mr,No,Second,Male,,Unknown,Southampton,0.0000,Budget,Unknown,,239853,0,0,Solo,No,,Belfast
+"Carbines, Mr. William",Mr,No,Second,Male,19,Teen,Southampton,13.0000,Standard,Unknown,,28424,0,0,Solo,No,,"St Ives, Cornwall / Calumet, MI"
+"Carter, Mrs. Ernest Courtenay (Lilian Hughes)",Mrs,No,Second,Female,44,Middle Aged,Southampton,26.0000,Standard,Unknown,,244252,1,0,Small Family,No,,London
+"Carter, Rev. Ernest Courtenay",Clergy,No,Second,Male,54,Middle Aged,Southampton,26.0000,Standard,Unknown,,244252,1,0,Small Family,No,,London
+"Chapman, Mr. Charles Henry",Mr,No,Second,Male,52,Middle Aged,Southampton,13.5000,Standard,Unknown,,248731,0,0,Solo,No,,"Bronx, NY"
+"Chapman, Mr. John Henry",Mr,No,Second,Male,37,Middle Aged,Southampton,26.0000,Standard,Unknown,,SC/AH 29037,1,0,Small Family,No,,"Cornwall / Spokane, WA"
+"Chapman, Mrs. John Henry (Sara Elizabeth Lawry)",Mrs,No,Second,Female,29,Young Adult,Southampton,26.0000,Standard,Unknown,,SC/AH 29037,1,0,Small Family,No,,"Cornwall / Spokane, WA"
+"Christy, Miss. Julie Rachel",Miss,Yes,Second,Female,25,Young Adult,Southampton,30.0000,Premium,Unknown,,237789,1,1,Small Family,Yes,12,London
+"Christy, Mrs. (Alice Frances)",Mrs,Yes,Second,Female,45,Middle Aged,Southampton,30.0000,Premium,Unknown,,237789,0,2,Small Family,Yes,12,London
+"Clarke, Mr. Charles Valentine",Mr,No,Second,Male,29,Young Adult,Southampton,26.0000,Standard,Unknown,,2003,1,0,Small Family,No,,"England / San Francisco, CA"
+"Clarke, Mrs. Charles V (Ada Maria Winfield)",Mrs,Yes,Second,Female,28,Young Adult,Southampton,26.0000,Standard,Unknown,,2003,1,0,Small Family,Yes,14,"England / San Francisco, CA"
+"Coleridge, Mr. Reginald Charles",Mr,No,Second,Male,29,Young Adult,Southampton,10.5000,Standard,Unknown,,W./C. 14263,0,0,Solo,No,,"Hartford, Huntingdonshire"
+"Collander, Mr. Erik Gustaf",Mr,No,Second,Male,28,Young Adult,Southampton,13.0000,Standard,Unknown,,248740,0,0,Solo,No,,"Helsinki, Finland Ashtabula, Ohio"
+"Collett, Mr. Sidney C Stuart",Mr,Yes,Second,Male,24,Young Adult,Southampton,10.5000,Standard,Unknown,,28034,0,0,Solo,Yes,9,"London / Fort Byron, NY"
+"Collyer, Miss. Marjorie ""Lottie""",Miss,Yes,Second,Female,8,Child,Southampton,26.2500,Standard,Unknown,,C.A. 31921,0,2,Small Family,Yes,14,"Bishopstoke, Hants / Fayette Valley, ID"
+"Collyer, Mr. Harvey",Mr,No,Second,Male,31,Young Adult,Southampton,26.2500,Standard,Unknown,,C.A. 31921,1,1,Small Family,No,,"Bishopstoke, Hants / Fayette Valley, ID"
+"Collyer, Mrs. Harvey (Charlotte Annie Tate)",Mrs,Yes,Second,Female,31,Young Adult,Southampton,26.2500,Standard,Unknown,,C.A. 31921,1,1,Small Family,Yes,14,"Bishopstoke, Hants / Fayette Valley, ID"
+"Cook, Mrs. (Selena Rogers)",Mrs,Yes,Second,Female,22,Young Adult,Southampton,10.5000,Standard,F,F33,W./C. 14266,0,0,Solo,Yes,14,Pennsylvania
+"Corbett, Mrs. Walter H (Irene Colvin)",Mrs,No,Second,Female,30,Young Adult,Southampton,13.0000,Standard,Unknown,,237249,0,0,Solo,No,,"Provo, UT"
+"Corey, Mrs. Percy C (Mary Phyllis Elizabeth Miller)",Mrs,No,Second,Female,,Unknown,Southampton,21.0000,Standard,Unknown,,F.C.C. 13534,0,0,Solo,No,,"Upper Burma, India Pittsburgh, PA"
+"Cotterill, Mr. Henry ""Harry""",Mr,No,Second,Male,21,Young Adult,Southampton,11.5000,Standard,Unknown,,29107,0,0,Solo,No,,"Penzance, Cornwall / Akron, OH"
+"Cunningham, Mr. Alfred Fleming",Mr,No,Second,Male,,Unknown,Southampton,0.0000,Budget,Unknown,,239853,0,0,Solo,No,,Belfast
+"Davies, Master. John Morgan Jr",Master,Yes,Second,Male,8,Child,Southampton,36.7500,Premium,Unknown,,C.A. 33112,1,1,Small Family,Yes,14,"St Ives, Cornwall / Hancock, MI"
+"Davies, Mr. Charles Henry",Mr,No,Second,Male,18,Teen,Southampton,73.5000,Premium,Unknown,,S.O.C. 14879,0,0,Solo,No,,"Lyndhurst, England"
+"Davies, Mrs. John Morgan (Elizabeth Agnes Mary White) ",Mrs,Yes,Second,Female,48,Middle Aged,Southampton,36.7500,Premium,Unknown,,C.A. 33112,0,2,Small Family,Yes,14,"St Ives, Cornwall / Hancock, MI"
+"Davis, Miss. Mary",Miss,Yes,Second,Female,28,Young Adult,Southampton,13.0000,Standard,Unknown,,237668,0,0,Solo,Yes,13,"London / Staten Island, NY"
+"de Brito, Mr. Jose Joaquim",Mr,No,Second,Male,32,Young Adult,Southampton,13.0000,Standard,Unknown,,244360,0,0,Solo,No,,"Portugal / Sau Paulo, Brazil"
+"Deacon, Mr. Percy William",Mr,No,Second,Male,17,Teen,Southampton,73.5000,Premium,Unknown,,S.O.C. 14879,0,0,Solo,No,,
+"del Carlo, Mr. Sebastiano",Mr,No,Second,Male,29,Young Adult,Cherbourg,27.7208,Standard,Unknown,,SC/PARIS 2167,1,0,Small Family,No,,"Lucca, Italy / California"
+"del Carlo, Mrs. Sebastiano (Argenia Genovesi)",Mrs,Yes,Second,Female,24,Young Adult,Cherbourg,27.7208,Standard,Unknown,,SC/PARIS 2167,1,0,Small Family,Yes,12,"Lucca, Italy / California"
+"Denbury, Mr. Herbert",Mr,No,Second,Male,25,Young Adult,Southampton,31.5000,Premium,Unknown,,C.A. 31029,0,0,Solo,No,,"Guernsey / Elizabeth, NJ"
+"Dibden, Mr. William",Mr,No,Second,Male,18,Teen,Southampton,73.5000,Premium,Unknown,,S.O.C. 14879,0,0,Solo,No,,"New Forest, England"
+"Doling, Miss. Elsie",Miss,Yes,Second,Female,18,Teen,Southampton,23.0000,Standard,Unknown,,231919,0,1,Small Family,No,,Southampton
+"Doling, Mrs. John T (Ada Julia Bone)",Mrs,Yes,Second,Female,34,Young Adult,Southampton,23.0000,Standard,Unknown,,231919,0,1,Small Family,No,,Southampton
+"Downton, Mr. William James",Mr,No,Second,Male,54,Middle Aged,Southampton,26.0000,Standard,Unknown,,28403,0,0,Solo,No,,"Holley, NY"
+"Drew, Master. Marshall Brines",Master,Yes,Second,Male,8,Child,Southampton,32.5000,Premium,Unknown,,28220,0,2,Small Family,Yes,10,"Greenport, NY"
+"Drew, Mr. James Vivian",Mr,No,Second,Male,42,Middle Aged,Southampton,32.5000,Premium,Unknown,,28220,1,1,Small Family,No,,"Greenport, NY"
+"Drew, Mrs. James Vivian (Lulu Thorne Christian)",Mrs,Yes,Second,Female,34,Young Adult,Southampton,32.5000,Premium,Unknown,,28220,1,1,Small Family,Yes,10,"Greenport, NY"
+"Duran y More, Miss. Asuncion",Miss,Yes,Second,Female,27,Young Adult,Cherbourg,13.8583,Standard,Unknown,,SC/PARIS 2149,1,0,Small Family,Yes,12,"Barcelona, Spain / Havana, Cuba"
+"Duran y More, Miss. Florentina",Miss,Yes,Second,Female,30,Young Adult,Cherbourg,13.8583,Standard,Unknown,,SC/PARIS 2148,1,0,Small Family,Yes,12,"Barcelona, Spain / Havana, Cuba"
+"Eitemiller, Mr. George Floyd",Mr,No,Second,Male,23,Young Adult,Southampton,13.0000,Standard,Unknown,,29751,0,0,Solo,No,,"England / Detroit, MI"
+"Enander, Mr. Ingvar",Mr,No,Second,Male,21,Young Adult,Southampton,13.0000,Standard,Unknown,,236854,0,0,Solo,No,,"Goteborg, Sweden / Rockford, IL"
+"Fahlstrom, Mr. Arne Jonas",Mr,No,Second,Male,18,Teen,Southampton,13.0000,Standard,Unknown,,236171,0,0,Solo,No,,"Oslo, Norway Bayonne, NJ"
+"Faunthorpe, Mr. Harry",Mr,No,Second,Male,40,Middle Aged,Southampton,26.0000,Standard,Unknown,,2926,1,0,Small Family,No,,"England / Philadelphia, PA"
+"Faunthorpe, Mrs. Lizzie (Elizabeth Anne Wilkinson)",Mrs,Yes,Second,Female,29,Young Adult,Southampton,26.0000,Standard,Unknown,,2926,1,0,Small Family,Yes,16,
+"Fillbrook, Mr. Joseph Charles",Mr,No,Second,Male,18,Teen,Southampton,10.5000,Standard,Unknown,,C.A. 15185,0,0,Solo,No,,"Cornwall / Houghton, MI"
+"Fox, Mr. Stanley Hubert",Mr,No,Second,Male,36,Middle Aged,Southampton,13.0000,Standard,Unknown,,229236,0,0,Solo,No,,"Rochester, NY"
+"Frost, Mr. Anthony Wood ""Archie""",Mr,No,Second,Male,,Unknown,Southampton,0.0000,Budget,Unknown,,239854,0,0,Solo,No,,Belfast
+"Funk, Miss. Annie Clemmer",Miss,No,Second,Female,38,Middle Aged,Southampton,13.0000,Standard,Unknown,,237671,0,0,Solo,No,,"Janjgir, India / Pennsylvania"
+"Fynney, Mr. Joseph J",Mr,No,Second,Male,35,Young Adult,Southampton,26.0000,Standard,Unknown,,239865,0,0,Solo,No,,"Liverpool / Montreal, PQ"
+"Gale, Mr. Harry",Mr,No,Second,Male,38,Middle Aged,Southampton,21.0000,Standard,Unknown,,28664,1,0,Small Family,No,,"Cornwall / Clear Creek, CO"
+"Gale, Mr. Shadrach",Mr,No,Second,Male,34,Young Adult,Southampton,21.0000,Standard,Unknown,,28664,1,0,Small Family,No,,"Cornwall / Clear Creek, CO"
+"Garside, Miss. Ethel",Miss,Yes,Second,Female,34,Young Adult,Southampton,13.0000,Standard,Unknown,,243880,0,0,Solo,Yes,12,"Brooklyn, NY"
+"Gaskell, Mr. Alfred",Mr,No,Second,Male,16,Teen,Southampton,26.0000,Standard,Unknown,,239865,0,0,Solo,No,,"Liverpool / Montreal, PQ"
+"Gavey, Mr. Lawrence",Mr,No,Second,Male,26,Young Adult,Southampton,10.5000,Standard,Unknown,,31028,0,0,Solo,No,,"Guernsey / Elizabeth, NJ"
+"Gilbert, Mr. William",Mr,No,Second,Male,47,Middle Aged,Southampton,10.5000,Standard,Unknown,,C.A. 30769,0,0,Solo,No,,Cornwall
+"Giles, Mr. Edgar",Mr,No,Second,Male,21,Young Adult,Southampton,11.5000,Standard,Unknown,,28133,1,0,Small Family,No,,"Cornwall / Camden, NJ"
+"Giles, Mr. Frederick Edward",Mr,No,Second,Male,21,Young Adult,Southampton,11.5000,Standard,Unknown,,28134,1,0,Small Family,No,,"Cornwall / Camden, NJ"
+"Giles, Mr. Ralph",Mr,No,Second,Male,24,Young Adult,Southampton,13.5000,Standard,Unknown,,248726,0,0,Solo,No,,"West Kensington, London"
+"Gill, Mr. John William",Mr,No,Second,Male,24,Young Adult,Southampton,13.0000,Standard,Unknown,,233866,0,0,Solo,No,,"Clevedon, England"
+"Gillespie, Mr. William Henry",Mr,No,Second,Male,34,Young Adult,Southampton,13.0000,Standard,Unknown,,12233,0,0,Solo,No,,"Vancouver, BC"
+"Givard, Mr. Hans Kristensen",Mr,No,Second,Male,30,Young Adult,Southampton,13.0000,Standard,Unknown,,250646,0,0,Solo,No,,
+"Greenberg, Mr. Samuel",Mr,No,Second,Male,52,Middle Aged,Southampton,13.0000,Standard,Unknown,,250647,0,0,Solo,No,,"Bronx, NY"
+"Hale, Mr. Reginald",Mr,No,Second,Male,30,Young Adult,Southampton,13.0000,Standard,Unknown,,250653,0,0,Solo,No,,"Auburn, NY"
+"Hamalainen, Master. Viljo",Master,Yes,Second,Male,0.67,Child,Southampton,14.5000,Standard,Unknown,,250649,1,1,Small Family,Yes,4,"Detroit, MI"
+"Hamalainen, Mrs. William (Anna)",Mrs,Yes,Second,Female,24,Young Adult,Southampton,14.5000,Standard,Unknown,,250649,0,2,Small Family,Yes,4,"Detroit, MI"
+"Harbeck, Mr. William H",Mr,No,Second,Male,44,Middle Aged,Southampton,13.0000,Standard,Unknown,,248746,0,0,Solo,No,,"Seattle, WA / Toledo, OH"
+"Harper, Miss. Annie Jessie ""Nina""",Miss,Yes,Second,Female,6,Child,Southampton,33.0000,Premium,Unknown,,248727,0,1,Small Family,Yes,11,"Denmark Hill, Surrey / Chicago"
+"Harper, Rev. John",Clergy,No,Second,Male,28,Young Adult,Southampton,33.0000,Premium,Unknown,,248727,0,1,Small Family,No,,"Denmark Hill, Surrey / Chicago"
+"Harris, Mr. George",Mr,Yes,Second,Male,62,Senior,Southampton,10.5000,Standard,Unknown,,S.W./PP 752,0,0,Solo,Yes,15,London
+"Harris, Mr. Walter",Mr,No,Second,Male,30,Young Adult,Southampton,10.5000,Standard,Unknown,,W/C 14208,0,0,Solo,No,,"Walthamstow, England"
+"Hart, Miss. Eva Miriam",Miss,Yes,Second,Female,7,Child,Southampton,26.2500,Standard,Unknown,,F.C.C. 13529,0,2,Small Family,Yes,14,"Ilford, Essex / Winnipeg, MB"
+"Hart, Mr. Benjamin",Mr,No,Second,Male,43,Middle Aged,Southampton,26.2500,Standard,Unknown,,F.C.C. 13529,1,1,Small Family,No,,"Ilford, Essex / Winnipeg, MB"
+"Hart, Mrs. Benjamin (Esther Ada Bloomfield)",Mrs,Yes,Second,Female,45,Middle Aged,Southampton,26.2500,Standard,Unknown,,F.C.C. 13529,1,1,Small Family,Yes,14,"Ilford, Essex / Winnipeg, MB"
+"Herman, Miss. Alice",Miss,Yes,Second,Female,24,Young Adult,Southampton,65.0000,Premium,Unknown,,220845,1,2,Small Family,Yes,9,"Somerset / Bernardsville, NJ"
+"Herman, Miss. Kate",Miss,Yes,Second,Female,24,Young Adult,Southampton,65.0000,Premium,Unknown,,220845,1,2,Small Family,Yes,9,"Somerset / Bernardsville, NJ"
+"Herman, Mr. Samuel",Mr,No,Second,Male,49,Middle Aged,Southampton,65.0000,Premium,Unknown,,220845,1,2,Small Family,No,,"Somerset / Bernardsville, NJ"
+"Herman, Mrs. Samuel (Jane Laver)",Mrs,Yes,Second,Female,48,Middle Aged,Southampton,65.0000,Premium,Unknown,,220845,1,2,Small Family,Yes,9,"Somerset / Bernardsville, NJ"
+"Hewlett, Mrs. (Mary D Kingcome) ",Mrs,Yes,Second,Female,55,Middle Aged,Southampton,16.0000,Standard,Unknown,,248706,0,0,Solo,Yes,13,"India / Rapid City, SD"
+"Hickman, Mr. Leonard Mark",Mr,No,Second,Male,24,Young Adult,Southampton,73.5000,Premium,Unknown,,S.O.C. 14879,2,0,Small Family,No,,"West Hampstead, London / Neepawa, MB"
+"Hickman, Mr. Lewis",Mr,No,Second,Male,32,Young Adult,Southampton,73.5000,Premium,Unknown,,S.O.C. 14879,2,0,Small Family,No,,"West Hampstead, London / Neepawa, MB"
+"Hickman, Mr. Stanley George",Mr,No,Second,Male,21,Young Adult,Southampton,73.5000,Premium,Unknown,,S.O.C. 14879,2,0,Small Family,No,,"West Hampstead, London / Neepawa, MB"
+"Hiltunen, Miss. Marta",Miss,No,Second,Female,18,Teen,Southampton,13.0000,Standard,Unknown,,250650,1,1,Small Family,No,,"Kontiolahti, Finland / Detroit, MI"
+"Hocking, Miss. Ellen ""Nellie""",Miss,Yes,Second,Female,20,Young Adult,Southampton,23.0000,Standard,Unknown,,29105,2,1,Small Family,Yes,4,"Cornwall / Akron, OH"
+"Hocking, Mr. Richard George",Mr,No,Second,Male,23,Young Adult,Southampton,11.5000,Standard,Unknown,,29104,2,1,Small Family,No,,"Cornwall / Akron, OH"
+"Hocking, Mr. Samuel James Metcalfe",Mr,No,Second,Male,36,Middle Aged,Southampton,13.0000,Standard,Unknown,,242963,0,0,Solo,No,,"Devonport, England"
+"Hocking, Mrs. Elizabeth (Eliza Needs)",Mrs,Yes,Second,Female,54,Middle Aged,Southampton,23.0000,Standard,Unknown,,29105,1,3,Large Family,Yes,4,"Cornwall / Akron, OH"
+"Hodges, Mr. Henry Price",Mr,No,Second,Male,50,Middle Aged,Southampton,13.0000,Standard,Unknown,,250643,0,0,Solo,No,,Southampton
+"Hold, Mr. Stephen",Mr,No,Second,Male,44,Middle Aged,Southampton,26.0000,Standard,Unknown,,26707,1,0,Small Family,No,,"England / Sacramento, CA"
+"Hold, Mrs. Stephen (Annie Margaret Hill)",Mrs,Yes,Second,Female,29,Young Adult,Southampton,26.0000,Standard,Unknown,,26707,1,0,Small Family,Yes,10,"England / Sacramento, CA"
+"Hood, Mr. Ambrose Jr",Mr,No,Second,Male,21,Young Adult,Southampton,73.5000,Premium,Unknown,,S.O.C. 14879,0,0,Solo,No,,"New Forest, England"
+"Hosono, Mr. Masabumi",Mr,Yes,Second,Male,42,Middle Aged,Southampton,13.0000,Standard,Unknown,,237798,0,0,Solo,Yes,10,"Tokyo, Japan"
+"Howard, Mr. Benjamin",Mr,No,Second,Male,63,Senior,Southampton,26.0000,Standard,Unknown,,24065,1,0,Small Family,No,,"Swindon, England"
+"Howard, Mrs. Benjamin (Ellen Truelove Arman)",Mrs,No,Second,Female,60,Senior,Southampton,26.0000,Standard,Unknown,,24065,1,0,Small Family,No,,"Swindon, England"
+"Hunt, Mr. George Henry",Mr,No,Second,Male,33,Young Adult,Southampton,12.2750,Standard,Unknown,,SCO/W 1585,0,0,Solo,No,,"Philadelphia, PA"
+"Ilett, Miss. Bertha",Miss,Yes,Second,Female,17,Teen,Southampton,10.5000,Standard,Unknown,,SO/C 14885,0,0,Solo,No,,Guernsey
+"Jacobsohn, Mr. Sidney Samuel",Mr,No,Second,Male,42,Middle Aged,Southampton,27.0000,Standard,Unknown,,243847,1,0,Small Family,No,,London
+"Jacobsohn, Mrs. Sidney Samuel (Amy Frances Christy)",Mrs,Yes,Second,Female,24,Young Adult,Southampton,27.0000,Standard,Unknown,,243847,2,1,Small Family,Yes,12,London
+"Jarvis, Mr. John Denzil",Mr,No,Second,Male,47,Middle Aged,Southampton,15.0000,Standard,Unknown,,237565,0,0,Solo,No,,"North Evington, England"
+"Jefferys, Mr. Clifford Thomas",Mr,No,Second,Male,24,Young Adult,Southampton,31.5000,Premium,Unknown,,C.A. 31029,2,0,Small Family,No,,"Guernsey / Elizabeth, NJ"
+"Jefferys, Mr. Ernest Wilfred",Mr,No,Second,Male,22,Young Adult,Southampton,31.5000,Premium,Unknown,,C.A. 31029,2,0,Small Family,No,,"Guernsey / Elizabeth, NJ"
+"Jenkin, Mr. Stephen Curnow",Mr,No,Second,Male,32,Young Adult,Southampton,10.5000,Standard,Unknown,,C.A. 33111,0,0,Solo,No,,"St Ives, Cornwall / Houghton, MI"
+"Jerwan, Mrs. Amin S (Marie Marthe Thuillard)",Mrs,Yes,Second,Female,23,Young Adult,Cherbourg,13.7917,Standard,D,D,SC/AH Basle 541,0,0,Solo,Yes,11,"New York, NY"
+"Kantor, Mr. Sinai",Mr,No,Second,Male,34,Young Adult,Southampton,26.0000,Standard,Unknown,,244367,1,0,Small Family,No,,"Moscow / Bronx, NY"
+"Kantor, Mrs. Sinai (Miriam Sternin)",Mrs,Yes,Second,Female,24,Young Adult,Southampton,26.0000,Standard,Unknown,,244367,1,0,Small Family,Yes,12,"Moscow / Bronx, NY"
+"Karnes, Mrs. J Frank (Claire Bennett)",Mrs,No,Second,Female,22,Young Adult,Southampton,21.0000,Standard,Unknown,,F.C.C. 13534,0,0,Solo,No,,"India / Pittsburgh, PA"
+"Keane, Miss. Nora A",Miss,Yes,Second,Female,,Unknown,Queenstown,12.3500,Standard,E,E101,226593,0,0,Solo,Yes,10,"Harrisburg, PA"
+"Keane, Mr. Daniel",Mr,No,Second,Male,35,Young Adult,Queenstown,12.3500,Standard,Unknown,,233734,0,0,Solo,No,,
+"Kelly, Mrs. Florence ""Fannie""",Mrs,Yes,Second,Female,45,Middle Aged,Southampton,13.5000,Standard,Unknown,,223596,0,0,Solo,Yes,9,"London / New York, NY"
+"Kirkland, Rev. Charles Leonard",Clergy,No,Second,Male,57,Senior,Queenstown,12.3500,Standard,Unknown,,219533,0,0,Solo,No,,"Glasgow / Bangor, ME"
+"Knight, Mr. Robert J",Mr,No,Second,Male,,Unknown,Southampton,0.0000,Budget,Unknown,,239855,0,0,Solo,No,,Belfast
+"Kvillner, Mr. Johan Henrik Johannesson",Mr,No,Second,Male,31,Young Adult,Southampton,10.5000,Standard,Unknown,,C.A. 18723,0,0,Solo,No,,"Sweden / Arlington, NJ"
+"Lahtinen, Mrs. William (Anna Sylfven)",Mrs,No,Second,Female,26,Young Adult,Southampton,26.0000,Standard,Unknown,,250651,1,1,Small Family,No,,"Minneapolis, MN"
+"Lahtinen, Rev. William",Clergy,No,Second,Male,30,Young Adult,Southampton,26.0000,Standard,Unknown,,250651,1,1,Small Family,No,,"Minneapolis, MN"
+"Lamb, Mr. John Joseph",Mr,No,Second,Male,,Unknown,Queenstown,10.7083,Standard,Unknown,,240261,0,0,Solo,No,,
+"Laroche, Miss. Louise",Miss,Yes,Second,Female,1,Child,Cherbourg,41.5792,Premium,Unknown,,SC/Paris 2123,1,2,Small Family,Yes,14,Paris / Haiti
+"Laroche, Miss. Simonne Marie Anne Andree",Miss,Yes,Second,Female,3,Child,Cherbourg,41.5792,Premium,Unknown,,SC/Paris 2123,1,2,Small Family,Yes,14,Paris / Haiti
+"Laroche, Mr. Joseph Philippe Lemercier",Mr,No,Second,Male,25,Young Adult,Cherbourg,41.5792,Premium,Unknown,,SC/Paris 2123,1,2,Small Family,No,,Paris / Haiti
+"Laroche, Mrs. Joseph (Juliette Marie Louise Lafargue)",Mrs,Yes,Second,Female,22,Young Adult,Cherbourg,41.5792,Premium,Unknown,,SC/Paris 2123,1,2,Small Family,Yes,14,Paris / Haiti
+"Lehmann, Miss. Bertha",Miss,Yes,Second,Female,17,Teen,Cherbourg,12.0000,Standard,Unknown,,SC 1748,0,0,Solo,Yes,12,"Berne, Switzerland / Central City, IA"
+"Leitch, Miss. Jessie Wills",Miss,Yes,Second,Female,,Unknown,Southampton,33.0000,Premium,Unknown,,248727,0,0,Solo,Yes,11,"London / Chicago, IL"
+"Lemore, Mrs. (Amelia Milley)",Mrs,Yes,Second,Female,34,Young Adult,Southampton,10.5000,Standard,F,F33,C.A. 34260,0,0,Solo,Yes,14,"Chicago, IL"
+"Levy, Mr. Rene Jacques",Mr,No,Second,Male,36,Middle Aged,Cherbourg,12.8750,Standard,D,D,SC/Paris 2163,0,0,Solo,No,,"Montreal, PQ"
+"Leyson, Mr. Robert William Norman",Mr,No,Second,Male,24,Young Adult,Southampton,10.5000,Standard,Unknown,,C.A. 29566,0,0,Solo,No,,
+"Lingane, Mr. John",Mr,No,Second,Male,61,Senior,Queenstown,12.3500,Standard,Unknown,,235509,0,0,Solo,No,,
+"Louch, Mr. Charles Alexander",Mr,No,Second,Male,50,Middle Aged,Southampton,26.0000,Standard,Unknown,,SC/AH 3085,1,0,Small Family,No,,"Weston-Super-Mare, Somerset"
+"Louch, Mrs. Charles Alexander (Alice Adelaide Slow)",Mrs,Yes,Second,Female,42,Middle Aged,Southampton,26.0000,Standard,Unknown,,SC/AH 3085,1,0,Small Family,No,,"Weston-Super-Mare, Somerset"
+"Mack, Mrs. (Mary)",Mrs,No,Second,Female,57,Senior,Southampton,10.5000,Standard,E,E77,S.O./P.P. 3,0,0,Solo,No,,"Southampton / New York, NY"
+"Malachard, Mr. Noel",Mr,No,Second,Male,,Unknown,Cherbourg,15.0458,Standard,D,D,237735,0,0,Solo,No,,Paris
+"Mallet, Master. Andre",Master,Yes,Second,Male,1,Child,Cherbourg,37.0042,Premium,Unknown,,S.C./PARIS 2079,0,2,Small Family,Yes,10,"Paris / Montreal, PQ"
+"Mallet, Mr. Albert",Mr,No,Second,Male,31,Young Adult,Cherbourg,37.0042,Premium,Unknown,,S.C./PARIS 2079,1,1,Small Family,No,,"Paris / Montreal, PQ"
+"Mallet, Mrs. Albert (Antoinette Magnin)",Mrs,Yes,Second,Female,24,Young Adult,Cherbourg,37.0042,Premium,Unknown,,S.C./PARIS 2079,1,1,Small Family,Yes,10,"Paris / Montreal, PQ"
+"Mangiavacchi, Mr. Serafino Emilio",Mr,No,Second,Male,,Unknown,Cherbourg,15.5792,Standard,Unknown,,SC/A.3 2861,0,0,Solo,No,,"New York, NY"
+"Matthews, Mr. William John",Mr,No,Second,Male,30,Young Adult,Southampton,13.0000,Standard,Unknown,,28228,0,0,Solo,No,,"St Austall, Cornwall"
+"Maybery, Mr. Frank Hubert",Mr,No,Second,Male,40,Middle Aged,Southampton,16.0000,Standard,Unknown,,239059,0,0,Solo,No,,"Weston-Super-Mare / Moose Jaw, SK"
+"McCrae, Mr. Arthur Gordon",Mr,No,Second,Male,32,Young Adult,Southampton,13.5000,Standard,Unknown,,237216,0,0,Solo,No,,"Sydney, Australia"
+"McCrie, Mr. James Matthew",Mr,No,Second,Male,30,Young Adult,Southampton,13.0000,Standard,Unknown,,233478,0,0,Solo,No,,"Sarnia, ON"
+"McKane, Mr. Peter David",Mr,No,Second,Male,46,Middle Aged,Southampton,26.0000,Standard,Unknown,,28403,0,0,Solo,No,,"Rochester, NY"
+"Mellinger, Miss. Madeleine Violet",Miss,Yes,Second,Female,13,Teen,Southampton,19.5000,Standard,Unknown,,250644,0,1,Small Family,Yes,14,"England / Bennington, VT"
+"Mellinger, Mrs. (Elizabeth Anne Maidment)",Mrs,Yes,Second,Female,41,Middle Aged,Southampton,19.5000,Standard,Unknown,,250644,0,1,Small Family,Yes,14,"England / Bennington, VT"
+"Mellors, Mr. William John",Mr,Yes,Second,Male,19,Teen,Southampton,10.5000,Standard,Unknown,,SW/PP 751,0,0,Solo,Yes,B,"Chelsea, London"
+"Meyer, Mr. August",Mr,No,Second,Male,39,Middle Aged,Southampton,13.0000,Standard,Unknown,,248723,0,0,Solo,No,,"Harrow-on-the-Hill, Middlesex"
+"Milling, Mr. Jacob Christian",Mr,No,Second,Male,48,Middle Aged,Southampton,13.0000,Standard,Unknown,,234360,0,0,Solo,No,,"Copenhagen, Denmark"
+"Mitchell, Mr. Henry Michael",Mr,No,Second,Male,70,Senior,Southampton,10.5000,Standard,Unknown,,C.A. 24580,0,0,Solo,No,,"Guernsey / Montclair, NJ and/or Toledo, Ohio"
+"Montvila, Rev. Juozas",Clergy,No,Second,Male,27,Young Adult,Southampton,13.0000,Standard,Unknown,,211536,0,0,Solo,No,,"Worcester, MA"
+"Moraweck, Dr. Ernest",Dr,No,Second,Male,54,Middle Aged,Southampton,14.0000,Standard,Unknown,,29011,0,0,Solo,No,,"Frankfort, KY"
+"Morley, Mr. Henry Samuel (""Mr Henry Marshall"")",Mr,No,Second,Male,39,Middle Aged,Southampton,26.0000,Standard,Unknown,,250655,0,0,Solo,No,,
+"Mudd, Mr. Thomas Charles",Mr,No,Second,Male,16,Teen,Southampton,10.5000,Standard,Unknown,,S.O./P.P. 3,0,0,Solo,No,,"Halesworth, England"
+"Myles, Mr. Thomas Francis",Mr,No,Second,Male,62,Senior,Queenstown,9.6875,Budget,Unknown,,240276,0,0,Solo,No,,"Cambridge, MA"
+"Nasser, Mr. Nicholas",Mr,No,Second,Male,32.5,Young Adult,Cherbourg,30.0708,Premium,Unknown,,237736,1,0,Small Family,No,,"New York, NY"
+"Nasser, Mrs. Nicholas (Adele Achem)",Mrs,Yes,Second,Female,14,Teen,Cherbourg,30.0708,Premium,Unknown,,237736,1,0,Small Family,No,,"New York, NY"
+"Navratil, Master. Edmond Roger",Master,Yes,Second,Male,2,Child,Southampton,26.0000,Standard,F,F2,230080,1,1,Small Family,Yes,D,"Nice, France"
+"Navratil, Master. Michel M",Master,Yes,Second,Male,3,Child,Southampton,26.0000,Standard,F,F2,230080,1,1,Small Family,Yes,D,"Nice, France"
+"Navratil, Mr. Michel (""Louis M Hoffman"")",Mr,No,Second,Male,36.5,Middle Aged,Southampton,26.0000,Standard,F,F2,230080,0,2,Small Family,No,,"Nice, France"
+"Nesson, Mr. Israel",Mr,No,Second,Male,26,Young Adult,Southampton,13.0000,Standard,F,F2,244368,0,0,Solo,No,,"Boston, MA"
+"Nicholls, Mr. Joseph Charles",Mr,No,Second,Male,19,Teen,Southampton,36.7500,Premium,Unknown,,C.A. 33112,1,1,Small Family,No,,"Cornwall / Hancock, MI"
+"Norman, Mr. Robert Douglas",Mr,No,Second,Male,28,Young Adult,Southampton,13.5000,Standard,Unknown,,218629,0,0,Solo,No,,Glasgow
+"Nourney, Mr. Alfred (""Baron von Drachstedt"")",Mr,Yes,Second,Male,20,Young Adult,Cherbourg,13.8625,Standard,D,D38,SC/PARIS 2166,0,0,Solo,Yes,7,"Cologne, Germany"
+"Nye, Mrs. (Elizabeth Ramell)",Mrs,Yes,Second,Female,29,Young Adult,Southampton,10.5000,Standard,F,F33,C.A. 29395,0,0,Solo,Yes,11,"Folkstone, Kent / New York, NY"
+"Otter, Mr. Richard",Mr,No,Second,Male,39,Middle Aged,Southampton,13.0000,Standard,Unknown,,28213,0,0,Solo,No,,"Middleburg Heights, OH"
+"Oxenham, Mr. Percy Thomas",Mr,Yes,Second,Male,22,Young Adult,Southampton,10.5000,Standard,Unknown,,W./C. 14260,0,0,Solo,Yes,13,"Pondersend, England / New Durham, NJ"
+"Padro y Manent, Mr. Julian",Mr,Yes,Second,Male,,Unknown,Cherbourg,13.8625,Standard,Unknown,,SC/PARIS 2146,0,0,Solo,Yes,9,"Spain / Havana, Cuba"
+"Pain, Dr. Alfred",Dr,No,Second,Male,23,Young Adult,Southampton,10.5000,Standard,Unknown,,244278,0,0,Solo,No,,"Hamilton, ON"
+"Pallas y Castello, Mr. Emilio",Mr,Yes,Second,Male,29,Young Adult,Cherbourg,13.8583,Standard,Unknown,,SC/PARIS 2147,0,0,Solo,Yes,9,"Spain / Havana, Cuba"
+"Parker, Mr. Clifford Richard",Mr,No,Second,Male,28,Young Adult,Southampton,10.5000,Standard,Unknown,,SC 14888,0,0,Solo,No,,"St Andrews, Guernsey"
+"Parkes, Mr. Francis ""Frank""",Mr,No,Second,Male,,Unknown,Southampton,0.0000,Budget,Unknown,,239853,0,0,Solo,No,,Belfast
+"Parrish, Mrs. (Lutie Davis)",Mrs,Yes,Second,Female,50,Middle Aged,Southampton,26.0000,Standard,Unknown,,230433,0,1,Small Family,Yes,12,"Woodford County, KY"
+"Pengelly, Mr. Frederick William",Mr,No,Second,Male,19,Teen,Southampton,10.5000,Standard,Unknown,,28665,0,0,Solo,No,,"Gunnislake, England / Butte, MT"
+"Pernot, Mr. Rene",Mr,No,Second,Male,,Unknown,Cherbourg,15.0500,Standard,Unknown,,SC/PARIS 2131,0,0,Solo,No,,
+"Peruschitz, Rev. Joseph Maria",Clergy,No,Second,Male,41,Middle Aged,Southampton,13.0000,Standard,Unknown,,237393,0,0,Solo,No,,
+"Phillips, Miss. Alice Frances Louisa",Miss,Yes,Second,Female,21,Young Adult,Southampton,21.0000,Standard,Unknown,,S.O./P.P. 2,0,1,Small Family,Yes,12,"Ilfracombe, Devon"
+"Phillips, Miss. Kate Florence (""Mrs Kate Louise Phillips Marshall"")",Miss,Yes,Second,Female,19,Teen,Southampton,26.0000,Standard,Unknown,,250655,0,0,Solo,Yes,11,"Worcester, England"
+"Phillips, Mr. Escott Robert",Mr,No,Second,Male,43,Middle Aged,Southampton,21.0000,Standard,Unknown,,S.O./P.P. 2,0,1,Small Family,No,,"Ilfracombe, Devon"
+"Pinsky, Mrs. (Rosa)",Mrs,Yes,Second,Female,32,Young Adult,Southampton,13.0000,Standard,Unknown,,234604,0,0,Solo,Yes,9,Russia
+"Ponesell, Mr. Martin",Mr,No,Second,Male,34,Young Adult,Southampton,13.0000,Standard,Unknown,,250647,0,0,Solo,No,,"Denmark / New York, NY"
+"Portaluppi, Mr. Emilio Ilario Giuseppe",Mr,Yes,Second,Male,30,Young Adult,Cherbourg,12.7375,Standard,Unknown,,C.A. 34644,0,0,Solo,Yes,14,"Milford, NH"
+"Pulbaum, Mr. Franz",Mr,No,Second,Male,27,Young Adult,Cherbourg,15.0333,Standard,Unknown,,SC/PARIS 2168,0,0,Solo,No,,Paris
+"Quick, Miss. Phyllis May",Miss,Yes,Second,Female,2,Child,Southampton,26.0000,Standard,Unknown,,26360,1,1,Small Family,Yes,11,"Plymouth, Devon / Detroit, MI"
+"Quick, Miss. Winifred Vera",Miss,Yes,Second,Female,8,Child,Southampton,26.0000,Standard,Unknown,,26360,1,1,Small Family,Yes,11,"Plymouth, Devon / Detroit, MI"
+"Quick, Mrs. Frederick Charles (Jane Richards)",Mrs,Yes,Second,Female,33,Young Adult,Southampton,26.0000,Standard,Unknown,,26360,0,2,Small Family,Yes,11,"Plymouth, Devon / Detroit, MI"
+"Reeves, Mr. David",Mr,No,Second,Male,36,Middle Aged,Southampton,10.5000,Standard,Unknown,,C.A. 17248,0,0,Solo,No,,"Brighton, Sussex"
+"Renouf, Mr. Peter Henry",Mr,No,Second,Male,34,Young Adult,Southampton,21.0000,Standard,Unknown,,31027,1,0,Small Family,Yes,12,"Elizabeth, NJ"
+"Renouf, Mrs. Peter Henry (Lillian Jefferys)",Mrs,Yes,Second,Female,30,Young Adult,Southampton,21.0000,Standard,Unknown,,31027,3,0,Small Family,No,,"Elizabeth, NJ"
+"Reynaldo, Ms. Encarnacion",Miss,Yes,Second,Female,28,Young Adult,Southampton,13.0000,Standard,Unknown,,230434,0,0,Solo,Yes,9,Spain
+"Richard, Mr. Emile",Mr,No,Second,Male,23,Young Adult,Cherbourg,15.0458,Standard,Unknown,,SC/PARIS 2133,0,0,Solo,No,,"Paris / Montreal, PQ"
+"Richards, Master. George Sibley",Master,Yes,Second,Male,0.83,Child,Southampton,18.7500,Standard,Unknown,,29106,1,1,Small Family,Yes,4,"Cornwall / Akron, OH"
+"Richards, Master. William Rowe",Master,Yes,Second,Male,3,Child,Southampton,18.7500,Standard,Unknown,,29106,1,1,Small Family,Yes,4,"Cornwall / Akron, OH"
+"Richards, Mrs. Sidney (Emily Hocking)",Mrs,Yes,Second,Female,24,Young Adult,Southampton,18.7500,Standard,Unknown,,29106,2,3,Large Family,Yes,4,"Cornwall / Akron, OH"
+"Ridsdale, Miss. Lucy",Miss,Yes,Second,Female,50,Middle Aged,Southampton,10.5000,Standard,Unknown,,W./C. 14258,0,0,Solo,Yes,13,"London, England / Marietta, Ohio and Milwaukee, WI"
+"Rogers, Mr. Reginald Harry",Mr,No,Second,Male,19,Teen,Southampton,10.5000,Standard,Unknown,,28004,0,0,Solo,No,,
+"Rugg, Miss. Emily",Miss,Yes,Second,Female,21,Young Adult,Southampton,10.5000,Standard,Unknown,,C.A. 31026,0,0,Solo,Yes,12,"Guernsey / Wilmington, DE"
+"Schmidt, Mr. August",Mr,No,Second,Male,26,Young Adult,Southampton,13.0000,Standard,Unknown,,248659,0,0,Solo,No,,"Newark, NJ"
+"Sedgwick, Mr. Charles Frederick Waddington",Mr,No,Second,Male,25,Young Adult,Southampton,13.0000,Standard,Unknown,,244361,0,0,Solo,No,,Liverpool
+"Sharp, Mr. Percival James R",Mr,No,Second,Male,27,Young Adult,Southampton,26.0000,Standard,Unknown,,244358,0,0,Solo,No,,"Hornsey, England"
+"Shelley, Mrs. William (Imanita Parrish Hall)",Mrs,Yes,Second,Female,25,Young Adult,Southampton,26.0000,Standard,Unknown,,230433,0,1,Small Family,Yes,12,"Deer Lodge, MT"
+"Silven, Miss. Lyyli Karoliina",Miss,Yes,Second,Female,18,Teen,Southampton,13.0000,Standard,Unknown,,250652,0,2,Small Family,Yes,16,"Finland / Minneapolis, MN"
+"Sincock, Miss. Maude",Miss,Yes,Second,Female,20,Young Adult,Southampton,36.7500,Premium,Unknown,,C.A. 33112,0,0,Solo,Yes,11,"Cornwall / Hancock, MI"
+"Sinkkonen, Miss. Anna",Miss,Yes,Second,Female,30,Young Adult,Southampton,13.0000,Standard,Unknown,,250648,0,0,Solo,Yes,10,"Finland / Washington, DC"
+"Sjostedt, Mr. Ernst Adolf",Mr,No,Second,Male,59,Senior,Southampton,13.5000,Standard,Unknown,,237442,0,0,Solo,No,,"Sault St Marie, ON"
+"Slayter, Miss. Hilda Mary",Miss,Yes,Second,Female,30,Young Adult,Queenstown,12.3500,Standard,Unknown,,234818,0,0,Solo,Yes,13,"Halifax, NS"
+"Slemen, Mr. Richard James",Mr,No,Second,Male,35,Young Adult,Southampton,10.5000,Standard,Unknown,,28206,0,0,Solo,No,,Cornwall
+"Smith, Miss. Marion Elsie",Miss,Yes,Second,Female,40,Middle Aged,Southampton,13.0000,Standard,Unknown,,31418,0,0,Solo,Yes,9,
+"Sobey, Mr. Samuel James Hayden",Mr,No,Second,Male,25,Young Adult,Southampton,13.0000,Standard,Unknown,,C.A. 29178,0,0,Solo,No,,"Cornwall / Houghton, MI"
+"Stanton, Mr. Samuel Ward",Mr,No,Second,Male,41,Middle Aged,Cherbourg,15.0458,Standard,Unknown,,237734,0,0,Solo,No,,"New York, NY"
+"Stokes, Mr. Philip Joseph",Mr,No,Second,Male,25,Young Adult,Southampton,10.5000,Standard,Unknown,,F.C.C. 13540,0,0,Solo,No,,"Catford, Kent / Detroit, MI"
+"Swane, Mr. George",Mr,No,Second,Male,18.5,Teen,Southampton,13.0000,Standard,F,F,248734,0,0,Solo,No,,
+"Sweet, Mr. George Frederick",Mr,No,Second,Male,14,Teen,Southampton,65.0000,Premium,Unknown,,220845,0,0,Solo,No,,"Somerset / Bernardsville, NJ"
+"Toomey, Miss. Ellen",Miss,Yes,Second,Female,50,Middle Aged,Southampton,10.5000,Standard,Unknown,,F.C.C. 13531,0,0,Solo,Yes,9,"Indianapolis, IN"
+"Troupiansky, Mr. Moses Aaron",Mr,No,Second,Male,23,Young Adult,Southampton,13.0000,Standard,Unknown,,233639,0,0,Solo,No,,
+"Trout, Mrs. William H (Jessie L)",Mrs,Yes,Second,Female,28,Young Adult,Southampton,12.6500,Standard,Unknown,,240929,0,0,Solo,No,,"Columbus, OH"
+"Troutt, Miss. Edwina Celia ""Winnie""",Miss,Yes,Second,Female,27,Young Adult,Southampton,10.5000,Standard,E,E101,34218,0,0,Solo,Yes,16,"Bath, England / Massachusetts"
+"Turpin, Mr. William John Robert",Mr,No,Second,Male,29,Young Adult,Southampton,21.0000,Standard,Unknown,,11668,1,0,Small Family,No,,"Plymouth, England"
+"Turpin, Mrs. William John Robert (Dorothy Ann Wonnacott)",Mrs,No,Second,Female,27,Young Adult,Southampton,21.0000,Standard,Unknown,,11668,1,0,Small Family,No,,"Plymouth, England"
+"Veal, Mr. James",Mr,No,Second,Male,40,Middle Aged,Southampton,13.0000,Standard,Unknown,,28221,0,0,Solo,No,,"Barre, Co Washington, VT"
+"Walcroft, Miss. Nellie",Miss,Yes,Second,Female,31,Young Adult,Southampton,21.0000,Standard,Unknown,,F.C.C. 13528,0,0,Solo,Yes,14,"Mamaroneck, NY"
+"Ware, Mr. John James",Mr,No,Second,Male,30,Young Adult,Southampton,21.0000,Standard,Unknown,,CA 31352,1,0,Small Family,No,,"Bristol, England / New Britain, CT"
+"Ware, Mr. William Jeffery",Mr,No,Second,Male,23,Young Adult,Southampton,10.5000,Standard,Unknown,,28666,1,0,Small Family,No,,
+"Ware, Mrs. John James (Florence Louise Long)",Mrs,Yes,Second,Female,31,Young Adult,Southampton,21.0000,Standard,Unknown,,CA 31352,0,0,Solo,Yes,10,"Bristol, England / New Britain, CT"
+"Watson, Mr. Ennis Hastings",Mr,No,Second,Male,,Unknown,Southampton,0.0000,Budget,Unknown,,239856,0,0,Solo,No,,Belfast
+"Watt, Miss. Bertha J",Miss,Yes,Second,Female,12,Child,Southampton,15.7500,Standard,Unknown,,C.A. 33595,0,0,Solo,Yes,9,"Aberdeen / Portland, OR"
+"Watt, Mrs. James (Elizabeth ""Bessie"" Inglis Milne)",Mrs,Yes,Second,Female,40,Middle Aged,Southampton,15.7500,Standard,Unknown,,C.A. 33595,0,0,Solo,Yes,9,"Aberdeen / Portland, OR"
+"Webber, Miss. Susan",Miss,Yes,Second,Female,32.5,Young Adult,Southampton,13.0000,Standard,E,E101,27267,0,0,Solo,Yes,12,"England / Hartford, CT"
+"Weisz, Mr. Leopold",Mr,No,Second,Male,27,Young Adult,Southampton,26.0000,Standard,Unknown,,228414,1,0,Small Family,No,,"Bromsgrove, England / Montreal, PQ"
+"Weisz, Mrs. Leopold (Mathilde Francoise Pede)",Mrs,Yes,Second,Female,29,Young Adult,Southampton,26.0000,Standard,Unknown,,228414,1,0,Small Family,Yes,10,"Bromsgrove, England / Montreal, PQ"
+"Wells, Master. Ralph Lester",Master,Yes,Second,Male,2,Child,Southampton,23.0000,Standard,Unknown,,29103,1,1,Small Family,Yes,14,"Cornwall / Akron, OH"
+"Wells, Miss. Joan",Miss,Yes,Second,Female,4,Child,Southampton,23.0000,Standard,Unknown,,29103,1,1,Small Family,Yes,14,"Cornwall / Akron, OH"
+"Wells, Mrs. Arthur Henry (""Addie"" Dart Trevaskis)",Mrs,Yes,Second,Female,29,Young Adult,Southampton,23.0000,Standard,Unknown,,29103,0,2,Small Family,Yes,14,"Cornwall / Akron, OH"
+"West, Miss. Barbara J",Miss,Yes,Second,Female,0.92,Child,Southampton,27.7500,Standard,Unknown,,C.A. 34651,1,2,Small Family,Yes,10,"Bournmouth, England"
+"West, Miss. Constance Mirium",Miss,Yes,Second,Female,5,Child,Southampton,27.7500,Standard,Unknown,,C.A. 34651,1,2,Small Family,Yes,10,"Bournmouth, England"
+"West, Mr. Edwy Arthur",Mr,No,Second,Male,36,Middle Aged,Southampton,27.7500,Standard,Unknown,,C.A. 34651,1,2,Small Family,No,,"Bournmouth, England"
+"West, Mrs. Edwy Arthur (Ada Mary Worth)",Mrs,Yes,Second,Female,33,Young Adult,Southampton,27.7500,Standard,Unknown,,C.A. 34651,1,2,Small Family,Yes,10,"Bournmouth, England"
+"Wheadon, Mr. Edward H",Mr,No,Second,Male,66,Senior,Southampton,10.5000,Standard,Unknown,,C.A. 24579,0,0,Solo,No,,"Guernsey, England / Edgewood, RI"
+"Wheeler, Mr. Edwin ""Frederick""",Mr,No,Second,Male,,Unknown,Southampton,12.8750,Standard,Unknown,,SC/PARIS 2159,0,0,Solo,No,,
+"Wilhelms, Mr. Charles",Mr,Yes,Second,Male,31,Young Adult,Southampton,13.0000,Standard,Unknown,,244270,0,0,Solo,Yes,9,"London, England"
+"Williams, Mr. Charles Eugene",Mr,Yes,Second,Male,,Unknown,Southampton,13.0000,Standard,Unknown,,244373,0,0,Solo,Yes,14,"Harrow, England"
+"Wright, Miss. Marion",Miss,Yes,Second,Female,26,Young Adult,Southampton,13.5000,Standard,Unknown,,220844,0,0,Solo,Yes,9,"Yoevil, England / Cottage Grove, OR"
+"Yrois, Miss. Henriette (""Mrs Harbeck"")",Miss,No,Second,Female,24,Young Adult,Southampton,13.0000,Standard,Unknown,,248747,0,0,Solo,No,,Paris
+"Abbing, Mr. Anthony",Mr,No,Third,Male,42,Middle Aged,Southampton,7.5500,Budget,Unknown,,C.A. 5547,0,0,Solo,No,,
+"Abbott, Master. Eugene Joseph",Master,No,Third,Male,13,Teen,Southampton,20.2500,Standard,Unknown,,C.A. 2673,0,2,Small Family,No,,"East Providence, RI"
+"Abbott, Mr. Rossmore Edward",Mr,No,Third,Male,16,Teen,Southampton,20.2500,Standard,Unknown,,C.A. 2673,1,1,Small Family,No,,"East Providence, RI"
+"Abbott, Mrs. Stanton (Rosa Hunt)",Mrs,Yes,Third,Female,35,Young Adult,Southampton,20.2500,Standard,Unknown,,C.A. 2673,1,1,Small Family,Yes,A,"East Providence, RI"
+"Abelseth, Miss. Karen Marie",Miss,Yes,Third,Female,16,Teen,Southampton,7.6500,Budget,Unknown,,348125,0,0,Solo,Yes,16,"Norway Los Angeles, CA"
+"Abelseth, Mr. Olaus Jorgensen",Mr,Yes,Third,Male,25,Young Adult,Southampton,7.6500,Budget,F,F G63,348122,0,0,Solo,Yes,A,"Perkins County, SD"
+"Abrahamsson, Mr. Abraham August Johannes",Mr,Yes,Third,Male,20,Young Adult,Southampton,7.9250,Budget,Unknown,,SOTON/O2 3101284,0,0,Solo,Yes,15,"Taalintehdas, Finland Hoboken, NJ"
+"Abrahim, Mrs. Joseph (Sophie Halaut Easu)",Mrs,Yes,Third,Female,18,Teen,Cherbourg,7.2292,Budget,Unknown,,2657,0,0,Solo,Yes,C,"Greensburg, PA"
+"Adahl, Mr. Mauritz Nils Martin",Mr,No,Third,Male,30,Young Adult,Southampton,7.2500,Budget,Unknown,,C 7076,0,0,Solo,No,,"Asarum, Sweden Brooklyn, NY"
+"Adams, Mr. John",Mr,No,Third,Male,26,Young Adult,Southampton,8.0500,Budget,Unknown,,341826,0,0,Solo,No,,"Bournemouth, England"
+"Ahlin, Mrs. Johan (Johanna Persdotter Larsson)",Mrs,No,Third,Female,40,Middle Aged,Southampton,9.4750,Budget,Unknown,,7546,1,0,Small Family,No,,"Sweden Akeley, MN"
+"Aks, Master. Philip Frank",Master,Yes,Third,Male,0.83,Child,Southampton,9.3500,Budget,Unknown,,392091,0,1,Small Family,Yes,11,"London, England Norfolk, VA"
+"Aks, Mrs. Sam (Leah Rosen)",Mrs,Yes,Third,Female,18,Teen,Southampton,9.3500,Budget,Unknown,,392091,0,1,Small Family,Yes,13,"London, England Norfolk, VA"
+"Albimona, Mr. Nassef Cassem",Mr,Yes,Third,Male,26,Young Adult,Cherbourg,18.7875,Standard,Unknown,,2699,0,0,Solo,Yes,15,"Syria Fredericksburg, VA"
+"Alexander, Mr. William",Mr,No,Third,Male,26,Young Adult,Southampton,7.8875,Budget,Unknown,,3474,0,0,Solo,No,,"England Albion, NY"
+"Alhomaki, Mr. Ilmari Rudolf",Mr,No,Third,Male,20,Young Adult,Southampton,7.9250,Budget,Unknown,,SOTON/O2 3101287,0,0,Solo,No,,"Salo, Finland Astoria, OR"
+"Ali, Mr. Ahmed",Mr,No,Third,Male,24,Young Adult,Southampton,7.0500,Budget,Unknown,,SOTON/O.Q. 3101311,0,0,Solo,No,,
+"Ali, Mr. William",Mr,No,Third,Male,25,Young Adult,Southampton,7.0500,Budget,Unknown,,SOTON/O.Q. 3101312,0,0,Solo,No,,Argentina
+"Allen, Mr. William Henry",Mr,No,Third,Male,35,Young Adult,Southampton,8.0500,Budget,Unknown,,373450,0,0,Solo,No,,"Lower Clapton, Middlesex or Erdington, Birmingham"
+"Allum, Mr. Owen George",Mr,No,Third,Male,18,Teen,Southampton,8.3000,Budget,Unknown,,2223,0,0,Solo,No,,"Windsor, England New York, NY"
+"Andersen, Mr. Albert Karvin",Mr,No,Third,Male,32,Young Adult,Southampton,22.5250,Standard,Unknown,,C 4001,0,0,Solo,No,,"Bergen, Norway"
+"Andersen-Jensen, Miss. Carla Christine Nielsine",Miss,Yes,Third,Female,19,Teen,Southampton,7.8542,Budget,Unknown,,350046,1,0,Small Family,Yes,16,
+"Andersson, Master. Sigvard Harald Elias",Master,No,Third,Male,4,Child,Southampton,31.2750,Premium,Unknown,,347082,4,2,Large Family,No,,"Sweden Winnipeg, MN"
+"Andersson, Miss. Ebba Iris Alfrida",Miss,No,Third,Female,6,Child,Southampton,31.2750,Premium,Unknown,,347082,4,2,Large Family,No,,"Sweden Winnipeg, MN"
+"Andersson, Miss. Ellis Anna Maria",Miss,No,Third,Female,2,Child,Southampton,31.2750,Premium,Unknown,,347082,4,2,Large Family,No,,"Sweden Winnipeg, MN"
+"Andersson, Miss. Erna Alexandra",Miss,Yes,Third,Female,17,Teen,Southampton,7.9250,Budget,Unknown,,3101281,4,2,Large Family,Yes,D,"Ruotsinphyhtaa, Finland New York, NY"
+"Andersson, Miss. Ida Augusta Margareta",Miss,No,Third,Female,38,Middle Aged,Southampton,7.7750,Budget,Unknown,,347091,4,2,Large Family,No,,"Vadsbro, Sweden Ministee, MI"
+"Andersson, Miss. Ingeborg Constanzia",Miss,No,Third,Female,9,Child,Southampton,31.2750,Premium,Unknown,,347082,4,2,Large Family,No,,"Sweden Winnipeg, MN"
+"Andersson, Miss. Sigrid Elisabeth",Miss,No,Third,Female,11,Child,Southampton,31.2750,Premium,Unknown,,347082,4,2,Large Family,No,,"Sweden Winnipeg, MN"
+"Andersson, Mr. Anders Johan",Mr,No,Third,Male,39,Middle Aged,Southampton,31.2750,Premium,Unknown,,347082,1,5,Large Family,No,,"Sweden Winnipeg, MN"
+"Andersson, Mr. August Edvard (""Wennerstrom"")",Mr,Yes,Third,Male,27,Young Adult,Southampton,7.7958,Budget,Unknown,,350043,0,0,Solo,Yes,A,
+"Andersson, Mr. Johan Samuel",Mr,No,Third,Male,26,Young Adult,Southampton,7.7750,Budget,Unknown,,347075,0,0,Solo,No,,"Hartford, CT"
+"Andersson, Mrs. Anders Johan (Alfrida Konstantia Brogren)",Mrs,No,Third,Female,39,Middle Aged,Southampton,31.2750,Premium,Unknown,,347082,1,5,Large Family,No,,"Sweden Winnipeg, MN"
+"Andreasson, Mr. Paul Edvin",Mr,No,Third,Male,20,Young Adult,Southampton,7.8542,Budget,Unknown,,347466,0,0,Solo,No,,"Sweden Chicago, IL"
+"Angheloff, Mr. Minko",Mr,No,Third,Male,26,Young Adult,Southampton,7.8958,Budget,Unknown,,349202,0,0,Solo,No,,"Bulgaria Chicago, IL"
+"Arnold-Franchi, Mr. Josef",Mr,No,Third,Male,25,Young Adult,Southampton,17.8000,Standard,Unknown,,349237,1,0,Small Family,No,,"Altdorf, Switzerland"
+"Arnold-Franchi, Mrs. Josef (Josefine Franchi)",Mrs,No,Third,Female,18,Teen,Southampton,17.8000,Standard,Unknown,,349237,1,0,Small Family,No,,"Altdorf, Switzerland"
+"Aronsson, Mr. Ernst Axel Algot",Mr,No,Third,Male,24,Young Adult,Southampton,7.7750,Budget,Unknown,,349911,0,0,Solo,No,,"Sweden Joliet, IL"
+"Asim, Mr. Adola",Mr,No,Third,Male,35,Young Adult,Southampton,7.0500,Budget,Unknown,,SOTON/O.Q. 3101310,0,0,Solo,No,,
+"Asplund, Master. Carl Edgar",Master,No,Third,Male,5,Child,Southampton,31.3875,Premium,Unknown,,347077,4,2,Large Family,No,,"Sweden  Worcester, MA"
+"Asplund, Master. Clarence Gustaf Hugo",Master,No,Third,Male,9,Child,Southampton,31.3875,Premium,Unknown,,347077,4,2,Large Family,No,,"Sweden Worcester, MA"
+"Asplund, Master. Edvin Rojj Felix",Master,Yes,Third,Male,3,Child,Southampton,31.3875,Premium,Unknown,,347077,4,2,Large Family,Yes,15,"Sweden Worcester, MA"
+"Asplund, Master. Filip Oscar",Master,No,Third,Male,13,Teen,Southampton,31.3875,Premium,Unknown,,347077,4,2,Large Family,No,,"Sweden Worcester, MA"
+"Asplund, Miss. Lillian Gertrud",Miss,Yes,Third,Female,5,Child,Southampton,31.3875,Premium,Unknown,,347077,4,2,Large Family,Yes,15,"Sweden Worcester, MA"
+"Asplund, Mr. Carl Oscar Vilhelm Gustafsson",Mr,No,Third,Male,40,Middle Aged,Southampton,31.3875,Premium,Unknown,,347077,1,5,Large Family,No,,"Sweden  Worcester, MA"
+"Asplund, Mr. Johan Charles",Mr,Yes,Third,Male,23,Young Adult,Southampton,7.7958,Budget,Unknown,,350054,0,0,Solo,Yes,13,"Oskarshamn, Sweden Minneapolis, MN"
+"Asplund, Mrs. Carl Oscar (Selma Augusta Emilia Johansson)",Mrs,Yes,Third,Female,38,Middle Aged,Southampton,31.3875,Premium,Unknown,,347077,1,5,Large Family,Yes,15,"Sweden  Worcester, MA"
+"Assaf Khalil, Mrs. Mariana (""Miriam"")",Mrs,Yes,Third,Female,45,Middle Aged,Cherbourg,7.2250,Budget,Unknown,,2696,0,0,Solo,Yes,C,"Ottawa, ON"
+"Assaf, Mr. Gerios",Mr,No,Third,Male,21,Young Adult,Cherbourg,7.2250,Budget,Unknown,,2692,0,0,Solo,No,,"Ottawa, ON"
+"Assam, Mr. Ali",Mr,No,Third,Male,23,Young Adult,Southampton,7.0500,Budget,Unknown,,SOTON/O.Q. 3101309,0,0,Solo,No,,
+"Attalah, Miss. Malake",Miss,No,Third,Female,17,Teen,Cherbourg,14.4583,Standard,Unknown,,2627,0,0,Solo,No,,
+"Attalah, Mr. Sleiman",Mr,No,Third,Male,30,Young Adult,Cherbourg,7.2250,Budget,Unknown,,2694,0,0,Solo,No,,"Ottawa, ON"
+"Augustsson, Mr. Albert",Mr,No,Third,Male,23,Young Adult,Southampton,7.8542,Budget,Unknown,,347468,0,0,Solo,No,,"Krakoryd, Sweden Bloomington, IL"
+"Ayoub, Miss. Banoura",Miss,Yes,Third,Female,13,Teen,Cherbourg,7.2292,Budget,Unknown,,2687,0,0,Solo,Yes,C,"Syria Youngstown, OH"
+"Baccos, Mr. Raffull",Mr,No,Third,Male,20,Young Adult,Cherbourg,7.2250,Budget,Unknown,,2679,0,0,Solo,No,,
+"Backstrom, Mr. Karl Alfred",Mr,No,Third,Male,32,Young Adult,Southampton,15.8500,Standard,Unknown,,3101278,1,0,Small Family,Yes,D,"Ruotsinphytaa, Finland New York, NY"
+"Backstrom, Mrs. Karl Alfred (Maria Mathilda Gustafsson)",Mrs,Yes,Third,Female,33,Young Adult,Southampton,15.8500,Standard,Unknown,,3101278,3,0,Small Family,No,,"Ruotsinphytaa, Finland New York, NY"
+"Baclini, Miss. Eugenie",Miss,Yes,Third,Female,0.75,Child,Cherbourg,19.2583,Standard,Unknown,,2666,2,1,Small Family,Yes,C,"Syria New York, NY"
+"Baclini, Miss. Helene Barbara",Miss,Yes,Third,Female,0.75,Child,Cherbourg,19.2583,Standard,Unknown,,2666,2,1,Small Family,Yes,C,"Syria New York, NY"
+"Baclini, Miss. Marie Catherine",Miss,Yes,Third,Female,5,Child,Cherbourg,19.2583,Standard,Unknown,,2666,2,1,Small Family,Yes,C,"Syria New York, NY"
+"Baclini, Mrs. Solomon (Latifa Qurban)",Mrs,Yes,Third,Female,24,Young Adult,Cherbourg,19.2583,Standard,Unknown,,2666,0,3,Small Family,Yes,C,"Syria New York, NY"
+"Badman, Miss. Emily Louisa",Miss,Yes,Third,Female,18,Teen,Southampton,8.0500,Budget,Unknown,,A/4 31416,0,0,Solo,Yes,C,"London Skanteales, NY"
+"Badt, Mr. Mohamed",Mr,No,Third,Male,40,Middle Aged,Cherbourg,7.2250,Budget,Unknown,,2623,0,0,Solo,No,,
+"Balkic, Mr. Cerin",Mr,No,Third,Male,26,Young Adult,Southampton,7.8958,Budget,Unknown,,349248,0,0,Solo,No,,
+"Barah, Mr. Hanna Assi",Mr,Yes,Third,Male,20,Young Adult,Cherbourg,7.2292,Budget,Unknown,,2663,0,0,Solo,Yes,15,
+"Barbara, Miss. Saiide",Miss,No,Third,Female,18,Teen,Cherbourg,14.4542,Standard,Unknown,,2691,0,1,Small Family,No,,"Syria Ottawa, ON"
+"Barbara, Mrs. (Catherine David)",Mrs,No,Third,Female,45,Middle Aged,Cherbourg,14.4542,Standard,Unknown,,2691,0,1,Small Family,No,,"Syria Ottawa, ON"
+"Barry, Miss. Julia",Miss,No,Third,Female,27,Young Adult,Queenstown,7.8792,Budget,Unknown,,330844,0,0,Solo,No,,"New York, NY"
+"Barton, Mr. David John",Mr,No,Third,Male,22,Young Adult,Southampton,8.0500,Budget,Unknown,,324669,0,0,Solo,No,,"England New York, NY"
+"Beavan, Mr. William Thomas",Mr,No,Third,Male,19,Teen,Southampton,8.0500,Budget,Unknown,,323951,0,0,Solo,No,,England
+"Bengtsson, Mr. John Viktor",Mr,No,Third,Male,26,Young Adult,Southampton,7.7750,Budget,Unknown,,347068,0,0,Solo,No,,"Krakudden, Sweden Moune, IL"
+"Berglund, Mr. Karl Ivar Sven",Mr,No,Third,Male,22,Young Adult,Southampton,9.3500,Budget,Unknown,,PP 4348,0,0,Solo,No,,"Tranvik, Finland New York"
+"Betros, Master. Seman",Master,No,Third,Male,,Unknown,Cherbourg,7.2292,Budget,Unknown,,2622,0,0,Solo,No,,
+"Betros, Mr. Tannous",Mr,No,Third,Male,20,Young Adult,Cherbourg,4.0125,Budget,Unknown,,2648,0,0,Solo,No,,Syria
+"Bing, Mr. Lee",Mr,Yes,Third,Male,32,Young Adult,Southampton,56.4958,Premium,Unknown,,1601,0,0,Solo,Yes,C,"Hong Kong New York, NY"
+"Birkeland, Mr. Hans Martin Monsen",Mr,No,Third,Male,21,Young Adult,Southampton,7.7750,Budget,Unknown,,312992,0,0,Solo,No,,"Brennes, Norway New York"
+"Bjorklund, Mr. Ernst Herbert",Mr,No,Third,Male,18,Teen,Southampton,7.7500,Budget,Unknown,,347090,0,0,Solo,No,,"Stockholm, Sweden New York"
+"Bostandyeff, Mr. Guentcho",Mr,No,Third,Male,26,Young Adult,Southampton,7.8958,Budget,Unknown,,349224,0,0,Solo,No,,"Bulgaria Chicago, IL"
+"Boulos, Master. Akar",Master,No,Third,Male,6,Child,Cherbourg,15.2458,Standard,Unknown,,2678,1,1,Small Family,No,,"Syria Kent, ON"
+"Boulos, Miss. Nourelain",Miss,No,Third,Female,9,Child,Cherbourg,15.2458,Standard,Unknown,,2678,1,1,Small Family,No,,"Syria Kent, ON"
+"Boulos, Mr. Hanna",Mr,No,Third,Male,,Unknown,Cherbourg,7.2250,Budget,Unknown,,2664,0,0,Solo,No,,Syria
+"Boulos, Mrs. Joseph (Sultana)",Mrs,No,Third,Female,,Unknown,Cherbourg,15.2458,Standard,Unknown,,2678,0,2,Small Family,No,,"Syria Kent, ON"
+"Bourke, Miss. Mary",Miss,No,Third,Female,,Unknown,Queenstown,7.7500,Budget,Unknown,,364848,0,2,Small Family,No,,"Ireland Chicago, IL"
+"Bourke, Mr. John",Mr,No,Third,Male,40,Middle Aged,Queenstown,15.5000,Standard,Unknown,,364849,1,1,Small Family,No,,"Ireland Chicago, IL"
+"Bourke, Mrs. John (Catherine)",Mrs,No,Third,Female,32,Young Adult,Queenstown,15.5000,Standard,Unknown,,364849,1,1,Small Family,No,,"Ireland Chicago, IL"
+"Bowen, Mr. David John ""Dai""",Mr,No,Third,Male,21,Young Adult,Southampton,16.1000,Standard,Unknown,,54636,0,0,Solo,No,,"Treherbert, Cardiff, Wales"
+"Bradley, Miss. Bridget Delia",Miss,Yes,Third,Female,22,Young Adult,Queenstown,7.7250,Budget,Unknown,,334914,0,0,Solo,Yes,13,"Kingwilliamstown, Co Cork, Ireland Glens Falls, NY"
+"Braf, Miss. Elin Ester Maria",Miss,No,Third,Female,20,Young Adult,Southampton,7.8542,Budget,Unknown,,347471,0,0,Solo,No,,"Medeltorp, Sweden Chicago, IL"
+"Braund, Mr. Lewis Richard",Mr,No,Third,Male,29,Young Adult,Southampton,7.0458,Budget,Unknown,,3460,1,0,Small Family,No,,"Bridgerule, Devon"
+"Braund, Mr. Owen Harris",Mr,No,Third,Male,22,Young Adult,Southampton,7.2500,Budget,Unknown,,A/5 21171,1,0,Small Family,No,,"Bridgerule, Devon"
+"Brobeck, Mr. Karl Rudolf",Mr,No,Third,Male,22,Young Adult,Southampton,7.7958,Budget,Unknown,,350045,0,0,Solo,No,,"Sweden Worcester, MA"
+"Brocklebank, Mr. William Alfred",Mr,No,Third,Male,35,Young Adult,Southampton,8.0500,Budget,Unknown,,364512,0,0,Solo,No,,"Broomfield, Chelmsford, England"
+"Buckley, Miss. Katherine",Miss,No,Third,Female,18.5,Teen,Queenstown,7.2833,Budget,Unknown,,329944,0,0,Solo,No,,"Co Cork, Ireland Roxbury, MA"
+"Buckley, Mr. Daniel",Mr,Yes,Third,Male,21,Young Adult,Queenstown,7.8208,Budget,Unknown,,330920,0,0,Solo,Yes,13,"Kingwilliamstown, Co Cork, Ireland New York, NY"
+"Burke, Mr. Jeremiah",Mr,No,Third,Male,19,Teen,Queenstown,6.7500,Budget,Unknown,,365222,0,0,Solo,No,,"Co Cork, Ireland Charlestown, MA"
+"Burns, Miss. Mary Delia",Miss,No,Third,Female,18,Teen,Queenstown,7.8792,Budget,Unknown,,330963,0,0,Solo,No,,"Co Sligo, Ireland New York, NY"
+"Cacic, Miss. Manda",Miss,No,Third,Female,21,Young Adult,Southampton,8.6625,Budget,Unknown,,315087,0,0,Solo,No,,
+"Cacic, Miss. Marija",Miss,No,Third,Female,30,Young Adult,Southampton,8.6625,Budget,Unknown,,315084,0,0,Solo,No,,
+"Cacic, Mr. Jego Grga",Mr,No,Third,Male,18,Teen,Southampton,8.6625,Budget,Unknown,,315091,0,0,Solo,No,,
+"Cacic, Mr. Luka",Mr,No,Third,Male,38,Middle Aged,Southampton,8.6625,Budget,Unknown,,315089,0,0,Solo,No,,Croatia
+"Calic, Mr. Jovo",Mr,No,Third,Male,17,Teen,Southampton,8.6625,Budget,Unknown,,315093,0,0,Solo,No,,
+"Calic, Mr. Petar",Mr,No,Third,Male,17,Teen,Southampton,8.6625,Budget,Unknown,,315086,0,0,Solo,No,,
+"Canavan, Miss. Mary",Miss,No,Third,Female,21,Young Adult,Queenstown,7.7500,Budget,Unknown,,364846,0,0,Solo,No,,
+"Canavan, Mr. Patrick",Mr,No,Third,Male,21,Young Adult,Queenstown,7.7500,Budget,Unknown,,364858,0,0,Solo,No,,"Ireland Philadelphia, PA"
+"Cann, Mr. Ernest Charles",Mr,No,Third,Male,21,Young Adult,Southampton,8.0500,Budget,Unknown,,A./5. 2152,0,0,Solo,No,,
+"Caram, Mr. Joseph",Mr,No,Third,Male,,Unknown,Cherbourg,14.4583,Standard,Unknown,,2689,1,0,Small Family,No,,"Ottawa, ON"
+"Caram, Mrs. Joseph (Maria Elias)",Mrs,No,Third,Female,,Unknown,Cherbourg,14.4583,Standard,Unknown,,2689,1,0,Small Family,No,,"Ottawa, ON"
+"Carlsson, Mr. August Sigfrid",Mr,No,Third,Male,28,Young Adult,Southampton,7.7958,Budget,Unknown,,350042,0,0,Solo,No,,"Dagsas, Sweden Fower, MN"
+"Carlsson, Mr. Carl Robert",Mr,No,Third,Male,24,Young Adult,Southampton,7.8542,Budget,Unknown,,350409,0,0,Solo,No,,"Goteborg, Sweden Huntley, IL"
+"Carr, Miss. Helen ""Ellen""",Miss,Yes,Third,Female,16,Teen,Queenstown,7.7500,Budget,Unknown,,367231,0,0,Solo,Yes,16,"Co Longford, Ireland New York, NY"
+"Carr, Miss. Jeannie",Miss,No,Third,Female,37,Middle Aged,Queenstown,7.7500,Budget,Unknown,,368364,0,0,Solo,No,,"Co Sligo, Ireland Hartford, CT"
+"Carver, Mr. Alfred John",Mr,No,Third,Male,28,Young Adult,Southampton,7.2500,Budget,Unknown,,392095,0,0,Solo,No,,"St Denys, Southampton, Hants"
+"Celotti, Mr. Francesco",Mr,No,Third,Male,24,Young Adult,Southampton,8.0500,Budget,Unknown,,343275,0,0,Solo,No,,London
+"Charters, Mr. David",Mr,No,Third,Male,21,Young Adult,Queenstown,7.7333,Budget,Unknown,,A/5. 13032,0,0,Solo,No,,"Ireland New York, NY"
+"Chip, Mr. Chang",Mr,Yes,Third,Male,32,Young Adult,Southampton,56.4958,Premium,Unknown,,1601,0,0,Solo,Yes,C,"Hong Kong New York, NY"
+"Christmann, Mr. Emil",Mr,No,Third,Male,29,Young Adult,Southampton,8.0500,Budget,Unknown,,343276,0,0,Solo,No,,
+"Chronopoulos, Mr. Apostolos",Mr,No,Third,Male,26,Young Adult,Cherbourg,14.4542,Standard,Unknown,,2680,1,0,Small Family,No,,Greece
+"Chronopoulos, Mr. Demetrios",Mr,No,Third,Male,18,Teen,Cherbourg,14.4542,Standard,Unknown,,2680,1,0,Small Family,No,,Greece
+"Coelho, Mr. Domingos Fernandeo",Mr,No,Third,Male,20,Young Adult,Southampton,7.0500,Budget,Unknown,,SOTON/O.Q. 3101307,0,0,Solo,No,,Portugal
+"Cohen, Mr. Gurshon ""Gus""",Mr,Yes,Third,Male,18,Teen,Southampton,8.0500,Budget,Unknown,,A/5 3540,0,0,Solo,Yes,12,"London Brooklyn, NY"
+"Colbert, Mr. Patrick",Mr,No,Third,Male,24,Young Adult,Queenstown,7.2500,Budget,Unknown,,371109,0,0,Solo,No,,"Co Limerick, Ireland Sherbrooke, PQ"
+"Coleff, Mr. Peju",Mr,No,Third,Male,36,Middle Aged,Southampton,7.4958,Budget,Unknown,,349210,0,0,Solo,No,,"Bulgaria Chicago, IL"
+"Coleff, Mr. Satio",Mr,No,Third,Male,24,Young Adult,Southampton,7.4958,Budget,Unknown,,349209,0,0,Solo,No,,
+"Conlon, Mr. Thomas Henry",Mr,No,Third,Male,31,Young Adult,Queenstown,7.7333,Budget,Unknown,,21332,0,0,Solo,No,,"Philadelphia, PA"
+"Connaghton, Mr. Michael",Mr,No,Third,Male,31,Young Adult,Queenstown,7.7500,Budget,Unknown,,335097,0,0,Solo,No,,"Ireland Brooklyn, NY"
+"Connolly, Miss. Kate",Miss,Yes,Third,Female,22,Young Adult,Queenstown,7.7500,Budget,Unknown,,370373,0,0,Solo,Yes,13,Ireland
+"Connolly, Miss. Kate",Miss,No,Third,Female,30,Young Adult,Queenstown,7.6292,Budget,Unknown,,330972,0,0,Solo,No,,Ireland
+"Connors, Mr. Patrick",Mr,No,Third,Male,70.5,Senior,Queenstown,7.7500,Budget,Unknown,,370369,0,0,Solo,No,,
+"Cook, Mr. Jacob",Mr,No,Third,Male,43,Middle Aged,Southampton,8.0500,Budget,Unknown,,A/5 3536,0,0,Solo,No,,
+"Cor, Mr. Bartol",Mr,No,Third,Male,35,Young Adult,Southampton,7.8958,Budget,Unknown,,349230,0,0,Solo,No,,Austria
+"Cor, Mr. Ivan",Mr,No,Third,Male,27,Young Adult,Southampton,7.8958,Budget,Unknown,,349229,0,0,Solo,No,,Austria
+"Cor, Mr. Liudevit",Mr,No,Third,Male,19,Teen,Southampton,7.8958,Budget,Unknown,,349231,0,0,Solo,No,,Austria
+"Corn, Mr. Harry",Mr,No,Third,Male,30,Young Adult,Southampton,8.0500,Budget,Unknown,,SOTON/OQ 392090,0,0,Solo,No,,London
+"Coutts, Master. Eden Leslie ""Neville""",Master,Yes,Third,Male,9,Child,Southampton,15.9000,Standard,Unknown,,C.A. 37671,1,1,Small Family,Yes,2,"England Brooklyn, NY"
+"Coutts, Master. William Loch ""William""",Master,Yes,Third,Male,3,Child,Southampton,15.9000,Standard,Unknown,,C.A. 37671,1,1,Small Family,Yes,2,"England Brooklyn, NY"
+"Coutts, Mrs. William (Winnie ""Minnie"" Treanor)",Mrs,Yes,Third,Female,36,Middle Aged,Southampton,15.9000,Standard,Unknown,,C.A. 37671,0,2,Small Family,Yes,2,"England Brooklyn, NY"
+"Coxon, Mr. Daniel",Mr,No,Third,Male,59,Senior,Southampton,7.2500,Budget,Unknown,,364500,0,0,Solo,No,,"Merrill, WI"
+"Crease, Mr. Ernest James",Mr,No,Third,Male,19,Teen,Southampton,8.1583,Budget,Unknown,,S.P. 3464,0,0,Solo,No,,"Bristol, England Cleveland, OH"
+"Cribb, Miss. Laura Alice",Miss,Yes,Third,Female,17,Teen,Southampton,16.1000,Standard,Unknown,,371362,0,1,Small Family,Yes,12,"Bournemouth, England Newark, NJ"
+"Cribb, Mr. John Hatfield",Mr,No,Third,Male,44,Middle Aged,Southampton,16.1000,Standard,Unknown,,371362,0,1,Small Family,No,,"Bournemouth, England Newark, NJ"
+"Culumovic, Mr. Jeso",Mr,No,Third,Male,17,Teen,Southampton,8.6625,Budget,Unknown,,315090,0,0,Solo,No,,Austria-Hungary
+"Daher, Mr. Shedid",Mr,No,Third,Male,22.5,Young Adult,Cherbourg,7.2250,Budget,Unknown,,2698,0,0,Solo,No,,
+"Dahl, Mr. Karl Edwart",Mr,Yes,Third,Male,45,Middle Aged,Southampton,8.0500,Budget,Unknown,,7598,0,0,Solo,Yes,15,"Australia Fingal, ND"
+"Dahlberg, Miss. Gerda Ulrika",Miss,No,Third,Female,22,Young Adult,Southampton,10.5167,Standard,Unknown,,7552,0,0,Solo,No,,"Norrlot, Sweden Chicago, IL"
+"Dakic, Mr. Branko",Mr,No,Third,Male,19,Teen,Southampton,10.1708,Standard,Unknown,,349228,0,0,Solo,No,,Austria
+"Daly, Miss. Margaret Marcella ""Maggie""",Miss,Yes,Third,Female,30,Young Adult,Queenstown,6.9500,Budget,Unknown,,382650,0,0,Solo,Yes,15,"Co Athlone, Ireland New York, NY"
+"Daly, Mr. Eugene Patrick",Mr,Yes,Third,Male,29,Young Adult,Queenstown,7.7500,Budget,Unknown,,382651,0,0,Solo,Yes,13 15 B,"Co Athlone, Ireland New York, NY"
+"Danbom, Master. Gilbert Sigvard Emanuel",Master,No,Third,Male,0.33,Child,Southampton,14.4000,Standard,Unknown,,347080,0,2,Small Family,No,,"Stanton, IA"
+"Danbom, Mr. Ernst Gilbert",Mr,No,Third,Male,34,Young Adult,Southampton,14.4000,Standard,Unknown,,347080,1,1,Small Family,No,,"Stanton, IA"
+"Danbom, Mrs. Ernst Gilbert (Anna Sigrid Maria Brogren)",Mrs,No,Third,Female,28,Young Adult,Southampton,14.4000,Standard,Unknown,,347080,1,1,Small Family,No,,"Stanton, IA"
+"Danoff, Mr. Yoto",Mr,No,Third,Male,27,Young Adult,Southampton,7.8958,Budget,Unknown,,349219,0,0,Solo,No,,"Bulgaria Chicago, IL"
+"Dantcheff, Mr. Ristiu",Mr,No,Third,Male,25,Young Adult,Southampton,7.8958,Budget,Unknown,,349203,0,0,Solo,No,,"Bulgaria Chicago, IL"
+"Davies, Mr. Alfred J",Mr,No,Third,Male,24,Young Adult,Southampton,24.1500,Standard,Unknown,,A/4 48871,2,0,Small Family,No,,"West Bromwich, England Pontiac, MI"
+"Davies, Mr. Evan",Mr,No,Third,Male,22,Young Adult,Southampton,8.0500,Budget,Unknown,,SC/A4 23568,0,0,Solo,No,,
+"Davies, Mr. John Samuel",Mr,No,Third,Male,21,Young Adult,Southampton,24.1500,Standard,Unknown,,A/4 48871,2,0,Small Family,No,,"West Bromwich, England Pontiac, MI"
+"Davies, Mr. Joseph",Mr,No,Third,Male,17,Teen,Southampton,8.0500,Budget,Unknown,,A/4 48873,2,0,Small Family,No,,"West Bromwich, England Pontiac, MI"
+"Davison, Mr. Thomas Henry",Mr,No,Third,Male,,Unknown,Southampton,16.1000,Standard,Unknown,,386525,1,0,Small Family,No,,"Liverpool, England Bedford, OH"
+"Davison, Mrs. Thomas Henry (Mary E Finck)",Mrs,Yes,Third,Female,,Unknown,Southampton,16.1000,Standard,Unknown,,386525,1,0,Small Family,Yes,16,"Liverpool, England Bedford, OH"
+"de Messemaeker, Mr. Guillaume Joseph",Mr,Yes,Third,Male,36.5,Middle Aged,Southampton,17.4000,Standard,Unknown,,345572,1,0,Small Family,Yes,15,"Tampico, MT"
+"de Messemaeker, Mrs. Guillaume Joseph (Emma)",Mrs,Yes,Third,Female,36,Middle Aged,Southampton,17.4000,Standard,Unknown,,345572,1,0,Small Family,Yes,13,"Tampico, MT"
+"de Mulder, Mr. Theodore",Mr,Yes,Third,Male,30,Young Adult,Southampton,9.5000,Budget,Unknown,,345774,0,0,Solo,Yes,11,"Belgium Detroit, MI"
+"de Pelsmaeker, Mr. Alfons",Mr,No,Third,Male,16,Teen,Southampton,9.5000,Budget,Unknown,,345778,0,0,Solo,No,,
+"Dean, Master. Bertram Vere",Master,Yes,Third,Male,1,Child,Southampton,20.5750,Standard,Unknown,,C.A. 2315,1,2,Small Family,Yes,10,"Devon, England Wichita, KS"
+"Dean, Miss. Elizabeth Gladys ""Millvina""",Miss,Yes,Third,Female,0.17,Child,Southampton,20.5750,Standard,Unknown,,C.A. 2315,1,2,Small Family,Yes,10,"Devon, England Wichita, KS"
+"Dean, Mr. Bertram Frank",Mr,No,Third,Male,26,Young Adult,Southampton,20.5750,Standard,Unknown,,C.A. 2315,1,2,Small Family,No,,"Devon, England Wichita, KS"
+"Dean, Mrs. Bertram (Eva Georgetta Light)",Mrs,Yes,Third,Female,33,Young Adult,Southampton,20.5750,Standard,Unknown,,C.A. 2315,1,2,Small Family,Yes,10,"Devon, England Wichita, KS"
+"Delalic, Mr. Redjo",Mr,No,Third,Male,25,Young Adult,Southampton,7.8958,Budget,Unknown,,349250,0,0,Solo,No,,
+"Demetri, Mr. Marinko",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349238,0,0,Solo,No,,
+"Denkoff, Mr. Mitto",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349225,0,0,Solo,No,,"Bulgaria Coon Rapids, IA"
+"Dennis, Mr. Samuel",Mr,No,Third,Male,22,Young Adult,Southampton,7.2500,Budget,Unknown,,A/5 21172,0,0,Solo,No,,
+"Dennis, Mr. William",Mr,No,Third,Male,36,Middle Aged,Southampton,7.2500,Budget,Unknown,,A/5 21175,0,0,Solo,No,,
+"Devaney, Miss. Margaret Delia",Miss,Yes,Third,Female,19,Teen,Queenstown,7.8792,Budget,Unknown,,330958,0,0,Solo,Yes,C,"Kilmacowen, Co Sligo, Ireland New York, NY"
+"Dika, Mr. Mirko",Mr,No,Third,Male,17,Teen,Southampton,7.8958,Budget,Unknown,,349232,0,0,Solo,No,,
+"Dimic, Mr. Jovan",Mr,No,Third,Male,42,Middle Aged,Southampton,8.6625,Budget,Unknown,,315088,0,0,Solo,No,,
+"Dintcheff, Mr. Valtcho",Mr,No,Third,Male,43,Middle Aged,Southampton,7.8958,Budget,Unknown,,349226,0,0,Solo,No,,
+"Doharr, Mr. Tannous",Mr,No,Third,Male,,Unknown,Cherbourg,7.2292,Budget,Unknown,,2686,0,0,Solo,No,,
+"Dooley, Mr. Patrick",Mr,No,Third,Male,32,Young Adult,Queenstown,7.7500,Budget,Unknown,,370376,0,0,Solo,No,,"Ireland New York, NY"
+"Dorking, Mr. Edward Arthur",Mr,Yes,Third,Male,19,Teen,Southampton,8.0500,Budget,Unknown,,A/5. 10482,0,0,Solo,Yes,B,"England Oglesby, IL"
+"Dowdell, Miss. Elizabeth",Miss,Yes,Third,Female,30,Young Adult,Southampton,12.4750,Standard,Unknown,,364516,0,0,Solo,Yes,13,"Union Hill, NJ"
+"Doyle, Miss. Elizabeth",Miss,No,Third,Female,24,Young Adult,Queenstown,7.7500,Budget,Unknown,,368702,0,0,Solo,No,,"Ireland New York, NY"
+"Drapkin, Miss. Jennie",Miss,Yes,Third,Female,23,Young Adult,Southampton,8.0500,Budget,Unknown,,SOTON/OQ 392083,0,0,Solo,No,,"London New York, NY"
+"Drazenoic, Mr. Jozef",Mr,No,Third,Male,33,Young Adult,Cherbourg,7.8958,Budget,Unknown,,349241,0,0,Solo,No,,"Austria Niagara Falls, NY"
+"Duane, Mr. Frank",Mr,No,Third,Male,65,Senior,Queenstown,7.7500,Budget,Unknown,,336439,0,0,Solo,No,,
+"Duquemin, Mr. Joseph",Mr,Yes,Third,Male,24,Young Adult,Southampton,7.5500,Budget,Unknown,,S.O./P.P. 752,0,0,Solo,Yes,D,"England Albion, NY"
+"Dyker, Mr. Adolf Fredrik",Mr,No,Third,Male,23,Young Adult,Southampton,13.9000,Standard,Unknown,,347072,1,0,Small Family,No,,"West Haven, CT"
+"Dyker, Mrs. Adolf Fredrik (Anna Elisabeth Judith Andersson)",Mrs,Yes,Third,Female,22,Young Adult,Southampton,13.9000,Standard,Unknown,,347072,1,0,Small Family,Yes,16,"West Haven, CT"
+"Edvardsson, Mr. Gustaf Hjalmar",Mr,No,Third,Male,18,Teen,Southampton,7.7750,Budget,Unknown,,349912,0,0,Solo,No,,"Tofta, Sweden Joliet, IL"
+"Eklund, Mr. Hans Linus",Mr,No,Third,Male,16,Teen,Southampton,7.7750,Budget,Unknown,,347074,0,0,Solo,No,,"Karberg, Sweden Jerome Junction, AZ"
+"Ekstrom, Mr. Johan",Mr,No,Third,Male,45,Middle Aged,Southampton,6.9750,Budget,Unknown,,347061,0,0,Solo,No,,"Effington Rut, SD"
+"Elias, Mr. Dibo",Mr,No,Third,Male,,Unknown,Cherbourg,7.2250,Budget,Unknown,,2674,0,0,Solo,No,,
+"Elias, Mr. Joseph",Mr,No,Third,Male,39,Middle Aged,Cherbourg,7.2292,Budget,Unknown,,2675,0,2,Small Family,No,,"Syria Ottawa, ON"
+"Elias, Mr. Joseph Jr",Mr,No,Third,Male,17,Teen,Cherbourg,7.2292,Budget,Unknown,,2690,1,1,Small Family,No,,
+"Elias, Mr. Tannous",Mr,No,Third,Male,15,Teen,Cherbourg,7.2292,Budget,Unknown,,2695,1,1,Small Family,No,,Syria
+"Elsbury, Mr. William James",Mr,No,Third,Male,47,Middle Aged,Southampton,7.2500,Budget,Unknown,,A/5 3902,0,0,Solo,No,,"Illinois, USA"
+"Emanuel, Miss. Virginia Ethel",Miss,Yes,Third,Female,5,Child,Southampton,12.4750,Standard,Unknown,,364516,0,0,Solo,Yes,13,"New York, NY"
+"Emir, Mr. Farred Chehab",Mr,No,Third,Male,,Unknown,Cherbourg,7.2250,Budget,Unknown,,2631,0,0,Solo,No,,
+"Everett, Mr. Thomas James",Mr,No,Third,Male,40.5,Middle Aged,Southampton,15.1000,Standard,Unknown,,C.A. 6212,0,0,Solo,No,,
+"Farrell, Mr. James",Mr,No,Third,Male,40.5,Middle Aged,Queenstown,7.7500,Budget,Unknown,,367232,0,0,Solo,No,,"Aughnacliff, Co Longford, Ireland New York, NY"
+"Finoli, Mr. Luigi",Mr,Yes,Third,Male,,Unknown,Southampton,7.0500,Budget,Unknown,,SOTON/O.Q. 3101308,0,0,Solo,Yes,15,"Italy Philadelphia, PA"
+"Fischer, Mr. Eberhard Thelander",Mr,No,Third,Male,18,Teen,Southampton,7.7958,Budget,Unknown,,350036,0,0,Solo,No,,
+"Fleming, Miss. Honora",Miss,No,Third,Female,,Unknown,Queenstown,7.7500,Budget,Unknown,,364859,0,0,Solo,No,,
+"Flynn, Mr. James",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,364851,0,0,Solo,No,,
+"Flynn, Mr. John",Mr,No,Third,Male,,Unknown,Queenstown,6.9500,Budget,Unknown,,368323,0,0,Solo,No,,
+"Foley, Mr. Joseph",Mr,No,Third,Male,26,Young Adult,Queenstown,7.8792,Budget,Unknown,,330910,0,0,Solo,No,,"Ireland Chicago, IL"
+"Foley, Mr. William",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,365235,0,0,Solo,No,,Ireland
+"Foo, Mr. Choong",Mr,Yes,Third,Male,,Unknown,Southampton,56.4958,Premium,Unknown,,1601,0,0,Solo,Yes,13,"Hong Kong New York, NY"
+"Ford, Miss. Doolina Margaret ""Daisy""",Miss,No,Third,Female,21,Young Adult,Southampton,34.3750,Premium,Unknown,,W./C. 6608,2,2,Large Family,No,,"Rotherfield, Sussex, England Essex Co, MA"
+"Ford, Miss. Robina Maggie ""Ruby""",Miss,No,Third,Female,9,Child,Southampton,34.3750,Premium,Unknown,,W./C. 6608,2,2,Large Family,No,,"Rotherfield, Sussex, England Essex Co, MA"
+"Ford, Mr. Arthur",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,A/5 1478,0,0,Solo,No,,"Bridgwater, Somerset, England"
+"Ford, Mr. Edward Watson",Mr,No,Third,Male,18,Teen,Southampton,34.3750,Premium,Unknown,,W./C. 6608,2,2,Large Family,No,,"Rotherfield, Sussex, England Essex Co, MA"
+"Ford, Mr. William Neal",Mr,No,Third,Male,16,Teen,Southampton,34.3750,Premium,Unknown,,W./C. 6608,1,3,Large Family,No,,"Rotherfield, Sussex, England Essex Co, MA"
+"Ford, Mrs. Edward (Margaret Ann Watson)",Mrs,No,Third,Female,48,Middle Aged,Southampton,34.3750,Premium,Unknown,,W./C. 6608,1,3,Large Family,No,,"Rotherfield, Sussex, England Essex Co, MA"
+"Fox, Mr. Patrick",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,368573,0,0,Solo,No,,"Ireland New York, NY"
+"Franklin, Mr. Charles (Charles Fardon)",Mr,No,Third,Male,,Unknown,Southampton,7.2500,Budget,Unknown,,SOTON/O.Q. 3101314,0,0,Solo,No,,
+"Gallagher, Mr. Martin",Mr,No,Third,Male,25,Young Adult,Queenstown,7.7417,Budget,Unknown,,36864,0,0,Solo,No,,"New York, NY"
+"Garfirth, Mr. John",Mr,No,Third,Male,,Unknown,Southampton,14.5000,Standard,Unknown,,358585,0,0,Solo,No,,
+"Gheorgheff, Mr. Stanio",Mr,No,Third,Male,,Unknown,Cherbourg,7.8958,Budget,Unknown,,349254,0,0,Solo,No,,
+"Gilinski, Mr. Eliezer",Mr,No,Third,Male,22,Young Adult,Southampton,8.0500,Budget,Unknown,,14973,0,0,Solo,No,,
+"Gilnagh, Miss. Katherine ""Katie""",Miss,Yes,Third,Female,16,Teen,Queenstown,7.7333,Budget,Unknown,,35851,0,0,Solo,Yes,16,"Co Longford, Ireland New York, NY"
+"Glynn, Miss. Mary Agatha",Miss,Yes,Third,Female,,Unknown,Queenstown,7.7500,Budget,Unknown,,335677,0,0,Solo,Yes,13,"Co Clare, Ireland Washington, DC"
+"Goldsmith, Master. Frank John William ""Frankie""",Master,Yes,Third,Male,9,Child,Southampton,20.5250,Standard,Unknown,,363291,0,2,Small Family,Yes,C D,"Strood, Kent, England Detroit, MI"
+"Goldsmith, Mr. Frank John",Mr,No,Third,Male,33,Young Adult,Southampton,20.5250,Standard,Unknown,,363291,1,1,Small Family,No,,"Strood, Kent, England Detroit, MI"
+"Goldsmith, Mr. Nathan",Mr,No,Third,Male,41,Middle Aged,Southampton,7.8500,Budget,Unknown,,SOTON/O.Q. 3101263,0,0,Solo,No,,"Philadelphia, PA"
+"Goldsmith, Mrs. Frank John (Emily Alice Brown)",Mrs,Yes,Third,Female,31,Young Adult,Southampton,20.5250,Standard,Unknown,,363291,1,1,Small Family,Yes,C D,"Strood, Kent, England Detroit, MI"
+"Goncalves, Mr. Manuel Estanslas",Mr,No,Third,Male,38,Middle Aged,Southampton,7.0500,Budget,Unknown,,SOTON/O.Q. 3101306,0,0,Solo,No,,Portugal
+"Goodwin, Master. Harold Victor",Master,No,Third,Male,9,Child,Southampton,46.9000,Premium,Unknown,,CA 2144,5,2,Large Family,No,,"Wiltshire, England Niagara Falls, NY"
+"Goodwin, Master. Sidney Leonard",Master,No,Third,Male,1,Child,Southampton,46.9000,Premium,Unknown,,CA 2144,5,2,Large Family,No,,"Wiltshire, England Niagara Falls, NY"
+"Goodwin, Master. William Frederick",Master,No,Third,Male,11,Child,Southampton,46.9000,Premium,Unknown,,CA 2144,5,2,Large Family,No,,"Wiltshire, England Niagara Falls, NY"
+"Goodwin, Miss. Jessie Allis",Miss,No,Third,Female,10,Child,Southampton,46.9000,Premium,Unknown,,CA 2144,5,2,Large Family,No,,"Wiltshire, England Niagara Falls, NY"
+"Goodwin, Miss. Lillian Amy",Miss,No,Third,Female,16,Teen,Southampton,46.9000,Premium,Unknown,,CA 2144,5,2,Large Family,No,,"Wiltshire, England Niagara Falls, NY"
+"Goodwin, Mr. Charles Edward",Mr,No,Third,Male,14,Teen,Southampton,46.9000,Premium,Unknown,,CA 2144,5,2,Large Family,No,,"Wiltshire, England Niagara Falls, NY"
+"Goodwin, Mr. Charles Frederick",Mr,No,Third,Male,40,Middle Aged,Southampton,46.9000,Premium,Unknown,,CA 2144,1,6,Large Family,No,,"Wiltshire, England Niagara Falls, NY"
+"Goodwin, Mrs. Frederick (Augusta Tyler)",Mrs,No,Third,Female,43,Middle Aged,Southampton,46.9000,Premium,Unknown,,CA 2144,1,6,Large Family,No,,"Wiltshire, England Niagara Falls, NY"
+"Green, Mr. George Henry",Mr,No,Third,Male,51,Middle Aged,Southampton,8.0500,Budget,Unknown,,21440,0,0,Solo,No,,"Dorking, Surrey, England"
+"Gronnestad, Mr. Daniel Danielsen",Mr,No,Third,Male,32,Young Adult,Southampton,8.3625,Budget,Unknown,,8471,0,0,Solo,No,,"Foresvik, Norway Portland, ND"
+"Guest, Mr. Robert",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,376563,0,0,Solo,No,,
+"Gustafsson, Mr. Alfred Ossian",Mr,No,Third,Male,20,Young Adult,Southampton,9.8458,Budget,Unknown,,7534,0,0,Solo,No,,"Waukegan, Chicago, IL"
+"Gustafsson, Mr. Anders Vilhelm",Mr,No,Third,Male,37,Middle Aged,Southampton,7.9250,Budget,Unknown,,3101276,2,0,Small Family,No,,"Ruotsinphytaa, Finland New York, NY"
+"Gustafsson, Mr. Johan Birger",Mr,No,Third,Male,28,Young Adult,Southampton,7.9250,Budget,Unknown,,3101277,2,0,Small Family,No,,"Ruotsinphytaa, Finland New York, NY"
+"Gustafsson, Mr. Karl Gideon",Mr,No,Third,Male,19,Teen,Southampton,7.7750,Budget,Unknown,,347069,0,0,Solo,No,,"Myren, Sweden New York, NY"
+"Haas, Miss. Aloisia",Miss,No,Third,Female,24,Young Adult,Southampton,8.8500,Budget,Unknown,,349236,0,0,Solo,No,,
+"Hagardon, Miss. Kate",Miss,No,Third,Female,17,Teen,Queenstown,7.7333,Budget,Unknown,,AQ/3. 30631,0,0,Solo,No,,
+"Hagland, Mr. Ingvald Olai Olsen",Mr,No,Third,Male,,Unknown,Southampton,19.9667,Standard,Unknown,,65303,1,0,Small Family,No,,
+"Hagland, Mr. Konrad Mathias Reiersen",Mr,No,Third,Male,,Unknown,Southampton,19.9667,Standard,Unknown,,65304,1,0,Small Family,No,,
+"Hakkarainen, Mr. Pekka Pietari",Mr,No,Third,Male,28,Young Adult,Southampton,15.8500,Standard,Unknown,,STON/O2. 3101279,1,0,Small Family,No,,
+"Hakkarainen, Mrs. Pekka Pietari (Elin Matilda Dolck)",Mrs,Yes,Third,Female,24,Young Adult,Southampton,15.8500,Standard,Unknown,,STON/O2. 3101279,1,0,Small Family,Yes,15,
+"Hampe, Mr. Leon",Mr,No,Third,Male,20,Young Adult,Southampton,9.5000,Budget,Unknown,,345769,0,0,Solo,No,,
+"Hanna, Mr. Mansour",Mr,No,Third,Male,23.5,Young Adult,Cherbourg,7.2292,Budget,Unknown,,2693,0,0,Solo,No,,
+"Hansen, Mr. Claus Peter",Mr,No,Third,Male,41,Middle Aged,Southampton,14.1083,Standard,Unknown,,350026,2,0,Small Family,No,,
+"Hansen, Mr. Henrik Juul",Mr,No,Third,Male,26,Young Adult,Southampton,7.8542,Budget,Unknown,,350025,1,0,Small Family,No,,
+"Hansen, Mr. Henry Damsgaard",Mr,No,Third,Male,21,Young Adult,Southampton,7.8542,Budget,Unknown,,350029,0,0,Solo,No,,
+"Hansen, Mrs. Claus Peter (Jennie L Howard)",Mrs,Yes,Third,Female,45,Middle Aged,Southampton,14.1083,Standard,Unknown,,350026,1,0,Small Family,Yes,11,
+"Harknett, Miss. Alice Phoebe",Miss,No,Third,Female,,Unknown,Southampton,7.5500,Budget,Unknown,,W./C. 6609,0,0,Solo,No,,
+"Harmer, Mr. Abraham (David Lishin)",Mr,No,Third,Male,25,Young Adult,Southampton,7.2500,Budget,Unknown,,374887,0,0,Solo,Yes,B,
+"Hart, Mr. Henry",Mr,No,Third,Male,,Unknown,Queenstown,6.8583,Budget,Unknown,,394140,0,0,Solo,No,,
+"Hassan, Mr. Houssein G N",Mr,No,Third,Male,11,Child,Cherbourg,18.7875,Standard,Unknown,,2699,0,0,Solo,No,,
+"Healy, Miss. Hanora ""Nora""",Miss,Yes,Third,Female,,Unknown,Queenstown,7.7500,Budget,Unknown,,370375,0,0,Solo,Yes,16,
+"Hedman, Mr. Oskar Arvid",Mr,Yes,Third,Male,27,Young Adult,Southampton,6.9750,Budget,Unknown,,347089,0,0,Solo,Yes,15,
+"Hee, Mr. Ling",Mr,Yes,Third,Male,,Unknown,Southampton,56.4958,Premium,Unknown,,1601,0,0,Solo,Yes,C,
+"Hegarty, Miss. Hanora ""Nora""",Miss,No,Third,Female,18,Teen,Queenstown,6.7500,Budget,Unknown,,365226,0,0,Solo,No,,
+"Heikkinen, Miss. Laina",Miss,Yes,Third,Female,26,Young Adult,Southampton,7.9250,Budget,Unknown,,STON/O2. 3101282,0,0,Solo,No,,
+"Heininen, Miss. Wendla Maria",Miss,No,Third,Female,23,Young Adult,Southampton,7.9250,Budget,Unknown,,STON/O2. 3101290,0,0,Solo,No,,
+"Hellstrom, Miss. Hilda Maria",Miss,Yes,Third,Female,22,Young Adult,Southampton,8.9625,Budget,Unknown,,7548,0,0,Solo,Yes,C,
+"Hendekovic, Mr. Ignjac",Mr,No,Third,Male,28,Young Adult,Southampton,7.8958,Budget,Unknown,,349243,0,0,Solo,No,,
+"Henriksson, Miss. Jenny Lovisa",Miss,No,Third,Female,28,Young Adult,Southampton,7.7750,Budget,Unknown,,347086,0,0,Solo,No,,
+"Henry, Miss. Delia",Miss,No,Third,Female,,Unknown,Queenstown,7.7500,Budget,Unknown,,382649,0,0,Solo,No,,
+"Hirvonen, Miss. Hildur E",Miss,Yes,Third,Female,2,Child,Southampton,12.2875,Standard,Unknown,,3101298,0,1,Small Family,Yes,15,
+"Hirvonen, Mrs. Alexander (Helga E Lindqvist)",Mrs,Yes,Third,Female,22,Young Adult,Southampton,12.2875,Standard,Unknown,,3101298,1,1,Small Family,Yes,15,
+"Holm, Mr. John Fredrik Alexander",Mr,No,Third,Male,43,Middle Aged,Southampton,6.4500,Budget,Unknown,,C 7075,0,0,Solo,No,,
+"Holthen, Mr. Johan Martin",Mr,No,Third,Male,28,Young Adult,Southampton,22.5250,Standard,Unknown,,C 4001,0,0,Solo,No,,
+"Honkanen, Miss. Eliina",Miss,Yes,Third,Female,27,Young Adult,Southampton,7.9250,Budget,Unknown,,STON/O2. 3101283,0,0,Solo,No,,
+"Horgan, Mr. John",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,370377,0,0,Solo,No,,
+"Howard, Miss. May Elizabeth",Miss,Yes,Third,Female,,Unknown,Southampton,8.0500,Budget,Unknown,,A. 2. 39186,0,0,Solo,Yes,C,
+"Humblen, Mr. Adolf Mathias Nicolai Olsen",Mr,No,Third,Male,42,Middle Aged,Southampton,7.6500,Budget,F,F G63,348121,0,0,Solo,No,,
+"Hyman, Mr. Abraham",Mr,Yes,Third,Male,,Unknown,Southampton,7.8875,Budget,Unknown,,3470,0,0,Solo,Yes,C,
+"Ibrahim Shawah, Mr. Yousseff",Mr,No,Third,Male,30,Young Adult,Cherbourg,7.2292,Budget,Unknown,,2685,0,0,Solo,No,,
+"Ilieff, Mr. Ylio",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349220,0,0,Solo,No,,
+"Ilmakangas, Miss. Ida Livija",Miss,No,Third,Female,27,Young Adult,Southampton,7.9250,Budget,Unknown,,STON/O2. 3101270,1,0,Small Family,No,,
+"Ilmakangas, Miss. Pieta Sofia",Miss,No,Third,Female,25,Young Adult,Southampton,7.9250,Budget,Unknown,,STON/O2. 3101271,1,0,Small Family,No,,
+"Ivanoff, Mr. Kanio",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349201,0,0,Solo,No,,
+"Jalsevac, Mr. Ivan",Mr,Yes,Third,Male,29,Young Adult,Cherbourg,7.8958,Budget,Unknown,,349240,0,0,Solo,Yes,15,
+"Jansson, Mr. Carl Olof",Mr,Yes,Third,Male,21,Young Adult,Southampton,7.7958,Budget,Unknown,,350034,0,0,Solo,Yes,A,
+"Jardin, Mr. Jose Neto",Mr,No,Third,Male,,Unknown,Southampton,7.0500,Budget,Unknown,,SOTON/O.Q. 3101305,0,0,Solo,No,,
+"Jensen, Mr. Hans Peder",Mr,No,Third,Male,20,Young Adult,Southampton,7.8542,Budget,Unknown,,350050,0,0,Solo,No,,
+"Jensen, Mr. Niels Peder",Mr,No,Third,Male,48,Middle Aged,Southampton,7.8542,Budget,Unknown,,350047,0,0,Solo,No,,
+"Jensen, Mr. Svend Lauritz",Mr,No,Third,Male,17,Teen,Southampton,7.0542,Budget,Unknown,,350048,1,0,Small Family,No,,
+"Jermyn, Miss. Annie",Miss,Yes,Third,Female,,Unknown,Queenstown,7.7500,Budget,Unknown,,14313,0,0,Solo,Yes,D,
+"Johannesen-Bratthammer, Mr. Bernt",Mr,Yes,Third,Male,,Unknown,Southampton,8.1125,Budget,Unknown,,65306,0,0,Solo,Yes,13,
+"Johanson, Mr. Jakob Alfred",Mr,No,Third,Male,34,Young Adult,Southampton,6.4958,Budget,Unknown,,3101264,0,0,Solo,No,,
+"Johansson Palmquist, Mr. Oskar Leander",Mr,Yes,Third,Male,26,Young Adult,Southampton,7.7750,Budget,Unknown,,347070,0,0,Solo,Yes,15,
+"Johansson, Mr. Erik",Mr,No,Third,Male,22,Young Adult,Southampton,7.7958,Budget,Unknown,,350052,0,0,Solo,No,,
+"Johansson, Mr. Gustaf Joel",Mr,No,Third,Male,33,Young Adult,Southampton,8.6542,Budget,Unknown,,7540,0,0,Solo,No,,
+"Johansson, Mr. Karl Johan",Mr,No,Third,Male,31,Young Adult,Southampton,7.7750,Budget,Unknown,,347063,0,0,Solo,No,,
+"Johansson, Mr. Nils",Mr,No,Third,Male,29,Young Adult,Southampton,7.8542,Budget,Unknown,,347467,0,0,Solo,No,,
+"Johnson, Master. Harold Theodor",Master,Yes,Third,Male,4,Child,Southampton,11.1333,Standard,Unknown,,347742,1,1,Small Family,Yes,15,
+"Johnson, Miss. Eleanor Ileen",Miss,Yes,Third,Female,1,Child,Southampton,11.1333,Standard,Unknown,,347742,1,1,Small Family,Yes,15,
+"Johnson, Mr. Alfred",Mr,No,Third,Male,49,Middle Aged,Southampton,0.0000,Budget,Unknown,,LINE,0,0,Solo,No,,
+"Johnson, Mr. Malkolm Joackim",Mr,No,Third,Male,33,Young Adult,Southampton,7.7750,Budget,Unknown,,347062,0,0,Solo,No,,
+"Johnson, Mr. William Cahoone Jr",Mr,No,Third,Male,19,Teen,Southampton,0.0000,Budget,Unknown,,LINE,0,0,Solo,No,,
+"Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)",Mrs,Yes,Third,Female,27,Young Adult,Southampton,11.1333,Standard,Unknown,,347742,0,2,Small Family,Yes,15,
+"Johnston, Master. William Arthur ""Willie""",Master,No,Third,Male,,Unknown,Southampton,23.4500,Standard,Unknown,,W./C. 6607,1,2,Small Family,No,,
+"Johnston, Miss. Catherine Helen ""Carrie""",Miss,No,Third,Female,,Unknown,Southampton,23.4500,Standard,Unknown,,W./C. 6607,1,2,Small Family,No,,
+"Johnston, Mr. Andrew G",Mr,No,Third,Male,,Unknown,Southampton,23.4500,Standard,Unknown,,W./C. 6607,1,2,Small Family,No,,
+"Johnston, Mrs. Andrew G (Elizabeth ""Lily"" Watson)",Mrs,No,Third,Female,,Unknown,Southampton,23.4500,Standard,Unknown,,W./C. 6607,1,2,Small Family,No,,
+"Jonkoff, Mr. Lalio",Mr,No,Third,Male,23,Young Adult,Southampton,7.8958,Budget,Unknown,,349204,0,0,Solo,No,,
+"Jonsson, Mr. Carl",Mr,Yes,Third,Male,32,Young Adult,Southampton,7.8542,Budget,Unknown,,350417,0,0,Solo,Yes,15,
+"Jonsson, Mr. Nils Hilding",Mr,No,Third,Male,27,Young Adult,Southampton,7.8542,Budget,Unknown,,350408,0,0,Solo,No,,
+"Jussila, Miss. Katriina",Miss,No,Third,Female,20,Young Adult,Southampton,9.8250,Budget,Unknown,,4136,1,0,Small Family,No,,
+"Jussila, Miss. Mari Aina",Miss,No,Third,Female,21,Young Adult,Southampton,9.8250,Budget,Unknown,,4137,1,0,Small Family,No,,
+"Jussila, Mr. Eiriik",Mr,Yes,Third,Male,32,Young Adult,Southampton,7.9250,Budget,Unknown,,STON/O 2. 3101286,0,0,Solo,Yes,15,
+"Kallio, Mr. Nikolai Erland",Mr,No,Third,Male,17,Teen,Southampton,7.1250,Budget,Unknown,,STON/O 2. 3101274,0,0,Solo,No,,
+"Kalvik, Mr. Johannes Halvorsen",Mr,No,Third,Male,21,Young Adult,Southampton,8.4333,Budget,Unknown,,8475,0,0,Solo,No,,
+"Karaic, Mr. Milan",Mr,No,Third,Male,30,Young Adult,Southampton,7.8958,Budget,Unknown,,349246,0,0,Solo,No,,
+"Karlsson, Mr. Einar Gervasius",Mr,Yes,Third,Male,21,Young Adult,Southampton,7.7958,Budget,Unknown,,350053,0,0,Solo,Yes,13,
+"Karlsson, Mr. Julius Konrad Eugen",Mr,No,Third,Male,33,Young Adult,Southampton,7.8542,Budget,Unknown,,347465,0,0,Solo,No,,
+"Karlsson, Mr. Nils August",Mr,No,Third,Male,22,Young Adult,Southampton,7.5208,Budget,Unknown,,350060,0,0,Solo,No,,
+"Karun, Miss. Manca",Miss,Yes,Third,Female,4,Child,Cherbourg,13.4167,Standard,Unknown,,349256,0,1,Small Family,Yes,15,
+"Karun, Mr. Franz",Mr,Yes,Third,Male,39,Middle Aged,Cherbourg,13.4167,Standard,Unknown,,349256,0,1,Small Family,Yes,15,
+"Kassem, Mr. Fared",Mr,No,Third,Male,,Unknown,Cherbourg,7.2292,Budget,Unknown,,2700,0,0,Solo,No,,
+"Katavelas, Mr. Vassilios (""Catavelas Vassilios"")",Mr,No,Third,Male,18.5,Teen,Cherbourg,7.2292,Budget,Unknown,,2682,0,0,Solo,No,,
+"Keane, Mr. Andrew ""Andy""",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,12460,0,0,Solo,No,,
+"Keefe, Mr. Arthur",Mr,No,Third,Male,,Unknown,Southampton,7.2500,Budget,Unknown,,323592,0,0,Solo,Yes,A,
+"Kelly, Miss. Anna Katherine ""Annie Kate""",Miss,Yes,Third,Female,,Unknown,Queenstown,7.7500,Budget,Unknown,,9234,0,0,Solo,Yes,16,
+"Kelly, Miss. Mary",Miss,Yes,Third,Female,,Unknown,Queenstown,7.7500,Budget,Unknown,,14312,0,0,Solo,Yes,D,
+"Kelly, Mr. James",Mr,No,Third,Male,34.5,Young Adult,Queenstown,7.8292,Budget,Unknown,,330911,0,0,Solo,No,,
+"Kelly, Mr. James",Mr,No,Third,Male,44,Middle Aged,Southampton,8.0500,Budget,Unknown,,363592,0,0,Solo,No,,
+"Kennedy, Mr. John",Mr,Yes,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,368783,0,0,Solo,No,,
+"Khalil, Mr. Betros",Mr,No,Third,Male,,Unknown,Cherbourg,14.4542,Standard,Unknown,,2660,1,0,Small Family,No,,
+"Khalil, Mrs. Betros (Zahie ""Maria"" Elias)",Mrs,No,Third,Female,,Unknown,Cherbourg,14.4542,Standard,Unknown,,2660,1,0,Small Family,No,,
+"Kiernan, Mr. John",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,367227,1,0,Small Family,No,,
+"Kiernan, Mr. Philip",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,367229,1,0,Small Family,No,,
+"Kilgannon, Mr. Thomas J",Mr,No,Third,Male,,Unknown,Queenstown,7.7375,Budget,Unknown,,36865,0,0,Solo,No,,
+"Kink, Miss. Maria",Miss,No,Third,Female,22,Young Adult,Southampton,8.6625,Budget,Unknown,,315152,2,0,Small Family,No,,
+"Kink, Mr. Vincenz",Mr,No,Third,Male,26,Young Adult,Southampton,8.6625,Budget,Unknown,,315151,2,0,Small Family,No,,
+"Kink-Heilmann, Miss. Luise Gretchen",Miss,Yes,Third,Female,4,Child,Southampton,22.0250,Standard,Unknown,,315153,0,2,Small Family,Yes,2,
+"Kink-Heilmann, Mr. Anton",Mr,Yes,Third,Male,29,Young Adult,Southampton,22.0250,Standard,Unknown,,315153,3,1,Large Family,Yes,2,
+"Kink-Heilmann, Mrs. Anton (Luise Heilmann)",Mrs,Yes,Third,Female,26,Young Adult,Southampton,22.0250,Standard,Unknown,,315153,1,1,Small Family,Yes,2,
+"Klasen, Miss. Gertrud Emilia",Miss,No,Third,Female,1,Child,Southampton,12.1833,Standard,Unknown,,350405,1,1,Small Family,No,,
+"Klasen, Mr. Klas Albin",Mr,No,Third,Male,18,Teen,Southampton,7.8542,Budget,Unknown,,350404,1,1,Small Family,No,,
+"Klasen, Mrs. (Hulda Kristina Eugenia Lofqvist)",Mrs,No,Third,Female,36,Middle Aged,Southampton,12.1833,Standard,Unknown,,350405,0,2,Small Family,No,,
+"Kraeff, Mr. Theodor",Mr,No,Third,Male,,Unknown,Cherbourg,7.8958,Budget,Unknown,,349253,0,0,Solo,No,,
+"Krekorian, Mr. Neshan",Mr,Yes,Third,Male,25,Young Adult,Cherbourg,7.2292,Budget,F,F E57,2654,0,0,Solo,Yes,10,
+"Lahoud, Mr. Sarkis",Mr,No,Third,Male,,Unknown,Cherbourg,7.2250,Budget,Unknown,,2624,0,0,Solo,No,,
+"Laitinen, Miss. Kristina Sofia",Miss,No,Third,Female,37,Middle Aged,Southampton,9.5875,Budget,Unknown,,4135,0,0,Solo,No,,
+"Laleff, Mr. Kristo",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349217,0,0,Solo,No,,
+"Lam, Mr. Ali",Mr,Yes,Third,Male,,Unknown,Southampton,56.4958,Premium,Unknown,,1601,0,0,Solo,Yes,C,
+"Lam, Mr. Len",Mr,No,Third,Male,,Unknown,Southampton,56.4958,Premium,Unknown,,1601,0,0,Solo,No,,
+"Landergren, Miss. Aurora Adelia",Miss,Yes,Third,Female,22,Young Adult,Southampton,7.2500,Budget,Unknown,,C 7077,0,0,Solo,Yes,13,
+"Lane, Mr. Patrick",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,7935,0,0,Solo,No,,
+"Lang, Mr. Fang",Mr,Yes,Third,Male,26,Young Adult,Southampton,56.4958,Premium,Unknown,,1601,0,0,Solo,Yes,14,
+"Larsson, Mr. August Viktor",Mr,No,Third,Male,29,Young Adult,Southampton,9.4833,Budget,Unknown,,7545,0,0,Solo,No,,
+"Larsson, Mr. Bengt Edvin",Mr,No,Third,Male,29,Young Adult,Southampton,7.7750,Budget,Unknown,,347067,0,0,Solo,No,,
+"Larsson-Rondberg, Mr. Edvard A",Mr,No,Third,Male,22,Young Adult,Southampton,7.7750,Budget,Unknown,,347065,0,0,Solo,No,,
+"Leeni, Mr. Fahim (""Philip Zenni"")",Mr,Yes,Third,Male,22,Young Adult,Cherbourg,7.2250,Budget,Unknown,,2620,0,0,Solo,Yes,6,
+"Lefebre, Master. Henry Forbes",Master,No,Third,Male,,Unknown,Southampton,25.4667,Standard,Unknown,,4133,3,1,Large Family,No,,
+"Lefebre, Miss. Ida",Miss,No,Third,Female,,Unknown,Southampton,25.4667,Standard,Unknown,,4133,3,1,Large Family,No,,
+"Lefebre, Miss. Jeannie",Miss,No,Third,Female,,Unknown,Southampton,25.4667,Standard,Unknown,,4133,3,1,Large Family,No,,
+"Lefebre, Miss. Mathilde",Miss,No,Third,Female,,Unknown,Southampton,25.4667,Standard,Unknown,,4133,3,1,Large Family,No,,
+"Lefebre, Mrs. Frank (Frances)",Mrs,No,Third,Female,,Unknown,Southampton,25.4667,Standard,Unknown,,4133,0,4,Large Family,No,,
+"Leinonen, Mr. Antti Gustaf",Mr,No,Third,Male,32,Young Adult,Southampton,7.9250,Budget,Unknown,,STON/O 2. 3101292,0,0,Solo,No,,
+"Lemberopolous, Mr. Peter L",Mr,No,Third,Male,34.5,Young Adult,Cherbourg,6.4375,Budget,Unknown,,2683,0,0,Solo,No,,
+"Lennon, Miss. Mary",Miss,No,Third,Female,,Unknown,Queenstown,15.5000,Standard,Unknown,,370371,1,0,Small Family,No,,
+"Lennon, Mr. Denis",Mr,No,Third,Male,,Unknown,Queenstown,15.5000,Standard,Unknown,,370371,1,0,Small Family,No,,
+"Leonard, Mr. Lionel",Mr,No,Third,Male,36,Middle Aged,Southampton,0.0000,Budget,Unknown,,LINE,0,0,Solo,No,,
+"Lester, Mr. James",Mr,No,Third,Male,39,Middle Aged,Southampton,24.1500,Standard,Unknown,,A/4 48871,0,0,Solo,No,,
+"Lievens, Mr. Rene Aime",Mr,No,Third,Male,24,Young Adult,Southampton,9.5000,Budget,Unknown,,345781,0,0,Solo,No,,
+"Lindahl, Miss. Agda Thorilda Viktoria",Miss,No,Third,Female,25,Young Adult,Southampton,7.7750,Budget,Unknown,,347071,0,0,Solo,No,,
+"Lindblom, Miss. Augusta Charlotta",Miss,No,Third,Female,45,Middle Aged,Southampton,7.7500,Budget,Unknown,,347073,0,0,Solo,No,,
+"Lindell, Mr. Edvard Bengtsson",Mr,No,Third,Male,36,Middle Aged,Southampton,15.5500,Standard,Unknown,,349910,1,0,Small Family,Yes,A,
+"Lindell, Mrs. Edvard Bengtsson (Elin Gerda Persson)",Mrs,No,Third,Female,30,Young Adult,Southampton,15.5500,Standard,Unknown,,349910,1,0,Small Family,Yes,A,
+"Lindqvist, Mr. Eino William",Mr,Yes,Third,Male,20,Young Adult,Southampton,7.9250,Budget,Unknown,,STON/O 2. 3101285,1,0,Small Family,Yes,15,
+"Linehan, Mr. Michael",Mr,No,Third,Male,,Unknown,Queenstown,7.8792,Budget,Unknown,,330971,0,0,Solo,No,,
+"Ling, Mr. Lee",Mr,No,Third,Male,28,Young Adult,Southampton,56.4958,Premium,Unknown,,1601,0,0,Solo,No,,
+"Lithman, Mr. Simon",Mr,No,Third,Male,,Unknown,Southampton,7.5500,Budget,Unknown,,S.O./P.P. 251,0,0,Solo,No,,
+"Lobb, Mr. William Arthur",Mr,No,Third,Male,30,Young Adult,Southampton,16.1000,Standard,Unknown,,A/5. 3336,1,0,Small Family,No,,
+"Lobb, Mrs. William Arthur (Cordelia K Stanlick)",Mrs,No,Third,Female,26,Young Adult,Southampton,16.1000,Standard,Unknown,,A/5. 3336,1,0,Small Family,No,,
+"Lockyer, Mr. Edward",Mr,No,Third,Male,,Unknown,Southampton,7.8792,Budget,Unknown,,1222,0,0,Solo,No,,
+"Lovell, Mr. John Hall (""Henry"")",Mr,No,Third,Male,20.5,Young Adult,Southampton,7.2500,Budget,Unknown,,A/5 21173,0,0,Solo,No,,
+"Lulic, Mr. Nikola",Mr,Yes,Third,Male,27,Young Adult,Southampton,8.6625,Budget,Unknown,,315098,0,0,Solo,Yes,15,
+"Lundahl, Mr. Johan Svensson",Mr,No,Third,Male,51,Middle Aged,Southampton,7.0542,Budget,Unknown,,347743,0,0,Solo,No,,
+"Lundin, Miss. Olga Elida",Miss,Yes,Third,Female,23,Young Adult,Southampton,7.8542,Budget,Unknown,,347469,0,0,Solo,Yes,10,
+"Lundstrom, Mr. Thure Edvin",Mr,Yes,Third,Male,32,Young Adult,Southampton,7.5792,Budget,Unknown,,350403,0,0,Solo,Yes,15,
+"Lyntakoff, Mr. Stanko",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349235,0,0,Solo,No,,
+"MacKay, Mr. George William",Mr,No,Third,Male,,Unknown,Southampton,7.5500,Budget,Unknown,,C.A. 42795,0,0,Solo,No,,
+"Madigan, Miss. Margaret ""Maggie""",Miss,Yes,Third,Female,,Unknown,Queenstown,7.7500,Budget,Unknown,,370370,0,0,Solo,Yes,15,
+"Madsen, Mr. Fridtjof Arne",Mr,Yes,Third,Male,24,Young Adult,Southampton,7.1417,Budget,Unknown,,C 17369,0,0,Solo,Yes,13,
+"Maenpaa, Mr. Matti Alexanteri",Mr,No,Third,Male,22,Young Adult,Southampton,7.1250,Budget,Unknown,,STON/O 2. 3101275,0,0,Solo,No,,
+"Mahon, Miss. Bridget Delia",Miss,No,Third,Female,,Unknown,Queenstown,7.8792,Budget,Unknown,,330924,0,0,Solo,No,,
+"Mahon, Mr. John",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,AQ/4 3130,0,0,Solo,No,,
+"Maisner, Mr. Simon",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,A/S 2816,0,0,Solo,No,,
+"Makinen, Mr. Kalle Edvard",Mr,No,Third,Male,29,Young Adult,Southampton,7.9250,Budget,Unknown,,STON/O 2. 3101268,0,0,Solo,No,,
+"Mamee, Mr. Hanna",Mr,Yes,Third,Male,,Unknown,Cherbourg,7.2292,Budget,Unknown,,2677,0,0,Solo,Yes,15,
+"Mangan, Miss. Mary",Miss,No,Third,Female,30.5,Young Adult,Queenstown,7.7500,Budget,Unknown,,364850,0,0,Solo,No,,
+"Mannion, Miss. Margareth",Miss,Yes,Third,Female,,Unknown,Queenstown,7.7375,Budget,Unknown,,36866,0,0,Solo,Yes,16,
+"Mardirosian, Mr. Sarkis",Mr,No,Third,Male,,Unknown,Cherbourg,7.2292,Budget,F,F E46,2655,0,0,Solo,No,,
+"Markoff, Mr. Marin",Mr,No,Third,Male,35,Young Adult,Cherbourg,7.8958,Budget,Unknown,,349213,0,0,Solo,No,,
+"Markun, Mr. Johann",Mr,No,Third,Male,33,Young Adult,Southampton,7.8958,Budget,Unknown,,349257,0,0,Solo,No,,
+"Masselmani, Mrs. Fatima",Mrs,Yes,Third,Female,,Unknown,Cherbourg,7.2250,Budget,Unknown,,2649,0,0,Solo,Yes,C,
+"Matinoff, Mr. Nicola",Mr,No,Third,Male,,Unknown,Cherbourg,7.8958,Budget,Unknown,,349255,0,0,Solo,No,,
+"McCarthy, Miss. Catherine ""Katie""",Miss,Yes,Third,Female,,Unknown,Queenstown,7.7500,Budget,Unknown,,383123,0,0,Solo,Yes,15 16,
+"McCormack, Mr. Thomas Joseph",Mr,Yes,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,367228,0,0,Solo,No,,
+"McCoy, Miss. Agnes",Miss,Yes,Third,Female,,Unknown,Queenstown,23.2500,Standard,Unknown,,367226,2,0,Small Family,Yes,16,
+"McCoy, Miss. Alicia",Miss,Yes,Third,Female,,Unknown,Queenstown,23.2500,Standard,Unknown,,367226,2,0,Small Family,Yes,16,
+"McCoy, Mr. Bernard",Mr,Yes,Third,Male,,Unknown,Queenstown,23.2500,Standard,Unknown,,367226,2,0,Small Family,Yes,16,
+"McDermott, Miss. Brigdet Delia",Miss,Yes,Third,Female,,Unknown,Queenstown,7.7875,Budget,Unknown,,330932,0,0,Solo,Yes,13,
+"McEvoy, Mr. Michael",Mr,No,Third,Male,,Unknown,Queenstown,15.5000,Standard,Unknown,,36568,0,0,Solo,No,,
+"McGovern, Miss. Mary",Miss,Yes,Third,Female,,Unknown,Queenstown,7.8792,Budget,Unknown,,330931,0,0,Solo,Yes,13,
+"McGowan, Miss. Anna ""Annie""",Miss,Yes,Third,Female,15,Teen,Queenstown,8.0292,Budget,Unknown,,330923,0,0,Solo,No,,
+"McGowan, Miss. Katherine",Miss,No,Third,Female,35,Young Adult,Queenstown,7.7500,Budget,Unknown,,9232,0,0,Solo,No,,
+"McMahon, Mr. Martin",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,370372,0,0,Solo,No,,
+"McNamee, Mr. Neal",Mr,No,Third,Male,24,Young Adult,Southampton,16.1000,Standard,Unknown,,376566,1,0,Small Family,No,,
+"McNamee, Mrs. Neal (Eileen O'Leary)",Mrs,No,Third,Female,19,Teen,Southampton,16.1000,Standard,Unknown,,376566,1,0,Small Family,No,,
+"McNeill, Miss. Bridget",Miss,No,Third,Female,,Unknown,Queenstown,7.7500,Budget,Unknown,,370368,0,0,Solo,No,,
+"Meanwell, Miss. (Marion Ogden)",Miss,No,Third,Female,,Unknown,Southampton,8.0500,Budget,Unknown,,SOTON/O.Q. 392087,0,0,Solo,No,,
+"Meek, Mrs. Thomas (Annie Louise Rowley)",Mrs,No,Third,Female,,Unknown,Southampton,8.0500,Budget,Unknown,,343095,0,0,Solo,No,,
+"Meo, Mr. Alfonzo",Mr,No,Third,Male,55.5,Senior,Southampton,8.0500,Budget,Unknown,,A.5. 11206,0,0,Solo,No,,
+"Mernagh, Mr. Robert",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,368703,0,0,Solo,No,,
+"Midtsjo, Mr. Karl Albert",Mr,Yes,Third,Male,21,Young Adult,Southampton,7.7750,Budget,Unknown,,345501,0,0,Solo,Yes,15,
+"Miles, Mr. Frank",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,359306,0,0,Solo,No,,
+"Mineff, Mr. Ivan",Mr,No,Third,Male,24,Young Adult,Southampton,7.8958,Budget,Unknown,,349233,0,0,Solo,No,,
+"Minkoff, Mr. Lazar",Mr,No,Third,Male,21,Young Adult,Southampton,7.8958,Budget,Unknown,,349211,0,0,Solo,No,,
+"Mionoff, Mr. Stoytcho",Mr,No,Third,Male,28,Young Adult,Southampton,7.8958,Budget,Unknown,,349207,0,0,Solo,No,,
+"Mitkoff, Mr. Mito",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349221,0,0,Solo,No,,
+"Mockler, Miss. Helen Mary ""Ellie""",Miss,Yes,Third,Female,,Unknown,Queenstown,7.8792,Budget,Unknown,,330980,0,0,Solo,Yes,16,
+"Moen, Mr. Sigurd Hansen",Mr,No,Third,Male,25,Young Adult,Southampton,7.6500,Budget,F,F G73,348123,0,0,Solo,No,,
+"Moor, Master. Meier",Master,Yes,Third,Male,6,Child,Southampton,12.4750,Standard,E,E121,392096,0,1,Small Family,Yes,14,
+"Moor, Mrs. (Beila)",Mrs,Yes,Third,Female,27,Young Adult,Southampton,12.4750,Standard,E,E121,392096,0,1,Small Family,Yes,14,
+"Moore, Mr. Leonard Charles",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,A4. 54510,0,0,Solo,No,,
+"Moran, Miss. Bertha",Miss,Yes,Third,Female,,Unknown,Queenstown,24.1500,Standard,Unknown,,371110,1,0,Small Family,Yes,16,
+"Moran, Mr. Daniel J",Mr,No,Third,Male,,Unknown,Queenstown,24.1500,Standard,Unknown,,371110,1,0,Small Family,No,,
+"Moran, Mr. James",Mr,No,Third,Male,,Unknown,Queenstown,8.4583,Budget,Unknown,,330877,0,0,Solo,No,,
+"Morley, Mr. William",Mr,No,Third,Male,34,Young Adult,Southampton,8.0500,Budget,Unknown,,364506,0,0,Solo,No,,
+"Morrow, Mr. Thomas Rowan",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,372622,0,0,Solo,No,,
+"Moss, Mr. Albert Johan",Mr,Yes,Third,Male,,Unknown,Southampton,7.7750,Budget,Unknown,,312991,0,0,Solo,Yes,B,
+"Moubarek, Master. Gerios",Master,Yes,Third,Male,,Unknown,Cherbourg,15.2458,Standard,Unknown,,2661,1,1,Small Family,Yes,C,
+"Moubarek, Master. Halim Gonios (""William George"")",Master,Yes,Third,Male,,Unknown,Cherbourg,15.2458,Standard,Unknown,,2661,1,1,Small Family,Yes,C,
+"Moubarek, Mrs. George (Omine ""Amenia"" Alexander)",Mrs,Yes,Third,Female,,Unknown,Cherbourg,15.2458,Standard,Unknown,,2661,0,2,Small Family,Yes,C,
+"Moussa, Mrs. (Mantoura Boulos)",Mrs,Yes,Third,Female,,Unknown,Cherbourg,7.2292,Budget,Unknown,,2626,0,0,Solo,No,,
+"Moutal, Mr. Rahamin Haim",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,374746,0,0,Solo,No,,
+"Mullens, Miss. Katherine ""Katie""",Miss,Yes,Third,Female,,Unknown,Queenstown,7.7333,Budget,Unknown,,35852,0,0,Solo,Yes,16,
+"Mulvihill, Miss. Bertha E",Miss,Yes,Third,Female,24,Young Adult,Queenstown,7.7500,Budget,Unknown,,382653,0,0,Solo,Yes,15,
+"Murdlin, Mr. Joseph",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,A./5. 3235,0,0,Solo,No,,
+"Murphy, Miss. Katherine ""Kate""",Miss,Yes,Third,Female,,Unknown,Queenstown,15.5000,Standard,Unknown,,367230,1,0,Small Family,Yes,16,
+"Murphy, Miss. Margaret Jane",Miss,Yes,Third,Female,,Unknown,Queenstown,15.5000,Standard,Unknown,,367230,1,0,Small Family,Yes,16,
+"Murphy, Miss. Nora",Miss,Yes,Third,Female,,Unknown,Queenstown,15.5000,Standard,Unknown,,36568,0,0,Solo,Yes,16,
+"Myhrman, Mr. Pehr Fabian Oliver Malkolm",Mr,No,Third,Male,18,Teen,Southampton,7.7500,Budget,Unknown,,347078,0,0,Solo,No,,
+"Naidenoff, Mr. Penko",Mr,No,Third,Male,22,Young Adult,Southampton,7.8958,Budget,Unknown,,349206,0,0,Solo,No,,
+"Najib, Miss. Adele Kiamie ""Jane""",Miss,Yes,Third,Female,15,Teen,Cherbourg,7.2250,Budget,Unknown,,2667,0,0,Solo,Yes,C,
+"Nakid, Miss. Maria (""Mary"")",Miss,Yes,Third,Female,1,Child,Cherbourg,15.7417,Standard,Unknown,,2653,0,2,Small Family,Yes,C,
+"Nakid, Mr. Sahid",Mr,Yes,Third,Male,20,Young Adult,Cherbourg,15.7417,Standard,Unknown,,2653,1,1,Small Family,Yes,C,
+"Nakid, Mrs. Said (Waika ""Mary"" Mowad)",Mrs,Yes,Third,Female,19,Teen,Cherbourg,15.7417,Standard,Unknown,,2653,1,1,Small Family,Yes,C,
+"Nancarrow, Mr. William Henry",Mr,No,Third,Male,33,Young Adult,Southampton,8.0500,Budget,Unknown,,A./5. 3338,0,0,Solo,No,,
+"Nankoff, Mr. Minko",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349218,0,0,Solo,No,,
+"Nasr, Mr. Mustafa",Mr,No,Third,Male,,Unknown,Cherbourg,7.2292,Budget,Unknown,,2652,0,0,Solo,No,,
+"Naughton, Miss. Hannah",Miss,No,Third,Female,,Unknown,Queenstown,7.7500,Budget,Unknown,,365237,0,0,Solo,No,,
+"Nenkoff, Mr. Christo",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349234,0,0,Solo,No,,
+"Nicola-Yarred, Master. Elias",Master,Yes,Third,Male,12,Child,Cherbourg,11.2417,Standard,Unknown,,2651,1,0,Small Family,Yes,C,
+"Nicola-Yarred, Miss. Jamila",Miss,Yes,Third,Female,14,Teen,Cherbourg,11.2417,Standard,Unknown,,2651,1,0,Small Family,Yes,C,
+"Nieminen, Miss. Manta Josefina",Miss,No,Third,Female,29,Young Adult,Southampton,7.9250,Budget,Unknown,,3101297,0,0,Solo,No,,
+"Niklasson, Mr. Samuel",Mr,No,Third,Male,28,Young Adult,Southampton,8.0500,Budget,Unknown,,363611,0,0,Solo,No,,
+"Nilsson, Miss. Berta Olivia",Miss,Yes,Third,Female,18,Teen,Southampton,7.7750,Budget,Unknown,,347066,0,0,Solo,Yes,D,
+"Nilsson, Miss. Helmina Josefina",Miss,Yes,Third,Female,26,Young Adult,Southampton,7.8542,Budget,Unknown,,347470,0,0,Solo,Yes,13,
+"Nilsson, Mr. August Ferdinand",Mr,No,Third,Male,21,Young Adult,Southampton,7.8542,Budget,Unknown,,350410,0,0,Solo,No,,
+"Nirva, Mr. Iisakki Antino Aijo",Mr,No,Third,Male,41,Middle Aged,Southampton,7.1250,Budget,Unknown,,SOTON/O2 3101272,0,0,Solo,No,,"Finland Sudbury, ON"
+"Niskanen, Mr. Juha",Mr,Yes,Third,Male,39,Middle Aged,Southampton,7.9250,Budget,Unknown,,STON/O 2. 3101289,0,0,Solo,Yes,9,
+"Nosworthy, Mr. Richard Cater",Mr,No,Third,Male,21,Young Adult,Southampton,7.8000,Budget,Unknown,,A/4. 39886,0,0,Solo,No,,
+"Novel, Mr. Mansouer",Mr,No,Third,Male,28.5,Young Adult,Cherbourg,7.2292,Budget,Unknown,,2697,0,0,Solo,No,,
+"Nysten, Miss. Anna Sofia",Miss,Yes,Third,Female,22,Young Adult,Southampton,7.7500,Budget,Unknown,,347081,0,0,Solo,Yes,13,
+"Nysveen, Mr. Johan Hansen",Mr,No,Third,Male,61,Senior,Southampton,6.2375,Budget,Unknown,,345364,0,0,Solo,No,,
+"O'Brien, Mr. Thomas",Mr,No,Third,Male,,Unknown,Queenstown,15.5000,Standard,Unknown,,370365,1,0,Small Family,No,,
+"O'Brien, Mr. Timothy",Mr,No,Third,Male,,Unknown,Queenstown,7.8292,Budget,Unknown,,330979,0,0,Solo,No,,
+"O'Brien, Mrs. Thomas (Johanna ""Hannah"" Godfrey)",Mrs,Yes,Third,Female,,Unknown,Queenstown,15.5000,Standard,Unknown,,370365,1,0,Small Family,No,,
+"O'Connell, Mr. Patrick D",Mr,No,Third,Male,,Unknown,Queenstown,7.7333,Budget,Unknown,,334912,0,0,Solo,No,,
+"O'Connor, Mr. Maurice",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,371060,0,0,Solo,No,,
+"O'Connor, Mr. Patrick",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,366713,0,0,Solo,No,,
+"Odahl, Mr. Nils Martin",Mr,No,Third,Male,23,Young Adult,Southampton,9.2250,Budget,Unknown,,7267,0,0,Solo,No,,
+"O'Donoghue, Ms. Bridget",Miss,No,Third,Female,,Unknown,Queenstown,7.7500,Budget,Unknown,,364856,0,0,Solo,No,,
+"O'Driscoll, Miss. Bridget",Miss,Yes,Third,Female,,Unknown,Queenstown,7.7500,Budget,Unknown,,14311,0,0,Solo,Yes,D,
+"O'Dwyer, Miss. Ellen ""Nellie""",Miss,Yes,Third,Female,,Unknown,Queenstown,7.8792,Budget,Unknown,,330959,0,0,Solo,No,,
+"Ohman, Miss. Velin",Miss,Yes,Third,Female,22,Young Adult,Southampton,7.7750,Budget,Unknown,,347085,0,0,Solo,Yes,C,
+"O'Keefe, Mr. Patrick",Mr,Yes,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,368402,0,0,Solo,Yes,B,
+"O'Leary, Miss. Hanora ""Norah""",Miss,Yes,Third,Female,,Unknown,Queenstown,7.8292,Budget,Unknown,,330919,0,0,Solo,Yes,13,
+"Olsen, Master. Artur Karl",Master,Yes,Third,Male,9,Child,Southampton,3.1708,Budget,Unknown,,C 17368,0,1,Small Family,Yes,13,
+"Olsen, Mr. Henry Margido",Mr,No,Third,Male,28,Young Adult,Southampton,22.5250,Standard,Unknown,,C 4001,0,0,Solo,No,,
+"Olsen, Mr. Karl Siegwart Andreas",Mr,No,Third,Male,42,Middle Aged,Southampton,8.4042,Budget,Unknown,,4579,0,1,Small Family,No,,
+"Olsen, Mr. Ole Martin",Mr,No,Third,Male,,Unknown,Southampton,7.3125,Budget,Unknown,,Fa 265302,0,0,Solo,No,,
+"Olsson, Miss. Elina",Miss,No,Third,Female,31,Young Adult,Southampton,7.8542,Budget,Unknown,,350407,0,0,Solo,No,,
+"Olsson, Mr. Nils Johan Goransson",Mr,No,Third,Male,28,Young Adult,Southampton,7.8542,Budget,Unknown,,347464,0,0,Solo,No,,
+"Olsson, Mr. Oscar Wilhelm",Mr,Yes,Third,Male,32,Young Adult,Southampton,7.7750,Budget,Unknown,,347079,0,0,Solo,Yes,A,
+"Olsvigen, Mr. Thor Anderson",Mr,No,Third,Male,20,Young Adult,Southampton,9.2250,Budget,Unknown,,6563,0,0,Solo,No,,"Oslo, Norway Cameron, WI"
+"Oreskovic, Miss. Jelka",Miss,No,Third,Female,23,Young Adult,Southampton,8.6625,Budget,Unknown,,315085,0,0,Solo,No,,
+"Oreskovic, Miss. Marija",Miss,No,Third,Female,20,Young Adult,Southampton,8.6625,Budget,Unknown,,315096,0,0,Solo,No,,
+"Oreskovic, Mr. Luka",Mr,No,Third,Male,20,Young Adult,Southampton,8.6625,Budget,Unknown,,315094,0,0,Solo,No,,
+"Osen, Mr. Olaf Elon",Mr,No,Third,Male,16,Teen,Southampton,9.2167,Budget,Unknown,,7534,0,0,Solo,No,,
+"Osman, Mrs. Mara",Mrs,Yes,Third,Female,31,Young Adult,Southampton,8.6833,Budget,Unknown,,349244,0,0,Solo,No,,
+"O'Sullivan, Miss. Bridget Mary",Miss,No,Third,Female,,Unknown,Queenstown,7.6292,Budget,Unknown,,330909,0,0,Solo,No,,
+"Palsson, Master. Gosta Leonard",Master,No,Third,Male,2,Child,Southampton,21.0750,Standard,Unknown,,349909,3,1,Large Family,No,,
+"Palsson, Master. Paul Folke",Master,No,Third,Male,6,Child,Southampton,21.0750,Standard,Unknown,,349909,3,1,Large Family,No,,
+"Palsson, Miss. Stina Viola",Miss,No,Third,Female,3,Child,Southampton,21.0750,Standard,Unknown,,349909,3,1,Large Family,No,,
+"Palsson, Miss. Torborg Danira",Miss,No,Third,Female,8,Child,Southampton,21.0750,Standard,Unknown,,349909,3,1,Large Family,No,,
+"Palsson, Mrs. Nils (Alma Cornelia Berglund)",Mrs,No,Third,Female,29,Young Adult,Southampton,21.0750,Standard,Unknown,,349909,0,4,Large Family,No,,
+"Panula, Master. Eino Viljami",Master,No,Third,Male,1,Child,Southampton,39.6875,Premium,Unknown,,3101295,4,1,Large Family,No,,
+"Panula, Master. Juha Niilo",Master,No,Third,Male,7,Child,Southampton,39.6875,Premium,Unknown,,3101295,4,1,Large Family,No,,
+"Panula, Master. Urho Abraham",Master,No,Third,Male,2,Child,Southampton,39.6875,Premium,Unknown,,3101295,4,1,Large Family,No,,
+"Panula, Mr. Ernesti Arvid",Mr,No,Third,Male,16,Teen,Southampton,39.6875,Premium,Unknown,,3101295,4,1,Large Family,No,,
+"Panula, Mr. Jaako Arnold",Mr,No,Third,Male,14,Teen,Southampton,39.6875,Premium,Unknown,,3101295,4,1,Large Family,No,,
+"Panula, Mrs. Juha (Maria Emilia Ojala)",Mrs,No,Third,Female,41,Middle Aged,Southampton,39.6875,Premium,Unknown,,3101295,0,5,Large Family,No,,
+"Pasic, Mr. Jakob",Mr,No,Third,Male,21,Young Adult,Southampton,8.6625,Budget,Unknown,,315097,0,0,Solo,No,,
+"Patchett, Mr. George",Mr,No,Third,Male,19,Teen,Southampton,14.5000,Standard,Unknown,,358585,0,0,Solo,No,,
+"Paulner, Mr. Uscher",Mr,No,Third,Male,,Unknown,Cherbourg,8.7125,Budget,Unknown,,3411,0,0,Solo,No,,
+"Pavlovic, Mr. Stefo",Mr,No,Third,Male,32,Young Adult,Southampton,7.8958,Budget,Unknown,,349242,0,0,Solo,No,,
+"Peacock, Master. Alfred Edward",Master,No,Third,Male,0.75,Child,Southampton,13.7750,Standard,Unknown,,SOTON/O.Q. 3101315,1,1,Small Family,No,,
+"Peacock, Miss. Treasteall",Miss,No,Third,Female,3,Child,Southampton,13.7750,Standard,Unknown,,SOTON/O.Q. 3101315,1,1,Small Family,No,,
+"Peacock, Mrs. Benjamin (Edith Nile)",Mrs,No,Third,Female,26,Young Adult,Southampton,13.7750,Standard,Unknown,,SOTON/O.Q. 3101315,0,2,Small Family,No,,
+"Pearce, Mr. Ernest",Mr,No,Third,Male,,Unknown,Southampton,7.0000,Budget,Unknown,,343271,0,0,Solo,No,,
+"Pedersen, Mr. Olaf",Mr,No,Third,Male,,Unknown,Southampton,7.7750,Budget,Unknown,,345498,0,0,Solo,No,,
+"Peduzzi, Mr. Joseph",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,A/5 2817,0,0,Solo,No,,
+"Pekoniemi, Mr. Edvard",Mr,No,Third,Male,21,Young Adult,Southampton,7.9250,Budget,Unknown,,STON/O 2. 3101294,0,0,Solo,No,,
+"Peltomaki, Mr. Nikolai Johannes",Mr,No,Third,Male,25,Young Adult,Southampton,7.9250,Budget,Unknown,,STON/O 2. 3101291,0,0,Solo,No,,
+"Perkin, Mr. John Henry",Mr,No,Third,Male,22,Young Adult,Southampton,7.2500,Budget,Unknown,,A/5 21174,0,0,Solo,No,,
+"Persson, Mr. Ernst Ulrik",Mr,Yes,Third,Male,25,Young Adult,Southampton,7.7750,Budget,Unknown,,347083,1,0,Small Family,Yes,15,
+"Peter, Master. Michael J",Master,Yes,Third,Male,,Unknown,Cherbourg,22.3583,Standard,Unknown,,2668,1,1,Small Family,Yes,C,
+"Peter, Miss. Anna",Miss,Yes,Third,Female,,Unknown,Cherbourg,22.3583,Standard,F,F E69,2668,1,1,Small Family,Yes,D,
+"Peter, Mrs. Catherine (Catherine Rizk)",Mrs,Yes,Third,Female,,Unknown,Cherbourg,22.3583,Standard,Unknown,,2668,0,2,Small Family,Yes,D,
+"Peters, Miss. Katie",Miss,No,Third,Female,,Unknown,Queenstown,8.1375,Budget,Unknown,,330935,0,0,Solo,No,,
+"Petersen, Mr. Marius",Mr,No,Third,Male,24,Young Adult,Southampton,8.0500,Budget,Unknown,,342441,0,0,Solo,No,,
+"Petranec, Miss. Matilda",Miss,No,Third,Female,28,Young Adult,Southampton,7.8958,Budget,Unknown,,349245,0,0,Solo,No,,
+"Petroff, Mr. Nedelio",Mr,No,Third,Male,19,Teen,Southampton,7.8958,Budget,Unknown,,349212,0,0,Solo,No,,
+"Petroff, Mr. Pastcho (""Pentcho"")",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349215,0,0,Solo,No,,
+"Petterson, Mr. Johan Emil",Mr,No,Third,Male,25,Young Adult,Southampton,7.7750,Budget,Unknown,,347076,1,0,Small Family,No,,
+"Pettersson, Miss. Ellen Natalia",Miss,No,Third,Female,18,Teen,Southampton,7.7750,Budget,Unknown,,347087,0,0,Solo,No,,
+"Pickard, Mr. Berk (Berk Trembisky)",Mr,Yes,Third,Male,32,Young Adult,Southampton,8.0500,Budget,E,E10,SOTON/O.Q. 392078,0,0,Solo,Yes,9,
+"Plotcharsky, Mr. Vasil",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349227,0,0,Solo,No,,
+"Pokrnic, Mr. Mate",Mr,No,Third,Male,17,Teen,Southampton,8.6625,Budget,Unknown,,315095,0,0,Solo,No,,
+"Pokrnic, Mr. Tome",Mr,No,Third,Male,24,Young Adult,Southampton,8.6625,Budget,Unknown,,315092,0,0,Solo,No,,
+"Radeff, Mr. Alexander",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349223,0,0,Solo,No,,
+"Rasmussen, Mrs. (Lena Jacobsen Solvang)",Mrs,No,Third,Female,,Unknown,Southampton,8.1125,Budget,Unknown,,65305,0,0,Solo,No,,
+"Razi, Mr. Raihed",Mr,No,Third,Male,,Unknown,Cherbourg,7.2292,Budget,Unknown,,2629,0,0,Solo,No,,
+"Reed, Mr. James George",Mr,No,Third,Male,,Unknown,Southampton,7.2500,Budget,Unknown,,362316,0,0,Solo,No,,
+"Rekic, Mr. Tido",Mr,No,Third,Male,38,Middle Aged,Southampton,7.8958,Budget,Unknown,,349249,0,0,Solo,No,,
+"Reynolds, Mr. Harold J",Mr,No,Third,Male,21,Young Adult,Southampton,8.0500,Budget,Unknown,,342684,0,0,Solo,No,,
+"Rice, Master. Albert",Master,No,Third,Male,10,Child,Queenstown,29.1250,Standard,Unknown,,382652,4,1,Large Family,No,,
+"Rice, Master. Arthur",Master,No,Third,Male,4,Child,Queenstown,29.1250,Standard,Unknown,,382652,4,1,Large Family,No,,
+"Rice, Master. Eric",Master,No,Third,Male,7,Child,Queenstown,29.1250,Standard,Unknown,,382652,4,1,Large Family,No,,
+"Rice, Master. Eugene",Master,No,Third,Male,2,Child,Queenstown,29.1250,Standard,Unknown,,382652,4,1,Large Family,No,,
+"Rice, Master. George Hugh",Master,No,Third,Male,8,Child,Queenstown,29.1250,Standard,Unknown,,382652,4,1,Large Family,No,,
+"Rice, Mrs. William (Margaret Norton)",Mrs,No,Third,Female,39,Middle Aged,Queenstown,29.1250,Standard,Unknown,,382652,0,5,Large Family,No,,
+"Riihivouri, Miss. Susanna Juhantytar ""Sanni""",Miss,No,Third,Female,22,Young Adult,Southampton,39.6875,Premium,Unknown,,3101295,0,0,Solo,No,,
+"Rintamaki, Mr. Matti",Mr,No,Third,Male,35,Young Adult,Southampton,7.1250,Budget,Unknown,,STON/O 2. 3101273,0,0,Solo,No,,
+"Riordan, Miss. Johanna ""Hannah""",Miss,Yes,Third,Female,,Unknown,Queenstown,7.7208,Budget,Unknown,,334915,0,0,Solo,Yes,13,
+"Risien, Mr. Samuel Beard",Mr,No,Third,Male,,Unknown,Southampton,14.5000,Standard,Unknown,,364498,0,0,Solo,No,,
+"Risien, Mrs. Samuel (Emma)",Mrs,No,Third,Female,,Unknown,Southampton,14.5000,Standard,Unknown,,364498,0,0,Solo,No,,
+"Robins, Mr. Alexander A",Mr,No,Third,Male,50,Middle Aged,Southampton,14.5000,Standard,Unknown,,A/5. 3337,1,0,Small Family,No,,
+"Robins, Mrs. Alexander A (Grace Charity Laury)",Mrs,No,Third,Female,47,Middle Aged,Southampton,14.5000,Standard,Unknown,,A/5. 3337,1,0,Small Family,No,,
+"Rogers, Mr. William John",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,S.C./A.4. 23567,0,0,Solo,No,,
+"Rommetvedt, Mr. Knud Paust",Mr,No,Third,Male,,Unknown,Southampton,7.7750,Budget,Unknown,,312993,0,0,Solo,No,,
+"Rosblom, Miss. Salli Helena",Miss,No,Third,Female,2,Child,Southampton,20.2125,Standard,Unknown,,370129,1,1,Small Family,No,,
+"Rosblom, Mr. Viktor Richard",Mr,No,Third,Male,18,Teen,Southampton,20.2125,Standard,Unknown,,370129,1,1,Small Family,No,,
+"Rosblom, Mrs. Viktor (Helena Wilhelmina)",Mrs,No,Third,Female,41,Middle Aged,Southampton,20.2125,Standard,Unknown,,370129,0,2,Small Family,No,,
+"Roth, Miss. Sarah A",Miss,Yes,Third,Female,,Unknown,Southampton,8.0500,Budget,Unknown,,342712,0,0,Solo,Yes,C,
+"Rouse, Mr. Richard Henry",Mr,No,Third,Male,50,Middle Aged,Southampton,8.0500,Budget,Unknown,,A/5 3594,0,0,Solo,No,,
+"Rush, Mr. Alfred George John",Mr,No,Third,Male,16,Teen,Southampton,8.0500,Budget,Unknown,,A/4. 20589,0,0,Solo,No,,
+"Ryan, Mr. Edward",Mr,Yes,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,383162,0,0,Solo,Yes,14,
+"Ryan, Mr. Patrick",Mr,No,Third,Male,,Unknown,Queenstown,24.1500,Standard,Unknown,,371110,0,0,Solo,No,,
+"Saad, Mr. Amin",Mr,No,Third,Male,,Unknown,Cherbourg,7.2292,Budget,Unknown,,2671,0,0,Solo,No,,
+"Saad, Mr. Khalil",Mr,No,Third,Male,25,Young Adult,Cherbourg,7.2250,Budget,Unknown,,2672,0,0,Solo,No,,
+"Saade, Mr. Jean Nassr",Mr,No,Third,Male,,Unknown,Cherbourg,7.2250,Budget,Unknown,,2676,0,0,Solo,No,,
+"Sadlier, Mr. Matthew",Mr,No,Third,Male,,Unknown,Queenstown,7.7292,Budget,Unknown,,367655,0,0,Solo,No,,
+"Sadowitz, Mr. Harry",Mr,No,Third,Male,,Unknown,Southampton,7.5750,Budget,Unknown,,LP 1588,0,0,Solo,No,,
+"Saether, Mr. Simon Sivertsen",Mr,No,Third,Male,38.5,Middle Aged,Southampton,7.2500,Budget,Unknown,,SOTON/O.Q. 3101262,0,0,Solo,No,,
+"Sage, Master. Thomas Henry",Master,No,Third,Male,,Unknown,Southampton,69.5500,Premium,Unknown,,CA. 2343,8,2,Large Family,No,,
+"Sage, Master. William Henry",Master,No,Third,Male,14.5,Teen,Southampton,69.5500,Premium,Unknown,,CA. 2343,8,2,Large Family,No,,
+"Sage, Miss. Ada",Miss,No,Third,Female,,Unknown,Southampton,69.5500,Premium,Unknown,,CA. 2343,8,2,Large Family,No,,
+"Sage, Miss. Constance Gladys",Miss,No,Third,Female,,Unknown,Southampton,69.5500,Premium,Unknown,,CA. 2343,8,2,Large Family,No,,
+"Sage, Miss. Dorothy Edith ""Dolly""",Miss,No,Third,Female,,Unknown,Southampton,69.5500,Premium,Unknown,,CA. 2343,8,2,Large Family,No,,
+"Sage, Miss. Stella Anna",Miss,No,Third,Female,,Unknown,Southampton,69.5500,Premium,Unknown,,CA. 2343,8,2,Large Family,No,,
+"Sage, Mr. Douglas Bullen",Mr,No,Third,Male,,Unknown,Southampton,69.5500,Premium,Unknown,,CA. 2343,8,2,Large Family,No,,
+"Sage, Mr. Frederick",Mr,No,Third,Male,,Unknown,Southampton,69.5500,Premium,Unknown,,CA. 2343,8,2,Large Family,No,,
+"Sage, Mr. George John Jr",Mr,No,Third,Male,,Unknown,Southampton,69.5500,Premium,Unknown,,CA. 2343,8,2,Large Family,No,,
+"Sage, Mr. John George",Mr,No,Third,Male,,Unknown,Southampton,69.5500,Premium,Unknown,,CA. 2343,1,9,Large Family,No,,
+"Sage, Mrs. John (Annie Bullen)",Mrs,No,Third,Female,,Unknown,Southampton,69.5500,Premium,Unknown,,CA. 2343,1,9,Large Family,No,,
+"Salander, Mr. Karl Johan",Mr,No,Third,Male,24,Young Adult,Southampton,9.3250,Budget,Unknown,,7266,0,0,Solo,No,,
+"Salkjelsvik, Miss. Anna Kristine",Miss,Yes,Third,Female,21,Young Adult,Southampton,7.6500,Budget,Unknown,,343120,0,0,Solo,Yes,C,
+"Salonen, Mr. Johan Werner",Mr,No,Third,Male,39,Middle Aged,Southampton,7.9250,Budget,Unknown,,3101296,0,0,Solo,No,,
+"Samaan, Mr. Elias",Mr,No,Third,Male,,Unknown,Cherbourg,21.6792,Standard,Unknown,,2662,2,0,Small Family,No,,
+"Samaan, Mr. Hanna",Mr,No,Third,Male,,Unknown,Cherbourg,21.6792,Standard,Unknown,,2662,2,0,Small Family,No,,
+"Samaan, Mr. Youssef",Mr,No,Third,Male,,Unknown,Cherbourg,21.6792,Standard,Unknown,,2662,2,0,Small Family,No,,
+"Sandstrom, Miss. Beatrice Irene",Miss,Yes,Third,Female,1,Child,Southampton,16.7000,Standard,G,G6,PP 9549,1,1,Small Family,Yes,13,
+"Sandstrom, Mrs. Hjalmar (Agnes Charlotta Bengtsson)",Mrs,Yes,Third,Female,24,Young Adult,Southampton,16.7000,Standard,G,G6,PP 9549,0,2,Small Family,Yes,13,
+"Sandstrom, Miss. Marguerite Rut",Miss,Yes,Third,Female,4,Child,Southampton,16.7000,Standard,G,G6,PP 9549,1,1,Small Family,Yes,13,
+"Sap, Mr. Julius",Mr,Yes,Third,Male,25,Young Adult,Southampton,9.5000,Budget,Unknown,,345768,0,0,Solo,Yes,11,
+"Saundercock, Mr. William Henry",Mr,No,Third,Male,20,Young Adult,Southampton,8.0500,Budget,Unknown,,A/5. 2151,0,0,Solo,No,,
+"Sawyer, Mr. Frederick Charles",Mr,No,Third,Male,24.5,Young Adult,Southampton,8.0500,Budget,Unknown,,342826,0,0,Solo,No,,
+"Scanlan, Mr. James",Mr,No,Third,Male,,Unknown,Queenstown,7.7250,Budget,Unknown,,36209,0,0,Solo,No,,
+"Sdycoff, Mr. Todor",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349222,0,0,Solo,No,,
+"Shaughnessy, Mr. Patrick",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,370374,0,0,Solo,No,,
+"Sheerlinck, Mr. Jan Baptist",Mr,Yes,Third,Male,29,Young Adult,Southampton,9.5000,Budget,Unknown,,345779,0,0,Solo,Yes,11,
+"Shellard, Mr. Frederick William",Mr,No,Third,Male,,Unknown,Southampton,15.1000,Standard,Unknown,,C.A. 6212,0,0,Solo,No,,
+"Shine, Miss. Ellen Natalia",Miss,Yes,Third,Female,,Unknown,Queenstown,7.7792,Budget,Unknown,,330968,0,0,Solo,No,,
+"Shorney, Mr. Charles Joseph",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,374910,0,0,Solo,No,,
+"Simmons, Mr. John",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,SOTON/OQ 392082,0,0,Solo,No,,
+"Sirayanian, Mr. Orsen",Mr,No,Third,Male,22,Young Adult,Cherbourg,7.2292,Budget,Unknown,,2669,0,0,Solo,No,,
+"Sirota, Mr. Maurice",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,392092,0,0,Solo,No,,
+"Sivic, Mr. Husein",Mr,No,Third,Male,40,Middle Aged,Southampton,7.8958,Budget,Unknown,,349251,0,0,Solo,No,,
+"Sivola, Mr. Antti Wilhelm",Mr,No,Third,Male,21,Young Adult,Southampton,7.9250,Budget,Unknown,,STON/O 2. 3101280,0,0,Solo,No,,
+"Sjoblom, Miss. Anna Sofia",Miss,Yes,Third,Female,18,Teen,Southampton,7.4958,Budget,Unknown,,3101265,0,0,Solo,Yes,16,
+"Skoog, Master. Harald",Master,No,Third,Male,4,Child,Southampton,27.9000,Standard,Unknown,,347088,3,2,Large Family,No,,
+"Skoog, Master. Karl Thorsten",Master,No,Third,Male,10,Child,Southampton,27.9000,Standard,Unknown,,347088,3,2,Large Family,No,,
+"Skoog, Miss. Mabel",Miss,No,Third,Female,9,Child,Southampton,27.9000,Standard,Unknown,,347088,3,2,Large Family,No,,
+"Skoog, Miss. Margit Elizabeth",Miss,No,Third,Female,2,Child,Southampton,27.9000,Standard,Unknown,,347088,3,2,Large Family,No,,
+"Skoog, Mr. Wilhelm",Mr,No,Third,Male,40,Middle Aged,Southampton,27.9000,Standard,Unknown,,347088,1,4,Large Family,No,,
+"Skoog, Mrs. William (Anna Bernhardina Karlsson)",Mrs,No,Third,Female,45,Middle Aged,Southampton,27.9000,Standard,Unknown,,347088,1,4,Large Family,No,,
+"Slabenoff, Mr. Petco",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349214,0,0,Solo,No,,
+"Slocovski, Mr. Selman Francis",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,SOTON/OQ 392086,0,0,Solo,No,,
+"Smiljanic, Mr. Mile",Mr,No,Third,Male,,Unknown,Southampton,8.6625,Budget,Unknown,,315037,0,0,Solo,No,,
+"Smith, Mr. Thomas",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,Unknown,,384461,0,0,Solo,No,,
+"Smyth, Miss. Julia",Miss,Yes,Third,Female,,Unknown,Queenstown,7.7333,Budget,Unknown,,335432,0,0,Solo,Yes,13,
+"Soholt, Mr. Peter Andreas Lauritz Andersen",Mr,No,Third,Male,19,Teen,Southampton,7.6500,Budget,F,F G73,348124,0,0,Solo,No,,
+"Somerton, Mr. Francis William",Mr,No,Third,Male,30,Young Adult,Southampton,8.0500,Budget,Unknown,,A.5. 18509,0,0,Solo,No,,
+"Spector, Mr. Woolf",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,A.5. 3236,0,0,Solo,No,,
+"Spinner, Mr. Henry John",Mr,No,Third,Male,32,Young Adult,Southampton,8.0500,Budget,Unknown,,STON/OQ. 369943,0,0,Solo,No,,
+"Staneff, Mr. Ivan",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349208,0,0,Solo,No,,
+"Stankovic, Mr. Ivan",Mr,No,Third,Male,33,Young Adult,Cherbourg,8.6625,Budget,Unknown,,349239,0,0,Solo,No,,
+"Stanley, Miss. Amy Zillah Elsie",Miss,Yes,Third,Female,23,Young Adult,Southampton,7.5500,Budget,Unknown,,CA. 2314,0,0,Solo,Yes,C,
+"Stanley, Mr. Edward Roland",Mr,No,Third,Male,21,Young Adult,Southampton,8.0500,Budget,Unknown,,A/4 45380,0,0,Solo,No,,
+"Storey, Mr. Thomas",Mr,No,Third,Male,60.5,Senior,Southampton,,,Unknown,,3701,0,0,Solo,No,,
+"Stoytcheff, Mr. Ilia",Mr,No,Third,Male,19,Teen,Southampton,7.8958,Budget,Unknown,,349205,0,0,Solo,No,,
+"Strandberg, Miss. Ida Sofia",Miss,No,Third,Female,22,Young Adult,Southampton,9.8375,Budget,Unknown,,7553,0,0,Solo,No,,
+"Stranden, Mr. Juho",Mr,Yes,Third,Male,31,Young Adult,Southampton,7.9250,Budget,Unknown,,STON/O 2. 3101288,0,0,Solo,Yes,9,
+"Strilic, Mr. Ivan",Mr,No,Third,Male,27,Young Adult,Southampton,8.6625,Budget,Unknown,,315083,0,0,Solo,No,,
+"Strom, Miss. Telma Matilda",Miss,No,Third,Female,2,Child,Southampton,10.4625,Standard,G,G6,347054,0,1,Small Family,No,,
+"Strom, Mrs. Wilhelm (Elna Matilda Persson)",Mrs,No,Third,Female,29,Young Adult,Southampton,10.4625,Standard,G,G6,347054,1,1,Small Family,No,,
+"Sunderland, Mr. Victor Francis",Mr,Yes,Third,Male,16,Teen,Southampton,8.0500,Budget,Unknown,,SOTON/OQ 392089,0,0,Solo,Yes,B,
+"Sundman, Mr. Johan Julian",Mr,Yes,Third,Male,44,Middle Aged,Southampton,7.9250,Budget,Unknown,,STON/O 2. 3101269,0,0,Solo,Yes,15,
+"Sutehall, Mr. Henry Jr",Mr,No,Third,Male,25,Young Adult,Southampton,7.0500,Budget,Unknown,,SOTON/OQ 392076,0,0,Solo,No,,
+"Svensson, Mr. Johan",Mr,No,Third,Male,74,Senior,Southampton,7.7750,Budget,Unknown,,347060,0,0,Solo,No,,
+"Svensson, Mr. Johan Cervin",Mr,Yes,Third,Male,14,Teen,Southampton,9.2250,Budget,Unknown,,7538,0,0,Solo,Yes,13,
+"Svensson, Mr. Olof",Mr,No,Third,Male,24,Young Adult,Southampton,7.7958,Budget,Unknown,,350035,0,0,Solo,No,,
+"Tenglin, Mr. Gunnar Isidor",Mr,Yes,Third,Male,25,Young Adult,Southampton,7.7958,Budget,Unknown,,350033,0,0,Solo,Yes,13 15,
+"Theobald, Mr. Thomas Leonard",Mr,No,Third,Male,34,Young Adult,Southampton,8.0500,Budget,Unknown,,363294,0,0,Solo,No,,
+"Thomas, Master. Assad Alexander",Master,Yes,Third,Male,0.42,Child,Cherbourg,8.5167,Budget,Unknown,,2625,0,1,Small Family,Yes,16,
+"Thomas, Mr. Charles P",Mr,No,Third,Male,,Unknown,Cherbourg,6.4375,Budget,Unknown,,2621,1,0,Small Family,No,,
+"Thomas, Mr. John",Mr,No,Third,Male,,Unknown,Cherbourg,6.4375,Budget,Unknown,,2681,0,0,Solo,No,,
+"Thomas, Mr. Tannous",Mr,No,Third,Male,,Unknown,Cherbourg,7.2250,Budget,Unknown,,2684,0,0,Solo,No,,
+"Thomas, Mrs. Alexander (Thamine ""Thelma"")",Mrs,Yes,Third,Female,16,Teen,Cherbourg,8.5167,Budget,Unknown,,2625,1,1,Small Family,Yes,14,
+"Thomson, Mr. Alexander Morrison",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,32302,0,0,Solo,No,,
+"Thorneycroft, Mr. Percival",Mr,No,Third,Male,,Unknown,Southampton,16.1000,Standard,Unknown,,376564,1,0,Small Family,No,,
+"Thorneycroft, Mrs. Percival (Florence Kate White)",Mrs,Yes,Third,Female,,Unknown,Southampton,16.1000,Standard,Unknown,,376564,1,0,Small Family,Yes,10,
+"Tikkanen, Mr. Juho",Mr,No,Third,Male,32,Young Adult,Southampton,7.9250,Budget,Unknown,,STON/O 2. 3101293,0,0,Solo,No,,
+"Tobin, Mr. Roger",Mr,No,Third,Male,,Unknown,Queenstown,7.7500,Budget,F,F38,383121,0,0,Solo,No,,
+"Todoroff, Mr. Lalio",Mr,No,Third,Male,,Unknown,Southampton,7.8958,Budget,Unknown,,349216,0,0,Solo,No,,
+"Tomlin, Mr. Ernest Portage",Mr,No,Third,Male,30.5,Young Adult,Southampton,8.0500,Budget,Unknown,,364499,0,0,Solo,No,,
+"Torber, Mr. Ernst William",Mr,No,Third,Male,44,Middle Aged,Southampton,8.0500,Budget,Unknown,,364511,0,0,Solo,No,,
+"Torfa, Mr. Assad",Mr,No,Third,Male,,Unknown,Cherbourg,7.2292,Budget,Unknown,,2673,0,0,Solo,No,,
+"Tornquist, Mr. William Henry",Mr,Yes,Third,Male,25,Young Adult,Southampton,0.0000,Budget,Unknown,,LINE,0,0,Solo,Yes,15,
+"Toufik, Mr. Nakli",Mr,No,Third,Male,,Unknown,Cherbourg,7.2292,Budget,Unknown,,2641,0,0,Solo,No,,
+"Touma, Master. Georges Youssef",Master,Yes,Third,Male,7,Child,Cherbourg,15.2458,Standard,Unknown,,2650,1,1,Small Family,Yes,C,
+"Touma, Miss. Maria Youssef",Miss,Yes,Third,Female,9,Child,Cherbourg,15.2458,Standard,Unknown,,2650,1,1,Small Family,Yes,C,
+"Touma, Mrs. Darwis (Hanne Youssef Razi)",Mrs,Yes,Third,Female,29,Young Adult,Cherbourg,15.2458,Standard,Unknown,,2650,0,2,Small Family,Yes,C,
+"Turcin, Mr. Stjepan",Mr,No,Third,Male,36,Middle Aged,Southampton,7.8958,Budget,Unknown,,349247,0,0,Solo,No,,
+"Turja, Miss. Anna Sofia",Miss,Yes,Third,Female,18,Teen,Southampton,9.8417,Budget,Unknown,,4138,0,0,Solo,Yes,15,
+"Turkula, Mrs. (Hedwig)",Mrs,Yes,Third,Female,63,Senior,Southampton,9.5875,Budget,Unknown,,4134,0,0,Solo,Yes,15,
+"van Billiard, Master. James William",Master,No,Third,Male,,Unknown,Southampton,14.5000,Standard,Unknown,,A/5. 851,1,1,Small Family,No,,
+"van Billiard, Master. Walter John",Master,No,Third,Male,11.5,Child,Southampton,14.5000,Standard,Unknown,,A/5. 851,1,1,Small Family,No,,
+"van Billiard, Mr. Austin Blyler",Mr,No,Third,Male,40.5,Middle Aged,Southampton,14.5000,Standard,Unknown,,A/5. 851,0,2,Small Family,No,,
+"Van Impe, Miss. Catharina",Miss,No,Third,Female,10,Child,Southampton,24.1500,Standard,Unknown,,345773,0,2,Small Family,No,,
+"Van Impe, Mr. Jean Baptiste",Mr,No,Third,Male,36,Middle Aged,Southampton,24.1500,Standard,Unknown,,345773,1,1,Small Family,No,,
+"Van Impe, Mrs. Jean Baptiste (Rosalie Paula Govaert)",Mrs,No,Third,Female,30,Young Adult,Southampton,24.1500,Standard,Unknown,,345773,1,1,Small Family,No,,
+"van Melkebeke, Mr. Philemon",Mr,No,Third,Male,,Unknown,Southampton,9.5000,Budget,Unknown,,345777,0,0,Solo,No,,
+"Vande Velde, Mr. Johannes Joseph",Mr,No,Third,Male,33,Young Adult,Southampton,9.5000,Budget,Unknown,,345780,0,0,Solo,No,,
+"Vande Walle, Mr. Nestor Cyriel",Mr,No,Third,Male,28,Young Adult,Southampton,9.5000,Budget,Unknown,,345770,0,0,Solo,No,,
+"Vanden Steen, Mr. Leo Peter",Mr,No,Third,Male,28,Young Adult,Southampton,9.5000,Budget,Unknown,,345783,0,0,Solo,No,,
+"Vander Cruyssen, Mr. Victor",Mr,No,Third,Male,47,Middle Aged,Southampton,9.0000,Budget,Unknown,,345765,0,0,Solo,No,,
+"Vander Planke, Miss. Augusta Maria",Miss,No,Third,Female,18,Teen,Southampton,18.0000,Standard,Unknown,,345764,2,0,Small Family,No,,
+"Vander Planke, Mr. Julius",Mr,No,Third,Male,31,Young Adult,Southampton,18.0000,Standard,Unknown,,345763,3,0,Small Family,No,,
+"Vander Planke, Mr. Leo Edmondus",Mr,No,Third,Male,16,Teen,Southampton,18.0000,Standard,Unknown,,345764,2,0,Small Family,No,,
+"Vander Planke, Mrs. Julius (Emelia Maria Vandemoortele)",Mrs,No,Third,Female,31,Young Adult,Southampton,18.0000,Standard,Unknown,,345763,1,0,Small Family,No,,
+"Vartanian, Mr. David",Mr,Yes,Third,Male,22,Young Adult,Cherbourg,7.2250,Budget,Unknown,,2658,0,0,Solo,Yes,13 15,
+"Vendel, Mr. Olof Edvin",Mr,No,Third,Male,20,Young Adult,Southampton,7.8542,Budget,Unknown,,350416,0,0,Solo,No,,
+"Vestrom, Miss. Hulda Amanda Adolfina",Miss,No,Third,Female,14,Teen,Southampton,7.8542,Budget,Unknown,,350406,0,0,Solo,No,,
+"Vovk, Mr. Janko",Mr,No,Third,Male,22,Young Adult,Southampton,7.8958,Budget,Unknown,,349252,0,0,Solo,No,,
+"Waelens, Mr. Achille",Mr,No,Third,Male,22,Young Adult,Southampton,9.0000,Budget,Unknown,,345767,0,0,Solo,No,,"Antwerp, Belgium / Stanton, OH"
+"Ware, Mr. Frederick",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,359309,0,0,Solo,No,,
+"Warren, Mr. Charles William",Mr,No,Third,Male,,Unknown,Southampton,7.5500,Budget,Unknown,,C.A. 49867,0,0,Solo,No,,
+"Webber, Mr. James",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,SOTON/OQ 3101316,0,0,Solo,No,,
+"Wenzel, Mr. Linhart",Mr,No,Third,Male,32.5,Young Adult,Southampton,9.5000,Budget,Unknown,,345775,0,0,Solo,No,,
+"Whabee, Mrs. George Joseph (Shawneene Abi-Saab)",Mrs,Yes,Third,Female,38,Middle Aged,Cherbourg,7.2292,Budget,Unknown,,2688,0,0,Solo,Yes,C,
+"Widegren, Mr. Carl/Charles Peter",Mr,No,Third,Male,51,Middle Aged,Southampton,7.7500,Budget,Unknown,,347064,0,0,Solo,No,,
+"Wiklund, Mr. Jakob Alfred",Mr,No,Third,Male,18,Teen,Southampton,6.4958,Budget,Unknown,,3101267,1,0,Small Family,No,,
+"Wiklund, Mr. Karl Johan",Mr,No,Third,Male,21,Young Adult,Southampton,6.4958,Budget,Unknown,,3101266,1,0,Small Family,No,,
+"Wilkes, Mrs. James (Ellen Needs)",Mrs,Yes,Third,Female,47,Middle Aged,Southampton,7.0000,Budget,Unknown,,363272,1,0,Small Family,No,,
+"Willer, Mr. Aaron (""Abi Weller"")",Mr,No,Third,Male,,Unknown,Southampton,8.7125,Budget,Unknown,,3410,0,0,Solo,No,,
+"Willey, Mr. Edward",Mr,No,Third,Male,,Unknown,Southampton,7.5500,Budget,Unknown,,S.O./P.P. 751,0,0,Solo,No,,
+"Williams, Mr. Howard Hugh ""Harry""",Mr,No,Third,Male,,Unknown,Southampton,8.0500,Budget,Unknown,,A/5 2466,0,0,Solo,No,,
+"Williams, Mr. Leslie",Mr,No,Third,Male,28.5,Young Adult,Southampton,16.1000,Standard,Unknown,,54636,0,0,Solo,No,,
+"Windelov, Mr. Einar",Mr,No,Third,Male,21,Young Adult,Southampton,7.2500,Budget,Unknown,,SOTON/OQ 3101317,0,0,Solo,No,,
+"Wirz, Mr. Albert",Mr,No,Third,Male,27,Young Adult,Southampton,8.6625,Budget,Unknown,,315154,0,0,Solo,No,,
+"Wiseman, Mr. Phillippe",Mr,No,Third,Male,,Unknown,Southampton,7.2500,Budget,Unknown,,A/4. 34244,0,0,Solo,No,,
+"Wittevrongel, Mr. Camille",Mr,No,Third,Male,36,Middle Aged,Southampton,9.5000,Budget,Unknown,,345771,0,0,Solo,No,,
+"Yasbeck, Mr. Antoni",Mr,No,Third,Male,27,Young Adult,Cherbourg,14.4542,Standard,Unknown,,2659,1,0,Small Family,Yes,C,
+"Yasbeck, Mrs. Antoni (Selini Alexander)",Mrs,Yes,Third,Female,15,Teen,Cherbourg,14.4542,Standard,Unknown,,2659,1,0,Small Family,No,,
+"Youseff, Mr. Gerious",Mr,No,Third,Male,45.5,Middle Aged,Cherbourg,7.2250,Budget,Unknown,,2628,0,0,Solo,No,,
+"Yousif, Mr. Wazli",Mr,No,Third,Male,,Unknown,Cherbourg,7.2250,Budget,Unknown,,2647,0,0,Solo,No,,
+"Yousseff, Mr. Gerious",Mr,No,Third,Male,,Unknown,Cherbourg,14.4583,Standard,Unknown,,2627,0,0,Solo,No,,
+"Zabour, Miss. Hileni",Miss,No,Third,Female,14.5,Teen,Cherbourg,14.4542,Standard,Unknown,,2665,1,0,Small Family,No,,
+"Zabour, Miss. Thamine",Miss,No,Third,Female,,Unknown,Cherbourg,14.4542,Standard,Unknown,,2665,1,0,Small Family,No,,
+"Zakarian, Mr. Mapriededer",Mr,No,Third,Male,26.5,Young Adult,Cherbourg,7.2250,Budget,Unknown,,2656,0,0,Solo,No,,
+"Zakarian, Mr. Ortin",Mr,No,Third,Male,27,Young Adult,Cherbourg,7.2250,Budget,Unknown,,2670,0,0,Solo,No,,
+"Zimmerman, Mr. Leo",Mr,No,Third,Male,29,Young Adult,Southampton,7.8750,Budget,Unknown,,315082,0,0,Solo,No,,

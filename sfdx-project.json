@@ -6,7 +6,8 @@
       "package": "Sankey4Salesforce",
       "versionName": "Version 1.0",
       "versionNumber": "1.0.0.NEXT",
-      "versionDescription": "Interactive Sankey flow diagram builder for Salesforce data"
+      "versionDescription": "Interactive Sankey flow diagram builder for Salesforce data",
+      "postInstallScript": "TitanicInstallHandler"
     }
   ],
   "name": "Sankey4Salesforce",
