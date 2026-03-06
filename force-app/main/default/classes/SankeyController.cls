@@ -50,11 +50,11 @@ public with sharing class SankeyController {
 
     /**
      * Samples records from two time cohorts (recent 90 days, older than 1 year)
-     * and returns per-field population percentages.
+     * and returns per-field population percentages plus distinct value counts.
      * Uses 2 SOQL queries, max 200 rows total.
      * @param objectApiName SObject API name
      * @param fieldApiNames JSON array of field API names to check
-     * @return JSON map: { fieldName: { recent, older, recentSize, olderSize } }
+     * @return JSON map: { fieldName: { recent, older, recentSize, olderSize, uniqueValues, sampleSize } }
      */
     @AuraEnabled(cacheable=true)
     public static String getFieldPopulationStats(String objectApiName, List<String> fieldApiNames) {
@@ -75,13 +75,17 @@ public with sharing class SankeyController {
             List<SObject> recentRecords = Database.query(recentSoql);
             List<SObject> olderRecords = Database.query(olderSoql);
 
+            Integer combinedSize = recentRecords.size() + olderRecords.size();
+
             Map<String, Map<String, Integer>> stats = new Map<String, Map<String, Integer>>();
+            Map<String, Set<String>> uniqueSets = new Map<String, Set<String>>();
             for (String field : queryableFields) {
                 stats.put(field, new Map<String, Integer>{
                     'recent' => 0, 'older' => 0,
                     'recentSize' => recentRecords.size(),
                     'olderSize' => olderRecords.size()
                 });
+                uniqueSets.put(field, new Set<String>());
             }
 
             for (SObject rec : recentRecords) {
@@ -89,6 +93,7 @@ public with sharing class SankeyController {
                     Object val = rec.get(field);
                     if (val != null && String.isNotBlank(String.valueOf(val))) {
                         stats.get(field).put('recent', stats.get(field).get('recent') + 1);
+                        uniqueSets.get(field).add(String.valueOf(val));
                     }
                 }
             }
@@ -98,6 +103,7 @@ public with sharing class SankeyController {
                     Object val = rec.get(field);
                     if (val != null && String.isNotBlank(String.valueOf(val))) {
                         stats.get(field).put('older', stats.get(field).get('older') + 1);
+                        uniqueSets.get(field).add(String.valueOf(val));
                     }
                 }
             }
@@ -114,6 +120,8 @@ public with sharing class SankeyController {
                     Decimal pct = (Decimal.valueOf(fs.get('older')) * 100) / oSize;
                     fs.put('older', pct.setScale(0, System.RoundingMode.HALF_UP).intValue());
                 }
+                fs.put('uniqueValues', uniqueSets.get(field).size());
+                fs.put('sampleSize', combinedSize);
             }
 
             return JSON.serialize(stats);

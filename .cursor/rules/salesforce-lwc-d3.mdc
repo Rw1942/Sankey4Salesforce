@@ -24,7 +24,7 @@ force-app/main/default/
 │   ├── dsEmptyState/         # First-time onboarding
 │   ├── dsObjectPicker/       # Permission-aware object autocomplete with type-ahead search
 │   ├── dsMetricSelector/     # Count vs Amount metric picker
-│   ├── dsPathSelector/       # Ordered path field selector with smart picklist auto-selection
+│   ├── dsPathSelector/       # Ordered path field selector with scored top-5 auto-selection
 │   ├── dsFilterBuilder/      # SOQL filter builder UI
 │   ├── dsSankeyChart/        # D3 Sankey rendering (lwc:dom="manual")
 │   ├── dsTracePanel/         # Record Trace + Flow Trace controls
@@ -188,7 +188,7 @@ Object.keys(fields)
     .map(key => ({ label: fields[key].label + ' (' + key + ')', value: key }));
 ```
 
-`dsPathSelector` and `dsFilterBuilder` both use this pattern. `dsPathSelector` also auto-selects up to 8 picklist fields when no prior selection exists (fresh object selection), skipped when loading saved configs.
+`dsPathSelector` and `dsFilterBuilder` both use this pattern. `dsPathSelector` also auto-selects the top 5 fields on fresh object selection using a three-component scored ranking (100 pts max): data-type score (Picklist 40, Reference 25, Text 10), population score (recentPct * 0.3, max 30), and cardinality score (3–20 unique values = 30 pts ideal, 2 or 21–40 = 15 pts, else 0). Falls back to first 5 picklists alphabetically when stats are unavailable. Skipped when loading saved configs.
 
 ### Use NavigationMixin for record navigation
 

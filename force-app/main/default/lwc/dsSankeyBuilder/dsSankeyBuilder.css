@@ -49,7 +49,26 @@
 
 .config-body {
     padding: 0 1rem 1rem;
-    min-height: 480px;
+    min-height: 640px;
+}
+
+/* ═══ Top Action Bar ═══ */
+
+.generate-button-top {
+    --slds-c-button-spacing-block-start: 0.75rem;
+    --slds-c-button-spacing-block-end: 0.75rem;
+    --slds-c-button-spacing-inline-start: 2rem;
+    --slds-c-button-spacing-inline-end: 2rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+/* ═══ Section rhythm ═══ */
+
+.config-row {
+    padding-top: 0.75rem;
+    padding-bottom: 0.25rem;
+    border-top: 1px solid var(--slds-g-color-border-base-1, var(--lwc-colorBorder, #e2e8f0));
 }
 
 /* ═══ Contextual help text ═══ */
@@ -58,6 +77,7 @@
     font-size: 0.8125rem;
     color: var(--slds-g-color-neutral-base-50, var(--lwc-colorTextWeak, #64748b));
     padding-left: 0.5rem;
-    border-left: 3px solid var(--slds-g-color-brand-base-50, var(--lwc-brandPrimary, #6366f1));
+    border-left: 3px solid var(--slds-g-color-neutral-base-70, var(--lwc-colorBorderInput, #c9c9c9));
     line-height: 1.5;
+    margin-bottom: 0.5rem;
 }

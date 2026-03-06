@@ -1,3 +1,11 @@
 .filter-row {
     align-items: flex-end;
 }
+
+.filter-delete-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2rem;
+    padding-top: 0.25rem;
+}

@@ -234,6 +234,10 @@ private class SankeyControllerTest {
         System.assert(stageStats.containsKey('older'), 'Should have older percentage');
         System.assert(stageStats.containsKey('recentSize'), 'Should have recentSize');
         System.assert(stageStats.containsKey('olderSize'), 'Should have olderSize');
+        System.assert(stageStats.containsKey('uniqueValues'), 'Should have uniqueValues count');
+        System.assert(stageStats.containsKey('sampleSize'), 'Should have sampleSize');
+        Integer uv = ((Decimal) stageStats.get('uniqueValues')).intValue();
+        System.assert(uv >= 0, 'uniqueValues should be non-negative');
     }
 
     /**

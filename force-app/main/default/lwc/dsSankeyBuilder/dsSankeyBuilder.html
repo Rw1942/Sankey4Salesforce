@@ -135,7 +135,7 @@
                 <template lwc:if={configExpanded}>
                     <div class="config-body">
                         <!-- Progress indicator -->
-                        <div class="slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-p-top_small slds-p-bottom_small">
                             <lightning-progress-indicator current-step={currentStep} type="path" variant="base">
                                 <lightning-progress-step label="Choose Data" value="object"></lightning-progress-step>
                                 <lightning-progress-step label="Pick Metric" value="metric"></lightning-progress-step>
@@ -145,51 +145,49 @@
                             </lightning-progress-indicator>
                         </div>
 
-                        <div class="slds-p-top_small">
-                            <div class="slds-grid slds-gutters slds-wrap">
-                                <!-- Object Picker + Generate -->
-                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_small">
-                                    <p class="help-text slds-m-bottom_xx-small">
-                                        Choose which Salesforce object contains the records you want to visualize.
-                                    </p>
-                                    <div class="slds-grid slds-grid_vertical-align-end slds-gutters_x-small">
-                                        <div class="slds-col slds-grow">
-                                            <c-ds-object-picker
-                                                selected-object={state.config.objectApiName}
-                                                onobjectselect={handleObjectSelect}>
-                                            </c-ds-object-picker>
-                                        </div>
-                                        <div class="slds-col slds-no-flex">
-                                            <lightning-button
-                                                label="Generate Diagram"
-                                                icon-name="utility:play"
-                                                variant="brand"
-                                                onclick={handleGenerateDiagram}
-                                                disabled={isGenerateDisabled}>
-                                            </lightning-button>
-                                        </div>
-                                    </div>
-                                </div>
+                        <!-- Top Action Bar -->
+                        <div class="slds-grid slds-grid_align-center slds-p-bottom_small">
+                            <lightning-button
+                                label="Generate Diagram"
+                                icon-name="utility:play"
+                                variant="brand"
+                                onclick={handleGenerateDiagram}
+                                disabled={isGenerateDisabled}
+                                class="generate-button-top">
+                            </lightning-button>
+                        </div>
 
-                                <!-- Metric Selector -->
-                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_small">
-                                    <template lwc:if={state.config.objectApiName}>
-                                        <p class="help-text slds-m-bottom_xx-small">
-                                            Decide how to measure flows &mdash; count records or sum a numeric field like Amount.
-                                        </p>
-                                        <c-ds-metric-selector
-                                            object-api-name={state.config.objectApiName}
-                                            metric-type={state.config.metricType}
-                                            metric-field={state.config.metricField}
-                                            onmetricchange={handleMetricChange}>
-                                        </c-ds-metric-selector>
-                                    </template>
-                                </div>
+                        <!-- Step 1 & 2: Object + Metric side-by-side -->
+                        <div class="config-row slds-grid slds-gutters slds-wrap">
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <p class="help-text">
+                                    Choose which Salesforce object contains the records you want to visualize.
+                                </p>
+                                <c-ds-object-picker
+                                    selected-object={state.config.objectApiName}
+                                    onobjectselect={handleObjectSelect}>
+                                </c-ds-object-picker>
                             </div>
 
-                            <!-- Path Selector -->
-                            <template lwc:if={state.config.objectApiName}>
-                                <p class="help-text slds-m-bottom_xx-small slds-m-top_small">
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <template lwc:if={state.config.objectApiName}>
+                                    <p class="help-text">
+                                        Decide how to measure flows — count records or sum a numeric field like Amount.
+                                    </p>
+                                    <c-ds-metric-selector
+                                        object-api-name={state.config.objectApiName}
+                                        metric-type={state.config.metricType}
+                                        metric-field={state.config.metricField}
+                                        onmetricchange={handleMetricChange}>
+                                    </c-ds-metric-selector>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Flow Steps -->
+                        <template lwc:if={state.config.objectApiName}>
+                            <div class="config-row">
+                                <p class="help-text">
                                     Select 2 or more fields that represent stages in your flow.
                                     The order you choose becomes left-to-right columns in the diagram.
                                 </p>
@@ -200,11 +198,13 @@
                                     record-id-field={state.config.recordIdField}
                                     onpathconfigured={handlePathConfigured}>
                                 </c-ds-path-selector>
-                            </template>
+                            </div>
+                        </template>
 
-                            <!-- Filter Builder -->
-                            <template lwc:if={state.config.objectApiName}>
-                                <p class="help-text slds-m-bottom_xx-small slds-m-top_small">
+                        <!-- Step 4: Filters -->
+                        <template lwc:if={state.config.objectApiName}>
+                            <div class="config-row">
+                                <p class="help-text">
                                     Optionally narrow which records to include.
                                 </p>
                                 <c-ds-filter-builder
@@ -212,8 +212,8 @@
                                     filters={state.config.filters}
                                     onfilterchange={handleFilterChange}>
                                 </c-ds-filter-builder>
-                            </template>
-                        </div>
+                            </div>
+                        </template>
 
                     </div>
                 </template>

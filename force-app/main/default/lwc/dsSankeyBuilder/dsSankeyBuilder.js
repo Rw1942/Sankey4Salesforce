@@ -49,6 +49,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
     configStarted = false;
     configExpanded = true;
     isTruncated = false;
+    _pathUserConfirmed = false;
     _lastConfigHash = '';
     _cachedResponse = null;
     _fieldLabelMap = {};
@@ -109,7 +110,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
 
     get currentStep() {
         if (this.dataLoaded) return 'generate';
-        if (this.state.config.pathFields.length >= 2) return 'filters';
+        if (this._pathUserConfirmed && this.state.config.pathFields.length >= 2) return 'filters';
         if (this.state.config.objectApiName && this.state.config.metricType) return 'path';
         if (this.state.config.objectApiName) return 'metric';
         return 'object';
@@ -185,6 +186,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
             }
         };
         this.dataLoaded = false;
+        this._pathUserConfirmed = false;
         this.errorMessage = '';
     }
 
@@ -202,6 +204,9 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
 
     handlePathConfigured(event) {
         const { pathFields, nullHandling, recordIdField, autoSelected } = event.detail;
+        if (!autoSelected) {
+            this._pathUserConfirmed = true;
+        }
         this.state = {
             ...this.state,
             config: { ...this.state.config, pathFields, nullHandling, recordIdField }
@@ -413,6 +418,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
         };
         this.configStarted = true;
         this.configExpanded = true;
+        this._pathUserConfirmed = true;
         this._fetchSankeyData();
     }
 
@@ -451,6 +457,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
         this.dataLoaded = false;
         this.configStarted = true;
         this.configExpanded = true;
+        this._pathUserConfirmed = false;
         this.errorMessage = '';
         this.isTruncated = false;
         this._lastConfigHash = '';

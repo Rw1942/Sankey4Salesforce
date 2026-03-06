@@ -15,6 +15,42 @@ const TYPE_PRIORITY = {
     Currency: 2, Double: 2, Int: 2, Long: 2, Percent: 2
 };
 
+const MAX_AUTO_FIELDS = 5;
+
+/**
+ * Auto-selection scoring — three components, 100 points max per field.
+ *
+ * 1. Data type score (0–40):  TYPE_SCORE[dataType]
+ *      Picklist  = 40  — discrete categorical values make ideal Sankey nodes
+ *      Reference = 25  — lookup relationships show meaningful entity flow
+ *      Text      = 10  — free-text fields tend toward high cardinality
+ *
+ * 2. Population score (0–30): recentPct * 0.3
+ *      Well-populated fields rank higher (90% → 27 pts, 50% → 15 pts).
+ *      Defaults to 15 when stats are unavailable for a field.
+ *
+ * 3. Cardinality score (0–30): based on uniqueValues from the sample
+ *      3–20 unique values  → 30 pts  (ideal for readable Sankey diagrams)
+ *      2 or 21–40          → 15 pts  (usable but less ideal)
+ *      0–1 or 41+          →  0 pts  (constant or too many nodes)
+ *      Defaults to 15 when stats are unavailable.
+ *
+ * Total = typeScore + populationScore + cardinalityScore.
+ * Ties broken alphabetically by field label.
+ */
+const TYPE_SCORE = {
+    Picklist: 40,
+    Reference: 25,
+    String: 10, Phone: 10, Email: 10, Url: 10, TextArea: 10
+};
+
+function cardinalityScore(uniqueValues) {
+    if (uniqueValues <= 1) return 0;
+    if (uniqueValues <= 20) return 30;
+    if (uniqueValues <= 40) return 15;
+    return 0;
+}
+
 export default class DsPathSelector extends LightningElement {
 
     @api objectApiName = '';
@@ -47,6 +83,8 @@ export default class DsPathSelector extends LightningElement {
     internalRecordIdField = 'Id';
     loadingStats = false;
     _fieldKeyCache = [];
+    _fieldTypeCache = {};
+    _pendingAutoSelect = false;
 
     get nullHandlingOptions() {
         return [
@@ -108,16 +146,12 @@ export default class DsPathSelector extends LightningElement {
                 this.idFieldOptions.unshift({ label: 'Record Id (Id)', value: 'Id' });
             }
 
-            if (this.internalSelected.length === 0) {
-                const picklists = sortedKeys
-                    .filter(key => fields[key].dataType === 'Picklist')
-                    .slice(0, 8);
-                if (picklists.length > 0) {
-                    this.internalSelected = picklists;
-                    this._fireConfigured(true);
-                }
+            this._fieldTypeCache = {};
+            for (const key of sortedKeys) {
+                this._fieldTypeCache[key] = fields[key].dataType;
             }
 
+            this._pendingAutoSelect = this.internalSelected.length === 0;
             this._fetchPopulationStats();
         } else if (error) {
             this.pathFieldOptions = [];
@@ -155,18 +189,71 @@ export default class DsPathSelector extends LightningElement {
                     if (s) {
                         const recent = s.recentSize > 0 ? s.recent + '%' : 'n/a';
                         const older = s.olderSize > 0 ? s.older + '%' : 'n/a';
+                        const uv = s.sampleSize > 0 ? s.uniqueValues + ' values' : '';
                         suffix = ' \u2014 Recent: ' + recent + ' | Older: ' + older;
+                        if (uv) suffix += ' | ' + uv;
                     }
                     return {
                         label: this._baseLabels[key] + suffix,
                         value: key
                     };
                 });
+                if (this._pendingAutoSelect) {
+                    this._pendingAutoSelect = false;
+                    this._autoSelectTopFields(stats);
+                }
             })
             .catch(err => {
                 console.warn('Field population stats unavailable:', err?.body?.message || err); // eslint-disable-line no-console
+                if (this._pendingAutoSelect) {
+                    this._pendingAutoSelect = false;
+                    this._autoSelectFallback();
+                }
             })
             .finally(() => { this.loadingStats = false; });
+    }
+
+    /**
+     * Scores and ranks all allowed fields, then auto-selects the top MAX_AUTO_FIELDS.
+     * See the TYPE_SCORE / cardinalityScore constants for the full scoring breakdown.
+     */
+    _autoSelectTopFields(stats) {
+        const scored = this._fieldKeyCache.map(key => {
+            const dataType = this._fieldTypeCache[key];
+            const typeScore = TYPE_SCORE[dataType] ?? 0;
+            const s = stats[key];
+            const populationPts = s && s.recentSize > 0
+                ? s.recent * 0.3
+                : 15;
+            const cardinalityPts = s && s.sampleSize > 0
+                ? cardinalityScore(s.uniqueValues)
+                : 15;
+            return {
+                key,
+                score: typeScore + populationPts + cardinalityPts,
+                label: this._baseLabels[key] || key
+            };
+        });
+
+        scored.sort((a, b) =>
+            b.score !== a.score ? b.score - a.score : a.label.localeCompare(b.label)
+        );
+
+        const top = scored.slice(0, MAX_AUTO_FIELDS).map(e => e.key);
+        if (top.length > 0) {
+            this.internalSelected = top;
+            this._fireConfigured(true);
+        }
+    }
+
+    _autoSelectFallback() {
+        const picklists = this._fieldKeyCache
+            .filter(key => this._fieldTypeCache[key] === 'Picklist')
+            .slice(0, MAX_AUTO_FIELDS);
+        if (picklists.length > 0) {
+            this.internalSelected = picklists;
+            this._fireConfigured(true);
+        }
     }
 
     _fireConfigured(autoSelected) {
