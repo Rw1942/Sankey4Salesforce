@@ -1,5 +1,5 @@
 /**
- * First-time empty state with guided onboarding, example use cases,
+ * First-time empty state with guided onboarding
  * and quick-load for saved configurations.
  */
 import { LightningElement, wire } from 'lwc';
@@ -30,12 +30,6 @@ export default class DsEmptyState extends LightningElement {
 
     get hasSavedConfigs() {
         return this.savedConfigs && this.savedConfigs.length > 0;
-    }
-
-    get examplesColumnClass() {
-        return this.hasSavedConfigs
-            ? 'slds-col slds-size_1-of-1 slds-medium-size_7-of-12'
-            : 'slds-col slds-size_1-of-1';
     }
 
     handleStart() {
