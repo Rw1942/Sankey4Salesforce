@@ -19,7 +19,9 @@ public with sharing class SankeyConfigRepository {
 
             if (isUpdate) {
                 if (!Schema.SObjectType.DS_Sankey_Config__c.isUpdateable()) {
-                    throw new AuraHandledException('Insufficient permissions to update configurations.');
+                    AuraHandledException ahe = new AuraHandledException('Insufficient permissions to update configurations.');
+                    ahe.setMessage('Insufficient permissions to update configurations.');
+                    throw ahe;
                 }
                 List<DS_Sankey_Config__c> existing = [
                     SELECT Id FROM DS_Sankey_Config__c
@@ -28,11 +30,15 @@ public with sharing class SankeyConfigRepository {
                     LIMIT 1
                 ];
                 if (existing.isEmpty()) {
-                    throw new AuraHandledException('Configuration not found or not owned by you.');
+                    AuraHandledException ahe = new AuraHandledException('Configuration not found or not owned by you.');
+                    ahe.setMessage('Configuration not found or not owned by you.');
+                    throw ahe;
                 }
             } else {
                 if (!Schema.SObjectType.DS_Sankey_Config__c.isCreateable()) {
-                    throw new AuraHandledException('Insufficient permissions to create configurations.');
+                    AuraHandledException ahe = new AuraHandledException('Insufficient permissions to create configurations.');
+                    ahe.setMessage('Insufficient permissions to create configurations.');
+                    throw ahe;
                 }
             }
 
@@ -61,7 +67,9 @@ public with sharing class SankeyConfigRepository {
         } catch (AuraHandledException ahe) {
             throw ahe;
         } catch (Exception e) {
-            throw new AuraHandledException('Error saving config: ' + e.getMessage());
+            AuraHandledException ahe = new AuraHandledException(e.getMessage());
+            ahe.setMessage('Error saving config: ' + e.getMessage());
+            throw ahe;
         }
     }
 
@@ -113,7 +121,9 @@ public with sharing class SankeyConfigRepository {
 
             return JSON.serialize(results);
         } catch (Exception e) {
-            throw new AuraHandledException('Error loading configs: ' + e.getMessage());
+            AuraHandledException ahe = new AuraHandledException(e.getMessage());
+            ahe.setMessage('Error loading configs: ' + e.getMessage());
+            throw ahe;
         }
     }
 
@@ -125,7 +135,9 @@ public with sharing class SankeyConfigRepository {
     public static void deleteConfig(String configId) {
         try {
             if (!Schema.SObjectType.DS_Sankey_Config__c.isDeletable()) {
-                throw new AuraHandledException('Insufficient permissions to delete configurations.');
+                AuraHandledException ahe = new AuraHandledException('Insufficient permissions to delete configurations.');
+                ahe.setMessage('Insufficient permissions to delete configurations.');
+                throw ahe;
             }
             DS_Sankey_Config__c config = [
                 SELECT Id FROM DS_Sankey_Config__c
@@ -137,7 +149,9 @@ public with sharing class SankeyConfigRepository {
         } catch (AuraHandledException ahe) {
             throw ahe;
         } catch (Exception e) {
-            throw new AuraHandledException('Error deleting config: ' + e.getMessage());
+            AuraHandledException ahe = new AuraHandledException(e.getMessage());
+            ahe.setMessage('Error deleting config: ' + e.getMessage());
+            throw ahe;
         }
     }
 }

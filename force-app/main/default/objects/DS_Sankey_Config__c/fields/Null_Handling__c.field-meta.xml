@@ -4,7 +4,7 @@
     <description>Strategy for handling null values in path fields</description>
     <externalId>false</externalId>
     <label>Null Handling</label>
-    <required>true</required>
+    <required>false</required>
     <type>Picklist</type>
     <valueSet>
         <valueSetDefinition>

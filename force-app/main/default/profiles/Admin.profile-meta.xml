@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Grants full CRUD and field access to DS_Sankey_Config__c for Sankey Builder users.</description>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>DS Sankey Builder</label>
+<Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldPermissions>
         <editable>true</editable>
         <field>DS_Sankey_Config__c.Filters_JSON__c</field>
@@ -43,8 +40,8 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>DS_Sankey_Config__c</object>
-        <viewAllRecords>false</viewAllRecords>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-</PermissionSet>
+</Profile>

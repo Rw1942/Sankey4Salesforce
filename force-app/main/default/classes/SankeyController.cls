@@ -20,7 +20,9 @@ public with sharing class SankeyController {
             List<SObject> rawRecords = Database.query(soql);
 
             if (rawRecords.isEmpty()) {
-                throw new AuraHandledException('No records found matching the specified criteria.');
+                AuraHandledException ahe = new AuraHandledException('No records found matching the specified criteria.');
+                ahe.setMessage('No records found matching the specified criteria.');
+                throw ahe;
             }
 
             Map<String, Object> response = SankeyService.buildSankeyResponse(rawRecords, config);
@@ -28,7 +30,9 @@ public with sharing class SankeyController {
         } catch (AuraHandledException ahe) {
             throw ahe;
         } catch (Exception e) {
-            throw new AuraHandledException('Error generating Sankey data: ' + e.getMessage());
+            AuraHandledException ahe = new AuraHandledException(e.getMessage());
+            ahe.setMessage('Error generating Sankey data: ' + e.getMessage());
+            throw ahe;
         }
     }
 
@@ -44,7 +48,9 @@ public with sharing class SankeyController {
             String soql = SankeyQueryBuilder.buildCountQuery(config);
             return Database.countQuery(soql);
         } catch (Exception e) {
-            throw new AuraHandledException('Error counting records: ' + e.getMessage());
+            AuraHandledException ahe = new AuraHandledException(e.getMessage());
+            ahe.setMessage('Error counting records: ' + e.getMessage());
+            throw ahe;
         }
     }
 
@@ -126,7 +132,9 @@ public with sharing class SankeyController {
 
             return JSON.serialize(stats);
         } catch (Exception e) {
-            throw new AuraHandledException('Error sampling field population: ' + e.getMessage());
+            AuraHandledException ahe = new AuraHandledException(e.getMessage());
+            ahe.setMessage('Error sampling field population: ' + e.getMessage());
+            throw ahe;
         }
     }
 
@@ -176,7 +184,9 @@ public with sharing class SankeyController {
 
             return JSON.serialize(results);
         } catch (Exception e) {
-            throw new AuraHandledException('Error loading objects: ' + e.getMessage());
+            AuraHandledException ahe = new AuraHandledException(e.getMessage());
+            ahe.setMessage('Error loading objects: ' + e.getMessage());
+            throw ahe;
         }
     }
 

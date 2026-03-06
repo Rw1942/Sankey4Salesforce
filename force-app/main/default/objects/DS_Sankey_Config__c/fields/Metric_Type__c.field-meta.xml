@@ -4,7 +4,7 @@
     <description>Metric type for link width: COUNT or AMOUNT</description>
     <externalId>false</externalId>
     <label>Metric Type</label>
-    <required>true</required>
+    <required>false</required>
     <type>Picklist</type>
     <valueSet>
         <valueSetDefinition>
