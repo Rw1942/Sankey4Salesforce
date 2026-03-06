@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>RMS Titanic passenger manifest (1,309 records). Includes survival outcome, demographics, ticket details, and derived categorical fields optimised for Sankey diagram exploration.</description>
+    <label>Titanic Passenger</label>
+    <nameField>
+        <displayFormat>TP-{0000}</displayFormat>
+        <label>Passenger Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Titanic Passengers</pluralLabel>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

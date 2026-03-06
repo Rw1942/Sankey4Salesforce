@@ -14,6 +14,7 @@ export default class DsTracePanel extends LightningElement {
     @api traceStep = 0;
     @api flowStepIdx = '';
     @api flowTraceValue = '';
+    @api flowFocusChain = [];
     @api kpis = null;
 
     get modeOptions() {
@@ -59,6 +60,18 @@ export default class DsTracePanel extends LightningElement {
     get traceStepLabel() {
         const max = this.steps ? this.steps.length - 2 : 0;
         return 'Step ' + this.traceStep + ' / ' + Math.max(0, max);
+    }
+
+    get hasFlowFocusChain() {
+        return this.isFlowTrace && this.flowFocusChain && this.flowFocusChain.length > 0;
+    }
+
+    get focusChainPills() {
+        if (!this.flowFocusChain) return [];
+        return this.flowFocusChain.map(({ stepIndex, label }, i) => ({
+            id: 'focus-' + i,
+            label: ((this.stepLabels && this.stepLabels[stepIndex]) || (this.steps && this.steps[stepIndex]) || 'Step ' + stepIndex) + ': ' + label
+        }));
     }
 
     get showFlowKpis() {
@@ -115,5 +128,9 @@ export default class DsTracePanel extends LightningElement {
 
     handleTraceReset() {
         this.dispatchEvent(new CustomEvent('tracereset'));
+    }
+
+    handleResetFlowFocus() {
+        this.dispatchEvent(new CustomEvent('resetflowfocus'));
     }
 }

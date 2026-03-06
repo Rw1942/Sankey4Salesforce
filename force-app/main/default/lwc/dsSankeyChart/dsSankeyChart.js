@@ -25,6 +25,7 @@ export default class DsSankeyChart extends LightningElement {
     set nodes(val) {
         this._nodes = val || [];
         this._dataChanged = true;
+        this._requestProcessChanges();
     }
 
     _links = [];
@@ -44,6 +45,7 @@ export default class DsSankeyChart extends LightningElement {
     set stepLabels(val) {
         this._stepLabels = val || [];
         this._headersDirty = true;
+        this._requestProcessChanges();
     }
 
     _metric = 'count';
@@ -53,6 +55,7 @@ export default class DsSankeyChart extends LightningElement {
         this._metric = val || 'count';
         if (prev !== this._metric) {
             this._dataChanged = true;
+            this._requestProcessChanges();
         }
     }
 
@@ -61,6 +64,7 @@ export default class DsSankeyChart extends LightningElement {
     set mode(val) {
         this._mode = val || 'AGGREGATE';
         this._highlightDirty = true;
+        this._requestProcessChanges();
     }
 
     _selectedRecordId = '';
@@ -68,6 +72,7 @@ export default class DsSankeyChart extends LightningElement {
     set selectedRecordId(val) {
         this._selectedRecordId = val || '';
         this._highlightDirty = true;
+        this._requestProcessChanges();
     }
 
     _flowStepIdx = '';
@@ -75,6 +80,7 @@ export default class DsSankeyChart extends LightningElement {
     set flowStepIdx(val) {
         this._flowStepIdx = val || '';
         this._highlightDirty = true;
+        this._requestProcessChanges();
     }
 
     _flowTraceValue = '';
@@ -82,6 +88,15 @@ export default class DsSankeyChart extends LightningElement {
     set flowTraceValue(val) {
         this._flowTraceValue = val || '';
         this._highlightDirty = true;
+        this._requestProcessChanges();
+    }
+
+    _flowFocusChain = [];
+    @api get flowFocusChain() { return this._flowFocusChain; }
+    set flowFocusChain(val) {
+        this._flowFocusChain = val || [];
+        this._highlightDirty = true;
+        this._requestProcessChanges();
     }
 
     _traceStep = 0;
@@ -89,6 +104,7 @@ export default class DsSankeyChart extends LightningElement {
     set traceStep(val) {
         this._traceStep = val || 0;
         this._highlightDirty = true;
+        this._requestProcessChanges();
     }
 
     /* ── Reactive tooltip state ────────────────────────────────────── */
@@ -100,6 +116,7 @@ export default class DsSankeyChart extends LightningElement {
     tooltipY       = 0;
 
     /* ── Private ───────────────────────────────────────────────────── */
+    _d3Loading     = false;
     _d3Loaded      = false;
     _dataChanged   = false;
     _highlightDirty = false;
@@ -114,20 +131,26 @@ export default class DsSankeyChart extends LightningElement {
     _w        = 960;
     _h        = 540;
     _ro       = null;
+    _processQueued = false;
 
     /* ═══ Lifecycle ════════════════════════════════════════════════════ */
 
     renderedCallback() {
-        if (!this._d3Loaded) {
-            this._d3Loaded = true;
+        if (!this._d3Loading) {
+            this._d3Loading = true;
             loadScript(this, D3_RESOURCE + '/d3.min.js')
-                .then(() => this._processChanges())
+                .then(() => {
+                    this._d3Loaded = true;
+                    this._processChanges();
+                })
                 .catch(e => {
                     console.error('D3 load error:', e); // eslint-disable-line no-console
                 });
             return;
         }
-        this._processChanges();
+        if (this._d3Loaded) {
+            this._processChanges();
+        }
     }
 
     disconnectedCallback() {
@@ -152,6 +175,16 @@ export default class DsSankeyChart extends LightningElement {
             this._headersDirty = false;
             this._updateHeaderText();
         }
+    }
+
+    _requestProcessChanges() {
+        if (!this.isConnected || this._processQueued) return;
+        this._processQueued = true;
+        Promise.resolve().then(() => {
+            this._processQueued = false;
+            if (!this.isConnected || !this._d3Loaded) return;
+            this._processChanges();
+        });
     }
 
     /* ═══ Graph construction ═══════════════════════════════════════ */
@@ -234,7 +267,7 @@ export default class DsSankeyChart extends LightningElement {
             for (const e of entries) {
                 if (e.contentRect.width > 0) {
                     this._w = e.contentRect.width;
-                    this._h = Math.max(440, Math.round(this._w * 0.55));
+                    this._h = Math.max(440, Math.round(this._w * 0.50));
                     if (!this._rafId) {
                         // eslint-disable-next-line @lwc/lwc/no-async-operation
                         this._rafId = requestAnimationFrame(() => {
@@ -409,6 +442,7 @@ export default class DsSankeyChart extends LightningElement {
         const activeSet = this._activeRecordSet();
 
         this._gLinks.selectAll('path')
+            .interrupt()
             .transition().duration(ANIM_MS)
             .attr('stroke-opacity', d => {
                 if (!activeSet) return BASE_OPACITY;
@@ -416,6 +450,7 @@ export default class DsSankeyChart extends LightningElement {
             });
 
         this._gNodes.selectAll('g').select('.node-rect')
+            .interrupt()
             .transition().duration(ANIM_MS)
             .attr('opacity', d => {
                 if (!activeSet) return 1;
@@ -433,12 +468,37 @@ export default class DsSankeyChart extends LightningElement {
             const ri = this._records.findIndex(r => r.id === this._selectedRecordId);
             return ri >= 0 ? new Set([ri]) : null;
         }
-        if (this._mode === 'FLOW_TRACE' && this._flowTraceValue && this._flowStepIdx !== '') {
-            const nid = this._flowStepIdx + '::' + this._flowTraceValue;
-            const node = this._graph.nodeMap.get(nid);
-            return node ? new Set(node.recordIndices) : null;
+        if (this._mode === 'FLOW_TRACE') {
+            if (this._flowFocusChain && this._flowFocusChain.length > 0) {
+                return this._chainRecordSet();
+            }
+            if (this._flowTraceValue && this._flowStepIdx !== '') {
+                const nid = this._flowStepIdx + '::' + this._flowTraceValue;
+                const node = this._graph.nodeMap.get(nid);
+                return node ? new Set(node.recordIndices) : null;
+            }
         }
         return null;
+    }
+
+    _chainRecordSet() {
+        if (!this._graph) return null;
+        let result = null;
+        for (const { stepIndex, label } of this._flowFocusChain) {
+            const nid = stepIndex + '::' + label;
+            const node = this._graph.nodeMap.get(nid);
+            if (!node) return new Set();
+            if (result === null) {
+                result = new Set(node.recordIndices);
+            } else {
+                const next = new Set();
+                for (const ri of result) {
+                    if (node.recordIndices.has(ri)) next.add(ri);
+                }
+                result = next;
+            }
+        }
+        return result;
     }
 
     _drawOverlay() {

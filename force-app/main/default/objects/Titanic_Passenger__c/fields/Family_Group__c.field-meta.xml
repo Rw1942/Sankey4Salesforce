@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Family_Group__c</fullName>
+    <description>Family size category derived from siblings/spouses + parents/children counts</description>
+    <externalId>false</externalId>
+    <label>Family Group</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Solo</fullName><default>false</default><label>Solo</label></value>
+            <value><fullName>Small Family</fullName><default>false</default><label>Small Family</label></value>
+            <value><fullName>Large Family</fullName><default>false</default><label>Large Family</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

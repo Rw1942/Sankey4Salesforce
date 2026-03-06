@@ -60,7 +60,12 @@ export default class DsObjectPicker extends LightningElement {
 
     _fetchCounts() {
         if (!this._rawObjects.length) return;
-        const names = this._rawObjects.map(o => o.apiName).slice(0, 30);
+        const sorted = [...this._rawObjects].sort((a, b) => {
+            const ac = a.apiName.endsWith('__c') ? 0 : 1;
+            const bc = b.apiName.endsWith('__c') ? 0 : 1;
+            return ac - bc || a.apiName.localeCompare(b.apiName);
+        });
+        const names = sorted.map(o => o.apiName).slice(0, 30);
         getObjectRecordCounts({ objectApiNames: names })
             .then(result => {
                 this._recordCounts = JSON.parse(result);
@@ -93,7 +98,7 @@ export default class DsObjectPicker extends LightningElement {
 
         const MIN_RECORDS = 10;
         this.allOptions = (hasCounts
-                ? mapped.filter(opt => opt.count >= MIN_RECORDS)
+                ? mapped.filter(opt => opt.count === null || opt.count >= MIN_RECORDS)
                 : mapped)
             .sort((a, b) => {
                 const ca = a.count ?? -1;

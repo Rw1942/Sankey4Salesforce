@@ -39,7 +39,8 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
             selectedNode: null,
             traceStep: 0,
             flowStepIdx: '',
-            flowTraceValue: ''
+            flowTraceValue: '',
+            flowFocusChain: []
         }
     };
 
@@ -146,19 +147,12 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
         if (this.state.ui.mode !== 'FLOW_TRACE' || !this.state.ui.flowTraceValue) {
             return null;
         }
-        const stepIdx = parseInt(this.state.ui.flowStepIdx, 10);
-        const value = this.state.ui.flowTraceValue;
-        const records = this.state.data.records;
-        const steps = this.state.data.stepColumns;
-
-        if (isNaN(stepIdx) || stepIdx < 0 || stepIdx >= steps.length) return null;
-
-        const col = steps[stepIdx];
-        const matching = records.filter(r => (r[col] || '\u2205') === value);
+        const matching = this._matchingFlowRecords();
         const totalRecords = matching.length;
         const totalAmount = matching.reduce((s, r) => s + (r.amount || 0), 0);
-        const conversionPct = records.length > 0
-            ? ((totalRecords / records.length) * 100).toFixed(1)
+        const allRecords = this.state.data.records.length;
+        const conversionPct = allRecords > 0
+            ? ((totalRecords / allRecords) * 100).toFixed(1)
             : '0.0';
 
         return { totalRecords, totalAmount, conversionPct };
@@ -213,7 +207,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
         } else {
             cards.push({
                 id: 'largestDrop',
-                label: 'Largest step loss',
+                label: 'Largest drop-off',
                 value: largestDrop ? largestDrop.pctLabel : '0%'
             });
         }
@@ -222,15 +216,15 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
         if (topPaths.length > 0) {
             standout.push({
                 id: 'commonPath',
-                title: 'Most common journey',
+                title: 'Most common path',
                 detail: topPaths[0].path + ' · ' + topPaths[0].metricLabel + ' · ' + topPaths[0].shareLabel
             });
         }
         if (largestDrop) {
             standout.push({
                 id: 'largestDrop',
-                title: 'Biggest step loss',
-                detail: largestDrop.fromLabel + ' to ' + largestDrop.toLabel + ' loses ' + largestDrop.countLabel + ' (' + largestDrop.pctLabel + ')'
+                title: 'Biggest drop-off',
+                detail: largestDrop.fromLabel + ' to ' + largestDrop.toLabel + ' drops ' + largestDrop.countLabel + ' (' + largestDrop.pctLabel + ')'
             });
         }
 
@@ -247,7 +241,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
             pills: this._buildCommonPills(),
             cards,
             standout,
-            pathSectionTitle: 'Common journeys',
+            pathSectionTitle: 'Top paths',
             pathRows: topPaths,
             storySteps: [],
             nextSteps: this._buildOverviewNextSteps(topPaths, largestDrop),
@@ -257,17 +251,36 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
     }
 
     _buildFlowInsightContext() {
-        const stepIdx = parseInt(this.state.ui.flowStepIdx, 10);
-        const stepApi = this.state.data.stepColumns[stepIdx];
-        const stepLabel = this.stepLabels[stepIdx] || stepApi || 'Selected step';
-        const selectedValue = this.state.ui.flowTraceValue;
+        const chain = this.state.ui.flowFocusChain || [];
+        const effectiveChain = chain.length > 0
+            ? chain
+            : [{ stepIndex: parseInt(this.state.ui.flowStepIdx, 10), label: this.state.ui.flowTraceValue }];
+
         const matching = this._matchingFlowRecords();
         const totalRecords = this.state.data.records.length;
         const sharePct = totalRecords > 0 ? (matching.length / totalRecords) * 100 : 0;
         const reachedLastStepPct = this._computeReachedLastStepPct(matching);
-        const topNext = this._topNeighbor(matching, stepIdx + 1);
-        const topPrev = this._topNeighbor(matching, stepIdx - 1);
+
+        const tailStep = effectiveChain[effectiveChain.length - 1].stepIndex;
+        const headStep = effectiveChain[0].stepIndex;
+        const topNext = this._topNeighbor(matching, tailStep + 1);
+        const topPrev = this._topNeighbor(matching, headStep - 1);
         const cohortPaths = this._buildTopPathsFromRecords(matching);
+
+        const chainDescriptions = effectiveChain.map(({ stepIndex, label }) => {
+            const sl = this.stepLabels[stepIndex] || this.state.data.stepColumns[stepIndex] || 'Step';
+            return sl + ': ' + label;
+        });
+        const title = chainDescriptions.join(' \u203a ');
+
+        let summary;
+        if (effectiveChain.length === 1) {
+            const sl = this.stepLabels[effectiveChain[0].stepIndex] || this.state.data.stepColumns[effectiveChain[0].stepIndex] || 'Selected step';
+            summary = 'You are looking at records that pass through "' + effectiveChain[0].label + '" at the "' + sl + '" step.';
+        } else {
+            summary = 'Narrowed to records passing through ' + effectiveChain.length + ' focus points. Click another downstream node to narrow further, or reset to start over.';
+        }
+
         const cards = [
             {
                 id: 'cohortSize',
@@ -299,35 +312,34 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
             standout.push({
                 id: 'topPrev',
                 title: 'Most common source',
-                detail: topPrev.stepLabel + ': ' + topPrev.value + ' · ' + this._formatPercent(topPrev.sharePct) + ' of this cohort'
+                detail: topPrev.stepLabel + ': ' + topPrev.value + ' · ' + this._formatPercent(topPrev.sharePct) + ' of this group'
             });
         }
         if (topNext) {
             standout.push({
                 id: 'topNext',
                 title: 'Most common next stop',
-                detail: topNext.stepLabel + ': ' + topNext.value + ' · ' + this._formatPercent(topNext.sharePct) + ' of this cohort'
+                detail: topNext.stepLabel + ': ' + topNext.value + ' · ' + this._formatPercent(topNext.sharePct) + ' of this group'
             });
         }
 
+        const nextSteps = [
+            'Click a downstream node to keep narrowing this group.',
+            'Use Reset Focus above the chart to clear all narrowing and return to the full view.',
+            'Switch to Record Trace if you want to inspect one record in detail.'
+        ];
+
         return {
-            modeLabel: 'Focused Cohort',
-            title: stepLabel + ': ' + selectedValue,
-            summary: 'You are looking at the records that pass through "' + selectedValue + '" at the "' + stepLabel + '" step.',
-            pills: this._buildCommonPills().concat([
-                stepLabel,
-                selectedValue
-            ]),
+            modeLabel: effectiveChain.length > 1 ? 'Narrowed Group' : 'Focused Group',
+            title,
+            summary,
+            pills: this._buildCommonPills().concat(chainDescriptions),
             cards,
             standout,
-            pathSectionTitle: 'Most common journeys in this cohort',
+            pathSectionTitle: 'Top paths in this group',
             pathRows: cohortPaths,
             storySteps: [],
-            nextSteps: [
-                'Click a downstream node to keep narrowing this group.',
-                'Switch to Record Trace if you want to inspect one record in detail.',
-                'Return to Overview to compare this cohort against the full diagram.'
-            ],
+            nextSteps,
             warnings: this._buildWarnings(),
             showClearFocus: true
         };
@@ -379,7 +391,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
         if (topPathMatch) {
             cards.push({
                 id: 'pathRank',
-                label: 'Journey rank',
+                label: 'Path rank',
                 value: '#' + topPathMatch.rank
             });
         }
@@ -387,7 +399,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
         const standout = [
             {
                 id: 'recordPath',
-                title: 'Record journey',
+                title: 'Record path',
                 detail: fullPath || 'This record does not have a complete path yet.'
             }
         ];
@@ -395,18 +407,18 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
             standout.push({
                 id: 'commonJourney',
                 title: 'How common this is',
-                detail: 'This exact journey is the #' + topPathMatch.rank + ' ranked path in the current dataset.'
+                detail: 'This exact path is #' + topPathMatch.rank + ' ranked in the current dataset.'
             });
         } else {
             standout.push({
                 id: 'rareJourney',
                 title: 'How common this is',
-                detail: 'This exact journey is not in the current top ranked paths.'
+                detail: 'This exact path is not in the current top ranked paths.'
             });
         }
 
         return {
-            modeLabel: 'Record Story',
+            modeLabel: 'Record Detail',
             title: record.name || record.id,
             summary: 'This view follows one record through the flow so you can compare its path with the broader pattern.',
             pills: this._buildCommonPills().concat([
@@ -419,7 +431,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
             storySteps,
             nextSteps: [
                 'Use Next and Prev above the chart to animate this record through each transition.',
-                'Switch back to Overview to compare this journey with the most common paths.'
+                'Switch back to Overview to compare this path with the most common paths.'
             ],
             warnings: this._buildWarnings(),
             showClearFocus: true
@@ -429,7 +441,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
     _buildCommonPills() {
         const pills = [];
         pills.push(this._objectLabel || this.state.config.objectApiName || 'Object');
-        pills.push(this.state.config.metricType === 'AMOUNT' ? 'Sum of ' + this._metricLabel() : 'Count lens');
+        pills.push(this.state.config.metricType === 'AMOUNT' ? 'Sum of ' + this._metricLabel() : 'Count');
         pills.push(this.state.config.filters.length > 0 ? this.state.config.filters.length + ' filters' : 'No filters');
         return pills;
     }
@@ -437,7 +449,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
     _buildOverviewNextSteps(topPaths, largestDrop) {
         const nextSteps = [];
         if (topPaths.length > 0) {
-            nextSteps.push('Click a thick node in the chart to focus on one cohort and see where it goes next.');
+            nextSteps.push('Click a thick node in the chart to focus on a group and see where it goes next.');
         }
         if (largestDrop) {
             nextSteps.push('Inspect the jump from ' + largestDrop.fromLabel + ' to ' + largestDrop.toLabel + ' to understand where records thin out.');
@@ -469,6 +481,15 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
     }
 
     _matchingFlowRecords() {
+        const chain = this.state.ui.flowFocusChain;
+        if (chain && chain.length > 0) {
+            return this.state.data.records.filter(record =>
+                chain.every(({ stepIndex, label }) => {
+                    const stepApi = this.state.data.stepColumns[stepIndex];
+                    return stepApi && (record[stepApi] || '\u2205') === label;
+                })
+            );
+        }
         const stepIdx = parseInt(this.state.ui.flowStepIdx, 10);
         const stepApi = this.state.data.stepColumns[stepIdx];
         if (isNaN(stepIdx) || !stepApi) {
@@ -747,7 +768,8 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
                 selectedNode: null,
                 traceStep: 0,
                 flowStepIdx: '',
-                flowTraceValue: ''
+                flowTraceValue: '',
+                flowFocusChain: []
             }
         };
 
@@ -770,6 +792,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
         if (mode !== 'FLOW_TRACE') {
             uiUpdate.flowStepIdx = '';
             uiUpdate.flowTraceValue = '';
+            uiUpdate.flowFocusChain = [];
         }
         this.state = { ...this.state, ui: uiUpdate };
     }
@@ -786,14 +809,20 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
     handleFlowStepChange(event) {
         this.state = {
             ...this.state,
-            ui: { ...this.state.ui, flowStepIdx: event.detail.value, flowTraceValue: '' }
+            ui: { ...this.state.ui, flowStepIdx: event.detail.value, flowTraceValue: '', flowFocusChain: [] }
         };
     }
 
     handleFlowValueChange(event) {
+        const label = event.detail.value;
+        const stepIdx = parseInt(this.state.ui.flowStepIdx, 10);
         this.state = {
             ...this.state,
-            ui: { ...this.state.ui, flowTraceValue: event.detail.value }
+            ui: {
+                ...this.state.ui,
+                flowTraceValue: label,
+                flowFocusChain: label ? [{ stepIndex: stepIdx, label }] : []
+            }
         };
     }
 
@@ -830,13 +859,28 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
 
     handleNodeClick(event) {
         const { stepIndex, label } = event.detail;
+        const chain = this.state.ui.flowFocusChain || [];
+        let newChain;
+
+        if (this.state.ui.mode === 'FLOW_TRACE' && chain.length > 0) {
+            const tailStep = chain[chain.length - 1].stepIndex;
+            if (stepIndex > tailStep) {
+                newChain = [...chain, { stepIndex, label }];
+            } else {
+                newChain = [{ stepIndex, label }];
+            }
+        } else {
+            newChain = [{ stepIndex, label }];
+        }
+
         this.state = {
             ...this.state,
             ui: {
                 ...this.state.ui,
                 mode: 'FLOW_TRACE',
                 flowStepIdx: String(stepIndex),
-                flowTraceValue: label
+                flowTraceValue: label,
+                flowFocusChain: newChain
             }
         };
     }
@@ -856,7 +900,8 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
                 selectedRecord: '',
                 traceStep: 0,
                 flowStepIdx: '',
-                flowTraceValue: ''
+                flowTraceValue: '',
+                flowFocusChain: []
             }
         };
     }
@@ -920,7 +965,8 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
                 selectedNode: null,
                 traceStep: 0,
                 flowStepIdx: '',
-                flowTraceValue: ''
+                flowTraceValue: '',
+                flowFocusChain: []
             }
         };
         this.dataLoaded = false;

@@ -73,6 +73,27 @@
             </div>
         </template>
 
+        <!-- Focus chain pills + reset -->
+        <template lwc:if={hasFlowFocusChain}>
+            <div class="focus-chain-row slds-m-top_x-small">
+                <div class="slds-grid slds-grid_vertical-align-center slds-wrap">
+                    <div class="slds-col">
+                        <template for:each={focusChainPills} for:item="pill">
+                            <span key={pill.id} class="focus-pill">{pill.label}</span>
+                        </template>
+                    </div>
+                    <div class="slds-col slds-shrink-none slds-m-left_small">
+                        <lightning-button
+                            label="Reset Focus"
+                            icon-name="utility:refresh"
+                            variant="neutral"
+                            onclick={handleResetFlowFocus}>
+                        </lightning-button>
+                    </div>
+                </div>
+            </div>
+        </template>
+
         <!-- KPI summary for flow trace -->
         <template lwc:if={showFlowKpis}>
             <div class="slds-grid slds-gutters_x-small slds-m-top_small kpi-bar">
@@ -81,12 +102,12 @@
                     <span class="kpi-label">Records</span>
                 </div>
                 <div class="slds-col kpi-card">
-                    <span class="kpi-value">${formattedTotalAmount}</span>
+                    <span class="kpi-value">{formattedTotalAmount}</span>
                     <span class="kpi-label">Total Amount</span>
                 </div>
                 <div class="slds-col kpi-card">
                     <span class="kpi-value">{kpis.conversionPct}%</span>
-                    <span class="kpi-label">Conversion</span>
+                    <span class="kpi-label">% of Total</span>
                 </div>
             </div>
         </template>
