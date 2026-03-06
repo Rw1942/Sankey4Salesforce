@@ -1,64 +1,145 @@
 .empty-state {
-    min-height: 320px;
     flex-direction: column;
+    max-width: 56rem;
+    margin: 0 auto;
 }
 
 .full-width {
     width: 100%;
 }
 
-/* ═══ How it works steps ═══ */
+/* ═══ Hero ═══ */
+
+.hero {
+    padding-top: 0.5rem;
+}
+
+.hero-heading {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--slds-g-color-neutral-base-10, var(--lwc-colorTextDefault, #181818));
+}
+
+.hero-sub {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--slds-g-color-neutral-base-40, var(--lwc-colorTextWeak, #64748b));
+    max-width: 38rem;
+    margin: 0 auto;
+}
+
+/* ═══ Section headings ═══ */
+
+.section-heading {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slds-g-color-neutral-base-50, var(--lwc-colorTextWeak, #64748b));
+}
+
+/* ═══ Discover cards ═══ */
+
+.discover-card {
+    border-radius: 0.75rem;
+    background: var(--slds-g-color-neutral-base-95, var(--lwc-colorBackground, #f8fafc));
+    border: 1px solid var(--slds-g-color-border-base-1, var(--lwc-colorBorder, #e5e5e5));
+    text-align: center;
+    height: 100%;
+    transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.discover-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.discover-icon-ring {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    background: var(--slds-g-color-brand-base-95, #eef2ff);
+    margin-bottom: 0.75rem;
+    --slds-c-icon-color-foreground-default: var(--slds-g-color-brand-base-50, var(--lwc-brandPrimary, #4f46e5));
+}
+
+.warn-ring {
+    background: #fef3c7;
+    --slds-c-icon-color-foreground-default: #b45309;
+}
+
+.trace-ring {
+    background: #d1fae5;
+    --slds-c-icon-color-foreground-default: #047857;
+}
+
+.discover-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--slds-g-color-neutral-base-10, var(--lwc-colorTextDefault, #181818));
+    margin-bottom: 0.375rem;
+}
+
+.discover-desc {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--slds-g-color-neutral-base-40, var(--lwc-colorTextWeak, #64748b));
+}
+
+/* ═══ Step cards ═══ */
 
 .step-card {
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     background: var(--slds-g-color-neutral-base-95, var(--lwc-colorBackground, #f8fafc));
+    border: 1px solid var(--slds-g-color-border-base-1, var(--lwc-colorBorder, #e5e5e5));
+    height: 100%;
 }
 
 .step-number {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
+    width: 2.75rem;
+    height: 2.75rem;
     border-radius: 50%;
-    background: var(--slds-g-color-brand-base-50, var(--lwc-brandPrimary, #6366f1));
+    background: var(--slds-g-color-brand-base-50, var(--lwc-brandPrimary, #4f46e5));
     color: var(--slds-g-color-on-brand, #fff);
+    font-weight: 800;
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+}
+
+.step-title {
+    font-size: 1rem;
     font-weight: 700;
+    color: var(--slds-g-color-neutral-base-10, var(--lwc-colorTextDefault, #181818));
+    margin-bottom: 0.375rem;
+}
+
+.step-desc {
     font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--slds-g-color-neutral-base-40, var(--lwc-colorTextWeak, #64748b));
 }
 
-.step-icon {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    --slds-c-icon-color-foreground-default: var(--slds-g-color-neutral-base-50, var(--lwc-colorTextWeak, #64748b));
+/* ═══ Primary CTA ═══ */
+
+.cta-section {
+    padding-top: 0.25rem;
 }
 
-.step-label {
-    font-weight: 600;
-}
-
-/* ═══ Benefit callouts ═══ */
-
-.benefits-section {
-    max-width: 44rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.benefit-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.375rem 0.625rem;
-    border-radius: 0.375rem;
-    background: var(--slds-g-color-neutral-base-95, var(--lwc-colorBackground, #f8fafc));
-    text-align: left;
-}
-
-.benefit-icon {
-    flex-shrink: 0;
-    --slds-c-icon-color-foreground-default: var(--slds-g-color-brand-base-50, var(--lwc-brandPrimary, #6366f1));
+.cta-btn {
+    display: inline-block;
+    --slds-c-button-spacing-block-start: 0.75rem;
+    --slds-c-button-spacing-block-end: 0.75rem;
+    --slds-c-button-spacing-inline-start: 2.5rem;
+    --slds-c-button-spacing-inline-end: 2.5rem;
+    --slds-c-button-text-font-size: 1rem;
+    font-weight: 700;
 }
 
 /* ═══ Saved configurations ═══ */
@@ -86,10 +167,4 @@
 
 .tile-icon {
     flex-shrink: 0;
-}
-
-/* ═══ Primary CTA ═══ */
-
-.create-btn {
-    display: inline-block;
 }

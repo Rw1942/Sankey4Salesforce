@@ -1,74 +1,100 @@
 <template>
-    <div class="empty-state slds-p-around_large slds-align_absolute-center">
+    <div class="empty-state slds-p-around_large">
         <div class="slds-text-align_center full-width">
-            <lightning-icon icon-name="utility:strategy" size="large" class="slds-m-bottom_medium"></lightning-icon>
-            <h2 class="slds-text-heading_medium slds-m-bottom_x-small">Build a Sankey Flow Diagram</h2>
-            <p class="slds-text-body_regular slds-text-color_weak slds-m-bottom_medium">
-                Visualize how records move through stages in your Salesforce data &mdash;
-                find the most common paths, spot where things drop off, and understand how volume splits.
-            </p>
 
-            <!-- How it works -->
-            <div class="how-it-works slds-m-bottom_medium">
-                <div class="slds-grid slds-gutters slds-grid_align-center slds-wrap">
-                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
-                        <div class="step-card slds-text-align_center slds-p-around_small">
-                            <span class="step-number">1</span>
-                            <lightning-icon icon-name="utility:database" size="x-small" class="slds-m-top_xx-small step-icon"></lightning-icon>
-                            <p class="slds-text-body_regular slds-m-top_xx-small step-label">Pick your data source</p>
-                            <p class="slds-text-body_small slds-text-color_weak">Any Salesforce object you have access to</p>
+            <!-- Hero -->
+            <div class="hero slds-m-bottom_large">
+                <h1 class="hero-heading slds-m-bottom_x-small">See Where Your Data Goes</h1>
+                <p class="hero-sub">
+                    Turn any Salesforce object into a visual flow map.<br>
+                    See the most common paths, find where records drop off,<br>
+                    and understand how volume splits at every stage.
+                </p>
+            </div>
+
+            <!-- What you'll discover -->
+            <h2 class="section-heading slds-m-bottom_small">What you'll discover</h2>
+            <div class="slds-grid slds-gutters slds-grid_align-center slds-wrap slds-m-bottom_large">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-p-around_x-small">
+                    <div class="discover-card slds-p-around_medium">
+                        <div class="discover-icon-ring">
+                            <lightning-icon icon-name="utility:trending" size="small"></lightning-icon>
                         </div>
+                        <h3 class="discover-title">Find the Most Common Paths</h3>
+                        <p class="discover-desc">
+                            Instantly see which routes your records
+                            take most often through each stage.
+                        </p>
                     </div>
-                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
-                        <div class="step-card slds-text-align_center slds-p-around_small">
-                            <span class="step-number">2</span>
-                            <lightning-icon icon-name="utility:steps" size="x-small" class="slds-m-top_xx-small step-icon"></lightning-icon>
-                            <p class="slds-text-body_regular slds-m-top_xx-small step-label">Select the stages</p>
-                            <p class="slds-text-body_small slds-text-color_weak">Choose fields that represent each step in the flow</p>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-p-around_x-small">
+                    <div class="discover-card slds-p-around_medium">
+                        <div class="discover-icon-ring warn-ring">
+                            <lightning-icon icon-name="utility:warning" size="small"></lightning-icon>
                         </div>
+                        <h3 class="discover-title">Spot Where Things Drop Off</h3>
+                        <p class="discover-desc">
+                            Identify the exact stages where records
+                            fall out of the flow so you can take action.
+                        </p>
                     </div>
-                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
-                        <div class="step-card slds-text-align_center slds-p-around_small">
-                            <span class="step-number">3</span>
-                            <lightning-icon icon-name="utility:play" size="x-small" class="slds-m-top_xx-small step-icon"></lightning-icon>
-                            <p class="slds-text-body_regular slds-m-top_xx-small step-label">Generate &amp; explore</p>
-                            <p class="slds-text-body_small slds-text-color_weak">Interact with the diagram to drill into any path</p>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-p-around_x-small">
+                    <div class="discover-card slds-p-around_medium">
+                        <div class="discover-icon-ring trace-ring">
+                            <lightning-icon icon-name="utility:search" size="small"></lightning-icon>
                         </div>
+                        <h3 class="discover-title">Trace Any Record</h3>
+                        <p class="discover-desc">
+                            Follow a single record step-by-step through
+                            its entire journey from start to finish.
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <!-- What you'll see -->
-            <div class="benefits-section slds-m-bottom_medium">
-                <div class="slds-grid slds-gutters_small slds-grid_align-center slds-wrap">
-                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_xx-small">
-                        <div class="benefit-item">
-                            <lightning-icon icon-name="utility:routing_offline" size="xx-small" class="benefit-icon"></lightning-icon>
-                            <span class="slds-text-body_small"><strong>See volume splits</strong> &mdash; how records branch across stages</span>
-                        </div>
+            <!-- Getting started -->
+            <h2 class="section-heading slds-m-bottom_small">Getting started is easy</h2>
+            <div class="slds-grid slds-gutters slds-grid_align-center slds-wrap slds-m-bottom_large">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-p-around_x-small">
+                    <div class="step-card slds-p-around_medium slds-text-align_center">
+                        <span class="step-number">1</span>
+                        <h3 class="step-title">Pick your data</h3>
+                        <p class="step-desc">
+                            Choose any Salesforce object you have access to &mdash;
+                            Opportunities, Cases, Leads, or anything else.
+                        </p>
                     </div>
-                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_xx-small">
-                        <div class="benefit-item">
-                            <lightning-icon icon-name="utility:warning" size="xx-small" class="benefit-icon"></lightning-icon>
-                            <span class="slds-text-body_small"><strong>Spot drop-offs</strong> &mdash; where records fall out of the flow</span>
-                        </div>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-p-around_x-small">
+                    <div class="step-card slds-p-around_medium slds-text-align_center">
+                        <span class="step-number">2</span>
+                        <h3 class="step-title">Choose the stages</h3>
+                        <p class="step-desc">
+                            Select the fields that represent each step
+                            in your flow, like Status, Stage, or Type.
+                        </p>
                     </div>
-                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_xx-small">
-                        <div class="benefit-item">
-                            <lightning-icon icon-name="utility:trace" size="xx-small" class="benefit-icon"></lightning-icon>
-                            <span class="slds-text-body_small"><strong>Trace records</strong> &mdash; follow a single record through its journey</span>
-                        </div>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-p-around_x-small">
+                    <div class="step-card slds-p-around_medium slds-text-align_center">
+                        <span class="step-number">3</span>
+                        <h3 class="step-title">Generate &amp; explore</h3>
+                        <p class="step-desc">
+                            Hit the button and your flow diagram appears.
+                            Click any part of it to drill deeper.
+                        </p>
                     </div>
                 </div>
             </div>
 
             <!-- Primary CTA -->
-            <div class="slds-m-bottom_medium">
+            <div class="cta-section slds-m-bottom_large">
                 <lightning-button
-                    label="Create New Flow Diagram"
+                    label="Get Started"
                     variant="brand"
                     onclick={handleStart}
-                    class="create-btn">
+                    class="cta-btn">
                 </lightning-button>
             </div>
 
