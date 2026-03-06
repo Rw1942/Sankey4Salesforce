@@ -196,4 +196,159 @@ private class SankeyServiceTest {
         System.assert(topPaths.size() > 0, 'Should have at least one top path');
         System.assert(topPaths.size() <= 10, 'Top paths should be limited to 10');
     }
+
+    /**
+     * Multi-field path with distinct fields — verifies correct node/link topology.
+     */
+    @isTest
+    static void testMultiFieldPath() {
+        List<Opportunity> testOpps = new List<Opportunity>();
+        testOpps.add(new Opportunity(
+            Name = 'Multi A', StageName = 'Prospecting', LeadSource = 'Web',
+            CloseDate = Date.today().addDays(30), Amount = 1000
+        ));
+        testOpps.add(new Opportunity(
+            Name = 'Multi B', StageName = 'Prospecting', LeadSource = 'Partner',
+            CloseDate = Date.today().addDays(30), Amount = 2000
+        ));
+        testOpps.add(new Opportunity(
+            Name = 'Multi C', StageName = 'Qualification', LeadSource = 'Web',
+            CloseDate = Date.today().addDays(30), Amount = 3000
+        ));
+        insert testOpps;
+
+        Map<String, Object> config = new Map<String, Object>{
+            'objectApiName' => 'Opportunity',
+            'pathFields' => new List<Object>{ 'StageName', 'LeadSource' },
+            'metricType' => 'COUNT',
+            'metricField' => '',
+            'recordIdField' => 'Id',
+            'nullHandling' => 'GROUP_UNKNOWN'
+        };
+
+        Test.startTest();
+        Map<String, Object> response = SankeyService.buildSankeyResponse(testOpps, config);
+        Test.stopTest();
+
+        List<Map<String, Object>> nodes = (List<Map<String, Object>>) response.get('nodes');
+        List<Map<String, Object>> links = (List<Map<String, Object>>) response.get('links');
+
+        System.assert(nodes.size() >= 4, 'Should have at least 4 distinct nodes (2 stages + 2 sources)');
+        System.assert(links.size() >= 3, 'Should have at least 3 transition links');
+
+        List<Object> stepColumns = (List<Object>) response.get('stepColumns');
+        System.assertEquals('StageName', stepColumns[0]);
+        System.assertEquals('LeadSource', stepColumns[1]);
+    }
+
+    /**
+     * KPI values should be numerically correct, not just present.
+     */
+    @isTest
+    static void testKpiValues() {
+        List<Opportunity> testOpps = new List<Opportunity>();
+        for (Integer i = 0; i < 10; i++) {
+            testOpps.add(new Opportunity(
+                Name = 'KPIVal ' + i, StageName = 'Prospecting',
+                CloseDate = Date.today().addDays(30), Amount = 100
+            ));
+        }
+        insert testOpps;
+
+        Map<String, Object> config = new Map<String, Object>{
+            'objectApiName' => 'Opportunity',
+            'pathFields' => new List<Object>{ 'StageName', 'StageName' },
+            'metricType' => 'AMOUNT',
+            'metricField' => 'Amount',
+            'recordIdField' => 'Id',
+            'nullHandling' => 'GROUP_UNKNOWN'
+        };
+
+        Test.startTest();
+        Map<String, Object> response = SankeyService.buildSankeyResponse(testOpps, config);
+        Test.stopTest();
+
+        Map<String, Object> kpis = (Map<String, Object>) response.get('kpis');
+        System.assertEquals(10, (Integer) kpis.get('totalRecords'));
+        System.assertEquals(1000.0, (Decimal) kpis.get('totalAmount'));
+        System.assertEquals(100.0, (Decimal) kpis.get('conversionRate'),
+            'All records share the same path so conversion should be 100%');
+        System.assertEquals(0.0, (Decimal) kpis.get('dropOffRate'),
+            'No drop-off when all records reach the last step');
+        System.assertEquals(100.00, (Decimal) kpis.get('avgAmount'));
+    }
+
+    /**
+     * Top paths should carry correct count and amount values.
+     */
+    @isTest
+    static void testTopPathMetrics() {
+        List<Opportunity> testOpps = new List<Opportunity>();
+        for (Integer i = 0; i < 3; i++) {
+            testOpps.add(new Opportunity(
+                Name = 'PathMetric ' + i, StageName = 'Prospecting',
+                LeadSource = 'Web', CloseDate = Date.today().addDays(30), Amount = 500
+            ));
+        }
+        testOpps.add(new Opportunity(
+            Name = 'PathMetric 3', StageName = 'Qualification',
+            LeadSource = 'Partner', CloseDate = Date.today().addDays(30), Amount = 700
+        ));
+        insert testOpps;
+
+        Map<String, Object> config = new Map<String, Object>{
+            'objectApiName' => 'Opportunity',
+            'pathFields' => new List<Object>{ 'StageName', 'LeadSource' },
+            'metricType' => 'AMOUNT',
+            'metricField' => 'Amount',
+            'recordIdField' => 'Id',
+            'nullHandling' => 'GROUP_UNKNOWN'
+        };
+
+        Test.startTest();
+        Map<String, Object> response = SankeyService.buildSankeyResponse(testOpps, config);
+        Test.stopTest();
+
+        List<Map<String, Object>> topPaths = (List<Map<String, Object>>) response.get('topPaths');
+        System.assert(topPaths.size() >= 2, 'Should have at least two distinct paths');
+
+        Map<String, Object> firstPath = topPaths[0];
+        System.assertEquals(1, (Integer) firstPath.get('rank'));
+        System.assert((Decimal) firstPath.get('amount') > 0, 'Top path should have positive amount');
+        System.assert((Integer) firstPath.get('count') > 0, 'Top path should have positive count');
+    }
+
+    /**
+     * Link recordIds should match actual record identifiers.
+     */
+    @isTest
+    static void testLinkRecordIds() {
+        Opportunity opp = new Opportunity(
+            Name = 'LinkId Test', StageName = 'Prospecting',
+            CloseDate = Date.today().addDays(30), Amount = 100
+        );
+        insert opp;
+
+        Map<String, Object> config = new Map<String, Object>{
+            'objectApiName' => 'Opportunity',
+            'pathFields' => new List<Object>{ 'StageName', 'StageName' },
+            'metricType' => 'COUNT',
+            'metricField' => '',
+            'recordIdField' => 'Id',
+            'nullHandling' => 'GROUP_UNKNOWN'
+        };
+
+        Test.startTest();
+        Map<String, Object> response = SankeyService.buildSankeyResponse(
+            new List<Opportunity>{ opp }, config
+        );
+        Test.stopTest();
+
+        List<Map<String, Object>> links = (List<Map<String, Object>>) response.get('links');
+        System.assertEquals(1, links.size(), 'Should produce exactly one link');
+
+        List<String> rIds = (List<String>) links[0].get('recordIds');
+        System.assertEquals(1, rIds.size());
+        System.assertEquals(String.valueOf(opp.Id), rIds[0], 'Link recordId should match the record');
+    }
 }

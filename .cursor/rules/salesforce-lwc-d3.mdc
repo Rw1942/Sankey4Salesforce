@@ -31,7 +31,7 @@ force-app/main/default/
 │   ├── dsInsightsPanel/      # KPIs and top paths sidebar
 │   ├── dsSavedConfigs/       # Save/load config via Apex
 │   ├── dsSaveConfigModal/    # LightningModal for save dialog
-│   └── sankeyExplorer/       # Standalone demo (isExposed=false)
+│   └── dsUtils/              # Shared pure utility functions
 ├── classes/
 │   ├── SankeyController.cls          # @AuraEnabled entry points
 │   ├── SankeyService.cls             # Path aggregation + KPI computation

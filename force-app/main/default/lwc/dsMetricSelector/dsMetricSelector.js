@@ -5,6 +5,7 @@
  */
 import { LightningElement, api, wire } from 'lwc';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
+import { fieldLabel } from 'c/dsUtils';
 
 const NUMERIC_TYPES = new Set(['Currency', 'Double', 'Int', 'Long', 'Percent']);
 
@@ -48,7 +49,7 @@ export default class DsMetricSelector extends LightningElement {
             this.numericFieldOptions = Object.keys(fields)
                 .filter(key => NUMERIC_TYPES.has(fields[key].dataType))
                 .map(key => ({
-                    label: fields[key].label + ' (' + key + ')',
+                    label: fieldLabel(fields[key], key),
                     value: key
                 }))
                 .sort((a, b) => a.label.localeCompare(b.label));

@@ -422,4 +422,183 @@ private class SankeyControllerTest {
         System.assertEquals(0, stats.size(),
             'Should return empty map when all fields are invalid');
     }
+
+    // ── Config field fidelity: all fields survive save → load roundtrip ──
+
+    @isTest
+    static void testConfigFieldFidelity() {
+        Map<String, Object> payload = new Map<String, Object>{
+            'name' => 'Fidelity Test',
+            'objectApiName' => 'Opportunity',
+            'filters' => new List<Object>{
+                new Map<String, Object>{ 'field' => 'StageName', 'operator' => '=', 'value' => 'Prospecting' }
+            },
+            'pathFields' => new List<Object>{ 'StageName', 'LeadSource' },
+            'metricType' => 'AMOUNT',
+            'metricField' => 'Amount',
+            'recordIdField' => 'Name',
+            'nullHandling' => 'CARRY_FORWARD'
+        };
+
+        Test.startTest();
+        String savedId = SankeyConfigRepository.saveConfig(JSON.serialize(payload));
+        String configsJson = SankeyConfigRepository.getMyConfigs();
+        Test.stopTest();
+
+        List<Object> configs = (List<Object>) JSON.deserializeUntyped(configsJson);
+        Map<String, Object> loaded = (Map<String, Object>) configs[0];
+
+        System.assertEquals('Opportunity', loaded.get('objectApiName'));
+        System.assertEquals('AMOUNT', loaded.get('metricType'));
+        System.assertEquals('Amount', loaded.get('metricField'));
+        System.assertEquals('Name', loaded.get('recordIdField'));
+        System.assertEquals('CARRY_FORWARD', loaded.get('nullHandling'));
+
+        List<Object> loadedPaths = (List<Object>) loaded.get('pathFields');
+        System.assertEquals(2, loadedPaths.size(), 'pathFields should roundtrip');
+        System.assertEquals('StageName', loadedPaths[0]);
+        System.assertEquals('LeadSource', loadedPaths[1]);
+
+        List<Object> loadedFilters = (List<Object>) loaded.get('filters');
+        System.assertEquals(1, loadedFilters.size(), 'filters should roundtrip');
+    }
+
+    // ── Config update path ──────────────────────────────────────────────
+
+    @isTest
+    static void testConfigUpdate() {
+        Map<String, Object> payload = new Map<String, Object>{
+            'name' => 'Original',
+            'objectApiName' => 'Opportunity',
+            'metricType' => 'COUNT',
+            'metricField' => '',
+            'recordIdField' => 'Id',
+            'nullHandling' => 'GROUP_UNKNOWN',
+            'filters' => new List<Object>(),
+            'pathFields' => new List<Object>{ 'StageName' }
+        };
+
+        String savedId = SankeyConfigRepository.saveConfig(JSON.serialize(payload));
+
+        Map<String, Object> updatePayload = new Map<String, Object>{
+            'id' => savedId,
+            'name' => 'Updated',
+            'objectApiName' => 'Opportunity',
+            'metricType' => 'AMOUNT',
+            'metricField' => 'Amount',
+            'recordIdField' => 'Id',
+            'nullHandling' => 'STOP',
+            'filters' => new List<Object>(),
+            'pathFields' => new List<Object>{ 'StageName', 'LeadSource' }
+        };
+
+        Test.startTest();
+        String updatedId = SankeyConfigRepository.saveConfig(JSON.serialize(updatePayload));
+        Test.stopTest();
+
+        System.assertEquals(savedId, updatedId, 'Update should return same Id');
+
+        String configsJson = SankeyConfigRepository.getMyConfigs();
+        List<Object> configs = (List<Object>) JSON.deserializeUntyped(configsJson);
+        System.assertEquals(1, configs.size(), 'Should still be one config after update');
+        Map<String, Object> loaded = (Map<String, Object>) configs[0];
+        System.assertEquals('Updated', loaded.get('name'));
+        System.assertEquals('AMOUNT', loaded.get('metricType'));
+        System.assertEquals('STOP', loaded.get('nullHandling'));
+    }
+
+    // ── Query builder: IN filter ────────────────────────────────────────
+
+    @isTest
+    static void testQueryBuilder_InFilter() {
+        Map<String, Object> config = new Map<String, Object>{
+            'objectApiName' => 'Opportunity',
+            'pathFields' => new List<Object>{ 'StageName' },
+            'metricType' => 'COUNT',
+            'metricField' => '',
+            'recordIdField' => 'Id',
+            'filters' => new List<Object>{
+                new Map<String, Object>{
+                    'field' => 'StageName',
+                    'operator' => 'IN',
+                    'value' => 'Prospecting,Qualification'
+                }
+            }
+        };
+
+        String soql = SankeyQueryBuilder.buildQuery(config);
+        System.assert(soql.contains('IN ('), 'IN filter should produce IN clause');
+        System.assert(soql.contains('Prospecting'), 'IN clause should contain first value');
+        System.assert(soql.contains('Qualification'), 'IN clause should contain second value');
+    }
+
+    // ── Query builder: LIKE filter ──────────────────────────────────────
+
+    @isTest
+    static void testQueryBuilder_LikeFilter() {
+        Map<String, Object> config = new Map<String, Object>{
+            'objectApiName' => 'Opportunity',
+            'pathFields' => new List<Object>{ 'StageName' },
+            'metricType' => 'COUNT',
+            'metricField' => '',
+            'recordIdField' => 'Id',
+            'filters' => new List<Object>{
+                new Map<String, Object>{
+                    'field' => 'Name',
+                    'operator' => 'LIKE',
+                    'value' => '%Test%'
+                }
+            }
+        };
+
+        String soql = SankeyQueryBuilder.buildQuery(config);
+        System.assert(soql.contains('LIKE'), 'LIKE filter should produce LIKE clause');
+        System.assert(soql.contains('%Test%'), 'LIKE clause should contain pattern');
+    }
+
+    // ── Query builder: date literal filter ──────────────────────────────
+
+    @isTest
+    static void testQueryBuilder_DateLiteralFilter() {
+        Map<String, Object> config = new Map<String, Object>{
+            'objectApiName' => 'Opportunity',
+            'pathFields' => new List<Object>{ 'StageName' },
+            'metricType' => 'COUNT',
+            'metricField' => '',
+            'recordIdField' => 'Id',
+            'filters' => new List<Object>{
+                new Map<String, Object>{
+                    'field' => 'CreatedDate',
+                    'operator' => '=',
+                    'value' => 'THIS_YEAR',
+                    'isDateLiteral' => true
+                }
+            }
+        };
+
+        String soql = SankeyQueryBuilder.buildQuery(config);
+        System.assert(soql.contains('CreatedDate'), 'Date literal should reference CreatedDate');
+        System.assert(soql.contains('THIS_YEAR'), 'Date literal should appear in query');
+    }
+
+    // ── Query builder: skips incomplete filters ─────────────────────────
+
+    @isTest
+    static void testQueryBuilder_SkipsIncompleteFilters() {
+        Map<String, Object> config = new Map<String, Object>{
+            'objectApiName' => 'Opportunity',
+            'pathFields' => new List<Object>{ 'StageName' },
+            'metricType' => 'COUNT',
+            'metricField' => '',
+            'recordIdField' => 'Id',
+            'filters' => new List<Object>{
+                new Map<String, Object>{ 'field' => '', 'operator' => '=', 'value' => 'x' },
+                new Map<String, Object>{ 'field' => 'Name', 'operator' => '', 'value' => 'x' },
+                new Map<String, Object>{ 'field' => 'Name', 'operator' => '=', 'value' => '' }
+            }
+        };
+
+        String soql = SankeyQueryBuilder.buildQuery(config);
+        System.assert(!soql.contains('WHERE'), 'Incomplete filters should all be skipped');
+    }
 }

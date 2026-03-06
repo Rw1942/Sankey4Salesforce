@@ -7,12 +7,7 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import getRecordCount from '@salesforce/apex/SankeyController.getRecordCount';
-
-const TYPE_PRIORITY = {
-    Picklist: 0,
-    String: 1, Phone: 1, Email: 1, Url: 1,
-    Currency: 2, Double: 2, Int: 2, Long: 2, Percent: 2
-};
+import { buildFieldOptions } from 'c/dsUtils';
 
 export default class DsFilterBuilder extends LightningElement {
 
@@ -69,17 +64,7 @@ export default class DsFilterBuilder extends LightningElement {
     @wire(getObjectInfo, { objectApiName: '$objectApiName' })
     wiredObjectInfo({ error, data }) {
         if (data) {
-            const fields = data.fields;
-            this.fieldOptions = Object.keys(fields)
-                .sort((a, b) => {
-                    const pa = TYPE_PRIORITY[fields[a].dataType] ?? 3;
-                    const pb = TYPE_PRIORITY[fields[b].dataType] ?? 3;
-                    return pa !== pb ? pa - pb : fields[a].label.localeCompare(fields[b].label);
-                })
-                .map(key => ({
-                    label: fields[key].label + ' (' + key + ')',
-                    value: key
-                }));
+            this.fieldOptions = buildFieldOptions(Object.keys(data.fields), data.fields);
         } else if (error) {
             this.fieldOptions = [];
         }

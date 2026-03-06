@@ -6,7 +6,7 @@
   "scripts": {
     "build:d3": "node scripts/build-d3.js",
     "prep:titanic": "node scripts/prep-titanic.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Run Apex tests via: sf apex run test --target-org <alias> --wait 10\""
   },
   "repository": {
     "type": "git",

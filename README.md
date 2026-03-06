@@ -5,7 +5,7 @@ A Salesforce Lightning Web Component (LWC) that renders interactive Sankey diagr
 ## What It Does
 
 - Point-and-click configuration: pick any queryable Salesforce object and its fields to build a Sankey diagram with no code
-- Smart field suggestions: auto-selects the best picklist fields based on type priority (picklists first, then short text, then numbers)
+- Smart field suggestions: scores fields by data type, population, and cardinality, then auto-selects the top 5
 - Aggregated Sankey view with count or amount metrics
 - Record Trace mode to highlight an individual record's path through the flow
 - Flow Trace mode to explore all records passing through a specific node
@@ -29,7 +29,7 @@ force-app/main/default/
 │   ├── dsInsightsPanel/      # KPIs and top paths sidebar
 │   ├── dsSavedConfigs/       # Save/load config via Apex
 │   ├── dsSaveConfigModal/    # LightningModal for save dialog
-│   └── sankeyExplorer/       # Standalone demo (isExposed=false)
+│   └── dsUtils/              # Shared pure utility functions
 ├── classes/
 │   ├── SankeyController.cls          # @AuraEnabled entry points
 │   ├── SankeyService.cls             # Path aggregation + KPI computation
@@ -95,7 +95,7 @@ In Setup → App Builder, drag the **Sankey Builder** (`dsSankeyBuilder`) compon
 - The `<svg>` element carries `lwc:dom="manual"` so D3 can manage its children
 - No Bootstrap or external CSS; SLDS utilities only
 - Field option lists are sorted by type priority: picklist fields first, then short text, then numbers, then everything else
-- `dsPathSelector` auto-selects up to 8 picklist fields on fresh object selection; skipped when loading saved configs
+- `dsPathSelector` scores fields by data type, population, and cardinality, then auto-selects the top 5; skipped when loading saved configs
 - Parent orchestrator (`dsSankeyBuilder`) owns all state; children communicate via `@api` down and `CustomEvent` up
 
 ## Windows-Specific Notes

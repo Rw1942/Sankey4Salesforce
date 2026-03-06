@@ -6,14 +6,9 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import getFieldPopulationStats from '@salesforce/apex/SankeyController.getFieldPopulationStats';
+import { sortFieldKeysByType, fieldLabel } from 'c/dsUtils';
 
 const ALLOWED_TYPES = new Set(['Picklist', 'Reference', 'String', 'TextArea', 'Phone', 'Email', 'Url']);
-
-const TYPE_PRIORITY = {
-    Picklist: 0,
-    String: 1, Phone: 1, Email: 1, Url: 1,
-    Currency: 2, Double: 2, Int: 2, Long: 2, Percent: 2
-};
 
 const MAX_AUTO_FIELDS = 5;
 
@@ -103,28 +98,22 @@ export default class DsPathSelector extends LightningElement {
         if (data) {
             const fields = data.fields;
 
-            // Compound Address fields (BillingAddress, etc.) — used to exclude components
             const addressCompounds = new Set(
                 Object.keys(fields).filter(k => fields[k].dataType === 'Address')
             );
 
-            const sortedKeys = Object.keys(fields)
-                .filter(key => {
-                    if (!ALLOWED_TYPES.has(fields[key].dataType)) return false;
-                    const compound = fields[key].compoundFieldName;
-                    if (compound && addressCompounds.has(compound)) return false;
-                    return true;
-                })
-                .sort((a, b) => {
-                    const pa = TYPE_PRIORITY[fields[a].dataType] ?? 3;
-                    const pb = TYPE_PRIORITY[fields[b].dataType] ?? 3;
-                    return pa !== pb ? pa - pb : fields[a].label.localeCompare(fields[b].label);
-                });
+            const allowedKeys = Object.keys(fields).filter(key => {
+                if (!ALLOWED_TYPES.has(fields[key].dataType)) return false;
+                const compound = fields[key].compoundFieldName;
+                return !(compound && addressCompounds.has(compound));
+            });
+
+            const sortedKeys = sortFieldKeysByType(allowedKeys, fields);
 
             this._fieldKeyCache = sortedKeys;
             this._baseLabels = {};
             for (const key of sortedKeys) {
-                this._baseLabels[key] = fields[key].label + ' (' + key + ')';
+                this._baseLabels[key] = fieldLabel(fields[key], key);
             }
 
             this.pathFieldOptions = sortedKeys.map(key => ({
@@ -137,7 +126,7 @@ export default class DsPathSelector extends LightningElement {
                                fields[key].dataType === 'String' ||
                                key === 'Id' || key === 'Name')
                 .map(key => ({
-                    label: fields[key].label + ' (' + key + ')',
+                    label: fieldLabel(fields[key], key),
                     value: key
                 }))
                 .sort((a, b) => a.label.localeCompare(b.label));

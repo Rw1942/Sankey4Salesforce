@@ -4,6 +4,7 @@
  */
 import { LightningElement, wire } from 'lwc';
 import getMyConfigs from '@salesforce/apex/SankeyConfigRepository.getMyConfigs';
+import { normalizeLoadedConfig } from 'c/dsUtils';
 
 export default class DsEmptyState extends LightningElement {
 
@@ -46,17 +47,7 @@ export default class DsEmptyState extends LightningElement {
         const found = this.savedConfigs.find(c => c.id === selectedId);
         if (found) {
             this.dispatchEvent(new CustomEvent('configloaded', {
-                detail: {
-                    config: {
-                        objectApiName: found.objectApiName,
-                        filters: found.filters || [],
-                        pathFields: found.pathFields || [],
-                        metricType: found.metricType || 'COUNT',
-                        metricField: found.metricField || '',
-                        recordIdField: found.recordIdField || 'Id',
-                        nullHandling: found.nullHandling || 'GROUP_UNKNOWN'
-                    }
-                }
+                detail: { config: normalizeLoadedConfig(found) }
             }));
         }
     }

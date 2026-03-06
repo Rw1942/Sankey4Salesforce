@@ -8,40 +8,22 @@ import { NavigationMixin } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import getSankeyData from '@salesforce/apex/SankeyController.getSankeyData';
+import { defaultConfig, defaultData, defaultUi } from 'c/dsUtils';
+import {
+    buildOverviewInsight,
+    buildFlowInsight,
+    buildRecordInsight,
+    matchingFlowRecords
+} from './insightHelpers';
 
 const DATASET_LIMIT = 10000;
 
 export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
 
     state = {
-        config: {
-            objectApiName: '',
-            filters: [],
-            pathFields: [],
-            metricType: 'COUNT',
-            metricField: '',
-            recordIdField: 'Id',
-            nullHandling: 'GROUP_UNKNOWN'
-        },
-        data: {
-            nodes: [],
-            links: [],
-            records: [],
-            stepColumns: [],
-            kpis: null,
-            topPaths: []
-        },
-        ui: {
-            loading: false,
-            mode: 'AGGREGATE',
-            metricDisplay: 'count',
-            selectedRecord: '',
-            selectedNode: null,
-            traceStep: 0,
-            flowStepIdx: '',
-            flowTraceValue: '',
-            flowFocusChain: []
-        }
+        config: defaultConfig(),
+        data: defaultData(),
+        ui: defaultUi()
     };
 
     errorMessage = '';
@@ -147,7 +129,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
         if (this.state.ui.mode !== 'FLOW_TRACE' || !this.state.ui.flowTraceValue) {
             return null;
         }
-        const matching = this._matchingFlowRecords();
+        const matching = matchingFlowRecords(this.state);
         const totalRecords = matching.length;
         const totalAmount = matching.reduce((s, r) => s + (r.amount || 0), 0);
         const allRecords = this.state.data.records.length;
@@ -159,483 +141,15 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
     }
 
     get insightContext() {
-        if (!this.hasData) {
-            return null;
-        }
+        if (!this.hasData) return null;
 
         if (this.state.ui.mode === 'RECORD_TRACE' && this.state.ui.selectedRecord) {
-            return this._buildRecordInsightContext();
+            return buildRecordInsight(this.state, this.stepLabels, this._fieldLabelMap, this._objectLabel, this.isTruncated);
         }
-
         if (this.state.ui.mode === 'FLOW_TRACE' && this.state.ui.flowTraceValue) {
-            return this._buildFlowInsightContext();
+            return buildFlowInsight(this.state, this.stepLabels, this._fieldLabelMap, this._objectLabel, this.isTruncated);
         }
-
-        return this._buildOverviewInsightContext();
-    }
-
-    _buildOverviewInsightContext() {
-        const totalRecords = this.state.data.records.length;
-        const coverage = this._computeStepCoverage(this.state.data.records);
-        const largestDrop = this._largestDrop(coverage);
-        const topPaths = this._decoratePaths(this.state.data.topPaths, totalRecords);
-        const cards = [
-            {
-                id: 'records',
-                label: 'Records analyzed',
-                value: this._formatNumber(totalRecords)
-            },
-            {
-                id: 'steps',
-                label: 'Flow steps',
-                value: this._formatNumber(this.state.data.stepColumns.length)
-            },
-            {
-                id: 'completion',
-                label: 'Reached last step',
-                value: this._formatPercent(this.state.data.kpis ? this.state.data.kpis.conversionRate : 0),
-                detail: coverage.length ? coverage[coverage.length - 1].label : ''
-            }
-        ];
-
-        if (this.state.config.metricType === 'AMOUNT') {
-            cards.push({
-                id: 'metricTotal',
-                label: 'Total ' + this._metricLabel(),
-                value: this._formatNumber(this.state.data.kpis ? this.state.data.kpis.totalAmount : 0, 1)
-            });
-        } else {
-            cards.push({
-                id: 'largestDrop',
-                label: 'Largest drop-off',
-                value: largestDrop ? largestDrop.pctLabel : '0%'
-            });
-        }
-
-        const standout = [];
-        if (topPaths.length > 0) {
-            standout.push({
-                id: 'commonPath',
-                title: 'Most common path',
-                detail: topPaths[0].path + ' · ' + topPaths[0].metricLabel + ' · ' + topPaths[0].shareLabel
-            });
-        }
-        if (largestDrop) {
-            standout.push({
-                id: 'largestDrop',
-                title: 'Biggest drop-off',
-                detail: largestDrop.fromLabel + ' to ' + largestDrop.toLabel + ' drops ' + largestDrop.countLabel + ' (' + largestDrop.pctLabel + ')'
-            });
-        }
-
-        const summary = topPaths.length > 0
-            ? 'Most records follow "' + topPaths[0].path + '", while only ' +
-                this._formatPercent(this.state.data.kpis ? this.state.data.kpis.conversionRate : 0) +
-                ' reach the final step.'
-            : 'This view summarizes how records move across the selected steps.';
-
-        return {
-            modeLabel: 'Overview',
-            title: 'At a glance',
-            summary,
-            pills: this._buildCommonPills(),
-            cards,
-            standout,
-            pathSectionTitle: 'Top paths',
-            pathRows: topPaths,
-            storySteps: [],
-            nextSteps: this._buildOverviewNextSteps(topPaths, largestDrop),
-            warnings: this._buildWarnings(),
-            showClearFocus: false
-        };
-    }
-
-    _buildFlowInsightContext() {
-        const chain = this.state.ui.flowFocusChain || [];
-        const effectiveChain = chain.length > 0
-            ? chain
-            : [{ stepIndex: parseInt(this.state.ui.flowStepIdx, 10), label: this.state.ui.flowTraceValue }];
-
-        const matching = this._matchingFlowRecords();
-        const totalRecords = this.state.data.records.length;
-        const sharePct = totalRecords > 0 ? (matching.length / totalRecords) * 100 : 0;
-        const reachedLastStepPct = this._computeReachedLastStepPct(matching);
-
-        const tailStep = effectiveChain[effectiveChain.length - 1].stepIndex;
-        const headStep = effectiveChain[0].stepIndex;
-        const topNext = this._topNeighbor(matching, tailStep + 1);
-        const topPrev = this._topNeighbor(matching, headStep - 1);
-        const cohortPaths = this._buildTopPathsFromRecords(matching);
-
-        const chainDescriptions = effectiveChain.map(({ stepIndex, label }) => {
-            const sl = this.stepLabels[stepIndex] || this.state.data.stepColumns[stepIndex] || 'Step';
-            return sl + ': ' + label;
-        });
-        const title = chainDescriptions.join(' \u203a ');
-
-        let summary;
-        if (effectiveChain.length === 1) {
-            const sl = this.stepLabels[effectiveChain[0].stepIndex] || this.state.data.stepColumns[effectiveChain[0].stepIndex] || 'Selected step';
-            summary = 'You are looking at records that pass through "' + effectiveChain[0].label + '" at the "' + sl + '" step.';
-        } else {
-            summary = 'Narrowed to records passing through ' + effectiveChain.length + ' focus points. Click another downstream node to narrow further, or reset to start over.';
-        }
-
-        const cards = [
-            {
-                id: 'cohortSize',
-                label: 'Records in focus',
-                value: this._formatNumber(matching.length)
-            },
-            {
-                id: 'shareOfTotal',
-                label: 'Share of total',
-                value: this._formatPercent(sharePct)
-            },
-            {
-                id: 'reachedLastStep',
-                label: 'Reached last step',
-                value: this._formatPercent(reachedLastStepPct)
-            }
-        ];
-
-        if (this.state.config.metricType === 'AMOUNT') {
-            cards.push({
-                id: 'cohortMetricTotal',
-                label: 'Total ' + this._metricLabel(),
-                value: this._formatNumber(this._sumAmount(matching), 1)
-            });
-        }
-
-        const standout = [];
-        if (topPrev) {
-            standout.push({
-                id: 'topPrev',
-                title: 'Most common source',
-                detail: topPrev.stepLabel + ': ' + topPrev.value + ' · ' + this._formatPercent(topPrev.sharePct) + ' of this group'
-            });
-        }
-        if (topNext) {
-            standout.push({
-                id: 'topNext',
-                title: 'Most common next stop',
-                detail: topNext.stepLabel + ': ' + topNext.value + ' · ' + this._formatPercent(topNext.sharePct) + ' of this group'
-            });
-        }
-
-        const nextSteps = [
-            'Click a downstream node to keep narrowing this group.',
-            'Use Reset Focus above the chart to clear all narrowing and return to the full view.',
-            'Switch to Record Trace if you want to inspect one record in detail.'
-        ];
-
-        return {
-            modeLabel: effectiveChain.length > 1 ? 'Narrowed Group' : 'Focused Group',
-            title,
-            summary,
-            pills: this._buildCommonPills().concat(chainDescriptions),
-            cards,
-            standout,
-            pathSectionTitle: 'Top paths in this group',
-            pathRows: cohortPaths,
-            storySteps: [],
-            nextSteps,
-            warnings: this._buildWarnings(),
-            showClearFocus: true
-        };
-    }
-
-    _buildRecordInsightContext() {
-        const record = this.state.data.records.find(r => r.id === this.state.ui.selectedRecord);
-        if (!record) {
-            return this._buildOverviewInsightContext();
-        }
-
-        const storySteps = this.state.data.stepColumns
-            .map((stepApi, index) => {
-                const value = record[stepApi];
-                if (value === undefined || value === null || value === '') {
-                    return null;
-                }
-                return {
-                    id: stepApi,
-                    label: this.stepLabels[index] || stepApi,
-                    value
-                };
-            })
-            .filter(step => step);
-
-        const fullPath = storySteps.map(step => step.value).join(' -> ');
-        const topPathMatch = this.state.data.topPaths.find(path => path.path === fullPath);
-        const cards = [
-            {
-                id: 'storyLength',
-                label: 'Steps mapped',
-                value: this._formatNumber(storySteps.length)
-            },
-            {
-                id: 'traceProgress',
-                label: 'Trace progress',
-                value: this._formatTraceProgress()
-            }
-        ];
-
-        if (this.state.config.metricType === 'AMOUNT') {
-            cards.push({
-                id: 'recordMetric',
-                label: this._metricLabel(),
-                value: this._formatNumber(record.amount || 0, 1)
-            });
-        }
-
-        if (topPathMatch) {
-            cards.push({
-                id: 'pathRank',
-                label: 'Path rank',
-                value: '#' + topPathMatch.rank
-            });
-        }
-
-        const standout = [
-            {
-                id: 'recordPath',
-                title: 'Record path',
-                detail: fullPath || 'This record does not have a complete path yet.'
-            }
-        ];
-        if (topPathMatch) {
-            standout.push({
-                id: 'commonJourney',
-                title: 'How common this is',
-                detail: 'This exact path is #' + topPathMatch.rank + ' ranked in the current dataset.'
-            });
-        } else {
-            standout.push({
-                id: 'rareJourney',
-                title: 'How common this is',
-                detail: 'This exact path is not in the current top ranked paths.'
-            });
-        }
-
-        return {
-            modeLabel: 'Record Detail',
-            title: record.name || record.id,
-            summary: 'This view follows one record through the flow so you can compare its path with the broader pattern.',
-            pills: this._buildCommonPills().concat([
-                'Record Trace'
-            ]),
-            cards,
-            standout,
-            pathSectionTitle: '',
-            pathRows: [],
-            storySteps,
-            nextSteps: [
-                'Use Next and Prev above the chart to animate this record through each transition.',
-                'Switch back to Overview to compare this path with the most common paths.'
-            ],
-            warnings: this._buildWarnings(),
-            showClearFocus: true
-        };
-    }
-
-    _buildCommonPills() {
-        const pills = [];
-        pills.push(this._objectLabel || this.state.config.objectApiName || 'Object');
-        pills.push(this.state.config.metricType === 'AMOUNT' ? 'Sum of ' + this._metricLabel() : 'Count');
-        pills.push(this.state.config.filters.length > 0 ? this.state.config.filters.length + ' filters' : 'No filters');
-        return pills;
-    }
-
-    _buildOverviewNextSteps(topPaths, largestDrop) {
-        const nextSteps = [];
-        if (topPaths.length > 0) {
-            nextSteps.push('Click a thick node in the chart to focus on a group and see where it goes next.');
-        }
-        if (largestDrop) {
-            nextSteps.push('Inspect the jump from ' + largestDrop.fromLabel + ' to ' + largestDrop.toLabel + ' to understand where records thin out.');
-        }
-        nextSteps.push('Switch to Record Trace when you want to walk through a single record step by step.');
-        return nextSteps;
-    }
-
-    _buildWarnings() {
-        const warnings = [];
-        if (this.isTruncated) {
-            warnings.push('Results were limited to ' + DATASET_LIMIT + ' records. Apply filters if you need a tighter cohort.');
-        }
-        if (this.state.config.nullHandling === 'GROUP_UNKNOWN') {
-            warnings.push('Blank values are grouped as Unknown, which can make some branches look larger.');
-        }
-        if (this.state.config.nullHandling === 'CARRY_FORWARD') {
-            warnings.push('Blank values carry forward from the previous step, which smooths the path but can hide gaps.');
-        }
-        return warnings;
-    }
-
-    _metricLabel() {
-        if (this.state.config.metricType !== 'AMOUNT') {
-            return 'Records';
-        }
-        const apiName = this.state.config.metricField;
-        return this._fieldLabelMap[apiName] || apiName || 'selected metric';
-    }
-
-    _matchingFlowRecords() {
-        const chain = this.state.ui.flowFocusChain;
-        if (chain && chain.length > 0) {
-            return this.state.data.records.filter(record =>
-                chain.every(({ stepIndex, label }) => {
-                    const stepApi = this.state.data.stepColumns[stepIndex];
-                    return stepApi && (record[stepApi] || '\u2205') === label;
-                })
-            );
-        }
-        const stepIdx = parseInt(this.state.ui.flowStepIdx, 10);
-        const stepApi = this.state.data.stepColumns[stepIdx];
-        if (isNaN(stepIdx) || !stepApi) {
-            return [];
-        }
-        return this.state.data.records.filter(record => (record[stepApi] || '\u2205') === this.state.ui.flowTraceValue);
-    }
-
-    _buildTopPathsFromRecords(records) {
-        const counts = new Map();
-        const amounts = new Map();
-        records.forEach(record => {
-            const path = this._recordPath(record);
-            if (!path) {
-                return;
-            }
-            counts.set(path, (counts.get(path) || 0) + 1);
-            amounts.set(path, (amounts.get(path) || 0) + (record.amount || 0));
-        });
-
-        return [...counts.entries()]
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 5)
-            .map(([path, count], index) => ({
-                id: 'cohort-path-' + index,
-                rank: index + 1,
-                path,
-                metricLabel: this.state.config.metricType === 'AMOUNT'
-                    ? 'Total ' + this._metricLabel() + ': ' + this._formatNumber(amounts.get(path) || 0, 1)
-                    : count + ' records',
-                shareLabel: this._formatPercent(records.length > 0 ? (count / records.length) * 100 : 0)
-            }));
-    }
-
-    _decoratePaths(paths, totalRecords) {
-        return (paths || []).map(path => {
-            const sharePct = totalRecords > 0 ? (path.count / totalRecords) * 100 : 0;
-            const metricLabel = this.state.config.metricType === 'AMOUNT'
-                ? 'Total ' + this._metricLabel() + ': ' + this._formatNumber(path.amount || 0, 1)
-                : path.count + ' records';
-            return {
-                id: 'path-' + path.rank,
-                rank: path.rank,
-                path: path.path,
-                metricLabel,
-                shareLabel: this._formatPercent(sharePct)
-            };
-        });
-    }
-
-    _computeStepCoverage(records) {
-        return this.state.data.stepColumns.map((stepApi, index) => {
-            const count = records.filter(record =>
-                record[stepApi] !== undefined && record[stepApi] !== null && record[stepApi] !== ''
-            ).length;
-            const sharePct = records.length > 0 ? (count / records.length) * 100 : 0;
-            return {
-                index,
-                label: this.stepLabels[index] || stepApi,
-                count,
-                sharePct
-            };
-        });
-    }
-
-    _largestDrop(coverage) {
-        let largestDrop = null;
-        for (let index = 1; index < coverage.length; index++) {
-            const prev = coverage[index - 1];
-            const current = coverage[index];
-            const diff = prev.count - current.count;
-            if (diff > 0 && (!largestDrop || diff > largestDrop.count)) {
-                largestDrop = {
-                    count: diff,
-                    countLabel: this._formatNumber(diff) + ' records',
-                    pctLabel: this._formatPercent(prev.count > 0 ? (diff / prev.count) * 100 : 0),
-                    fromLabel: prev.label,
-                    toLabel: current.label
-                };
-            }
-        }
-        return largestDrop;
-    }
-
-    _computeReachedLastStepPct(records) {
-        if (records.length === 0 || this.state.data.stepColumns.length === 0) {
-            return 0;
-        }
-        const lastStep = this.state.data.stepColumns[this.state.data.stepColumns.length - 1];
-        const reached = records.filter(record =>
-            record[lastStep] !== undefined && record[lastStep] !== null && record[lastStep] !== ''
-        ).length;
-        return (reached / records.length) * 100;
-    }
-
-    _topNeighbor(records, stepIdx) {
-        if (stepIdx < 0 || stepIdx >= this.state.data.stepColumns.length || records.length === 0) {
-            return null;
-        }
-        const stepApi = this.state.data.stepColumns[stepIdx];
-        const counts = new Map();
-        records.forEach(record => {
-            const value = record[stepApi];
-            if (value === undefined || value === null || value === '') {
-                return;
-            }
-            counts.set(value, (counts.get(value) || 0) + 1);
-        });
-        if (counts.size === 0) {
-            return null;
-        }
-        const topEntry = [...counts.entries()].sort((a, b) => b[1] - a[1])[0];
-        return {
-            stepLabel: this.stepLabels[stepIdx] || stepApi,
-            value: topEntry[0],
-            sharePct: (topEntry[1] / records.length) * 100
-        };
-    }
-
-    _recordPath(record) {
-        return this.state.data.stepColumns
-            .map(stepApi => record[stepApi])
-            .filter(value => value !== undefined && value !== null && value !== '')
-            .join(' -> ');
-    }
-
-    _sumAmount(records) {
-        return records.reduce((sum, record) => sum + (record.amount || 0), 0);
-    }
-
-    _formatTraceProgress() {
-        const totalSteps = Math.max(0, this.state.data.stepColumns.length - 1);
-        const currentStep = totalSteps > 0 ? this.state.ui.traceStep + 1 : 0;
-        return 'Step ' + currentStep + ' of ' + totalSteps;
-    }
-
-    _formatNumber(value, maximumFractionDigits = 0) {
-        return new Intl.NumberFormat(undefined, {
-            maximumFractionDigits,
-            minimumFractionDigits: 0
-        }).format(value || 0);
-    }
-
-    _formatPercent(value) {
-        const numeric = Number(value || 0);
-        return this._formatNumber(numeric, 1) + '%';
+        return buildOverviewInsight(this.state, this.stepLabels, this._fieldLabelMap, this._objectLabel, this.isTruncated);
     }
 
     /* ═══ Handlers ════════════════════════════════════════════════════ */
@@ -761,15 +275,8 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
                 topPaths: response.topPaths || []
             },
             ui: {
-                ...this.state.ui,
-                loading: false,
-                mode: 'AGGREGATE',
-                selectedRecord: '',
-                selectedNode: null,
-                traceStep: 0,
-                flowStepIdx: '',
-                flowTraceValue: '',
-                flowFocusChain: []
+                ...defaultUi(),
+                metricDisplay: this.state.config.metricType === 'AMOUNT' ? 'amount' : 'count'
             }
         };
 
@@ -940,34 +447,9 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
 
     handleResetAll() {
         this.state = {
-            config: {
-                objectApiName: '',
-                filters: [],
-                pathFields: [],
-                metricType: 'COUNT',
-                metricField: '',
-                recordIdField: 'Id',
-                nullHandling: 'GROUP_UNKNOWN'
-            },
-            data: {
-                nodes: [],
-                links: [],
-                records: [],
-                stepColumns: [],
-                kpis: null,
-                topPaths: []
-            },
-            ui: {
-                loading: false,
-                mode: 'AGGREGATE',
-                metricDisplay: 'count',
-                selectedRecord: '',
-                selectedNode: null,
-                traceStep: 0,
-                flowStepIdx: '',
-                flowTraceValue: '',
-                flowFocusChain: []
-            }
+            config: defaultConfig(),
+            data: defaultData(),
+            ui: defaultUi()
         };
         this.dataLoaded = false;
         this.configStarted = true;

@@ -3,6 +3,7 @@ import saveConfig from '@salesforce/apex/SankeyConfigRepository.saveConfig';
 import getMyConfigs from '@salesforce/apex/SankeyConfigRepository.getMyConfigs';
 import { refreshApex } from '@salesforce/apex';
 import DsSaveConfigModal from 'c/dsSaveConfigModal';
+import { normalizeLoadedConfig, buildSavePayload } from 'c/dsUtils';
 
 export default class DsSavedConfigs extends LightningElement {
 
@@ -38,16 +39,7 @@ export default class DsSavedConfigs extends LightningElement {
         if (!configName) return;
 
         try {
-            const payload = {
-                name: configName,
-                objectApiName: this.config.objectApiName,
-                filters: this.config.filters,
-                pathFields: this.config.pathFields,
-                metricType: this.config.metricType,
-                metricField: this.config.metricField,
-                recordIdField: this.config.recordIdField,
-                nullHandling: this.config.nullHandling
-            };
+            const payload = buildSavePayload(configName, this.config);
             await saveConfig({ configJson: JSON.stringify(payload) });
             await refreshApex(this._wiredResult);
             this.dispatchEvent(new CustomEvent('saveconfig'));
@@ -65,17 +57,7 @@ export default class DsSavedConfigs extends LightningElement {
         const found = this.savedConfigs.find(c => c.id === selectedId);
         if (found) {
             this.dispatchEvent(new CustomEvent('configloaded', {
-                detail: {
-                    config: {
-                        objectApiName: found.objectApiName,
-                        filters: found.filters || [],
-                        pathFields: found.pathFields || [],
-                        metricType: found.metricType || 'COUNT',
-                        metricField: found.metricField || '',
-                        recordIdField: found.recordIdField || 'Id',
-                        nullHandling: found.nullHandling || 'GROUP_UNKNOWN'
-                    }
-                }
+                detail: { config: normalizeLoadedConfig(found) }
             }));
         }
     }
