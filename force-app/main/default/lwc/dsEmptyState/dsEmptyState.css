@@ -11,7 +11,7 @@
 /* ═══ Hero ═══ */
 
 .hero {
-    padding-top: 0.5rem;
+    padding-top: 0;
 }
 
 .hero-heading {
@@ -129,7 +129,7 @@
 /* ═══ Primary CTA ═══ */
 
 .cta-section {
-    padding-top: 0.25rem;
+    padding-top: 0;
 }
 
 .cta-btn {

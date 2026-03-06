@@ -1,15 +1,23 @@
 <template>
-    <div class="empty-state slds-p-around_large">
+    <div class="empty-state slds-p-horizontal_large slds-p-bottom_large">
         <div class="slds-text-align_center full-width">
 
             <!-- Hero -->
-            <div class="hero slds-m-bottom_large">
-                <h1 class="hero-heading slds-m-bottom_x-small">See Where Your Data Goes</h1>
+            <div class="hero slds-m-bottom_medium">
+                <h1 class="hero-heading slds-m-bottom_x-small">Map Any Salesforce Process — Instantly</h1>
                 <p class="hero-sub">
-                    Turn any Salesforce object into a visual flow map.<br>
-                    See the most common paths, find where records drop off,<br>
-                    and understand how volume splits at every stage.
+                    Turn any object into a live flow diagram. See where records drop off,
+                    find the most common paths, and trace any individual record.
+                    No code, no setup.
                 </p>
+                <div class="cta-section slds-m-top_medium">
+                    <lightning-button
+                        label="Build Your First Diagram"
+                        variant="brand"
+                        onclick={handleStart}
+                        class="cta-btn">
+                    </lightning-button>
+                </div>
             </div>
 
             <!-- What you'll discover -->
@@ -20,10 +28,10 @@
                         <div class="discover-icon-ring">
                             <lightning-icon icon-name="utility:trending" size="small"></lightning-icon>
                         </div>
-                        <h3 class="discover-title">Find the Most Common Paths</h3>
+                        <h3 class="discover-title">See the Most Common Paths</h3>
                         <p class="discover-desc">
-                            Instantly see which routes your records
-                            take most often through each stage.
+                            Instantly see which routes your records take
+                            most often — and which path leads to the best outcomes.
                         </p>
                     </div>
                 </div>
@@ -32,10 +40,10 @@
                         <div class="discover-icon-ring warn-ring">
                             <lightning-icon icon-name="utility:warning" size="small"></lightning-icon>
                         </div>
-                        <h3 class="discover-title">Spot Where Things Drop Off</h3>
+                        <h3 class="discover-title">Pinpoint Every Drop-Off</h3>
                         <p class="discover-desc">
-                            Identify the exact stages where records
-                            fall out of the flow so you can take action.
+                            Find the exact stage where volume disappears from
+                            your process so you can take targeted action.
                         </p>
                     </div>
                 </div>
@@ -44,10 +52,10 @@
                         <div class="discover-icon-ring trace-ring">
                             <lightning-icon icon-name="utility:search" size="small"></lightning-icon>
                         </div>
-                        <h3 class="discover-title">Trace Any Record</h3>
+                        <h3 class="discover-title">Trace Any Individual Record</h3>
                         <p class="discover-desc">
-                            Follow a single record step-by-step through
-                            its entire journey from start to finish.
+                            Click any record to see its complete journey,
+                            step by step, highlighted across the full diagram.
                         </p>
                     </div>
                 </div>
@@ -55,52 +63,42 @@
 
             <!-- Getting started -->
             <h2 class="section-heading slds-m-bottom_small">Getting started is easy</h2>
-            <div class="slds-grid slds-gutters slds-grid_align-center slds-wrap slds-m-bottom_large">
+            <div class="slds-grid slds-gutters slds-grid_align-center slds-wrap slds-m-bottom_medium">
                 <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-p-around_x-small">
                     <div class="step-card slds-p-around_medium slds-text-align_center">
                         <span class="step-number">1</span>
-                        <h3 class="step-title">Pick your data</h3>
+                        <h3 class="step-title">Pick an Object</h3>
                         <p class="step-desc">
-                            Choose any Salesforce object you have access to &mdash;
-                            Opportunities, Cases, Leads, or anything else.
+                            Any queryable Salesforce object works &mdash;
+                            Opportunities, Cases, custom objects, and more.
                         </p>
                     </div>
                 </div>
                 <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-p-around_x-small">
                     <div class="step-card slds-p-around_medium slds-text-align_center">
                         <span class="step-number">2</span>
-                        <h3 class="step-title">Choose the stages</h3>
+                        <h3 class="step-title">Select Your Stages</h3>
                         <p class="step-desc">
-                            Select the fields that represent each step
-                            in your flow, like Status, Stage, or Type.
+                            Choose the fields that represent each checkpoint
+                            in your process, like Stage, Status, or Type.
                         </p>
                     </div>
                 </div>
                 <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-p-around_x-small">
                     <div class="step-card slds-p-around_medium slds-text-align_center">
                         <span class="step-number">3</span>
-                        <h3 class="step-title">Generate &amp; explore</h3>
+                        <h3 class="step-title">Generate &amp; Explore</h3>
                         <p class="step-desc">
-                            Hit the button and your flow diagram appears.
-                            Click any part of it to drill deeper.
+                            Your diagram appears in seconds.
+                            Click any node or link to drill deeper into the data.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Primary CTA -->
-            <div class="cta-section slds-m-bottom_large">
-                <lightning-button
-                    label="Get Started"
-                    variant="brand"
-                    onclick={handleStart}
-                    class="cta-btn">
-                </lightning-button>
-            </div>
-
             <!-- Saved configurations -->
             <template lwc:if={hasSavedConfigs}>
-                <div class="saved-configs-section slds-box slds-p-around_medium slds-text-align_left">
+                <div class="saved-configs-section slds-box slds-p-around_medium slds-text-align_left slds-m-top_small">
                     <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small">
                         <lightning-icon icon-name="utility:open_folder" size="x-small" class="slds-m-right_x-small"></lightning-icon>
                         <h3 class="slds-text-title_caps">Saved Configurations</h3>
