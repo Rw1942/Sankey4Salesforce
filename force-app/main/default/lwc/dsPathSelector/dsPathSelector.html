@@ -2,17 +2,26 @@
     <div class="slds-box slds-theme_shade slds-m-top_small">
         <h3 class="slds-text-heading_small slds-m-bottom_small">Sankey Path Configuration</h3>
 
-        <lightning-dual-listbox
-            name="pathFields"
-            label="Path Fields (order matters)"
-            source-label="Available Fields"
-            selected-label="Selected Steps"
-            options={pathFieldOptions}
-            value={internalSelected}
-            onchange={handlePathChange}
-            min="2"
-            required>
-        </lightning-dual-listbox>
+        <div class="slds-is-relative">
+            <lightning-dual-listbox
+                name="pathFields"
+                label="Path Fields (order matters)"
+                source-label="Available Fields"
+                selected-label="Selected Steps"
+                options={pathFieldOptions}
+                value={internalSelected}
+                onchange={handlePathChange}
+                min="2"
+                required>
+            </lightning-dual-listbox>
+            <template lwc:if={loadingStats}>
+                <lightning-spinner size="small" alternative-text="Loading field stats"></lightning-spinner>
+            </template>
+        </div>
+
+        <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">
+            Percentages show how many sampled records have a value — Recent (last 90 days) and Older (1 yr+).
+        </p>
 
         <template lwc:if={showMinWarning}>
             <p class="slds-text-color_error slds-text-body_small slds-m-top_xx-small">

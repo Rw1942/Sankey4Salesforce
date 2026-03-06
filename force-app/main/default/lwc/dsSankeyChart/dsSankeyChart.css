@@ -25,17 +25,32 @@ svg.sankey {
 .node-rect {
     transition: opacity 0.2s ease;
     cursor: pointer;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12));
 }
 
 .node-label {
     font: 11px/1.3 var(--lwc-fontFamily, 'Salesforce Sans', Arial, sans-serif);
     fill: var(--slds-g-color-neutral-base-10, var(--lwc-colorTextDefault, #181818));
+    stroke: rgba(255, 255, 255, 0.9);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+    paint-order: stroke fill;
     pointer-events: none;
 }
 
 .step-header {
     font: 600 12px/1 var(--lwc-fontFamily, 'Salesforce Sans', Arial, sans-serif);
-    fill: var(--slds-g-color-neutral-base-50, var(--lwc-colorTextWeak, #706e6b));
+    fill: var(--slds-g-color-neutral-base-30, var(--lwc-colorTextDefault, #444));
+    stroke: rgba(255, 255, 255, 0.85);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+    paint-order: stroke fill;
+}
+
+.header-rule {
+    stroke: var(--slds-g-color-border-base-1, var(--lwc-colorBorder, #e5e5e5));
+    stroke-width: 1;
+    opacity: 0.4;
 }
 
 .sankey-tooltip {

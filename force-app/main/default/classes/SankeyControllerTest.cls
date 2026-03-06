@@ -212,6 +212,72 @@ private class SankeyControllerTest {
     }
 
     /**
+     * Test getFieldPopulationStats — returns per-field population percentages
+     * for recent and older cohorts.
+     */
+    @isTest
+    static void testGetFieldPopulationStats_Success() {
+        Test.startTest();
+        String resultJson = SankeyController.getFieldPopulationStats(
+            'Opportunity',
+            new List<String>{ 'StageName', 'Amount', 'Description' }
+        );
+        Test.stopTest();
+
+        System.assertNotEquals(null, resultJson, 'Result should not be null');
+        Map<String, Object> stats = (Map<String, Object>) JSON.deserializeUntyped(resultJson);
+        System.assert(stats.containsKey('StageName'), 'Stats should include StageName');
+        System.assert(stats.containsKey('Amount'), 'Stats should include Amount');
+
+        Map<String, Object> stageStats = (Map<String, Object>) stats.get('StageName');
+        System.assert(stageStats.containsKey('recent'), 'Should have recent percentage');
+        System.assert(stageStats.containsKey('older'), 'Should have older percentage');
+        System.assert(stageStats.containsKey('recentSize'), 'Should have recentSize');
+        System.assert(stageStats.containsKey('olderSize'), 'Should have olderSize');
+    }
+
+    /**
+     * Test getFieldPopulationStats — handles object with no recent/older records gracefully.
+     */
+    @isTest
+    static void testGetFieldPopulationStats_EmptyCohorts() {
+        Test.startTest();
+        String resultJson = SankeyController.getFieldPopulationStats(
+            'Opportunity',
+            new List<String>{ 'StageName' }
+        );
+        Test.stopTest();
+
+        Map<String, Object> stats = (Map<String, Object>) JSON.deserializeUntyped(resultJson);
+        Map<String, Object> stageStats = (Map<String, Object>) stats.get('StageName');
+        Integer recentSize = ((Decimal) stageStats.get('recentSize')).intValue();
+        Integer olderSize = ((Decimal) stageStats.get('olderSize')).intValue();
+        // Test data was just created, so older cohort (>1yr) should be empty
+        System.assertEquals(0, olderSize, 'Older cohort should be empty for freshly created test data');
+        System.assert(recentSize >= 0, 'recentSize should be non-negative');
+    }
+
+    /**
+     * Test buildSampleQuery — verifies SOQL structure.
+     */
+    @isTest
+    static void testBuildSampleQuery() {
+        String soql = SankeyQueryBuilder.buildSampleQuery(
+            'Opportunity',
+            new List<String>{ 'StageName', 'Amount' },
+            '>= LAST_N_DAYS:90'
+        );
+
+        System.assert(soql.contains('StageName'), 'Query should select StageName');
+        System.assert(soql.contains('Amount'), 'Query should select Amount');
+        System.assert(soql.contains('FROM Opportunity'), 'Query should target Opportunity');
+        System.assert(soql.contains('CreatedDate >= LAST_N_DAYS:90'), 'Query should filter by date');
+        System.assert(soql.contains('WITH SECURITY_ENFORCED'), 'Query should enforce security');
+        System.assert(soql.contains('LIMIT ' + SankeyQueryBuilder.SAMPLE_LIMIT),
+            'Query should use sample limit');
+    }
+
+    /**
      * Section 12: Test that dynamic SOQL includes security enforcement.
      * Verifies the query builder includes WITH SECURITY_ENFORCED.
      */

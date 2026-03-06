@@ -7,7 +7,7 @@ import { LightningElement, api } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
 import D3_RESOURCE from '@salesforce/resourceUrl/d3';
 
-const MARGIN       = { top: 32, right: 160, bottom: 20, left: 60 };
+const MARGIN       = { top: 48, right: 160, bottom: 20, left: 60 };
 const NODE_W       = 18;
 const NODE_PAD     = 16;
 const BASE_OPACITY = 0.35;
@@ -278,7 +278,7 @@ export default class DsSankeyChart extends LightningElement {
         const result = layout({ nodes: nodesCopy, links: linksCopy });
         this._laid = result;
 
-        this._drawHeaders(root, result.nodes);
+        this._drawHeaders(root, result.nodes, iw);
         this._drawLinks(root, result.links);
         this._drawNodes(root, result.nodes);
 
@@ -291,7 +291,7 @@ export default class DsSankeyChart extends LightningElement {
         return (this._stepLabels && this._stepLabels[si]) || this._steps[si] || '';
     }
 
-    _drawHeaders(root, nodes) {
+    _drawHeaders(root, nodes, chartWidth) {
         const stepInfo = new Map();
         nodes.forEach(n => {
             if (!stepInfo.has(n.stepIndex)) {
@@ -311,14 +311,32 @@ export default class DsSankeyChart extends LightningElement {
                 .attr('class', 'step-header')
                 .text(this._stepLabel(si));
         });
+
+        const headers = g.selectAll('.step-header');
+        const maxHeaderW = this._measureMaxWidth(headers);
+        if (maxHeaderW > 0) {
+            this._wrapText(headers, maxHeaderW * 0.5, 1.2);
+        }
+
+        g.append('line')
+            .attr('x1', 0).attr('y1', -2)
+            .attr('x2', chartWidth).attr('y2', -2)
+            .attr('class', 'header-rule');
     }
 
     _updateHeaderText() {
         if (!this._svg) return;
+        /* eslint-disable no-undef */
         const self = this;
-        this._svg.selectAll('.step-header').each(function(d, i) {
-            d3.select(this).text(self._stepLabel(i)); // eslint-disable-line no-undef
+        const headers = this._svg.selectAll('.step-header');
+        headers.each(function(d, i) {
+            d3.select(this).text(self._stepLabel(i));
         });
+        const maxW = this._measureMaxWidth(headers);
+        if (maxW > 0) {
+            this._wrapText(headers, maxW * 0.5, 1.2);
+        }
+        /* eslint-enable no-undef */
     }
 
     _drawLinks(root, links) {
@@ -364,6 +382,12 @@ export default class DsSankeyChart extends LightningElement {
             .attr('text-anchor', 'start')
             .attr('class', 'node-label')
             .text(n => n.label);
+
+        const nodeLabels = ng.select('.node-label');
+        const maxNodeW = this._measureMaxWidth(nodeLabels);
+        if (maxNodeW > 0) {
+            this._wrapText(nodeLabels, maxNodeW * 0.5, 1.2);
+        }
 
         ng.each(function(d) {
             d3.select(this).attr('aria-label', d.label); // eslint-disable-line no-undef
@@ -512,6 +536,58 @@ export default class DsSankeyChart extends LightningElement {
 
     get tooltipStyle() {
         return 'left:' + this.tooltipX + 'px;top:' + this.tooltipY + 'px';
+    }
+
+    /* ═══ Text wrapping ════════════════════════════════════════════ */
+
+    _measureMaxWidth(textSel) {
+        let maxW = 0;
+        textSel.each(function() {
+            const w = this.getComputedTextLength();
+            if (w > maxW) maxW = w;
+        });
+        return maxW;
+    }
+
+    _wrapText(textSel, maxWidth, lineHeightEm) {
+        /* eslint-disable no-undef */
+        textSel.each(function() {
+            const textEl = d3.select(this);
+            const fullText = textEl.text();
+            const words = fullText.split(/\s+/).filter(w => w);
+            if (words.length <= 1) return;
+
+            const x = textEl.attr('x');
+            const anchor = textEl.attr('text-anchor') || 'start';
+
+            textEl.text(null);
+
+            let line = [];
+            let lineCount = 0;
+            let tspan = textEl.append('tspan').attr('x', x).attr('text-anchor', anchor);
+
+            for (const word of words) {
+                line.push(word);
+                tspan.text(line.join(' '));
+                if (tspan.node().getComputedTextLength() > maxWidth && line.length > 1) {
+                    line.pop();
+                    tspan.text(line.join(' '));
+                    line = [word];
+                    lineCount++;
+                    tspan = textEl.append('tspan')
+                        .attr('x', x)
+                        .attr('dy', lineHeightEm + 'em')
+                        .attr('text-anchor', anchor);
+                    tspan.text(word);
+                }
+            }
+
+            if (lineCount > 0) {
+                const offsetEm = -(lineCount * lineHeightEm) / 2;
+                textEl.select('tspan').attr('dy', offsetEm + 'em');
+            }
+        });
+        /* eslint-enable no-undef */
     }
 
     /* ═══ Utilities ════════════════════════════════════════════════ */

@@ -6,6 +6,7 @@
 public with sharing class SankeyQueryBuilder {
 
     public static final Integer DEFAULT_LIMIT = 10000;
+    public static final Integer SAMPLE_LIMIT = 100;
 
     /**
      * Builds dynamic SOQL from a config map.
@@ -68,6 +69,29 @@ public with sharing class SankeyQueryBuilder {
         }
 
         soql += ' WITH SECURITY_ENFORCED';
+        return soql;
+    }
+
+    /**
+     * Builds a lightweight sample query for field population analysis.
+     * @param objectApiName SObject API name
+     * @param fieldApiNames Fields to SELECT
+     * @param dateFilter SOQL date literal clause, e.g. '>= LAST_N_DAYS:90'
+     * @return SOQL string limited to SAMPLE_LIMIT rows
+     */
+    public static String buildSampleQuery(String objectApiName, List<String> fieldApiNames, String dateFilter) {
+        Set<String> selectFields = new Set<String>();
+        for (String f : fieldApiNames) {
+            selectFields.add(String.escapeSingleQuotes(f));
+        }
+
+        String soql = 'SELECT ' + String.join(new List<String>(selectFields), ', ');
+        soql += ' FROM ' + String.escapeSingleQuotes(objectApiName);
+        soql += ' WHERE CreatedDate ' + dateFilter;
+        soql += ' WITH SECURITY_ENFORCED';
+        soql += ' ORDER BY CreatedDate DESC';
+        soql += ' LIMIT ' + SAMPLE_LIMIT;
+
         return soql;
     }
 

@@ -49,6 +49,7 @@
 
 .config-body {
     padding: 0 1rem 1rem;
+    min-height: 480px;
 }
 
 /* ═══ Generate Diagram CTA bar ═══ */

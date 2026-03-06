@@ -5,6 +5,7 @@
  */
 import { LightningElement, api, wire } from 'lwc';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
+import getFieldPopulationStats from '@salesforce/apex/SankeyController.getFieldPopulationStats';
 
 const ALLOWED_TYPES = new Set(['Picklist', 'Reference', 'String', 'TextArea', 'Phone', 'Email', 'Url']);
 
@@ -44,6 +45,8 @@ export default class DsPathSelector extends LightningElement {
     internalSelected = [];
     internalNullHandling = 'GROUP_UNKNOWN';
     internalRecordIdField = 'Id';
+    loadingStats = false;
+    _fieldKeyCache = [];
 
     get nullHandlingOptions() {
         return [
@@ -61,16 +64,33 @@ export default class DsPathSelector extends LightningElement {
     wiredObjectInfo({ error, data }) {
         if (data) {
             const fields = data.fields;
+
+            // Compound Address fields (BillingAddress, etc.) — used to exclude components
+            const addressCompounds = new Set(
+                Object.keys(fields).filter(k => fields[k].dataType === 'Address')
+            );
+
             const sortedKeys = Object.keys(fields)
-                .filter(key => ALLOWED_TYPES.has(fields[key].dataType))
+                .filter(key => {
+                    if (!ALLOWED_TYPES.has(fields[key].dataType)) return false;
+                    const compound = fields[key].compoundFieldName;
+                    if (compound && addressCompounds.has(compound)) return false;
+                    return true;
+                })
                 .sort((a, b) => {
                     const pa = TYPE_PRIORITY[fields[a].dataType] ?? 3;
                     const pb = TYPE_PRIORITY[fields[b].dataType] ?? 3;
                     return pa !== pb ? pa - pb : fields[a].label.localeCompare(fields[b].label);
                 });
 
+            this._fieldKeyCache = sortedKeys;
+            this._baseLabels = {};
+            for (const key of sortedKeys) {
+                this._baseLabels[key] = fields[key].label + ' (' + key + ')';
+            }
+
             this.pathFieldOptions = sortedKeys.map(key => ({
-                label: fields[key].label + ' (' + key + ')',
+                label: this._baseLabels[key],
                 value: key
             }));
 
@@ -97,6 +117,8 @@ export default class DsPathSelector extends LightningElement {
                     this._fireConfigured();
                 }
             }
+
+            this._fetchPopulationStats();
         } else if (error) {
             this.pathFieldOptions = [];
             this.idFieldOptions = [];
@@ -116,6 +138,33 @@ export default class DsPathSelector extends LightningElement {
     handleIdFieldChange(event) {
         this.internalRecordIdField = event.detail.value;
         this._fireConfigured();
+    }
+
+    _fetchPopulationStats() {
+        if (!this.objectApiName || this._fieldKeyCache.length === 0) return;
+        this.loadingStats = true;
+        getFieldPopulationStats({
+            objectApiName: this.objectApiName,
+            fieldApiNames: this._fieldKeyCache
+        })
+            .then(result => {
+                const stats = JSON.parse(result);
+                this.pathFieldOptions = this._fieldKeyCache.map(key => {
+                    const s = stats[key];
+                    let suffix = '';
+                    if (s) {
+                        const recent = s.recentSize > 0 ? s.recent + '%' : 'n/a';
+                        const older = s.olderSize > 0 ? s.older + '%' : 'n/a';
+                        suffix = ' \u2014 Recent: ' + recent + ' | Older: ' + older;
+                    }
+                    return {
+                        label: this._baseLabels[key] + suffix,
+                        value: key
+                    };
+                });
+            })
+            .catch(() => { /* stats are best-effort; field list remains usable */ })
+            .finally(() => { this.loadingStats = false; });
     }
 
     _fireConfigured() {

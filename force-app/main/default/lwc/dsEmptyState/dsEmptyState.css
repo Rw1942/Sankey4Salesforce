@@ -57,3 +57,12 @@
 .tile-icon {
     flex-shrink: 0;
 }
+
+/* ═══ Primary CTA ═══ */
+
+.create-btn {
+    font-size: 1.05rem;
+    padding: 0.85rem 2.5rem;
+    border-radius: 0.5rem;
+    letter-spacing: 0.02em;
+}
