@@ -278,6 +278,26 @@ private class SankeyControllerTest {
     }
 
     /**
+     * Test buildSampleQuery — rejects invalid dateFilter values.
+     */
+    @isTest
+    static void testBuildSampleQuery_InvalidDateFilter() {
+        Boolean caught = false;
+        try {
+            SankeyQueryBuilder.buildSampleQuery(
+                'Opportunity',
+                new List<String>{ 'StageName' },
+                'INVALID_FILTER'
+            );
+        } catch (IllegalArgumentException e) {
+            caught = true;
+            System.assert(e.getMessage().contains('Invalid dateFilter'),
+                'Exception message should describe the invalid filter');
+        }
+        System.assert(caught, 'Should throw IllegalArgumentException for invalid dateFilter');
+    }
+
+    /**
      * Section 12: Test that dynamic SOQL includes security enforcement.
      * Verifies the query builder includes WITH SECURITY_ENFORCED.
      */

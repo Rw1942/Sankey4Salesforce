@@ -114,7 +114,7 @@ export default class DsPathSelector extends LightningElement {
                     .slice(0, 8);
                 if (picklists.length > 0) {
                     this.internalSelected = picklists;
-                    this._fireConfigured();
+                    this._fireConfigured(true);
                 }
             }
 
@@ -163,16 +163,19 @@ export default class DsPathSelector extends LightningElement {
                     };
                 });
             })
-            .catch(() => { /* stats are best-effort; field list remains usable */ })
+            .catch(err => {
+                console.warn('Field population stats unavailable:', err?.body?.message || err); // eslint-disable-line no-console
+            })
             .finally(() => { this.loadingStats = false; });
     }
 
-    _fireConfigured() {
+    _fireConfigured(autoSelected) {
         this.dispatchEvent(new CustomEvent('pathconfigured', {
             detail: {
                 pathFields: [...this.internalSelected],
                 nullHandling: this.internalNullHandling,
-                recordIdField: this.internalRecordIdField
+                recordIdField: this.internalRecordIdField,
+                autoSelected: !!autoSelected
             }
         }));
     }

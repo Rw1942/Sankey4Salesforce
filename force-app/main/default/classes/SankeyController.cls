@@ -96,16 +96,17 @@ public with sharing class SankeyController {
                 }
             }
 
-            // Convert counts to percentages
             for (String field : fieldApiNames) {
                 Map<String, Integer> fs = stats.get(field);
                 Integer rSize = fs.get('recentSize');
                 Integer oSize = fs.get('olderSize');
                 if (rSize > 0) {
-                    fs.put('recent', (fs.get('recent') * 100) / rSize);
+                    Decimal pct = (Decimal.valueOf(fs.get('recent')) * 100) / rSize;
+                    fs.put('recent', pct.setScale(0, System.RoundingMode.HALF_UP).intValue());
                 }
                 if (oSize > 0) {
-                    fs.put('older', (fs.get('older') * 100) / oSize);
+                    Decimal pct = (Decimal.valueOf(fs.get('older')) * 100) / oSize;
+                    fs.put('older', pct.setScale(0, System.RoundingMode.HALF_UP).intValue());
                 }
             }
 

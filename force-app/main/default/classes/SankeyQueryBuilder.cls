@@ -80,6 +80,10 @@ public with sharing class SankeyQueryBuilder {
      * @return SOQL string limited to SAMPLE_LIMIT rows
      */
     public static String buildSampleQuery(String objectApiName, List<String> fieldApiNames, String dateFilter) {
+        if (!dateFilter.startsWith('>') && !dateFilter.startsWith('<')) {
+            throw new IllegalArgumentException('Invalid dateFilter: ' + dateFilter);
+        }
+
         Set<String> selectFields = new Set<String>();
         for (String f : fieldApiNames) {
             selectFields.add(String.escapeSingleQuotes(f));

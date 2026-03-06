@@ -201,11 +201,14 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
     }
 
     handlePathConfigured(event) {
-        const { pathFields, nullHandling, recordIdField } = event.detail;
+        const { pathFields, nullHandling, recordIdField, autoSelected } = event.detail;
         this.state = {
             ...this.state,
             config: { ...this.state.config, pathFields, nullHandling, recordIdField }
         };
+        if (autoSelected && pathFields.length >= 2) {
+            this._fetchSankeyData();
+        }
     }
 
     handleFilterChange(event) {
