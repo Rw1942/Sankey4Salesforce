@@ -74,9 +74,9 @@
                 <div class={insightsColumnClass}>
                     <c-ds-insights-panel
                         lwc:if={showInsights}
-                        kpis={state.data.kpis}
-                        top-paths={state.data.topPaths}
-                        ontogglepanel={handleToggleInsights}>
+                        insight-context={insightContext}
+                        ontogglepanel={handleToggleInsights}
+                        onclearfocus={handleClearInsightFocus}>
                     </c-ds-insights-panel>
                 </div>
             </div>

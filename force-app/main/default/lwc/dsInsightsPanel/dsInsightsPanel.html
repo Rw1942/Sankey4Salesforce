@@ -1,7 +1,10 @@
 <template>
     <div class="slds-box insights-panel">
-        <div class="slds-grid slds-grid_align-spread slds-m-bottom_small">
-            <h3 class="slds-text-heading_small">Insights</h3>
+        <div class="panel-header">
+            <div>
+                <p class="eyebrow">{modeLabel}</p>
+                <h3 class="slds-text-heading_small">{title}</h3>
+            </div>
             <lightning-button-icon
                 icon-name="utility:close"
                 alternative-text="Close panel"
@@ -10,57 +13,112 @@
             </lightning-button-icon>
         </div>
 
-        <!-- Summary stats -->
-        <template lwc:if={hasKpis}>
-            <div class="slds-grid slds-wrap slds-gutters_xx-small slds-m-bottom_medium">
-                <div class="slds-col slds-size_1-of-2 slds-p-bottom_x-small">
-                    <div class="kpi-tile">
-                        <span class="kpi-num">{kpis.totalRecords}</span>
-                        <span class="kpi-lbl">Total Records</span>
+        <template lwc:if={hasContext}>
+            <p class="panel-summary">{summary}</p>
+
+            <template lwc:if={hasPills}>
+                <div class="pill-row slds-m-bottom_medium">
+                    <template for:each={pills} for:item="pill">
+                        <span key={pill.id} class="pill">{pill.label}</span>
+                    </template>
+                </div>
+            </template>
+
+            <template lwc:if={showClearFocus}>
+                <div class="slds-m-bottom_medium">
+                    <lightning-button
+                        label="Back to Overview"
+                        variant="neutral"
+                        icon-name="utility:back"
+                        onclick={handleClearFocus}>
+                    </lightning-button>
+                </div>
+            </template>
+
+            <template lwc:if={hasCards}>
+                <div class="cards-grid slds-m-bottom_medium">
+                    <template for:each={cards} for:item="card">
+                        <div key={card.id} class="insight-card">
+                            <span class="card-value">{card.value}</span>
+                            <span class="card-label">{card.label}</span>
+                            <template lwc:if={card.detail}>
+                                <span class="card-detail">{card.detail}</span>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <template lwc:if={hasStandout}>
+                <div class="section slds-m-bottom_medium">
+                    <h4 class="section-title">What stands out</h4>
+                    <template for:each={standout} for:item="item">
+                        <div key={item.id} class="callout">
+                            <div class="callout-title">{item.title}</div>
+                            <div class="callout-detail">{item.detail}</div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <template lwc:if={hasPathRows}>
+                <div class="section slds-m-bottom_medium">
+                    <h4 class="section-title">{pathSectionTitle}</h4>
+                    <div class="top-paths-list">
+                        <template for:each={pathRows} for:item="pathRow">
+                            <div key={pathRow.id} class="path-row">
+                                <div class="path-row-main">
+                                    <span class="path-rank">#{pathRow.rank}</span>
+                                    <span class="path-text">{pathRow.path}</span>
+                                </div>
+                                <div class="path-meta">
+                                    <span>{pathRow.metricLabel}</span>
+                                    <span>{pathRow.shareLabel}</span>
+                                </div>
+                            </div>
+                        </template>
                     </div>
                 </div>
-                <div class="slds-col slds-size_1-of-2 slds-p-bottom_x-small">
-                    <div class="kpi-tile">
-                        <span class="kpi-num">${formattedTotalAmount}</span>
-                        <span class="kpi-lbl">Total Amount</span>
+            </template>
+
+            <template lwc:if={hasStorySteps}>
+                <div class="section slds-m-bottom_medium">
+                    <h4 class="section-title">Journey</h4>
+                    <div class="story-steps">
+                        <template for:each={storySteps} for:item="step">
+                            <div key={step.id} class="story-step">
+                                <span class="story-label">{step.label}</span>
+                                <span class="story-value">{step.value}</span>
+                            </div>
+                        </template>
                     </div>
                 </div>
-                <div class="slds-col slds-size_1-of-2 slds-p-bottom_x-small">
-                    <div class="kpi-tile">
-                        <span class="kpi-num">{kpis.conversionRate}%</span>
-                        <span class="kpi-lbl">Conversion Rate</span>
-                    </div>
+            </template>
+
+            <template lwc:if={hasNextSteps}>
+                <div class="section slds-m-bottom_medium">
+                    <h4 class="section-title">Try this next</h4>
+                    <ul class="simple-list">
+                        <template for:each={nextSteps} for:item="item">
+                            <li key={item.id}>{item.label}</li>
+                        </template>
+                    </ul>
                 </div>
-                <div class="slds-col slds-size_1-of-2 slds-p-bottom_x-small">
-                    <div class="kpi-tile">
-                        <span class="kpi-num">{kpis.dropOffRate}%</span>
-                        <span class="kpi-lbl">Drop-off Rate</span>
-                    </div>
+            </template>
+
+            <template lwc:if={hasWarnings}>
+                <div class="section">
+                    <h4 class="section-title">Keep in mind</h4>
+                    <ul class="simple-list warning-list">
+                        <template for:each={warnings} for:item="warning">
+                            <li key={warning.id}>{warning.label}</li>
+                        </template>
+                    </ul>
                 </div>
-                <div class="slds-col slds-size_1-of-1 slds-p-bottom_x-small">
-                    <div class="kpi-tile">
-                        <span class="kpi-num">${formattedAvgAmount}</span>
-                        <span class="kpi-lbl">Average Amount</span>
-                    </div>
-                </div>
-            </div>
+            </template>
         </template>
 
-        <!-- Top paths -->
-        <template lwc:if={hasTopPaths}>
-            <h4 class="slds-text-title_caps slds-m-bottom_x-small">Top Paths</h4>
-            <div class="top-paths-list">
-                <template for:each={topPaths} for:item="tp">
-                    <div key={tp.rank} class="top-path-row">
-                        <span class="path-rank">#{tp.rank}</span>
-                        <span class="path-text">{tp.path}</span>
-                        <span class="path-count">{tp.count} records</span>
-                    </div>
-                </template>
-            </div>
-        </template>
-
-        <template lwc:if={noKpis}>
+        <template lwc:if={noContext}>
             <p class="slds-text-body_small slds-text-color_weak">
                 Load data to see insights.
             </p>
