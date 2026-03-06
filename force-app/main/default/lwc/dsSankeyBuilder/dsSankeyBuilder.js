@@ -206,9 +206,6 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
             ...this.state,
             config: { ...this.state.config, pathFields, nullHandling, recordIdField }
         };
-        if (autoSelected && pathFields.length >= 2) {
-            this._fetchSankeyData();
-        }
     }
 
     handleFilterChange(event) {
@@ -272,7 +269,6 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
     _applyResponse(response) {
         this.isTruncated = response.records && response.records.length >= DATASET_LIMIT;
         this.dataLoaded = true;
-        this.configExpanded = false;
         this.state = {
             ...this.state,
             data: {
@@ -416,6 +412,7 @@ export default class DsSankeyBuilder extends NavigationMixin(LightningElement) {
             config: { ...this.state.config, ...savedConfig }
         };
         this.configStarted = true;
+        this.configExpanded = true;
         this._fetchSankeyData();
     }
 

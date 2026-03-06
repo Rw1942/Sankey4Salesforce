@@ -59,18 +59,24 @@ public with sharing class SankeyController {
     @AuraEnabled(cacheable=true)
     public static String getFieldPopulationStats(String objectApiName, List<String> fieldApiNames) {
         try {
+            List<String> queryableFields = filterQueryableFields(objectApiName, fieldApiNames);
+
+            if (queryableFields.isEmpty()) {
+                return JSON.serialize(new Map<String, Object>());
+            }
+
             String recentSoql = SankeyQueryBuilder.buildSampleQuery(
-                objectApiName, fieldApiNames, '>= LAST_N_DAYS:90'
+                objectApiName, queryableFields, '>= LAST_N_DAYS:90'
             );
             String olderSoql = SankeyQueryBuilder.buildSampleQuery(
-                objectApiName, fieldApiNames, '< LAST_N_YEARS:1'
+                objectApiName, queryableFields, '< LAST_N_YEARS:1'
             );
 
             List<SObject> recentRecords = Database.query(recentSoql);
             List<SObject> olderRecords = Database.query(olderSoql);
 
             Map<String, Map<String, Integer>> stats = new Map<String, Map<String, Integer>>();
-            for (String field : fieldApiNames) {
+            for (String field : queryableFields) {
                 stats.put(field, new Map<String, Integer>{
                     'recent' => 0, 'older' => 0,
                     'recentSize' => recentRecords.size(),
@@ -79,7 +85,7 @@ public with sharing class SankeyController {
             }
 
             for (SObject rec : recentRecords) {
-                for (String field : fieldApiNames) {
+                for (String field : queryableFields) {
                     Object val = rec.get(field);
                     if (val != null && String.isNotBlank(String.valueOf(val))) {
                         stats.get(field).put('recent', stats.get(field).get('recent') + 1);
@@ -88,7 +94,7 @@ public with sharing class SankeyController {
             }
 
             for (SObject rec : olderRecords) {
-                for (String field : fieldApiNames) {
+                for (String field : queryableFields) {
                     Object val = rec.get(field);
                     if (val != null && String.isNotBlank(String.valueOf(val))) {
                         stats.get(field).put('older', stats.get(field).get('older') + 1);
@@ -96,7 +102,7 @@ public with sharing class SankeyController {
                 }
             }
 
-            for (String field : fieldApiNames) {
+            for (String field : queryableFields) {
                 Map<String, Integer> fs = stats.get(field);
                 Integer rSize = fs.get('recentSize');
                 Integer oSize = fs.get('olderSize');
@@ -114,6 +120,27 @@ public with sharing class SankeyController {
         } catch (Exception e) {
             throw new AuraHandledException('Error sampling field population: ' + e.getMessage());
         }
+    }
+
+    /**
+     * Filters a list of field API names to only those that exist and are accessible
+     * in the Schema describe for the given object. Removes system fields like
+     * CloneSourceId that appear in UI metadata but cannot be used in SOQL SELECT.
+     */
+    private static List<String> filterQueryableFields(String objectApiName, List<String> fieldApiNames) {
+        Schema.SObjectType objType = Schema.getGlobalDescribe().get(objectApiName);
+        if (objType == null) {
+            return new List<String>();
+        }
+        Map<String, Schema.SObjectField> fieldMap = objType.getDescribe().fields.getMap();
+        List<String> valid = new List<String>();
+        for (String f : fieldApiNames) {
+            Schema.SObjectField sf = fieldMap.get(f.toLowerCase());
+            if (sf != null && sf.getDescribe().isAccessible()) {
+                valid.add(f);
+            }
+        }
+        return valid;
     }
 
     /**
@@ -146,37 +173,31 @@ public with sharing class SankeyController {
     }
 
     /**
-     * Approximate record counts for all objects via the REST /limits/recordCount endpoint.
-     * Non-cacheable because it performs an HTTP callout.
-     * Returns '{}' on any failure so the object picker degrades gracefully.
-     * Prerequisite: Remote Site Setting for the org's own domain URL.
+     * Approximate record counts via Database.countQuery for a set of object API names.
+     * Capped at 30 objects to stay well within the 100-SOQL governor limit.
+     * Skips objects that throw (permission issues, non-countable entities).
+     * @param objectApiNames list of SObject API names to count
      * @return JSON map of {objectApiName: count}
      */
     @AuraEnabled
-    public static String getObjectRecordCounts() {
-        try {
-            HttpRequest req = new HttpRequest();
-            req.setEndpoint(URL.getOrgDomainUrl().toExternalForm()
-                + '/services/data/v62.0/limits/recordCount');
-            req.setMethod('GET');
-            req.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionId());
-
-            HttpResponse res = new Http().send(req);
-            if (res.getStatusCode() != 200) {
-                return '{}';
-            }
-
-            Map<String, Object> body = (Map<String, Object>) JSON.deserializeUntyped(res.getBody());
-            List<Object> sObjects = (List<Object>) body.get('sObjects');
-
-            Map<String, Integer> countMap = new Map<String, Integer>();
-            for (Object obj : sObjects) {
-                Map<String, Object> o = (Map<String, Object>) obj;
-                countMap.put((String) o.get('name'), Integer.valueOf(String.valueOf(o.get('count'))));
-            }
+    public static String getObjectRecordCounts(List<String> objectApiNames) {
+        Map<String, Integer> countMap = new Map<String, Integer>();
+        if (objectApiNames == null || objectApiNames.isEmpty()) {
             return JSON.serialize(countMap);
-        } catch (Exception e) {
-            return '{}';
         }
+
+        Integer cap = Math.min(objectApiNames.size(), 30);
+        for (Integer i = 0; i < cap; i++) {
+            String objName = String.escapeSingleQuotes(objectApiNames[i]);
+            try {
+                Integer cnt = Database.countQuery(
+                    'SELECT COUNT() FROM ' + objName + ' WITH SECURITY_ENFORCED'
+                );
+                countMap.put(objectApiNames[i], cnt);
+            } catch (Exception e) {
+                // Skip objects the user can't count (permission, entity type, etc.)
+            }
+        }
+        return JSON.serialize(countMap);
     }
 }

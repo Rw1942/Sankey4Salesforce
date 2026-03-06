@@ -1,7 +1,7 @@
 /**
  * Permission-aware Salesforce object autocomplete with approximate record counts.
- * Uses Apex to retrieve queryable objects and the /limits/recordCount REST API
- * for per-object counts. Sorted by count descending by default.
+ * Uses Apex to retrieve queryable objects and Database.countQuery for per-object counts.
+ * Sorted by count descending by default.
  */
 import { LightningElement, api, wire } from 'lwc';
 import getQueryableObjects from '@salesforce/apex/SankeyController.getQueryableObjects';
@@ -49,6 +49,7 @@ export default class DsObjectPicker extends LightningElement {
             this._rawObjects = JSON.parse(data);
             this.error = undefined;
             this._buildOptions();
+            this._fetchCounts();
         } else if (error) {
             this.error = error;
             this._rawObjects = [];
@@ -57,8 +58,10 @@ export default class DsObjectPicker extends LightningElement {
         }
     }
 
-    connectedCallback() {
-        getObjectRecordCounts()
+    _fetchCounts() {
+        if (!this._rawObjects.length) return;
+        const names = this._rawObjects.map(o => o.apiName).slice(0, 30);
+        getObjectRecordCounts({ objectApiNames: names })
             .then(result => {
                 this._recordCounts = JSON.parse(result);
                 this._buildOptions();

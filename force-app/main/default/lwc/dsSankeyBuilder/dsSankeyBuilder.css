@@ -52,13 +52,6 @@
     min-height: 480px;
 }
 
-/* ═══ Generate Diagram CTA bar ═══ */
-
-.generate-bar {
-    padding: 1.25rem 1rem;
-    border-top: 1px solid var(--slds-g-color-border-base-1, var(--lwc-colorBorder, #e2e8f0));
-}
-
 /* ═══ Contextual help text ═══ */
 
 .help-text {

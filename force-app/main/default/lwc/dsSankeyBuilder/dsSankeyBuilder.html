@@ -147,15 +147,28 @@
 
                         <div class="slds-p-top_small">
                             <div class="slds-grid slds-gutters slds-wrap">
-                                <!-- Object Picker -->
+                                <!-- Object Picker + Generate -->
                                 <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_small">
                                     <p class="help-text slds-m-bottom_xx-small">
                                         Choose which Salesforce object contains the records you want to visualize.
                                     </p>
-                                    <c-ds-object-picker
-                                        selected-object={state.config.objectApiName}
-                                        onobjectselect={handleObjectSelect}>
-                                    </c-ds-object-picker>
+                                    <div class="slds-grid slds-grid_vertical-align-end slds-gutters_x-small">
+                                        <div class="slds-col slds-grow">
+                                            <c-ds-object-picker
+                                                selected-object={state.config.objectApiName}
+                                                onobjectselect={handleObjectSelect}>
+                                            </c-ds-object-picker>
+                                        </div>
+                                        <div class="slds-col slds-no-flex">
+                                            <lightning-button
+                                                label="Generate Diagram"
+                                                icon-name="utility:play"
+                                                variant="brand"
+                                                onclick={handleGenerateDiagram}
+                                                disabled={isGenerateDisabled}>
+                                            </lightning-button>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- Metric Selector -->
@@ -202,20 +215,6 @@
                             </template>
                         </div>
 
-                        <!-- Generate Diagram CTA -->
-                        <div class="generate-bar slds-m-top_medium slds-text-align_center">
-                            <lightning-button
-                                label="Generate Diagram"
-                                icon-name="utility:play"
-                                variant="brand"
-                                onclick={handleGenerateDiagram}
-                                disabled={isGenerateDisabled}
-                                class="generate-btn">
-                            </lightning-button>
-                            <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">
-                                Builds a Sankey flow diagram from your settings above.
-                            </p>
-                        </div>
                     </div>
                 </template>
             </div>

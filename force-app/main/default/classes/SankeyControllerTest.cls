@@ -340,48 +340,82 @@ private class SankeyControllerTest {
 
     // ── getObjectRecordCounts tests ──────────────────────────────────────
 
-    private class RecordCountMock implements HttpCalloutMock {
-        private final Integer statusCode;
-        private final String body;
-
-        RecordCountMock(Integer statusCode, String body) {
-            this.statusCode = statusCode;
-            this.body = body;
-        }
-
-        public HttpResponse respond(HttpRequest req) {
-            HttpResponse res = new HttpResponse();
-            res.setStatusCode(this.statusCode);
-            res.setBody(this.body);
-            return res;
-        }
-    }
-
     @isTest
     static void testGetObjectRecordCounts_Success() {
-        String mockBody = '{"sObjects":[' +
-            '{"name":"Account","count":500},' +
-            '{"name":"Contact","count":1200}' +
-            ']}';
-        Test.setMock(HttpCalloutMock.class, new RecordCountMock(200, mockBody));
-
         Test.startTest();
-        String resultJson = SankeyController.getObjectRecordCounts();
+        String resultJson = SankeyController.getObjectRecordCounts(
+            new List<String>{ 'Opportunity' }
+        );
         Test.stopTest();
 
         Map<String, Object> counts = (Map<String, Object>) JSON.deserializeUntyped(resultJson);
-        System.assertEquals(500, counts.get('Account'), 'Account count should be 500');
-        System.assertEquals(1200, counts.get('Contact'), 'Contact count should be 1200');
+        System.assert(counts.containsKey('Opportunity'), 'Should include Opportunity count');
+        System.assertEquals(20, counts.get('Opportunity'), 'Opportunity count should be 20');
     }
 
     @isTest
-    static void testGetObjectRecordCounts_Failure() {
-        Test.setMock(HttpCalloutMock.class, new RecordCountMock(500, 'Internal Server Error'));
-
+    static void testGetObjectRecordCounts_EmptyInput() {
         Test.startTest();
-        String resultJson = SankeyController.getObjectRecordCounts();
+        String resultJson = SankeyController.getObjectRecordCounts(new List<String>());
         Test.stopTest();
 
-        System.assertEquals('{}', resultJson, 'Should return empty map on HTTP failure');
+        System.assertEquals('{}', resultJson, 'Empty input should return empty map');
+    }
+
+    @isTest
+    static void testGetObjectRecordCounts_NullInput() {
+        Test.startTest();
+        String resultJson = SankeyController.getObjectRecordCounts(null);
+        Test.stopTest();
+
+        System.assertEquals('{}', resultJson, 'Null input should return empty map');
+    }
+
+    @isTest
+    static void testGetObjectRecordCounts_SkipsInvalidObjects() {
+        Test.startTest();
+        String resultJson = SankeyController.getObjectRecordCounts(
+            new List<String>{ 'Opportunity', 'NonExistentObject__xyz' }
+        );
+        Test.stopTest();
+
+        Map<String, Object> counts = (Map<String, Object>) JSON.deserializeUntyped(resultJson);
+        System.assert(counts.containsKey('Opportunity'), 'Valid objects should be counted');
+        System.assert(!counts.containsKey('NonExistentObject__xyz'),
+            'Invalid objects should be skipped silently');
+    }
+
+    // ── filterQueryableFields / getFieldPopulationStats with invalid fields ──
+
+    @isTest
+    static void testGetFieldPopulationStats_FiltersOutInvalidFields() {
+        Test.startTest();
+        String resultJson = SankeyController.getFieldPopulationStats(
+            'Opportunity',
+            new List<String>{ 'StageName', 'CloneSourceId', 'BogusField__xyz' }
+        );
+        Test.stopTest();
+
+        Map<String, Object> stats = (Map<String, Object>) JSON.deserializeUntyped(resultJson);
+        System.assert(stats.containsKey('StageName'),
+            'Valid field StageName should be present in results');
+        System.assert(!stats.containsKey('CloneSourceId'),
+            'Non-queryable system field should be filtered out');
+        System.assert(!stats.containsKey('BogusField__xyz'),
+            'Non-existent field should be filtered out');
+    }
+
+    @isTest
+    static void testGetFieldPopulationStats_AllFieldsInvalid() {
+        Test.startTest();
+        String resultJson = SankeyController.getFieldPopulationStats(
+            'Opportunity',
+            new List<String>{ 'BogusField__xyz', 'AnotherFake__c' }
+        );
+        Test.stopTest();
+
+        Map<String, Object> stats = (Map<String, Object>) JSON.deserializeUntyped(resultJson);
+        System.assertEquals(0, stats.size(),
+            'Should return empty map when all fields are invalid');
     }
 }
