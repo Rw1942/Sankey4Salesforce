@@ -15,21 +15,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DS_Sankey_Config__c.Metric_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>DS_Sankey_Config__c.Null_Handling__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>DS_Sankey_Config__c.Object_Api_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>DS_Sankey_Config__c.Path_Fields_JSON__c</field>
         <readable>true</readable>
     </fieldPermissions>
