@@ -12,11 +12,31 @@ A Salesforce Lightning Web Component (LWC) that renders interactive Sankey diagr
 - KPI insights panel with top paths and conversion metrics
 - Save and load named configurations for quick reuse
 - Custom SLDS-compliant autocomplete for object selection with type-ahead filtering
+- **Appears in the App Launcher automatically after install** — no manual page setup required
+- **Titanic passenger demo data seeded on fresh install** for immediate exploration
+
+## Installing via Package
+
+The quickest way to get started is to install the managed package directly into your org:
+
+```
+https://login.salesforce.com/packaging/installPackage.apexp?p0=04tfj000000FrATAA0
+```
+
+Open that URL while logged into your org. The installer will run automatically and the **Sankey Builder** app will appear in the App Launcher (⬡ waffle menu) when complete.
+
+> **Note:** The current published version (1.0.0-1) predates the Titanic demo data and App Launcher setup. A new version with these included is pending. Use the source deploy path below if you want everything.
 
 ## Project Structure
 
 ```
 force-app/main/default/
+├── applications/
+│   └── Sankey_Builder.app-meta.xml   # App Launcher entry
+├── flexipages/
+│   └── Sankey_Builder.flexipage-meta.xml  # App page hosting the LWC
+├── tabs/
+│   └── Sankey_Builder.tab-meta.xml   # Tab pointing to the FlexiPage
 ├── lwc/
 │   ├── dsSankeyBuilder/      # Parent orchestrator (exposed)
 │   ├── dsEmptyState/         # First-time onboarding
@@ -35,12 +55,16 @@ force-app/main/default/
 │   ├── SankeyService.cls             # Path aggregation + KPI computation
 │   ├── SankeyQueryBuilder.cls        # Dynamic SOQL builder
 │   ├── SankeyConfigRepository.cls    # CRUD for DS_Sankey_Config__c
+│   ├── TitanicInstallHandler.cls     # Post-install script: seeds demo data
 │   ├── SankeyControllerTest.cls
-│   └── SankeyServiceTest.cls
+│   ├── SankeyServiceTest.cls
+│   └── TitanicInstallHandlerTest.cls
 ├── objects/
-│   └── DS_Sankey_Config__c/          # Saved configuration storage
+│   ├── DS_Sankey_Config__c/          # Saved configuration storage
+│   └── Titanic_Passenger__c/         # Demo data object
 └── staticresources/
-    └── d3.zip                        # D3 v7 + d3-sankey (minified)
+    ├── d3.zip                        # D3 v7 + d3-sankey (minified)
+    └── TitanicData.csv               # 1,309-row Titanic dataset (seeded on install)
 ```
 
 ## Prerequisites
@@ -51,42 +75,52 @@ force-app/main/default/
 | Node.js | ≥18 | [nodejs.org](https://nodejs.org) |
 | VS Code + Salesforce Extension Pack | latest | VS Code Marketplace |
 
-## Setup
+## Setup (Source Deploy)
 
-### 1. Install Salesforce CLI
+### 1. Install dependencies and build D3
 
-Open a terminal **as Administrator** and run:
-
-```powershell
-npm install -g @salesforce/cli
-sf --version
+```bash
+npm install
+npm run build:d3
 ```
 
-### 2. Authenticate to your Salesforce org
+This bundles `d3.min.js` + `d3-sankey.min.js` into `force-app/main/default/staticresources/d3.zip`.
 
-```powershell
+### 2. Authenticate to your org
+
+```bash
 sf org login web --alias my-dev-org
 ```
 
-This opens a browser for OAuth login. Use a Developer Edition or Sandbox org.
+### 3. Deploy
 
-### 3. Add the D3 Static Resource
-
-Download the D3 v7 minified bundle and package it:
-
-1. Download `d3.min.js` from [d3js.org](https://d3js.org) or `npm pack d3`
-2. Create a zip file: place `d3.min.js` at the **root** of the zip (not in a subfolder)
-3. Name the zip `d3.zip` and place it at `force-app/main/default/staticresources/d3.zip`
-
-### 4. Deploy to org
-
-```powershell
+```bash
 sf project deploy start --source-dir force-app --target-org my-dev-org
 ```
 
-### 5. Add to a page
+The **Sankey Builder** app will appear in the App Launcher immediately after deploy. The Admin profile is granted visibility automatically.
 
-In Setup → App Builder, drag the **Sankey Builder** (`dsSankeyBuilder`) component onto any App Page, Record Page, or Home Page.
+### 4. Load demo data (optional)
+
+To seed the Titanic passenger dataset manually (this runs automatically on package install):
+
+```bash
+sf apex run --target-org my-dev-org --file /dev/stdin <<'EOF'
+Test.testInstall(new TitanicInstallHandler(), null, false);
+EOF
+```
+
+Or import from the pre-built CSV:
+
+```bash
+sf data import tree --files data/titanic-sf.csv --target-org my-dev-org
+```
+
+## Running Tests
+
+```bash
+sf apex run test --target-org my-dev-org --wait 10
+```
 
 ## Development Notes
 
