@@ -2,6 +2,7 @@
 
 A Salesforce Lightning Web Component (LWC) that renders interactive Sankey diagrams using D3.js to visualise process flows and record traces within the Salesforce platform.
 
+
 ## What It Does
 
 - Point-and-click configuration: pick any queryable Salesforce object and its fields to build a Sankey diagram with no code
@@ -22,6 +23,13 @@ The quickest way to get started is to install the managed package directly into 
 ```
 https://login.salesforce.com/packaging/installPackage.apexp?p0=04tfj000000FrATAA0
 ```
+<img width="1980" height="1414" alt="image" src="https://github.com/user-attachments/assets/c8fc0cca-769d-45d9-b0ae-eb10481e6275" />
+
+<br>
+
+<img width="3284" height="1862" alt="image" src="https://github.com/user-attachments/assets/25bba522-40e1-49b2-86b3-46c1d7e9176c" />
+
+
 
 Open that URL while logged into your org. The installer will run automatically and the **Sankey Builder** app will appear in the App Launcher (⬡ waffle menu) when complete.
 
